@@ -1,0 +1,39 @@
+language: ruby
+rvm:
+  - 2.3.1
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+notifications:
+  email: false
+addons:
+  apt:
+    packages:
+    - libcurl4-openssl-dev
+install:
+  - sudo pip install awscli
+  - gem install jekyll
+  - gem install jekyll-sitemap
+  - gem install jekyll-seo-tag
+  - gem install jekyll-redirect-from
+  - gem install html-proofer
+  - gem install rdiscount
+script:
+  - jekyll build --config _config.yml
+  - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external
+deploy:
+  - provider: s3
+    region: us-west-2
+    acl: public_read
+    bucket: www.edge-cloud.net
+    local_dir: _site
+    cache_control: "max-age=2592000"
+    expires: "2030-12-31 00:00:00 -0000"
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    skip_cleanup: true
+    on:
+      branch: master
+after_deploy:
+  - aws configure set preview.cloudfront true
+  - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
