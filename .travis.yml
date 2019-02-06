@@ -25,7 +25,7 @@ install:
   - gem install html-proofer
   - gem install rdiscount
   - bundle install
-  - bundle update
+#  - bundle update
 script:
   - bundle exec jekyll build --config _config.yml
 #  - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external
