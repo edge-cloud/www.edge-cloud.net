@@ -13,9 +13,15 @@ addons:
 install:
   - sudo pip install awscli
   - gem install jekyll
+  - gem install jekyll-paginate
+  - gem install jekyll-gist
+  - gem install jekyll-feed
+  - gem install jemoji
+  - gem install jekyll-include-cache
   - gem install jekyll-sitemap
   - gem install jekyll-seo-tag
   - gem install jekyll-redirect-from
+  - gem install bundler
   - gem install html-proofer
   - gem install rdiscount
 script:
@@ -34,6 +40,12 @@ deploy:
     skip_cleanup: true
     on:
       branch: master
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+    keep-history: true
+    on:
+      branch: dev
 after_deploy:
-  - aws configure set preview.cloudfront true
-  - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+  - if [[ $TRAVIS_BRANCH != "master" ]]; then aws configure set preview.cloudfront true; fi
+  - if [[ $TRAVIS_BRANCH != "master" ]]; then aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"; fi
