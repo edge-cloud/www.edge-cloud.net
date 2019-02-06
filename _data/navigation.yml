@@ -1,0 +1,10 @@
+# main links
+main:
+  - title: "Home"
+    url: /
+  - title: "AWS"
+    url: /tags/#aws
+  - title: "IPv6"
+    url: /tags/#ipv6
+  - title: "About"
+    url: /about/
