@@ -28,7 +28,7 @@ install:
   - bundle update
 script:
   - bundle exec jekyll build --config _config.yml
-  - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external
+#  - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external
 deploy:
   - provider: s3
     region: us-west-2
