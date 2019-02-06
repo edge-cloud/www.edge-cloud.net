@@ -24,6 +24,7 @@ install:
   - gem install bundler
   - gem install html-proofer
   - gem install rdiscount
+  - bundle install
 script:
   - jekyll build --config _config.yml
   - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external
@@ -41,6 +42,7 @@ deploy:
     on:
       branch: master
   - provider: pages
+    repo: edge-cloud.github.io
     skip-cleanup: true
     github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
     keep-history: true
