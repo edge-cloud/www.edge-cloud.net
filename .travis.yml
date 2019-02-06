@@ -24,9 +24,8 @@ install:
   - gem install bundler
   - gem install html-proofer
   - gem install rdiscount
-  - bundle install
 script:
-  - jekyll build --config _config.yml
+  - bundle exec jekyll build --config _config.yml
   - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external
 deploy:
   - provider: s3
