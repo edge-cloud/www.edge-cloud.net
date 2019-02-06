@@ -43,9 +43,9 @@ deploy:
       branch: master
   - provider: pages
     repo: edge-cloud.github.io
+    target-branch: master
     skip-cleanup: true
     github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-    keep-history: true
     on:
       branch: dev
 after_deploy:
