@@ -17,6 +17,7 @@ tags:
   - Google-Analytics
   - HTTP2
   - IPv6
+toc: true  
 ---
 AWS CloudFront recently enabled support for the latest HTTP protocol version with [HTTP/2](https://aws.amazon.com/about-aws/whats-new/2016/09/amazon-cloudfront-now-supports-http2/) and for the latest Internet Protocol Version with [IPv6](https://aws.amazon.com/blogs/aws/ipv6-support-update-cloudfront-waf-and-s3-transfer-acceleration/). Website owners using AWS CloudFront and having enabled HTTP/2 and/or IPv6 on their distribution might now wonder how many guests use either technology. Or you might want to know where these IPv6 users are coming from. Are they really mostly coming from Mobile networks?
 
