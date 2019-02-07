@@ -1,3 +1,49 @@
 <!-- start custom analytics snippet -->
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39076327-2"></script>
+  <script>
+    function processData(x) {
+      var y = {};
+      for (var i = 0; i < x.length-1; i++) {
+        var split = x[i].split('=');
+        y[split[0].trim()] = split[1].trim();
+      }
+      return y;
+    }
+    function objData(x) {
+      return obj[x];
+    }
+    var data;
+    var obj;
+    var client = new XMLHttpRequest();
+    client.open("GET", "/cdn-cgi/edge-info", false);
+    client.onreadystatechange =
+      function () {
+        if(client.readyState === 4){
+          if(client.status === 200 || client.status == 0){
+            data = client.responseText.split("\n");
+          }
+        }
+      };
+    client.send(null);
+    obj= processData(data);
+    
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-39076327-2', {
+      'custom_map': {
+        'dimension1': 'edge',
+        'dimension2': 'ipver',
+        'dimension3': 'httpver'
+      }
+    });
+    gtag('event', 'edge', {'edge': objData('edgeloc')});
+    gtag('event', 'ipver', {'ipver': objData('ipver')});
+    gtag('event', 'httpver', {'httpver': objData('httpver')});
+    
+  </script>
+
 <!-- end custom analytics snippet -->
