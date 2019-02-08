@@ -37,7 +37,9 @@ In this case we will need to create three custom dimensions. Each will store dif
   * **HTTP-Version:** This dimension will store the values "2.0", "1.1", or "1.0".
   * **Edge-Location:** This dimension will store the three letter [IATA airport code](https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code) of the CloudFront edge location, e.g. "SFO" for San Francisco.
 
-### Create custom dimensions in Google Analytics
+### Setup 
+
+#### Create custom dimensions in Google Analytics
 
 First, set up the custom dimensions in Google Analytics:
 
@@ -55,7 +57,7 @@ First, set up the custom dimensions in Google Analytics:
 
 {% include figure image_path="/content/uploads/2016/10/Analytics_01.png" alt="Figure 1: Create Google Analytics Custom Dimensions" caption="Figure 1: Create Google Analytics Custom Dimensions" %}
 
-### AWS Lambda Setup
+#### AWS Lambda Setup
 
 We will use a small [AWS Lambda](https://aws.amazon.com/lambda/) script to extract the information about CloudFront edge location, IP version, and HTTP version from incoming requests.
 
@@ -71,7 +73,7 @@ The HTTP-Version information can be extracted from the ["Via"](https://www.w3.or
 
 The edge location can be determined with a reverse DNS lookup, based on the source IP address that Amazon API Gateway sees from CloudFront.
 
-### API Gateway Setup
+#### API Gateway Setup
 
 Next we need to make the above AWS Lambda function accessible via a URL. This can easily be done using [Amazon API Gateway](https://aws.amazon.com/api-gateway/). To simplify the setup you can use a prepared [swagger formatted](http://swagger.io/) file, which can be found on [GitHub](https://github.com/chriselsen/AWSLambda_CloudFrontMetaData/blob/master/CloudWatchMetaData-swagger.json).
 
@@ -87,7 +89,7 @@ Deploy the newly created API into the "Prod" stage and lookup the "Invoke URL" (
 
 {% include figure image_path="/content/uploads/2016/10/Analytics_04.png" alt="Figure 4: Invoke URL of the deployed API" caption="Figure 4: Invoke URL of the deployed API" %}
 
-### Cloudfront Setup
+#### Cloudfront Setup
 
 Next you need to place CloudFront in front of the API Gateway URL as the API Gateway neither supports HTTP/2 nor IPv6 at this point. Therefore we need to rely on CloudFront for this task.
 
@@ -111,7 +113,7 @@ After the update to the CloudFront distribution has been completed you should fi
     httpver=2.0
     edgeloc=sfo
 
-### Embed the Google Analytics Tracking Code
+#### Embed the Google Analytics Tracking Code
 
 Next we need to update the Google Analytics tracking code within the website, in order to fill the newly created custom dimensions with data. This tracking code has to be placed between the code for creating the Google Analytics tracker, which looks like this: `gaTracker('create','UA-12345678-1','auto');`, and the code to submit the tracker, which looks like this `gaTracker('send','pageview');`.
 
