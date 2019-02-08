@@ -41,8 +41,6 @@ deploy:
     target-branch: master
     skip-cleanup: true
     github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-    on:
-      branch: dev
 after_deploy:
   - if [[ $TRAVIS_BRANCH == "master" ]]; then aws configure set preview.cloudfront true; fi
   - if [[ $TRAVIS_BRANCH == "master" ]]; then aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"; fi
