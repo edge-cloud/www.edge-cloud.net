@@ -19,7 +19,6 @@ install:
   - bundle install
 script:
   - if [[ $TRAVIS_BRANCH == "master" ]]; then JEKYLL_ENV=production; fi
-  - echo "ENV:" $JEKYLL_ENV
   - bundle exec jekyll build --config _config.yml
 #  - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external
 deploy:
