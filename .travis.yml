@@ -18,7 +18,10 @@ install:
   - gem install rdiscount
   - bundle install
 script:
-  - JEKYLL_ENV=production bundle exec jekyll build --config _config.yml
+  - if [[ $TRAVIS_BRANCH == "master" ]]; 
+    then JEKYLL_ENV=production bundle exec jekyll build --config _config.yml;
+    else bundle exec jekyll build --config _config.yml --future;
+    fi
 #  - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external
 deploy:
   - provider: s3
