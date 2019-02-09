@@ -182,7 +182,7 @@ This test event data is derived from the [Flowroute Messaging API documentation]
 
 Execute the test by selecting **Save and test** (See Figure 13).
 
-{% include figure image_path="/content/uploads/2016/05/Lambda05.png" caption="Figure 13: Input test event" %}
+{% include figure image_path="/content/uploads/2016/05/Lambda05.jpg" caption="Figure 13: Input test event" %}
 
 If everything was setup correctly, you should see a successful test execution with the status *Message delivered* (See Figure 14). Also you should receive an E-Mail message.
 
