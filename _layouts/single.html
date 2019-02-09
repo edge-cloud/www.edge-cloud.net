@@ -67,7 +67,9 @@ layout: default
       {% include comments.html %}
     {% endif %}
     
-    {% include google-adsense.html %}
+    <section class="page__share">
+      {% include google-adsense.html %}
+    </section>
   </article>
 
   {% comment %}<!-- only show related on a post page when `related: true` -->{% endcomment %}
@@ -94,9 +96,9 @@ layout: default
       </div>
     </div>
   {% endif %}
-  <div>
+  <section>
     {% include google-adsense.html %}
-  </div>
+  </section>
 </div>
 
 
