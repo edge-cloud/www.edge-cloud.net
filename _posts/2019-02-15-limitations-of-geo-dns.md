@@ -3,7 +3,7 @@ title: Limitations of DNS-based geolocation steering
 author: Christian Elsen
 excerpt: Exploring the limitations of DNS-based geolocation routing. Geolocation routing lets you choose the resources that serve your traffic based on the geographic location of your users, meaning the location that DNS queries originate from.
 layout: single
-permalink: /2019/01/15/limitations-of-geo-dns/
+permalink: /2019/02/15/limitations-of-geo-dns/
 categories:
   - EdgeCloud
 tags:
