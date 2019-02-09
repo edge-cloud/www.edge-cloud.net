@@ -33,6 +33,8 @@ Overview of what can be seen
 
 {% include figure image_path="/content/uploads/2019/02/RIPE-Atlas-US-Probes.png" caption="Figure 3: Mapping of RIPE Atlas probes to Origins" %}
 
+<script src="https://gist.github.com/chriselsen/ff5d0d535781e61d879ff154e785259a.js"></script>
+
 #### Probe Details
 Drill down on the probe results
 
