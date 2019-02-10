@@ -58,7 +58,7 @@ The trick: We make the user download the data, extract the values and push the r
 
 This approach of leveraging a real user to measure or monitor something is called [Real User Monitoring](https://en.wikipedia.org/wiki/Real_user_monitoring) or RUM for short.
 
-{% include figure image_path="/content/uploads/2016/02/RUM-Flowchart.png" alt="Figure 1: Interaction between browser, CloudFlare and Google Analytics" %}
+{% include figure image_path="/content/uploads/2016/02/RUM-Flowchart.png" caption="Figure 1: Interaction between browser, CloudFlare and Google Analytics" %}
 
 The workflow that will be execute on every page load is as follows (See Figure 1):
 
@@ -91,7 +91,7 @@ First, set up the custom dimensions in Google Analytics:
 8. Click **Create**.
 9. Note down the dimension ID from the displayed example codes. In the example for this blog post the dimension IDs are listed above for the three monitored values.
 
-{% include figure image_path="/content/uploads/2016/02/RUM_01.png" alt="Figure 2: Create a Google Analytics Custom Dimension" %}
+{% include figure image_path="/content/uploads/2016/02/RUM_01.png" caption="Figure 2: Create a Google Analytics Custom Dimension" %}
 
 ### Embed the Google Analytics Tracking Code
 
@@ -159,15 +159,15 @@ You can now create custom reports with the custom dimensions in Google Analytics
   5. Next select the custom dimension for the IP Transport Method (IPv4 vs. IPv6), that you created as the "Dimension Drilldown" (See Figure 3).
   6. Click on the **Save** button.
 
-{% include figure image_path="/content/uploads/2016/02/RUM_02.png" alt="Figure 3: Create a Custom Report in Google Analytics" %}
+{% include figure image_path="/content/uploads/2016/02/RUM_02.png" caption="Figure 3: Create a Custom Report in Google Analytics" %}
 
 The resulting Custom Report will show you how many session - in total numbers, but also in percent - were served by which transport method.
 
-{% include figure image_path="/content/uploads/2016/02/RUM_03.png" alt="Figure 4: Traffic served over IPv4 vs. IPv6" %}
+{% include figure image_path="/content/uploads/2016/02/RUM_03.png" caption="Figure 4: Traffic served over IPv4 vs. IPv6" %}
 
 You can generate similar graphs for the other custom dimensions. E.g. in order to find out how much of your web-sites traffic was served over HTTP/2 (See Figure 5).
 
-{% include figure image_path="/content/uploads/2016/02/RUM_04.png" alt="Figure 5: Traffic served over HTTP/2 vs. SPDY vs. HTTP 1.x" %}
+{% include figure image_path="/content/uploads/2016/02/RUM_04.png" caption="Figure 5: Traffic served over HTTP/2 vs. SPDY vs. HTTP 1.x" %}
 
 By combining data from the custom dimension with data collected by Google Analytcis natively you can answer many interesting questions for your website, such as: Is IPv6 traffic really mostly driven by mobile traffic? Where are all these users with HTTP/2 capable browsers located?
 
