@@ -27,7 +27,7 @@ The solution simplifies deploying and managing large-scale wireless LANs by mana
 
 Despite these outstanding capabilities, Cisco's WLC brings rather limited and complicated capabilities to the table when it comes to creating a simple captive portal for Wifi users, where authentication of valid customers is performed via voucher codes.
 
-Here [CloudTrax controller](http://www.open-mesh.com/" target="_blank">Open-Mesh</a> with it's cloud-based <a href="https://www.cloudtrax.com/) offers a very simple and cost-effective solution to deploy a Wifi network - e.g. within a hotel, restaurant, college campus or other location - for users to authenticate via a Captive Portal for free, with a free or prepaid voucher or via PayPal payment (See Figure 2).
+Here [Open-Mesh](http://www.open-mesh.com/) with it's cloud-based [CloudTrax controller](https://www.cloudtrax.com/) offers a very simple and cost-effective solution to deploy a Wifi network - e.g. within a hotel, restaurant, college campus or other location - for users to authenticate via a Captive Portal for free, with a free or prepaid voucher or via PayPal payment (See Figure 2).
 
 <div id="attachment_1455" style="width: 297px" class="wp-caption aligncenter">
   <img src="/content/uploads/2015/01/cloudtrax-stati-008.png" alt="Figure 2: Captive Portal provided by CloudTrax" width="287" height="216" class="size-full wp-image-1455" />
