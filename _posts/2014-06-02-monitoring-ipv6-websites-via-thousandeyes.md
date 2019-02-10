@@ -147,7 +147,7 @@ Looking at the IPv4 agent we can see that this in this case the webserver is loc
 
 This discrepancy in path chosen for IPv4 and IPv6 traffic as well as the distance between the locations explain the performance difference.
 
-I need to point out that the URL in this example is served by [Points-of-Presence (POPs)](https://www.cloudflare.com/" target="_blank">CloudFlare</a>, a content delivery network and distributed domain name server service which uses <a href="https://en.wikipedia.org/wiki/Anycast" target="_blank">Anycast</a> for improving website performance and speed, and to protect websites from online threats. As CloudFlare has <a href="https://www.cloudflare.com/network/) in both Vienna and Frankfurt, traffic can be served by either of these locations, both in IPv4 and IPv6.
+I need to point out that the URL in this example is served by [CloudFlare](https://www.cloudflare.com/), a content delivery network and distributed domain name server service which uses [Anycast](https://en.wikipedia.org/wiki/Anycast) for improving website performance and speed, and to protect websites from online threats. As CloudFlare has [Points-of-Presence (POPs)](https://www.cloudflare.com/network/) in both Vienna and Frankfurt, traffic can be served by either of these locations, both in IPv4 and IPv6.
 
 The problem in this case appears to be on the side of the provider in Nuremberg as they prefer a path towards Frankfurt for connecting to AS13335 (CloudFlare) via IPv4 while preferring a path towards Vienna for the same AS via IPv6. Here another nice feature of ThousandEyes comes into play: Share This Screen. This allows me to share the current screen with either live data or "canned" data around the time I have currently selected with someone who is not a customer of ThousandEyes. I can therefore easily share what I just discovered with the Service Provider in Nuremberg, allowing them to reproduce and better understand the issue. A great feature that saves a lot of time (See Figure 10).
 
@@ -251,7 +251,7 @@ It is no secret that older network equipment provides inferior performance for p
 
 ### Summary
 
-ThousandEyes is a very interesting tool for gaining insight into SaaS application performance and your overall network infrastructure. If you are an enterprise relying on SaaS applications such as [Google Apps](https://products.office.com/en-us/" target="_blank">Microsoft Office 365</a> or <a href="https://gsuite.google.com/), this is a great way to ensure that your employees get the performance they expect. It will help you identify issues and let you troubleshoot and resolve them quickly.
+ThousandEyes is a very interesting tool for gaining insight into SaaS application performance and your overall network infrastructure. If you are an enterprise relying on SaaS applications such as [Microsoft Office 365](https://products.office.com/en-us/) or [Google Apps](https://gsuite.google.com/), this is a great way to ensure that your employees get the performance they expect. It will help you identify issues and let you troubleshoot and resolve them quickly.
 
 If you are a service provider offering a SaaS application, ThousandEyes is equally valuable as you are now not only able to monitor your service from various locations worldwide, but also drill down deep into any issues in the Internet that might degrade your customer's experience. In the end the customer cares about the end-to-end experience, where a SaaS provider has limited direct control over the delivery chain.
 

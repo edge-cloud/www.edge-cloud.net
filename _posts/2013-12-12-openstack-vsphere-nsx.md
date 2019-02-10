@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: 'Introduction to a series explaining how to use VMware vSphere with VMware NSX and OpenStack. '
 layout: single
 permalink: /2013/12/12/openstack-vsphere-nsx/
-redirect_from: 
+redirect_from:
   - /2013/12/12/openstack-vsphere-nsx/amp/
   - /2013/12/openstack-vsphere-nsx/
 image: /wp-content/uploads/2014/02/VOVA+ESXi+NSX.png
@@ -49,7 +49,7 @@ One might wonder why to choose VMware vSphere as the Hypervisor of choice for su
     The predominant model for cloud computing assumes that all components can fail at any time. Thus the application within the workloads need to ensure redundancy. Using VMware vSphere as the Hypervisor of choice with OpenStack, one can deviate from this model and offer a highly reliable cloud instead, known from managed service provider offerings using virtualization today. But it's also possible to create a hybrid approach, offering both a pure cloud experience as well as a highly available experience within the same cloud.  
     &nbsp;
   2. Ease of deploying VMware vSphere vs Openstack with KVM  
-    Deploying OpenStack with KVM is not easy. Instead it is quite a challenging task, which is why various companies - such as e.g. [hands-on labs](https://www.mirantis.com/" title="Mirantis" target="_blank">Mirantis</a> - try to fill this void and offer deployment services or products for OpenStack installation. Deploying a VMware vSphere cluster on the other hand is pretty simple and there are numerous [books](http://amzn.to/2eF0rgc), <a href="http://labs.hol.vmware.com/) or other forms of documentation out there to help. Thus using VMware vSphere as your Hypervisor of choice greatly simplifies the deployment of OpenStack.  
+    Deploying OpenStack with KVM is not easy. Instead it is quite a challenging task, which is why various companies - such as e.g. [Mirantis](https://www.mirantis.com/) - try to fill this void and offer deployment services or products for OpenStack installation. Deploying a VMware vSphere cluster on the other hand is pretty simple and there are numerous [books](http://amzn.to/2eF0rgc), [hands-on labs](http://labs.hol.vmware.com/) or other forms of documentation out there to help. Thus using VMware vSphere as your Hypervisor of choice greatly simplifies the deployment of OpenStack.  
     We will later also see [vSphere OpenStack Virtual Appliance (VOVA)](https://communities.vmware.com/community/vmtn/openstack/). VOVA is an appliance that was built to simplify OpenStack deployment into a VMware vSphere environment for test, proof-of-concept and education purposes. VOVA runs all of the required OpenStack services (Nova, Glance, Cinder, Neutron, Keystone, and Horizon) in a single Ubuntu Linux appliance.
 
 ### Setup

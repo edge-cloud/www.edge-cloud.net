@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: 'This article explores the address management concepts available with IPv6: None, Manual, Stateless Address Auto Configuration (SLLAC), Statefull with DHCPv6'
 layout: single
 permalink: /2013/11/18/ipv6-address-management-hosts/
-redirect_from: 
+redirect_from:
   - /2013/11/18/ipv6-address-management-hosts/amp/
 categories:
   - EdgeCloud
@@ -21,11 +21,11 @@ While IPv4 knew the address management mechanism of None, Manual and DHCP, IPv6 
 
   * 1. None
   * 2. Manual
-  * 3. Stateless Address Auto Configuration (SLAAC) (<a title="RFC 4862" href="https://tools.ietf.org/search/rfc4862" target="_blank">RFC 4862</a>)
+  * 3. Stateless Address Auto Configuration (SLAAC) ([RFC 4862](https://tools.ietf.org/search/rfc4862))
       * 3.1 Nameserver configured manually
-      * 3.2 Nameserver via RDNSS (<a title="RFC6106" href="https://tools.ietf.org/html/rfc6106" target="_blank">RFC 6106</a>)
-      * 3.3 Nameserver via DHCPv6 (<a title="RFC 3736" href="https://tools.ietf.org/html/rfc3736" target="_blank">RFC 3736</a>)
-  * 4. Statefull with DHCPv6 (<a title="RFC 3315" href="https://tools.ietf.org/html/rfc3315" target="_blank">RFC 3315</a>)
+      * 3.2 Nameserver via RDNSS ([RFC 6106](<a title="RFC6106" href=")https://tools.ietf.org/html/rfc6106)
+      * 3.3 Nameserver via DHCPv6 ([RFC 3736](https://tools.ietf.org/html/rfc3736)
+  * 4. Statefull with DHCPv6 ([RFC 3315](https://tools.ietf.org/html/rfc3315)
 
 ### 1. None
 
@@ -37,7 +37,7 @@ Therefore network devices and hosts need to offer the option to disable the IPv6
 
 From a router perspective on the other hand it is not sufficient to just leave away an IPv6 address on an interface. You need to actively suppress IPv6 Router Announcements (RA) and DHCPv6 Replys as well as filter out IPv6 tunnel protocols.
 
-Tools that come in handy here are IPv6 Router Advertisement Guard (<a title="RFC 6105" href="https://tools.ietf.org/html/rfc6105" target="_blank">RFC 6105</a>) as well as [DHCPv6 Guard](https://tools.ietf.org/html/draft-ietf-opsec-dhcpv6-shield-01" target="_blank">DHCPv6 Shield</a>, also known as <a href="http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipv6/configuration/15-2s/ip6-15-2s-book/ip6-dhcpv6-guard.html).
+Tools that come in handy here are IPv6 Router Advertisement Guard ([RFC 6105](https://tools.ietf.org/html/rfc6105)) as well as [DHCPv6 Shield](https://tools.ietf.org/html/draft-ietf-opsec-dhcpv6-shield-01), also known as [DHCPv6 Guard](http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipv6/configuration/15-2s/ip6-15-2s-book/ip6-dhcpv6-guard.html).
 
 ### 2. Manual
 
@@ -96,7 +96,7 @@ Configuration of a manual IPv6 address is done in Ubuntu 13.10 via the file _/et
 
 ### 3. Stateless Address Auto Configuration (SLAAC)
 
-The next mechanism is completely unknown in IPv4 and therefore new to IPv6. Stateless Address Auto Configuration (SLLAC) is a mechanism described in <a title="RFC 4862" href="https://tools.ietf.org/search/rfc4862" target="_blank">RFC 4862</a>, which uses ICMPv6 packets to let routers in a network regularly announce the configured IPv6 prefix. Upon receiving of such an ICMPv6 packet - called Router Advertisement (RA), hosts will automatically generate an IPv6 address based on their own MAC address and this prefix. The mechanism is called "Stateless" as it doesn't require any state to be kept within the router to avoid IPv6 address collision. Prevention of collisions is solely achieved by utilizing a modified [EUI-64 mechanism](https://en.wikipedia.org/wiki/MAC_address).
+The next mechanism is completely unknown in IPv4 and therefore new to IPv6. Stateless Address Auto Configuration (SLLAC) is a mechanism described in [RFC 4862](https://tools.ietf.org/search/rfc4862), which uses ICMPv6 packets to let routers in a network regularly announce the configured IPv6 prefix. Upon receiving of such an ICMPv6 packet - called Router Advertisement (RA), hosts will automatically generate an IPv6 address based on their own MAC address and this prefix. The mechanism is called "Stateless" as it doesn't require any state to be kept within the router to avoid IPv6 address collision. Prevention of collisions is solely achieved by utilizing a modified [EUI-64 mechanism](https://en.wikipedia.org/wiki/MAC_address).
 
 Figure shows how such a Router Advertisement packet looks like in Wireshark. We can clearly see the advertised prefix as well as the prefix length.
 
@@ -138,7 +138,7 @@ The manual configuration under Ubuntu 13.10 is quite simple: Just add the line `
 
 ### 3.2 Stateless - Nameserver via RDNSS
 
-Recursive DNS Server (RDNSS) and DNS Search List (DNSSL) as defined in <a title="RFC6106" href="https://tools.ietf.org/html/rfc6106" target="_blank">RFC 6106</a> are basically an extensions to the RA mechanism.
+Recursive DNS Server (RDNSS) and DNS Search List (DNSSL) as defined in [RFC 6106](https://tools.ietf.org/html/rfc6106) are basically an extensions to the RA mechanism.
 
 Figure 7 shows the additional options within an ICMPv6 RA packet to carry the nameserver information.
 

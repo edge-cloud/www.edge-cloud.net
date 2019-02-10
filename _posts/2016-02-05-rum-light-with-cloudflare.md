@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: Would you like to know the ratio of visitors accessing your website over IPv4 vs. IPv6? Or curious about how many visitors you serve over HTTP/2 vs. SPDY or HTTP 1.1? Using Google Analytics, CloudFlare and some JavaScript magic we can easily get answers to these questions. For this we will use the principle of Real User Monitoring (RUM).
 layout: single
 permalink: /2016/02/05/rum-light-with-cloudflare/
-redirect_from: 
+redirect_from:
   - /2016/02/05/rum-light-with-cloudflare/amp/
 categories:
   - EdgeCloud
@@ -109,11 +109,11 @@ The below JavaScript code will read the values from */cdn-cgi/trace*, extract th
       }
       return y;
     }
-    
+
     function objData(x) {
       return obj[x];
     }
-    
+
     function isIPv6() {
       ipv6 = (objData('ip').indexOf(":") &gt; -1);
       switch (ipv6){
@@ -124,7 +124,7 @@ The below JavaScript code will read the values from */cdn-cgi/trace*, extract th
           return "IPv4";
       }
     }
-    
+
     var data;
     var obj;
     var client = new XMLHttpRequest();
@@ -139,7 +139,7 @@ The below JavaScript code will read the values from */cdn-cgi/trace*, extract th
             };
     client.send(null);
     obj= processData(data);
-    
+
     __gaTracker('set','dimension1',objData('colo'));
     __gaTracker('set','dimension2',isIPv6());
     __gaTracker('set','dimension3',objData('spdy'));
@@ -175,4 +175,4 @@ By combining data from the custom dimension with data collected by Google Analyt
 
 This article has shown you, that you can easily built your own Real User Monitoring system with Google Analytics Custom dimension and some JavaScript code. It allows you to extract many interesting metrics out of your CloudFlare usage and make it available in Google Analytics for further data analysis.
 
-Not only has this site been using the above described method since November 2015, but also another [HTTP/2 adoption](https://www.cloudflare.com"), which has provided [interesting insights](https://blog.cloudflare.com/introducing-http2/) into the [HTTP/2 adoption](https://blog.cloudflare.com/cloudflares-impact-on-the-http-2-universe/).
+Not only has this site been using the above described method since November 2015, but also another [HTTP/2 adoption](https://www.cloudflare.com), which has provided [interesting insights](https://blog.cloudflare.com/introducing-http2/) into the [HTTP/2 adoption](https://blog.cloudflare.com/cloudflares-impact-on-the-http-2-universe/).
