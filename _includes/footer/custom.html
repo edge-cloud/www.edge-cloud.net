@@ -1,3 +1,5 @@
 <!-- start custom footer snippets -->
-{% include google-adsense.html %}
+{% if jekyll.environment == 'production' %}
+  {% include google-adsense.html %}
+{% endif %}
 <!-- end custom footer snippets -->
