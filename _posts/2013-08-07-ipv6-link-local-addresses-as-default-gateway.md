@@ -23,7 +23,7 @@ One of the big benefits in IPv6 is the automatic configuration capability for ho
 
 ### IPv6 use case
 
-While it's already possible to achieve something similar for the DNS resolver in IPv4, in IPv6 link-local addresses enable us to use the same default gateway in every network segment. Simplified speaking link-local addresses translate into having the same subnet available on each L2 segment. Thus this allows network engineers to configure the default gateway for client machines to be always the same. Here it doesn't matter whether this default gateway for static routing is provided via a single interface, via [Virtual Router Redundancy Protocol (VRPP)](https://en.wikipedia.org/wiki/Hot_Standby_Router_Protocol" target="_blank">Hot Standby Router Protocol (HSRP)</a> or <a href="https://en.wikipedia.org/wiki/Virtual_Router_Redundancy_Protocol).
+While it's already possible to achieve something similar for the DNS resolver in IPv4, in IPv6 link-local addresses enable us to use the same default gateway in every network segment. Simplified speaking link-local addresses translate into having the same subnet available on each L2 segment. Thus this allows network engineers to configure the default gateway for client machines to be always the same. Here it doesn't matter whether this default gateway for static routing is provided via a single interface, via [Hot Standby Router Protocol (HSRP)](https://en.wikipedia.org/wiki/Hot_Standby_Router_Protocol) or [Virtual Router Redundancy Protocol (VRPP)](https://en.wikipedia.org/wiki/Virtual_Router_Redundancy_Protocol).
 
 As a result a network engineer can give users a very simple to follow statement for manually configuring their hosts with IPv6: "The default gateway is always fe80::1". Thanks to Anycast we can already make similar statements for e.g. DNS, with "The DNS resolvers are always fd53::11 and fd53::12".
 
@@ -106,7 +106,7 @@ You might wonder why we didn't have to specify a zone index when we entered fe80
 
 As mentioned earlier, Anycast - both in IPv4 and IPv6 - already gives us the possibility to provide end-users a single or single set of IP addresses for the DNS resolvers, irrespective of their physical location. But why should we "burn" a global unicast IPv6 address for this? Especially as these addresses can be quite long and hard to remember.
 
-Here [RFC 1918](https://en.wikipedia.org/wiki/Unique_local_address" target="_blank">unique local addresses (ULA)</a> come to the rescue. In most cases ULA can be treated like <a href="https://tools.ietf.org/html/rfc1918) addresses in IPv4. Prefixes in the fd00::/8 range have similar properties as those of the IPv4 private address ranges:
+Here [unique local addresses (ULA)](https://en.wikipedia.org/wiki/Unique_local_address) come to the rescue. In most cases ULA can be treated like [RFC 1918](https://tools.ietf.org/html/rfc1918) addresses in IPv4. Prefixes in the fd00::/8 range have similar properties as those of the IPv4 private address ranges:
 
 * They are not allocated by an address registry and may be used in networks by anyone without outside involvement.
 * They are not guaranteed to be globally unique.
