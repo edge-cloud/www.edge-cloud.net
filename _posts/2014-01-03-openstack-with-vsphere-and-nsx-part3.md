@@ -64,7 +64,7 @@ Next temporarily enable SSH access to the ESXi hosts (See Figure 3). After we ar
   </p>
 </div>
 
-After you have enabled SSH access the ESXi hosts, connect to your first ESXi host via SSH. Start the installation of the NSX vSwitch VIB file via the command `esxcli software vib install --no-sig-check -v &#60;path and filename&#62;`:
+After you have enabled SSH access the ESXi hosts, connect to your first ESXi host via SSH. Start the installation of the NSX vSwitch VIB file via the command `esxcli software vib install --no-sig-check -v <path and filename>`:
 
 <pre>~ # esxcli software vib install --no-sig-check -v /vmfs/volumes/SiteA-IPv6-NFS/vmware-nsxvswitch-2.0.1-30494-release.vib
 Installation Result
@@ -82,7 +82,7 @@ Ensure that the VIB is installed successfully.
 
 While the configuration of the Standard vSwitch and the virtual Distributed Switch is usually done via vCenter, the NSX vSwitch is configured via the CLI. Therefore let's go ahead and configure the NSX vSwitch for this host.
 
-Start by linking the NSX vSwitch to a physical uplink interface (vmnic). This is done via the command `nsxcli uplink/connect &#60;interface&#62;`:
+Start by linking the NSX vSwitch to a physical uplink interface (vmnic). This is done via the command `nsxcli uplink/connect <interface>`:
 
 <pre>~ # nsxcli uplink/connect vmnic1
 ~ #
@@ -90,15 +90,15 @@ Start by linking the NSX vSwitch to a physical uplink interface (vmnic). This is
 
 Next we configure the IP address for the transport endpoint. This transport endpoint creates overlay tunnels with other transport endpoints, such as Hypervisors, Gateway nodes and Service Nodes. The NSX vSwitch uses a separate IP stack for this, which means that the VMWare NSX transport endpoint has its own default gateway.
 
-Set the IP address of the transport endpoint with the command `nsxcli uplink/set-ip &#60;interface&#62; &#60;ip address&#62; &#60;netmask&#62;`:
+Set the IP address of the transport endpoint with the command `nsxcli uplink/set-ip <interface> <ip address> <netmask>`:
 
-_Note:_ If the physical switchport that this vmnic connects to is not configured as an access port but as a trunk, you will need to also specify the correct VLAN to be used with the command `nsxcli uplink/set-ip &#60;interface&#62; &#60;ip address&#62; &#60;netmask&#62; vlan=&#60;id&#62;`
+_Note:_ If the physical switchport that this vmnic connects to is not configured as an access port but as a trunk, you will need to also specify the correct VLAN to be used with the command `nsxcli uplink/set-ip <interface> <ip address> <netmask> vlan=<id>`
 
 <pre>~ # nsxcli uplink/set-ip vmnic1 192.168.110.121 255.255.255.0
 ~ #
 </pre>
 
-Next, set the default gateway with the command `nsxcli gw/set tunneling &#60;ip address of default gateway&#62;`
+Next, set the default gateway with the command `nsxcli gw/set tunneling <ip address of default gateway>`
 
 <pre>~ # nsxcli gw/set tunneling 192.168.110.2
 ~ #
@@ -106,14 +106,14 @@ Next, set the default gateway with the command `nsxcli gw/set tunneling &#60;ip 
 
 Next is the creation of a Transport-Net Bridge to which Virtual Machines will later connect to. The name of this Bridge needs to be known to our OpenStack installation for the architecture to work. As we will be using [vSphere OpenStack Virtual Appliance (VOVA)](https://communities.vmware.com/community/vmtn/openstack/) this uuid and name must be _NSX-Bridge_.
 
-Create the NSX bridge with the command `nsxcli network/add &#60;UUID&#62; &#60;Name&#62;`:
+Create the NSX bridge with the command `nsxcli network/add <UUID> <Name>`:
 
 <pre>~ # nsxcli network/add NSX-Bridge NSX-Bridge nsx.network manual
 success
 ~ #
 </pre>
 
-Similar to the NSX appliances, the next step registers the NSX vSwitch with the NSX controller. First use the command `nsxcli manager/set ssl:&#60;IP address of a NSX controller node&#62;` to point the NSX vSwitch to the NSX controller. In the case of an NSX controller cluster you can specify any IP address of a cluster member.
+Similar to the NSX appliances, the next step registers the NSX vSwitch with the NSX controller. First use the command `nsxcli manager/set ssl:<IP address of a NSX controller node>` to point the NSX vSwitch to the NSX controller. In the case of an NSX controller cluster you can specify any IP address of a cluster member.
 
 <pre>~ # nsxcli manager/set ssl:192.168.110.101
 ~ #
@@ -121,7 +121,7 @@ Similar to the NSX appliances, the next step registers the NSX vSwitch with the 
 
 Next extract the SSL certificate from the NSX vSwitch with the command `cat /etc/nsxvswitch/nsxvswitch-cert.pem`.
 
-Copy the text including the line _&#8212;-BEGIN CERTIFICATE&#8212;-_ and _&#8212;-END CERTIFICATE&#8212;-_ (See Figure 4). You will need this text in the next step.
+Copy the text including the line _----BEGIN CERTIFICATE----_ and _----END CERTIFICATE----_ (See Figure 4). You will need this text in the next step.
 
 
 

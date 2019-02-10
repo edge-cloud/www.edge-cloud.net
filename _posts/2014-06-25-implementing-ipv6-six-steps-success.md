@@ -42,12 +42,12 @@ After having determined the goal, let's have a first look at the mentioned six s
 
 The proposed steps include:
 
-  1. **Training and Education**: Enable technical staff (engineers, support, &#8230;) with IPv6 experience.
+  1. **Training and Education**: Enable technical staff (engineers, support, ...) with IPv6 experience.
   2. **Network Audit**: What can run IPv6 today, and what needs to be upgraded?
   3. **Network Optimization**: Is the IPv4 network the best it can be?
   4. **Managing IPv6 address space**: Acquire IPv6 address space and transit, draft your IPv6 address plan.
   5. **Deploy IPv6 in the network**: Roll-Out IPv6 addressing and routing in the network.
-  6. **Enable Network Services**: This includes Active Directory/LDAP, DNS, NTP, &#8230;
+  6. **Enable Network Services**: This includes Active Directory/LDAP, DNS, NTP, ...
 
 Let's look at each of these steps in more detail.
 

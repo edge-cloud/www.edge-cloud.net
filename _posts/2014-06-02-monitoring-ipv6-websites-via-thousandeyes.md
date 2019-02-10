@@ -93,7 +93,7 @@ In this example we notice that the Connect Time for the same URL differs quite d
 
 Let's try to use ThousandEyes and figure out why our users will get a worse experience of our sample website via IPv6 than they would get over IPv4.
 
-For this we drill down into the next layer of information, into the End-to-End metrics via the "Jump to&#8230;" function (See Figure 6).
+For this we drill down into the next layer of information, into the End-to-End metrics via the "Jump to..." function (See Figure 6).
 
 
 
@@ -101,7 +101,7 @@ For this we drill down into the next layer of information, into the End-to-End m
   <img src="/content/uploads/2014/05/Hetzner1a.png" alt="Figure 6: Drill down via &quot;Jump to...&quot;" width="384" height="244" class="size-full wp-image-1274" srcset="/content/uploads/2014/05/Hetzner1a.png 384w, /content/uploads/2014/05/Hetzner1a-360x228.png 360w" sizes="(max-width: 384px) 100vw, 384px" />
 
   <p class="wp-caption-text">
-    Figure 6: Drill down via "Jump to&#8230;"
+    Figure 6: Drill down via "Jump to..."
   </p>
 </div>
 

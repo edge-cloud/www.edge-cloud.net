@@ -274,7 +274,7 @@ Setting up nicira-ovs-hypervisor-node (2.0.0.30176) ...
 root@openstack:/tmp/ovs#
 </pre>
 
-Similar to the NSX appliances and the ESXi hosts, the next step registers the NSX vSwitch with the NSX controller. First use the command `ovs-vsctl set-manager ssl:&#60;IP address of a NSX controller node&#62;` to point the NSX vSwitch to the NSX controller. In the case of an NSX controller cluster you can specify any IP address of a cluster member.
+Similar to the NSX appliances and the ESXi hosts, the next step registers the NSX vSwitch with the NSX controller. First use the command `ovs-vsctl set-manager ssl:<IP address of a NSX controller node>` to point the NSX vSwitch to the NSX controller. In the case of an NSX controller cluster you can specify any IP address of a cluster member.
 
 <pre>root@openstack:/tmp/ovs# ovs-vsctl set-manager ssl:192.168.110.101
 root@openstack:/tmp/ovs#
@@ -282,7 +282,7 @@ root@openstack:/tmp/ovs#
 
 Next extract the SSL certificate from the NSX vSwitch with the command `cat /etc/openvswitch/ovsclient-cert.pem`.
 
-Copy the text including the line &#8212;BEGIN CERTIFICATE&#8212; and &#8212;END CERTIFICATE&#8212; (See Figure 13). You will need this text in the next step.
+Copy the text including the line ---BEGIN CERTIFICATE--- and ---END CERTIFICATE--- (See Figure 13). You will need this text in the next step.
 
 <div id="attachment_923" style="width: 370px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/OVS01-360x292.png" alt="Figure 13: NSX OVS SSL certificate displayed for VOVA" width="360" height="292" class="size-medium wp-image-923" srcset="/content/uploads/2014/01/OVS01-360x292.png 360w, /content/uploads/2014/01/OVS01-1x1.png 1w, /content/uploads/2014/01/OVS01.png 664w" sizes="(max-width: 360px) 100vw, 360px" />

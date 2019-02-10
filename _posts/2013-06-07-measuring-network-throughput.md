@@ -61,7 +61,7 @@ Now that we have identified the two most important variables for the performance
 
 An important formula is the one for the [Bandwidth-delay product (BDP)](https://en.wikipedia.org/wiki/Bandwidth-delay_product), which is the product of a data link's capacity (in bits per second) and its end-to-end delay (in seconds). The result, an amount of data measured in bits (or bytes), is equivalent to the maximum amount of data on the network circuit at any given time, e.g. data that has been transmitted but not yet acknowledged.
 
-<img src="//s0.wp.com/latex.php?latex=Buffer+%28Mbit%29+%3D+bandwidth+%28Mbit%2Fs%29+%5Ctimes+delay+%28s%29&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="Buffer (Mbit) = bandwidth (Mbit/s) &#92;times delay (s)" title="Buffer (Mbit) = bandwidth (Mbit/s) &#92;times delay (s)" class="latex" />
+<img src="//s0.wp.com/latex.php?latex=Buffer+%28Mbit%29+%3D+bandwidth+%28Mbit%2Fs%29+%5Ctimes+delay+%28s%29&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="Buffer (Mbit) = bandwidth (Mbit/s) / times delay (s)" title="Buffer (Mbit) = bandwidth (Mbit/s) / times delay (s)" class="latex" />
 
 The result of the BDP can also be interpreted as the required receiver TCP window size to maximize the performance on the data link.
 
@@ -71,13 +71,13 @@ Round-Trip-Time between the US west coast (Las Vegas) and Europe (Germany): 173 
 
 Available bandwidth between the two sites: 100 Mbit/s
 
-<img src="//s0.wp.com/latex.php?latex=173+ms+%5Ctimes+100+Mbit%2Fs+%3D+0.173s+%5Ctimes+%28+100+%5Ctimes+1024+%5Ctimes+1024+bit%2Fs%29%3D+18140365+bit+%3D+2.1625+MByte&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="173 ms &#92;times 100 Mbit/s = 0.173s &#92;times ( 100 &#92;times 1024 &#92;times 1024 bit/s)= 18140365 bit = 2.1625 MByte" title="173 ms &#92;times 100 Mbit/s = 0.173s &#92;times ( 100 &#92;times 1024 &#92;times 1024 bit/s)= 18140365 bit = 2.1625 MByte" class="latex" />
+<img src="//s0.wp.com/latex.php?latex=173+ms+%5Ctimes+100+Mbit%2Fs+%3D+0.173s+%5Ctimes+%28+100+%5Ctimes+1024+%5Ctimes+1024+bit%2Fs%29%3D+18140365+bit+%3D+2.1625+MByte&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="173 ms / times 100 Mbit/s = 0.173s / times ( 100 / times 1024 / times 1024 bit/s)= 18140365 bit = 2.1625 MByte" title="173 ms / times 100 Mbit/s = 0.173s / times ( 100 / times 1024 / times 1024 bit/s)= 18140365 bit = 2.1625 MByte" class="latex" />
 
 This means that we would need a TCP Window Size of at least 2.1625 MByte to fully utilize the 100 Mbit/s link.
 
 We have seen, that in reality both the delay between sender and receiver as well as the TCP window size within the receiver are given. As we cannot change the laws of physics, the only value we can change is the TCP window size. Let's shuffle the formula, to calculate the maxim bandwidth that can be achieved with a given RTT and TCP window size instead:
 
-<img src="//s0.wp.com/latex.php?latex=bandwidth+%28Mbit%2Fs%29+%3D+%5Cfrac%7BBuffer+%28Mbit%29%7D%7Bdelay+%28s%29%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="bandwidth (Mbit/s) = &#92;frac{Buffer (Mbit)}{delay (s)}" title="bandwidth (Mbit/s) = &#92;frac{Buffer (Mbit)}{delay (s)}" class="latex" />
+<img src="//s0.wp.com/latex.php?latex=bandwidth+%28Mbit%2Fs%29+%3D+%5Cfrac%7BBuffer+%28Mbit%29%7D%7Bdelay+%28s%29%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="bandwidth (Mbit/s) = / frac{Buffer (Mbit)}{delay (s)}" title="bandwidth (Mbit/s) = / frac{Buffer (Mbit)}{delay (s)}" class="latex" />
 
 Let's use another example:
 

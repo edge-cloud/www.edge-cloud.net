@@ -217,7 +217,7 @@ Before we can complete the next step, we need to extract the SSL certificate fro
   </p>
 </div>
 
-Copy the certificate including the lines _&#8212;-BEGIN CERTIFICATE&#8212;-_ and _&#8212;-END CERTIFICATE&#8212;-_ (See Figure 16). We will need this certificate in the next step.
+Copy the certificate including the lines _----BEGIN CERTIFICATE----_ and _----END CERTIFICATE----_ (See Figure 16). We will need this certificate in the next step.
 
 
 

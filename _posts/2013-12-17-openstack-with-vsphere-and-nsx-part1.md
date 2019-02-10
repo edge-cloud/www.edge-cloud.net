@@ -94,7 +94,7 @@ At the end of the installation you will be greeted with a login screen. Login wi
 
 After you are logged in, we will perform the basic configuration. This basic configuration will be the same for all four appliances. I therefore recommend, that you first complete the installation of all four appliances.
 
-First, configure a new admin password for each of the appliances with the command `set user &#60;username&#62 password`:
+First, configure a new admin password for each of the appliances with the command `set user <username> password`:
 
 <pre>nsx-controller # set user admin password
 Enter new password:
@@ -103,13 +103,13 @@ Password updated successfully.
 nsx-controller #  
 </pre>
 
-Next, configure the appliance's hostname with the `set hostname &#60;hostname&#62;` command:
+Next, configure the appliance's hostname with the `set hostname <hostname>` command:
 
 <pre>nsx-controller # set hostname nsxc-l-01a
 nsxc-l-01a #
 </pre>
 
-Although NSX appliances are based on Ubuntu Linux they do not use eth0 as the network interface. Instead they use a so-called integration bridge interface for network connectivity. This device is called breth0. In this step we will configure an IP address on this physical interface via the command `set network interface breth0 ip config static &#60;IP address&#62; &#60;Netmask&#62;`. Notice that the NSX appliance will clear the DNS settings if it had acquired an IP address and DNS settings via DHCP before.
+Although NSX appliances are based on Ubuntu Linux they do not use eth0 as the network interface. Instead they use a so-called integration bridge interface for network connectivity. This device is called breth0. In this step we will configure an IP address on this physical interface via the command `set network interface breth0 ip config static <IP address> <Netmask>`. Notice that the NSX appliance will clear the DNS settings if it had acquired an IP address and DNS settings via DHCP before.
 
 <pre>nsxc-l-01a # set network interface breth0 ip config static 192.168.110.101 255.255.255.0
 Setting IP for interface breth0...
@@ -132,7 +132,7 @@ SNMP: disabled
 nsxc-l-01a #
 </pre>
 
-Next, it's time to add a default route via the command `add network route 0.0.0.0 0.0.0.0 &#60;gateway&#62;`:
+Next, it's time to add a default route via the command `add network route 0.0.0.0 0.0.0.0 <gateway>`:
 
 <pre>nsxc-l-01a # add network route 0.0.0.0 0.0.0.0 192.168.110.1
 nsxc-l-01a #
@@ -147,13 +147,13 @@ Prefix/Mask          Gateway          Metric  MTU     Iface
 nsxc-l-01a #
 </pre>
 
-Now add the DNS servers via the command `add network dns-server &#60;Server name&#62;`:
+Now add the DNS servers via the command `add network dns-server <Server name>`:
 
 <pre>nsxc-l-01a # add network dns-server 192.168.110.10
 nsxc-l-01a #
 </pre>
 
-Last, but not least add the NTP server via the command `add network ntp-server &#60;Server name&#62;`:
+Last, but not least add the NTP server via the command `add network ntp-server <Server name>`:
 
 <pre>nsxc-l-01a # add network ntp-server 192.168.110.1
 * Stopping NTP server ntpd                                               [ OK ]
@@ -174,25 +174,25 @@ Next we will perform the node specific configuration on the Controller node, the
 
 We need to specify for the controller node which IP address should be used as the management address as well as the API address. This is necessary for the case that an NSX controller is deployed with multiple IP addresses in different subnets. As mentioned earlier I'll keep it single, utilizing only a single subnet.
 
-First, set the IP address the controller should use for management traffic with the command `set control-cluster management-address &#60;IP address&#62;`
+First, set the IP address the controller should use for management traffic with the command `set control-cluster management-address <IP address>`
 
 <pre>nsxc-l-01a # set control-cluster management-address 192.168.110.101
 nsxc-l-01a #
 </pre>
 
-Next tell the NSX controller which IP address to use for the switch manager traffic (this is the traffic that communicates with OVS interfaces) via the command `set control-cluster role switch_manager listen-ip &#60;IP address&#62;`
+Next tell the NSX controller which IP address to use for the switch manager traffic (this is the traffic that communicates with OVS interfaces) via the command `set control-cluster role switch_manager listen-ip <IP address>`
 
 <pre>nsxc-l-01a # set control-cluster role switch_manager listen-ip 192.168.110.101
 nsxc-l-01a #
 </pre>
 
-Then instruct the controller which IP address to use for the API interface traffic (this is the interface that handles northbound REST API traffic) with the command `set control-cluster role api_provider listen-ip &#60;IP address&#62;`
+Then instruct the controller which IP address to use for the API interface traffic (this is the interface that handles northbound REST API traffic) with the command `set control-cluster role api_provider listen-ip <IP address>`
 
 <pre>nsxc-l-01a # set control-cluster role api_provider listen-ip 192.168.110.101
 nsxc-l-01a #
 </pre>
 
-Once you have completed these steps, you can turn up the controller cluster with the command `join control-cluster &#60;own IP address&#62;`. Notice that for the first controller you are basically joining the controller to itself. In the case that the controller has multiple IP addresses, the address to use is the one you specified when you set the management IP address earlier.
+Once you have completed these steps, you can turn up the controller cluster with the command `join control-cluster <own IP address>`. Notice that for the first controller you are basically joining the controller to itself. In the case that the controller has multiple IP addresses, the address to use is the one you specified when you set the management IP address earlier.
 
 <pre>nsxc-l01a # join control-cluster 192.168.110.101
 Clearing controller state and restarting
@@ -229,7 +229,7 @@ Note that for the second and third controllers in a cluster, you would point the
 
 The Gateway nodes as well as the service nodes need to be made aware of the controller cluster.
 
-On both nodes this is done with the command `add switch manager &#60;IP address of a controller node&#62;`:
+On both nodes this is done with the command `add switch manager <IP address of a controller node>`:
 
 <pre>nsxg-l-01a # add switch manager 192.168.110.152
 Waiting for the manager CA certificate to synchronize...

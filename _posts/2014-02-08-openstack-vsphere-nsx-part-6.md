@@ -87,7 +87,7 @@ Once this has been done you can navigate inside the vSphere Web Client to a VMs 
 
 One of the most heavily used features in VMware vSphere is probably VMotion. Together with the core concept of server virtualization it allows operators to migrate virtual machines within a cluster off a specific hardware host and perform maintenance on this host. This in return leads to a huge increase of uptime for workloads. We will now demonstrate exactly this capability by moving a VM that was created on vSphere via the OpenStack interface from one host to another host. This would allow us to perform maintenance on the physical host without affecting the workloads presented in OpenStack. Let's get started.
 
-Within the vSphere Web Client navigate to a VM that was created via OpenStack. Note down the current host that this VM is running on. Perform a right-click and choose _Migrate&#8230;_ (See Figure 6).
+Within the vSphere Web Client navigate to a VM that was created via OpenStack. Note down the current host that this VM is running on. Perform a right-click and choose _Migrate..._ (See Figure 6).
 
 <div id="attachment_1062" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VC_Manage01.png" alt="Figure 6: Perform a VMotion of an OpenStack VM - Step 1" width="600" height="406" class="size-full wp-image-1062" srcset="/content/uploads/2014/01/VC_Manage01.png 600w, /content/uploads/2014/01/VC_Manage01-360x243.png 360w, /content/uploads/2014/01/VC_Manage01-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
