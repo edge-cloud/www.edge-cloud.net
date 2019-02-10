@@ -5,7 +5,7 @@ date: 2015-08-27T12:23:22+00:00
 author: Christian Elsen
 layout: single
 permalink: /2015/08/27/sddc-architecture-what-is-a-vmware-validated-design/
-redirect_from: 
+redirect_from:
   - /2015/08/27/sddc-architecture-what-is-a-vmware-validated-design/amp/
   - /2015/08/sddc-architecture-what-is-a-validated-design/
   - /2015/08/sddc-architecture-what-is-a-vmware-validated-design/
@@ -103,4 +103,4 @@ With the VMware Validated Designs you can get the undifferentiated heavy lifting
 
 **Want more?**
 
-Attend the VMWorld 2015 sessions "[SDDC5609 - VMware Validated Designs for a Software Defined Data Center (SDDC)](https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5440" target="_blank">SDDC5440 - VMware Validated Designs - A Reference Architecture for the SDDC</a>" and "<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5609)" to learn more about the VMware Validated Designs.
+Attend the VMWorld 2015 sessions [SDDC5440 - VMware Validated Designs - A Reference Architecture for the SDDC](https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5440) and [SDDC5609 - VMware Validated Designs for a Software Defined Data Center (SDDC)](https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5609) to learn more about the VMware Validated Designs.

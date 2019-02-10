@@ -5,7 +5,7 @@ date: 2015-08-31T13:00:48+00:00
 author: Christian Elsen
 layout: single
 permalink: /2015/08/31/sddc-architecture-vpods-for-management-applications/
-redirect_from: 
+redirect_from:
   - /2015/08/31/sddc-architecture-vpods-for-management-applications/amp/
   - /2015/08/sddc-architecture-vpods-for-management-applications/
 categories:
@@ -48,7 +48,7 @@ The SDDC based on a VMware Validated Design use two main network segments:
       * Provide a Jump-Host for more secure access from the corporate network
       * Many other ways to connect admins to admin network
 
-    SDDC management workloads are placed on the management network and fronted with a load balancer. This is a typical concept for web application and shouldn’t be new or surprising. With VMware products this concept already used widely by V[VMware vRealize Automation](http://www.vmware.com/products/openstack.html" target="_blank">Mware Integrated OpenStack</a> (VIO), but also <a href="http://www.vmware.com/products/vcloud-director.html" target="_blank">VMware vCloud Director</a> and <a href="http://www.vmware.com/products/vrealize-automation.html). </li> </ul>
+    SDDC management workloads are placed on the management network and fronted with a load balancer. This is a typical concept for web application and shouldn’t be new or surprising. With VMware products this concept already used widely by [VMware Integrated OpenStack](http://www.vmware.com/products/openstack.html) (VIO), but also [VMware vCloud Director](http://www.vmware.com/products/vcloud-director.html) and [VMware vRealize Automation](http://www.vmware.com/products/vrealize-automation.html). </li> </ul>
 
     ### The container concept
 
@@ -92,7 +92,7 @@ The SDDC based on a VMware Validated Design use two main network segments:
 
     Therefore in order to make the failover complete for end-users of the service, a change to the DNS name of the service is necessary. With that change the DNS entry is re-pointed from the VIP on the NSX Edge in Region A to the VIP on the NSX Edge in Region B.
 
-    Performing such a DNS update can be easily done using corresponding [simple script](http://dyn.com/dns/" target="_blank">Dynamic DNS services</a> on the Internet, <a href="http://gnudip2.sourceforge.net/" target="_blank">building your own</a> equivalent or using a <a href="https://gallery.technet.microsoft.com/scriptcenter/Update-DNS-records-with-da10910d) to update you Microsoft DNS server.
+    Performing such a DNS update can be easily done using corresponding [Dynamic DNS services](http://dyn.com/dns/) on the Internet, [building your own](http://gnudip2.sourceforge.net/) equivalent or using a [simple script](https://gallery.technet.microsoft.com/scriptcenter/Update-DNS-records-with-da10910d) to update you Microsoft DNS server.
 
     Again, no dynamic routing updates are necessary after a SRM failover towards the business network. In fact, you don't even need to run dynamic routing towards the business network unless you want to.
 
@@ -105,4 +105,3 @@ The SDDC based on a VMware Validated Design use two main network segments:
     ### Summary
 
     The Virtual POD network container is a very powerful, yet simple concept to provide the management applications of the SDDC with security, modularity, simplicity, improved BC/DR capabilities and IPv6 support. All this with a minimum of integration effort. I can therefore be seen as a major enabler for an SDDC based on the VMware Validated Design.
-    

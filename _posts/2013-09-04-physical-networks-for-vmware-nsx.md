@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: Example of a physical network design for VMware NSX, taking into consideration fault containment, traffic isolation. multi-tenant security and redundancy.
 layout: single
 permalink: /2013/09/04/physical-networks-for-vmware-nsx/
-redirect_from: 
+redirect_from:
   - /2013/09/04/physical-networks-for-vmware-nsx/amp/
   - /2013/09/physical-networks-for-vmware-nsx/
 categories:
@@ -16,11 +16,11 @@ tags:
   - NSX
   - VMware
 ---
-During [VMware NSX](https://www.vmworld.com/community/sessions/2013" target="_blank">VMWorld 2013</a> the network virtualization platform <a href="http://www.vmware.com/products/nsx.html) was announced by VMware. While there is a plethora of information available on how NSX works or what benefits it brings to the table, the answer on how NSX affects the physical infrastructure remains mostly untouched. Even during various VMWorld presentations this design piece was only covered under the term "Enterprise-class data center network". Let's have a look at how the physical underpinning should look like, beyond of what the VMware Network Virtualization Design Guide already states.
+During [VMWorld 2013](https://www.vmworld.com/community/sessions/2013) the network virtualization platform [VMware NSX](http://www.vmware.com/products/nsx.html) was announced by VMware. While there is a plethora of information available on how NSX works or what benefits it brings to the table, the answer on how NSX affects the physical infrastructure remains mostly untouched. Even during various VMWorld presentations this design piece was only covered under the term "Enterprise-class data center network". Let's have a look at how the physical underpinning should look like, beyond of what the VMware Network Virtualization Design Guide already states.
 
 ### Characteristics of Overlay Networks
 
-By definition _"an overlay network is a virtual network of nodes and logical links that is built on top of an existing (physical) network with the purpose to implement a network service that is not available in the existing network"_. An example of such an overlay network is the [Multicast Backbone (MBONE)](https://en.wikipedia.org/wiki/Internet#Infrastructure" target="_blank">Internet</a> itself, which originally provided a packet-oriented network on top of connection-oriented phone lines. Another example is the <a href="https://en.wikipedia.org/wiki/Mbone) for multicast deployment. Turning this definition upside down, shows us that capabilities _not_ provided by the overlay network need to be provided by the network underneath.
+By definition *"an overlay network is a virtual network of nodes and logical links that is built on top of an existing (physical) network with the purpose to implement a network service that is not available in the existing network"*. An example of such an overlay network is the [Internet](https://en.wikipedia.org/wiki/Internet#Infrastructure) itself, which originally provided a packet-oriented network on top of connection-oriented phone lines. Another example is the [Multicast Backbone (MBONE)](https://en.wikipedia.org/wiki/Mbone) for multicast deployment. Turning this definition upside down, shows us that capabilities *not* provided by the overlay network need to be provided by the network underneath.
 
 <div id="attachment_538" style="width: 673px" class="wp-caption aligncenter">
   <img src="/content/uploads/2013/09/Overlay.png" alt="Figure 1: Overlay Networks" width="663" height="221" class="size-full wp-image-538" srcset="/content/uploads/2013/09/Overlay.png 663w, /content/uploads/2013/09/Overlay-500x166.png 500w" sizes="(max-width: 663px) 100vw, 663px" />
@@ -62,7 +62,7 @@ Today's network architects have to face the following challenges while designing
 
             ### Physical network design for NSX
 
-            The proposed physical network design is based on the well-known concept of a <a href="http://www.cisco.com/c/dam/en/us/td/docs/solutions/Enterprise/Data_Center/MSDC/1-0/MSDC_AAG_1.pdf"  target="_blank">Spine and Leaf Architecture</a>. Each leaf corresponds to a rack, where the Top-of-Rack (ToR) switches provides L2 connectivity towards the server or storage arrays within the rack. This simple design reduces the requirement for using Spanning Tree to within the rack. Leaf and Spine devices are interconnected via L3 (Routing) and can use the previously mentioned ECMP capability.
+            The proposed physical network design is based on the well-known concept of a [Spine and Leaf Architecture](http://www.cisco.com/c/dam/en/us/td/docs/solutions/Enterprise/Data_Center/MSDC/1-0/MSDC_AAG_1.pdf). Each leaf corresponds to a rack, where the Top-of-Rack (ToR) switches provides L2 connectivity towards the server or storage arrays within the rack. This simple design reduces the requirement for using Spanning Tree to within the rack. Leaf and Spine devices are interconnected via L3 (Routing) and can use the previously mentioned ECMP capability.
 
             Connectivity from within the NSX overlay network to the outside world (WAN or Internet) is provided by VXLAN Tunnel End-Points (VTEP) within the Core layer switches. This capability is e.g. offered by Arista's [Network Virtualization](https://www.arista.com/en/solutions/network-virtualization) feature. Thus core devices "translate" between VXLAN segments and VLANs.
 
@@ -89,4 +89,3 @@ Today's network architects have to face the following challenges while designing
             Why is the physical network still important in the age of Overlay Networks with VMware NSX? To give an analogy: If you want to provide a reliable and fast logistics service - such as FedEx or UPS - you need reliable streets and roads in good shape for the delivery trucks to run on.
 
             For VMware NSX a solid enterprise class physical network - as outlined above - is therefore necessary.
-            

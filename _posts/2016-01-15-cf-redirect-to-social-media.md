@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: 'How to redirect your CloudFlare powered website to your Social Media site, when the origin has failed. '
 layout: single
 permalink: /2016/01/15/cf-redirect-to-social-media/
-redirect_from: 
+redirect_from:
   - /2016/01/15/cf-redirect-to-social-media/amp/
 categories:
   - EdgeCloud
@@ -20,7 +20,7 @@ Nevertheless you do not want to display just nothing or a nondescript error page
 
 ### Using CloudFlare
 
-In this post I want to show you how you can accomplish the same with any of the paid [customize error messages](https://www.cloudflare.com/plans/" target="_blank">CloudFlare plan levels</a>. For these plan types CloudFlare offers the capability to <a href="https://support.cloudflare.com/hc/en-us/articles/200172706-How-do-I-customize-CloudFlare-error-pages-) with your own HTML code. One of these error messages would be displayed in the case where CloudFlare cannot contact your web server, e.g. because it is down.
+In this post I want to show you how you can accomplish the same with any of the paid [CloudFlare plan levels](https://www.cloudflare.com/plans/). For these plan types CloudFlare offers the capability to [customize error messages](https://support.cloudflare.com/hc/en-us/articles/200172706-How-do-I-customize-CloudFlare-error-pages-) with your own HTML code. One of these error messages would be displayed in the case where CloudFlare cannot contact your web server, e.g. because it is down.
 
 We can make use of this capability and instead of displaying a custom error page, just display an HTML redirect to a site of your choice. This way your visitors would be redirected to this page in the case of an origin failure (See Figure 1).
 

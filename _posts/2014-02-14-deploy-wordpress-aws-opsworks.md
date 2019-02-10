@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: How to automatically deploy Wordpress with AWS OpsWorks for a new site, as part of a disaster recovery (DR) setup, for Dev/Test or for a fresh blank site.
 layout: single
 permalink: /2014/02/14/deploy-wordpress-aws-opsworks/
-redirect_from: 
+redirect_from:
   - /2014/02/14/deploy-wordpress-aws-opsworks/amp/
   - /2014/02/deploy-wordpress-aws-opsworks/
 categories:
@@ -68,7 +68,7 @@ Creating a service or application in AWS OpsWorks includes 4 steps (See Figure 3
 
   1. **Add a stack:** Define a stack for an application which includes information about e.g. the AWS region. You can have multiple stacks in various regions.
   2. **Add layers:** Each stack consist of one or more layers, with each layer having a certain function. Here we will use a PHP App Server layer and a MySQL database layer.
-  3. **Add an app:** Define the application to be run via a source code repository or file bundle. This includes the ability to use [Subversion](https://github.com/" target="_blank">Github</a> and <a href="https://en.wikipedia.org/wiki/Apache_Subversion), a simple Zip file via a HTTP or HTTPS URL or a ZIP file in a S3 bucket.
+  3. **Add an app:** Define the application to be run via a source code repository or file bundle. This includes the ability to use [Github](https://github.com/) and [Subversion](https://en.wikipedia.org/wiki/Apache_Subversion), a simple Zip file via a HTTP or HTTPS URL or a ZIP file in a S3 bucket.
   4. **Deploy and manage:** Deploy the application by starting the layer's instances. Manage further capabilities such as deploying another application version at runtime.
 
 <div id="attachment_1118" style="width: 610px" class="wp-caption aligncenter">

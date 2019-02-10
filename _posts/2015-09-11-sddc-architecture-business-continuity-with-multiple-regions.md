@@ -5,7 +5,7 @@ date: 2015-09-11T14:34:07+00:00
 author: Christian Elsen
 layout: single
 permalink: /2015/09/11/sddc-architecture-business-continuity-with-multiple-regions/
-redirect_from: 
+redirect_from:
   - /2015/09/11/sddc-architecture-business-continuity-with-multiple-regions/amp/
 categories:
   - EdgeCloud
@@ -25,7 +25,7 @@ A Software Defined Data Center promises to be the new underpinning or platform f
 
 ### Conceptual Design
 
-This solution assumes that two [Management and Compute stack](https://www.edge-cloud.net/2015/07/31/sddc-architecture-regions-and-availability-zones-azs/" target="_blank">regions</a> exist. Under normal circumstances each region consists of an Software Defined Data Center (SDDC) installation, where components of the <a href="https://www.edge-cloud.net/2015/02/20/sddc-architecture-introduction/" target="_blank">virtual infrastructure layer</a> exist independently in both regions for the <a href="https://www.edge-cloud.net/2015/09/09/sddc-architecture-mapping-of-logical-components-to-physical-location/).
+This solution assumes that two [regions](https://www.edge-cloud.net/2015/07/31/sddc-architecture-regions-and-availability-zones-azs/) exist. Under normal circumstances each region consists of an Software Defined Data Center (SDDC) installation, where components of the [virtual infrastructure layer](https://www.edge-cloud.net/2015/02/20/sddc-architecture-introduction/) exist independently in both regions for the [Management and Compute stack](https://www.edge-cloud.net/2015/09/09/sddc-architecture-mapping-of-logical-components-to-physical-location/).
 
 The management applications VMware vRealize Automation together with VMware vRealize Orchestrator and VMware vRealize Operations only exist in the primary region, while they manage and monitor resources in both regions. In a case of a failure these applications will be failed over to the secondary location, using VMware Site Recovery Manager (SRM).
 
@@ -100,4 +100,4 @@ Furthermore it is recommended to use the NSX DNS server functionality within a v
 
 ### Summary
 
-Using the here described BC/DR strategy for the Software Defined Data Center (SDDC), not only simplifies the setup of the resource protection itself, but also simplifies the [network container](https://www.edge-cloud.net/2015/08/31/sddc-architecture-vpods-for-management-applications/" target="_blank">operation of the actual failover</a>. Especially the concept of the previously introduced <a href="https://www.edge-cloud.net/2015/08/31/sddc-architecture-vpods-for-management-applications/) helps a lot in this scenario.
+Using the here described BC/DR strategy for the Software Defined Data Center (SDDC), not only simplifies the setup of the resource protection itself, but also simplifies the [operation of the actual failover](/2015/08/31/sddc-architecture-vpods-for-management-applications/). Especially the concept of the previously introduced [network container](/2015/08/31/sddc-architecture-vpods-for-management-applications/) helps a lot in this scenario.

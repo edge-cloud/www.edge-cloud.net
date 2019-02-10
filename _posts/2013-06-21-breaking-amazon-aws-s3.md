@@ -13,7 +13,7 @@ categories:
 tags:
   - AWS
 ---
-I have used various services from [Architecting on AWS](https://aws.amazon.com/" target="_blank">Amazon AWS</a> for quite a while now and have always been amazed by what interesting things one can do with this services. Recently I took the AWS training course "<a href="https://www.edge-cloud.net/2014/03/11/architecture-design-vsphere-ipv6/)", which gives an awesome overview on what's possible with the AWS service.
+I have used various services from [Amazon AWS](https://aws.amazon.com/) for quite a while now and have always been amazed by what interesting things one can do with this services. Recently I took the AWS training course [Architecting on AWS](https://www.edge-cloud.net/2014/03/11/architecture-design-vsphere-ipv6/), which gives an awesome overview on what's possible with the AWS service.
 
 During the training some of the participants had quite some trouble with one of the hands-on exercises. As my exercise worked without a flaw, I used the time and started digging deeper what could be wrong. Turns out that [Amazon AWS S3](https://aws.amazon.com/s3/) allows users to specify S3 bucket names in the "US Standard" regions that are not allowed like this in any other zone. As most libraries building on top of S3 assume the naming restrictions for all non-"US Standard" regions are also enforced in "US Standard", it breaks functionality of some of these libraries.
 

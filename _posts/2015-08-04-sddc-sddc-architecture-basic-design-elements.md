@@ -5,7 +5,7 @@ date: 2015-08-04T14:59:10+00:00
 author: Christian Elsen
 layout: single
 permalink: /2015/08/04/sddc-sddc-architecture-basic-design-elements/
-redirect_from: 
+redirect_from:
   - /2015/08/04/sddc-sddc-architecture-basic-design-elements/amp/
 image: /wp-content/uploads/2015/07/DesignElements.png
 categories:
@@ -79,7 +79,7 @@ Further splitting PODs by functional capability into Storage POD, Management POD
 
 For many years the predominant data center network design was the [three-tier approach](http://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Data_Center/DC_Infra2_5/DCInfra_2.html) of a Core (Layer 3), Aggregation (Layer 2 / Layer 3), Access (Layer 2) tiers. This design approach has been very successful over the last 20 years, allowing network architects to design highly reliable and scalable networks, recent industry developments are breaking the underlying assumptions:
 
-The three-tier network assumes a significant price difference between network device capable of Layer 3 routing vs. Layer 2 Switching, which is no longer the case. It further assumes that traffic is primarily exchanged between servers and the outside world ([east-west traffic](http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends" target="_blank">north-south traffic</a>), while today server-to-server traffic (<a href="http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends)) is more common. Last but least it assumes that the interface speed at the Core and Aggregation tier is significantly higher than in the access layer, which also isn't true anymore thanks to the prevalence of 10 Gigabit Ethernet equipped servers.
+The three-tier network assumes a significant price difference between network device capable of Layer 3 routing vs. Layer 2 Switching, which is no longer the case. It further assumes that traffic is primarily exchanged between servers and the outside world ([north-south traffic](http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends)), while today server-to-server traffic ([east-west traffic](http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends)) is more common. Last but least it assumes that the interface speed at the Core and Aggregation tier is significantly higher than in the access layer, which also isn't true anymore thanks to the prevalence of 10 Gigabit Ethernet equipped servers.
 
 At the same time the traditional three-tier design fails to address innovation in modern data centers through its lack of modularity and rigidness. This hampers fast iterations and experimentation, while also preventing to keep up with price/performance improvements in the industry.
 

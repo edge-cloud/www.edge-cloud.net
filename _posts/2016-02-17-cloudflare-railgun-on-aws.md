@@ -229,4 +229,4 @@ Now you can login to the CloudFlare Dashboard and test the Railgun setup. If eve
 
 ### Summary
 
-This tutorial showed you how to use Amazon Web Services (AWS), with the services [Amazon EC2](https://aws.amazon.com/elasticache/" target="_blank">Amazon ElastiCache</a> together with <a href="https://aws.amazon.com/elasticloadbalancing/" target="_blank">AWS Elastic Load Balancing</a>, <a href="https://aws.amazon.com/autoscaling/" target="_blank">AWS Auto Scaling</a> and <a href="https://aws.amazon.com/ec2/) to quickly and easily setup a highly available CloudFlare Railgun Listener setup.
+This tutorial showed you how to use Amazon Web Services (AWS), with the services [Amazon ElastiCache](https://aws.amazon.com/elasticache/) together with [AWS Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/), [AWS Auto Scaling](https://aws.amazon.com/autoscaling/) and [Amazon EC2](https://aws.amazon.com/ec2/) to quickly and easily setup a highly available CloudFlare Railgun Listener setup.

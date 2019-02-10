@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: ThousandEyes is a SaaS offering for monitoring SaaS application and website performance and provides deep insight into the underlying network including IPv6.
 layout: single
 permalink: /2014/06/02/monitoring-ipv6-websites-via-thousandeyes/
-redirect_from: 
+redirect_from:
   - /2014/06/02/monitoring-ipv6-websites-via-thousandeyes/amp/
 categories:
   - EdgeCloud

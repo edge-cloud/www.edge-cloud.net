@@ -5,7 +5,7 @@ date: 2015-02-20T17:05:15+00:00
 author: Christian Elsen
 layout: single
 permalink: /2015/02/20/sddc-architecture-introduction/
-redirect_from: 
+redirect_from:
   - /2015/02/20/sddc-architecture-introduction/amp/
   - /2015/02/sddc-architecture-introduction/
   - /2015/02/20/sddc-architecture-
@@ -36,7 +36,7 @@ Throughout the architecture and design discussion I will attempt to provide trac
 
 ### Highly automated operation at Scale
 
-Today's IT departments are pressed to do more with less and provide IT services at a high quality and a lower cost. Doing so, IT departments often have to compete with outside services ranging from public clouds such as [Office 365](https://aws.amazon.com/" target="_blank">Amazon Web Services (AWS)</a> for Infrastructure services, all the way to <a href="https://products.office.com/en-us/business/) for SaaS based offerings. And if IT departments are successful with their internal offerings, they need to ensure that they can scale up in a reasonable time-frame to meet the new demand.
+Today's IT departments are pressed to do more with less and provide IT services at a high quality and a lower cost. Doing so, IT departments often have to compete with outside services ranging from public clouds such as [Amazon Web Services (AWS)](https://aws.amazon.com/) for Infrastructure services, all the way to [Office 365](https://products.office.com/en-us/business/) for SaaS based offerings. And if IT departments are successful with their internal offerings, they need to ensure that they can scale up in a reasonable time-frame to meet the new demand.
 
 To deliver on this requirement one will quickly discover that it is necessary to use a strong foundation of automation to provide a swift and reliable infrastructure that can easily scale up and provide offered services. Adding more headcount to accomplish this task is not an option as it would not only lead to increased cost, but also to largely unpredictable outcomes due to human errors in the scaled operations.
 
@@ -67,13 +67,13 @@ Next we will break up the design of a Software Defined Data Center (SDDC) into m
 The main layers are:
 
   * **Physical Layer:** This includes the physical compute, network and storage components.
-  * **Virtual Infrastructure Layer:** This layer includes the traditional virtualization platform with the hypervisor, resource pooling and virtualization control. VMware products falling in this category are [NSX](http://www.vmware.com/products/vsphere.html" target="_blank">vSphere</a> and <a href="http://www.vmware.com/products/nsx.html).
-  * **Cloud Management Layer:** This layer adds capabilities to the Virtual Infrastructure Layer, bringing capabilities known from IaaS clouds to the SDDC. These capabilities include service catalogs, self-service portals and an orchestration engine. VMware products in this layer are [vRealize Orchestrator](http://www.vmware.com/products/vrealize-automation.html" target="_blank">vRealize Automation</a> (formerly vCloud Automation Center), <a href="http://www.vmware.com/products/vcloud-director.html" target="_blank">vCloud Director</a> or <a href="http://www.vmware.com/products/openstack.html" target="_blank">VMware Integrated OpenStack (VIO)</a>, along with <a href="http://www.vmware.com/products/vrealize-orchestrator.html) (formerly vCenter Orchestrator).
+  * **Virtual Infrastructure Layer:** This layer includes the traditional virtualization platform with the hypervisor, resource pooling and virtualization control. VMware products falling in this category are [vSphere](http://www.vmware.com/products/vsphere.html) and [NSX](http://www.vmware.com/products/nsx.html).
+  * **Cloud Management Layer:** This layer adds capabilities to the Virtual Infrastructure Layer, bringing capabilities known from IaaS clouds to the SDDC. These capabilities include service catalogs, self-service portals and an orchestration engine. VMware products in this layer are [vRealize Automation](http://www.vmware.com/products/vrealize-automation.html)</a> (formerly vCloud Automation Center), [vCloud Director](http://www.vmware.com/products/vcloud-director.html) or VMware Integrated OpenStack (VIO)(http://www.vmware.com/products/openstack.html), along with [vRealize Orchestrator](http://www.vmware.com/products/vrealize-orchestrator.html) (formerly vCenter Orchestrator).
 
 Additional capabilities that span across these main layers are:
 
   * **Service Management:** The ability to manage the entire SDDC via a single pane of glass, including operations management and portfolio management for offered services. VMware products in this layer are [vRealize Operations](http://www.vmware.com/ap/products/vrealize-operations.html) (Formerly vCenter Operations Management Suite).
-  * **Business Continuity:** The ability to provide business continuity for the SDDC itself, but especially the hosted workloads. This includes the fault tolerance of SDDC components, backup & recovery of data and services as well as data replication. Products from the VMware eco-system are [Zerto Business Continuity & Disaster Recovery](https://www.veeam.com/vmware-esx-backup.html" target="_blank">Veeam Backup & Replication</a> or <a href="http://www.zerto.com/).
+  * **Business Continuity:** The ability to provide business continuity for the SDDC itself, but especially the hosted workloads. This includes the fault tolerance of SDDC components, backup & recovery of data and services as well as data replication. Products from the VMware eco-system are [Veeam Backup & Replication](https://www.veeam.com/vmware-esx-backup.html) or [Zerto Business Continuity & Disaster Recovery](http://www.zerto.com/).
   * **Security:** Provide security mechanism for governance, risk mitigation and compliance. Products from the VMware eco-system are [HyTrust](http://www.hytrust.com/) Cloudcontrol and Datacontrol
 
 We will need to address these capabilities in each of the layers.

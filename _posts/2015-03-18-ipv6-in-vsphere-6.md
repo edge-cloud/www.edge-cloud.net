@@ -5,7 +5,7 @@ date: 2015-03-18T17:13:53+00:00
 author: Christian Elsen
 layout: single
 permalink: /2015/03/18/ipv6-in-vsphere-6/
-redirect_from: 
+redirect_from:
   - /2015/03/18/ipv6-in-vsphere-6/amp/
   - /2015/03/ipv6-in-vsphere6/
   - /2015/03/ipv6-in-vsphere-6/
@@ -129,7 +129,7 @@ This use case includes the following requirements:
       </td>
 
       <td >
-        Only supported by [E1000 vNIC](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1001805" target="_blank">VMXNET3 vNIC</a>. Not supported by <a href="http://kb.vmware.com/kb/1009548).
+        Only supported by [VMXNET3 vNIC](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1001805). Not supported by [E1000 vNIC](http://kb.vmware.com/kb/1009548).
       </td>
     </tr>
 
@@ -1179,7 +1179,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        While SW iSCSI initiator work in vSphere 5.1 and 5.5, they are not supported. The [vSphere 5.5 Storage Guide](http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-storage-guide.pdf" target="_blank">vSphere 5.1 Storage Guide</a> and <a href="http://pubs.vmware.com/vsphere-55/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-55-storage-guide.pdf) explicitly call iSCSI with IPv6 unsupported. Previous versions (e.g. 4.1 had "Experimental support"). vSphere 6.0 does support iSCSI.
+        While SW iSCSI initiator work in vSphere 5.1 and 5.5, they are not supported. The [vSphere 5.1 Storage Guide](http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-storage-guide.pdf) and [vSphere 5.5 Storage Guide](http://pubs.vmware.com/vsphere-55/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-55-storage-guide.pdf) explicitly call iSCSI with IPv6 unsupported. Previous versions (e.g. 4.1 had "Experimental support"). vSphere 6.0 does support iSCSI.
       </td>
     </tr>
 
@@ -1201,7 +1201,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        While NFS works in vSphere 5.1 and 5.5, they are not supported. The [vSphere 5.5 Storage Guide](http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-storage-guide.pdf" target="_blank">vSphere 5.1 Storage Guide</a> and <a href="http://pubs.vmware.com/vsphere-55/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-55-storage-guide.pdf) explicitly call NFS over L3 with IPv6 unsupported, but also make no positive support statement for NFS over L2, therefore making it not supported. Previous versions (e.g. 4.1 had "Experimental support"). In vSphere 6.0 NFS 4.1 storage with Kerberos auth is not supported; use NFS 4.1 with AUTH_SYS instead.
+        While NFS works in vSphere 5.1 and 5.5, they are not supported. The [vSphere 5.1 Storage Guide](http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-storage-guide.pdf) and [vSphere 5.5 Storage Guide](http://pubs.vmware.com/vsphere-55/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-55-storage-guide.pdf) explicitly call NFS over L3 with IPv6 unsupported, but also make no positive support statement for NFS over L2, therefore making it not supported. Previous versions (e.g. 4.1 had "Experimental support"). In vSphere 6.0 NFS 4.1 storage with Kerberos auth is not supported; use NFS 4.1 with AUTH_SYS instead.
       </td>
     </tr>
 

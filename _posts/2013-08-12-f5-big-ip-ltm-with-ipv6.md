@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: 'A very simple way to enable legacy IPv4-based web applications to be reachable via IPv6 is to use an IPv4/IPv6-enabled load balancer - such as the F5 Big-IP LTM - to frontend the application. This is e.g. the approach that Netflix took in mid 2012 to enable their service for IPv6 via the AWS Elastic Load Balancers (ELBs). In this post we will use the F5 Big-IP Local Traffic Manager (LTM) load balancer to provide this capability.'
 layout: single
 permalink: /2013/08/12/f5-big-ip-ltm-with-ipv6/
-redirect_from: 
+redirect_from:
   - /2013/08/12/f5-big-ip-ltm-with-ipv6/amp/
   - /2013/08/f5-big-ip-ltm-with-ipv6/
 categories:
@@ -19,7 +19,7 @@ A very simple way to enable legacy IPv4-based web applications to be reachable v
 
 ### Architecture
 
-In this post we will use the [Virtual Edition](https://f5.com/products/big-ip/local-traffic-manager-ltm" target="_blank">F5 Big-IP Local Traffic Manager (LTM)</a> load balancer to provide this capability. You can either use a physical device or even better the <a href="https://f5.com/products/deployment-methods/virtual-editions).
+In this post we will use the [F5 Big-IP Local Traffic Manager (LTM)](https://f5.com/products/big-ip/local-traffic-manager-ltm) load balancer to provide this capability. You can either use a physical device or even better the [Virtual Edition](https://f5.com/products/deployment-methods/virtual-editions).
 
 Figure 1 shows how this approach would work: The End-User will connect to the load balancer via IPv6, which means that the load balancer needs to have an IPv6 address reachable by the end-users on its external facing interface. The load balancer then connects to the legacy IPv4 web application via IPv4. This means that no changes are necessary to this legacy web application.
 
@@ -132,33 +132,3 @@ In a [previous post](https://www.edge-cloud.net/2013/05/20/configuring-f5-big-ip
 It is straight forward and easy to apply the above to the mentioned post and indeed make the HTTP Redirect, the HTTPS traffic and even the Console Proxy available under an IPv6 address via the F5 Big-IP. The HTTP Redirect as well as the HTTPS traffic will work without a flaw, making the web interface of vCD available via IPv6.
 
 Unfortunately it is currently not possible to use the VMware Remote Console (VMRC) via the Console Proxy and IPv6, due to the locally installed VMRC tool incorrectly handling the masking of IPv6 addresses. Thus you will only be able to provide the web portion of vCD via IPv6, while still having to rely on IPv4 for the VMRC part.
-
-<div class="sharedaddy sd-sharing-enabled">
-  <div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing">
-    <h3 class="sd-title">
-      Share this:
-    </h3>
-
-    <div class="sd-content">
-      <ul>
-        <li class="share-linkedin">
-          <a rel="nofollow noopener noreferrer" data-shared="sharing-linkedin-483" class="share-linkedin sd-button share-icon" href="https://www.edge-cloud.net/2013/08/12/f5-big-ip-ltm-with-ipv6/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span>LinkedIn</span></a>
-        </li>
-        <li class="share-twitter">
-          <a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-483" class="share-twitter sd-button share-icon" href="https://www.edge-cloud.net/2013/08/12/f5-big-ip-ltm-with-ipv6/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a>
-        </li>
-        <li class="share-google-plus-1">
-          <a rel="nofollow noopener noreferrer" data-shared="sharing-google-483" class="share-google-plus-1 sd-button share-icon" href="https://www.edge-cloud.net/2013/08/12/f5-big-ip-ltm-with-ipv6/?share=google-plus-1" target="_blank" title="Click to share on Google+"><span>Google</span></a>
-        </li>
-        <li class="share-facebook">
-          <a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-483" class="share-facebook sd-button share-icon" href="https://www.edge-cloud.net/2013/08/12/f5-big-ip-ltm-with-ipv6/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a>
-        </li>
-        <li class="share-pocket">
-          <a rel="nofollow noopener noreferrer" data-shared="" class="share-pocket sd-button share-icon" href="https://www.edge-cloud.net/2013/08/12/f5-big-ip-ltm-with-ipv6/?share=pocket" target="_blank" title="Click to share on Pocket"><span>Pocket</span></a>
-        </li>
-        <li class="share-end">
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
