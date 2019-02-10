@@ -14,9 +14,9 @@ categories:
 tags:
   - AWS
 ---
-<a href="https://aws.amazon.com/opsworks/" target="_blank">AWS OpsWorks</a> is an application management service that makes it easy for DevOps users to model and manage the entire application from load balancers to databases. It offers a very powerful solution for users to deploy their application easily in AWS without giving up control.
+[AWS OpsWorks](https://aws.amazon.com/opsworks/) is an application management service that makes it easy for DevOps users to model and manage the entire application from load balancers to databases. It offers a very powerful solution for users to deploy their application easily in AWS without giving up control.
 
-In this post I want to show you how easy it is to use AWS OpsWorks for deploying WordPress - a typical <a href="https://en.wikipedia.org/wiki/LAMP_(software_bundle)" target="_blank">LAMP</a> application. This includes deploying a fresh blank WordPress install as well as re-creating a WordPress site from a backup for Dev/Test or Disaster Recovery purposes. In all cases it should take you only a few minutes to have a running WordPress site.
+In this post I want to show you how easy it is to use AWS OpsWorks for deploying WordPress - a typical [LAMP](https://en.wikipedia.org/wiki/LAMP_(software_bundle)) application. This includes deploying a fresh blank WordPress install as well as re-creating a WordPress site from a backup for Dev/Test or Disaster Recovery purposes. In all cases it should take you only a few minutes to have a running WordPress site.
 
 While I use a Webhoster for running Edge Cloud, I do use the described approach to test changes to WordPress before deploying them into production. And I thereby also know that I could restore Edge Cloud as part of a Disaster Recovery (DR) plan via this approach.
 
@@ -32,16 +32,16 @@ With the availability of AWS OpsWorks Amazon Web Services now has a number of di
   </p>
 </div>
 
-  * <a href="https://aws.amazon.com/elasticbeanstalk/" target="_blank">AWS Elastic Beanstalk</a> is an easy-to-use solution for building web apps and web services with popular application containers such as Java, PHP, Python, Ruby and .NET. You upload your code and Elastic Beanstalk automatically does the rest. Elastic Beanstalk supports the most common web architectures, application containers, and frameworks.
-  * <a href="https://aws.amazon.com/opsworks/" target="_blank">AWS OpsWorks</a> is a powerful end-to-end solution that gives you an easy way to manage applications of nearly any scale and complexity without sacrificing control. You model, customize, and automate the entire application throughout its lifecycle. OpsWorks provides integrated experiences for IT administrators and ops-minded developers who want a high degree of productivity and control over operations.
-  * <a href="https://aws.amazon.com/cloudformation/" target="_blank">AWS CloudFormation</a> is a building block service that enables customers to provision and manage almost any AWS resource via a domain specific language. You define JSON templates and use them to provision and manage AWS resources, operating systems and application code. CloudFormation focuses on providing foundational capabilities for the full breadth of AWS, without prescribing a particular model for development and operations.
+  * [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) is an easy-to-use solution for building web apps and web services with popular application containers such as Java, PHP, Python, Ruby and .NET. You upload your code and Elastic Beanstalk automatically does the rest. Elastic Beanstalk supports the most common web architectures, application containers, and frameworks.
+  * [AWS OpsWorks](https://aws.amazon.com/opsworks/) is a powerful end-to-end solution that gives you an easy way to manage applications of nearly any scale and complexity without sacrificing control. You model, customize, and automate the entire application throughout its lifecycle. OpsWorks provides integrated experiences for IT administrators and ops-minded developers who want a high degree of productivity and control over operations.
+  * [AWS CloudFormation](https://aws.amazon.com/cloudformation/) is a building block service that enables customers to provision and manage almost any AWS resource via a domain specific language. You define JSON templates and use them to provision and manage AWS resources, operating systems and application code. CloudFormation focuses on providing foundational capabilities for the full breadth of AWS, without prescribing a particular model for development and operations.
 
 ### Use case
 
 The goal for this post will be to use AWS OpsWorks to deploy a WordPress site, automating as much of the deployment as possible. We will include two distinct use cases:
 
   * **Fresh blank site:** Create a fresh blank WordPress site that you can use to start hosting your own blog.
-  * **Re-Created site from an existing backup:** If you have an existing WordPress site, you can use a WordPress Backup Plugin, such as <a href="https://wordpress.org/plugins/backwpup/" target="_blank">BackWPup</a>. Using AWS OpsWorks will allow you to recover your WordPress site from a backup as a Dev/Test site. This way you can e.g. test installing a new plugin before doing so in the production site. But you can also use the recovered WordPress site for a disaster recovery scenario in case your primary site is hard down. The benefit here is that the recovery can happen almost entirely automated, which is always a good idea for a DR solution.
+  * **Re-Created site from an existing backup:** If you have an existing WordPress site, you can use a WordPress Backup Plugin, such as [BackWPup](https://wordpress.org/plugins/backwpup/). Using AWS OpsWorks will allow you to recover your WordPress site from a backup as a Dev/Test site. This way you can e.g. test installing a new plugin before doing so in the production site. But you can also use the recovered WordPress site for a disaster recovery scenario in case your primary site is hard down. The benefit here is that the recovery can happen almost entirely automated, which is always a good idea for a DR solution.
 
 Even though we will run the WordPress site in AWS, we will not make use of AWS cloud concepts in order to achieve high availability for coping with AWS failures. Instead we will keep it very simple (See Figure 2).
 
@@ -58,17 +58,17 @@ The deployed architecture will include:
   * **WordPress PHP App:** An EC2 server running Ubuntu Linux with an Apache webserver to host the WordPress PHP application. End-users will be able to access the site via an Elastic IP, which guarantees that the IP address - or an associated DNS entry - will remain in place, even if the environment is rebuild.
   * **MySQL Server:** An EC2 server running Ubuntu Linux with MySQL. MySQL will host the database for the WordPress application.
   * **Existing Backup (Optional):** A full backup of an existing WordPress site as a Zip file in a S3 bucket.
-  * **WordPress source code (Optional):** The WordPress source code - available at <a href="https://wordpress.org/" target="_blank">www.wordpress.org</a> for a fresh install of WordPress.
+  * **WordPress source code (Optional):** The WordPress source code - available at [www.wordpress.org](https://wordpress.org/) for a fresh install of WordPress.
 
 ### Getting Started with AWS OpsWorks
 
-Let's head over to the AWS OpsWorks console at <a href="https://console.aws.amazon.com/opsworks" target="_blank">console.aws.amazon.com/opsworks</a> to get started. Login with your existing AWS credentials. AWS OpsWorks itself is a global service and you therefore do not need to pick a region at this point.
+Let's head over to the AWS OpsWorks console at [console.aws.amazon.com/opsworks](https://console.aws.amazon.com/opsworks) to get started. Login with your existing AWS credentials. AWS OpsWorks itself is a global service and you therefore do not need to pick a region at this point.
 
 Creating a service or application in AWS OpsWorks includes 4 steps (See Figure 3):
 
   1. **Add a stack:** Define a stack for an application which includes information about e.g. the AWS region. You can have multiple stacks in various regions.
   2. **Add layers:** Each stack consist of one or more layers, with each layer having a certain function. Here we will use a PHP App Server layer and a MySQL database layer.
-  3. **Add an app:** Define the application to be run via a source code repository or file bundle. This includes the ability to use <a href="https://github.com/" target="_blank">Github</a> and <a href="https://en.wikipedia.org/wiki/Apache_Subversion" target="_blank">Subversion</a>, a simple Zip file via a HTTP or HTTPS URL or a ZIP file in a S3 bucket.
+  3. **Add an app:** Define the application to be run via a source code repository or file bundle. This includes the ability to use [Subversion](https://github.com/" target="_blank">Github</a> and <a href="https://en.wikipedia.org/wiki/Apache_Subversion), a simple Zip file via a HTTP or HTTPS URL or a ZIP file in a S3 bucket.
   4. **Deploy and manage:** Deploy the application by starting the layer's instances. Manage further capabilities such as deploying another application version at runtime.
 
 <div id="attachment_1118" style="width: 610px" class="wp-caption aligncenter">
@@ -105,9 +105,9 @@ Next configure the basic information of your new stack. Give it a useful _Name_ 
   </p>
 </div>
 
-AWS OpsWorks uses the configuration management tool <a href="https://www.chef.io/chef/" target="_blank">Chef</a> to configure the EC2 instances within each layer. For this it provides so-called Chef "recipes" that describe how server applications (such as Apache or MySQL) are managed and how they are to be configured. These recipes describe a series of resources that should be in a particular state: packages that should be installed, services that should be running, or files that should be written.
+AWS OpsWorks uses the configuration management tool [Chef](https://www.chef.io/chef/) to configure the EC2 instances within each layer. For this it provides so-called Chef "recipes" that describe how server applications (such as Apache or MySQL) are managed and how they are to be configured. These recipes describe a series of resources that should be in a particular state: packages that should be installed, services that should be running, or files that should be written.
 
-While AWS OpsWorks provides many useful recipes out of the box we want to add a few minor custom recipes. In particulare we will use two custom recipes which can be found at <a href="https://github.com/chriselsen/opsworks-cookbooks" target="_blank">https://github.com/chriselsen/opsworks-cookbooks</a>:
+While AWS OpsWorks provides many useful recipes out of the box we want to add a few minor custom recipes. In particulare we will use two custom recipes which can be found at [https://github.com/chriselsen/opsworks-cookbooks](https://github.com/chriselsen/opsworks-cookbooks):
 
   * AWS-Ubuntu: Configure an AWS Opsworks Ubuntu image with a swap space. This is aimed at t1.micro instances to prevent "out of memory" issues.
   * WordPress: Configure WordPress via the wp-config.php file to interact with the MySQL server. It can be used for a fresh install or a restore from a Backup using BackWPup. The wp-config.php will be filled with the IP address and credentials to access the MySQL server.
@@ -131,7 +131,7 @@ The two things to tune will be:
   1. WWW Document Root permission: We want to change the www document root permission to the default user www-data under Ubuntu.
   2. Apache Prefork and Keepalive tuning: As we will be using the memory constraint EC2 flavor t1.micro, we want to make changes to the Apache Prefork and Keepalive settings to better adapt to this flavor type.
 
-In AWS Opsworks the setup and configuration of Apache is performed by Chef recipes that use various parameters which can be controlled by the user via a simple JSON file. This way we don't have to create a custom Chef recipe or even manually perform changes of our servers. Instead we can look up the <a href="http://docs.aws.amazon.com/opsworks/latest/userguide/attributes-recipes-apache.html" target="_blank">apache2 attributes</a> which are configurable and create a custom JSON file.
+In AWS Opsworks the setup and configuration of Apache is performed by Chef recipes that use various parameters which can be controlled by the user via a simple JSON file. This way we don't have to create a custom Chef recipe or even manually perform changes of our servers. Instead we can look up the [apache2 attributes](http://docs.aws.amazon.com/opsworks/latest/userguide/attributes-recipes-apache.html) which are configurable and create a custom JSON file.
 
 This JSON file will look as follows:
 
@@ -225,7 +225,7 @@ We are almost done with the layers. We only need to perform some minor changes o
   </p>
 </div>
 
-Although we have already pointed AWS OpsWorks to our custom Chef cookbooks, we still need to assign the individual recipes to the correct layer and lifecycle event. In AWS OpsWorks a layer has a sequence of <a href="http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-events.html" target="_blank">five lifecycle events</a>, each of which has an associated set of recipes that are specific to the layer. When an event occurs on a layer's instance, AWS OpsWorks automatically runs the appropriate set of recipes.
+Although we have already pointed AWS OpsWorks to our custom Chef cookbooks, we still need to assign the individual recipes to the correct layer and lifecycle event. In AWS OpsWorks a layer has a sequence of [five lifecycle events](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-events.html), each of which has an associated set of recipes that are specific to the layer. When an event occurs on a layer's instance, AWS OpsWorks automatically runs the appropriate set of recipes.
 
 For the PHP App Server layer we need to define the following two recipes to lifecycle events (See Figure 13).
 
@@ -408,4 +408,4 @@ Now recreate the instances as described above.
 
 ### References
 
-If you want to find out more about AWS OpsWorks, have a look at the AWS re:Invent 2013 presentation <a href="http://www.slideshare.net/AmazonWebServices/zero-to-sixty-aws-opsworks-dmg202-aws-reinvent-2013" target="_blank">Zero to Sixty: AWS OpsWorks (DMG202)</a> or the excellent <a href="https://aws.amazon.com/documentation/opsworks/" target="_blank">AWS OpsWorks Documentation</a>.
+If you want to find out more about AWS OpsWorks, have a look at the AWS re:Invent 2013 presentation [AWS OpsWorks Documentation](http://www.slideshare.net/AmazonWebServices/zero-to-sixty-aws-opsworks-dmg202-aws-reinvent-2013" target="_blank">Zero to Sixty: AWS OpsWorks (DMG202)</a> or the excellent <a href="https://aws.amazon.com/documentation/opsworks/).

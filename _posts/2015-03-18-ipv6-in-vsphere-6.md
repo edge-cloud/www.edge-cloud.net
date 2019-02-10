@@ -17,7 +17,7 @@ tags:
 ---
 **Note:** Last updated on May 1st, 2015
 
-With the <a href="https://www.vmware.com/support/vsphere6/doc/vsphere-esxi-vcenter-server-60-release-notes.html" target="_blank">release of vSphere 6</a>, the IPv6 capabilities of vSphere have greatly improved. In this post I want to provide an overview of these new capabilities for vSphere as well as NSX for vSphere (NSX-v). Together these two products are now able to form a decent virtual infrastructure layer, supporting many capabilities in IPv6.
+With the [release of vSphere 6](https://www.vmware.com/support/vsphere6/doc/vsphere-esxi-vcenter-server-60-release-notes.html), the IPv6 capabilities of vSphere have greatly improved. In this post I want to provide an overview of these new capabilities for vSphere as well as NSX for vSphere (NSX-v). Together these two products are now able to form a decent virtual infrastructure layer, supporting many capabilities in IPv6.
 
 This IPv6-enabled virtual infrastructure in return can be the foundation for Horizon View, which also supports IPv6 since version 6.1.
 
@@ -30,7 +30,7 @@ The overview will be grouped by use case, product and then by function. The two 
 
 For each use case this article lists what capabilities and features supported IPv6 in vSphere 5.1, vSphere 5.5, vSphere 6.0, vCNS 5.5, NSX-v 6.0 and NSX-v 6.1.
 
-_Note:_ Only NSX-v 6.1.3, <a href="http://www.vmware.com/resources/compatibility/sim/interop_matrix.php" target="_blank">supports</a> vSphere 6.0.
+_Note:_ Only NSX-v 6.1.3, [supports](http://www.vmware.com/resources/compatibility/sim/interop_matrix.php) vSphere 6.0.
 
 Let's have a look at these two use cases in more detail:
 
@@ -129,7 +129,7 @@ This use case includes the following requirements:
       </td>
 
       <td >
-        Only supported by <a href="https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1001805" target="_blank">VMXNET3 vNIC</a>. Not supported by <a href="http://kb.vmware.com/kb/1009548" target="_blank">E1000 vNIC</a>.
+        Only supported by [E1000 vNIC](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1001805" target="_blank">VMXNET3 vNIC</a>. Not supported by <a href="http://kb.vmware.com/kb/1009548).
       </td>
     </tr>
 
@@ -151,7 +151,7 @@ This use case includes the following requirements:
       </td>
 
       <td >
-        No support to join Active Directory via IPv6 in vSphere 6.0. <a href="http://kb.vmware.com/kb/2105648" target="_blank">Certain limitations</a> apply.
+        No support to join Active Directory via IPv6 in vSphere 6.0. [Certain limitations](http://kb.vmware.com/kb/2105648) apply.
       </td>
     </tr>
 
@@ -179,7 +179,7 @@ This use case includes the following requirements:
       </td>
 
       <td >
-        <a href="http://pubs.vmware.com/vsphere-60/topic/com.vmware.vsphere.networking.doc/GUID-97724211-5167-428F-A217-871963A7DFF7.html" target="_blank">Snooping modes supported</a>: IGMPv1, IGMPv2, IGMPv3 for IPv4, MLDv1 and MLDv2 for IPv6 supported.
+        [Snooping modes supported](http://pubs.vmware.com/vsphere-60/topic/com.vmware.vsphere.networking.doc/GUID-97724211-5167-428F-A217-871963A7DFF7.html): IGMPv1, IGMPv2, IGMPv3 for IPv4, MLDv1 and MLDv2 for IPv6 supported.
       </td>
     </tr>
   </table>
@@ -699,7 +699,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        There is currently no definition of IPv6 support in the PXE hardware agents. <a href="https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface" target="_blank">UEFI</a> will allow remote boot via IPv6. Or PXE boot the ESXi host over IPv4 and configure the host for IPv6 by using Host Profiles.
+        There is currently no definition of IPv6 support in the PXE hardware agents. [UEFI](https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface) will allow remote boot via IPv6. Or PXE boot the ESXi host over IPv4 and configure the host for IPv6 by using Host Profiles.
       </td>
     </tr>
 
@@ -828,7 +828,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        The vSphere Authentication Proxy service binds to an IPv4 address for communication with vCenter Server, and <a href="http://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.install.doc_50%2FGUID-EA920335-2608-4127-9B57-DB3809BA4BB9.html" target="_blank">does not support IPv6</a>.
+        The vSphere Authentication Proxy service binds to an IPv4 address for communication with vCenter Server, and [does not support IPv6](http://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.install.doc_50%2FGUID-EA920335-2608-4127-9B57-DB3809BA4BB9.html).
       </td>
     </tr>
 
@@ -953,7 +953,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        Certified via <a href="https://www.iol.unh.edu/registry/usgv6?company_name=VMware%2C%20Inc.#eqplist" target="_blank">USGv6 certification</a>
+        Certified via [USGv6 certification](https://www.iol.unh.edu/registry/usgv6?company_name=VMware%2C%20Inc.#eqplist)
       </td>
     </tr>
 
@@ -1017,7 +1017,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        Syslog collector / server <a href="https://www.vmware.com/support/developer/PowerCLI/PowerCLI41/html/Set-VMHostSysLogServer.html" target="_blank">can be configured</a> via IPv4 address, IPv6 address or DNS name.
+        Syslog collector / server [can be configured](https://www.vmware.com/support/developer/PowerCLI/PowerCLI41/html/Set-VMHostSysLogServer.html) via IPv4 address, IPv6 address or DNS name.
       </td>
     </tr>
 
@@ -1039,7 +1039,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        The vSphere Authentication Proxy service binds to an IPv4 address for communication with vCenter Server, and <a href="http://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.install.doc_50%2FGUID-EA920335-2608-4127-9B57-DB3809BA4BB9.html" target="_blank">does not support IPv6</a>.
+        The vSphere Authentication Proxy service binds to an IPv4 address for communication with vCenter Server, and [does not support IPv6](http://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.install.doc_50%2FGUID-EA920335-2608-4127-9B57-DB3809BA4BB9.html).
       </td>
     </tr>
 
@@ -1061,7 +1061,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        You can use the name or IP address to specify the NTP server (<a href="http://pubs.vmware.com/vsphere-51/index.jsp?topic=%2Fcom.vmware.vcli.ref.doc%2Fvicfg-ntp.html" target="_blank">IPv6 address valid for vSphere 4.0 and later</a>)
+        You can use the name or IP address to specify the NTP server ([IPv6 address valid for vSphere 4.0 and later](http://pubs.vmware.com/vsphere-51/index.jsp?topic=%2Fcom.vmware.vcli.ref.doc%2Fvicfg-ntp.html))
       </td>
     </tr>
 
@@ -1179,7 +1179,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        While SW iSCSI initiator work in vSphere 5.1 and 5.5, they are not supported. The <a href="http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-storage-guide.pdf" target="_blank">vSphere 5.1 Storage Guide</a> and <a href="http://pubs.vmware.com/vsphere-55/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-55-storage-guide.pdf" target="_blank">vSphere 5.5 Storage Guide</a> explicitly call iSCSI with IPv6 unsupported. Previous versions (e.g. 4.1 had "Experimental support"). vSphere 6.0 does support iSCSI.
+        While SW iSCSI initiator work in vSphere 5.1 and 5.5, they are not supported. The [vSphere 5.5 Storage Guide](http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-storage-guide.pdf" target="_blank">vSphere 5.1 Storage Guide</a> and <a href="http://pubs.vmware.com/vsphere-55/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-55-storage-guide.pdf) explicitly call iSCSI with IPv6 unsupported. Previous versions (e.g. 4.1 had "Experimental support"). vSphere 6.0 does support iSCSI.
       </td>
     </tr>
 
@@ -1201,7 +1201,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        While NFS works in vSphere 5.1 and 5.5, they are not supported. The <a href="http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-storage-guide.pdf" target="_blank">vSphere 5.1 Storage Guide</a> and <a href="http://pubs.vmware.com/vsphere-55/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-55-storage-guide.pdf" target="_blank">vSphere 5.5 Storage Guide</a> explicitly call NFS over L3 with IPv6 unsupported, but also make no positive support statement for NFS over L2, therefore making it not supported. Previous versions (e.g. 4.1 had "Experimental support"). In vSphere 6.0 NFS 4.1 storage with Kerberos auth is not supported; use NFS 4.1 with AUTH_SYS instead.
+        While NFS works in vSphere 5.1 and 5.5, they are not supported. The [vSphere 5.5 Storage Guide](http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-storage-guide.pdf" target="_blank">vSphere 5.1 Storage Guide</a> and <a href="http://pubs.vmware.com/vsphere-55/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-55-storage-guide.pdf) explicitly call NFS over L3 with IPv6 unsupported, but also make no positive support statement for NFS over L2, therefore making it not supported. Previous versions (e.g. 4.1 had "Experimental support"). In vSphere 6.0 NFS 4.1 storage with Kerberos auth is not supported; use NFS 4.1 with AUTH_SYS instead.
       </td>
     </tr>
 
@@ -1223,7 +1223,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        Could work in vSphere 5.1 and 5.5, if the vendor provides an IPv6-capable VAAI plugin. NetApp provides an <a href="https://library.netapp.com/ecmdocs/ECMP1368924/html/GUID-33CA873C-D4FC-4D96-AFFA-6DFD95337032.html" target="_blank">IPv6 capable VAAI plugin</a>. This combination would not be supported by VMware in vSphere 5.1 or vSphere 5.5. It is supported in vSphere 6.0 for both NFS and iSCSI.
+        Could work in vSphere 5.1 and 5.5, if the vendor provides an IPv6-capable VAAI plugin. NetApp provides an [IPv6 capable VAAI plugin](https://library.netapp.com/ecmdocs/ECMP1368924/html/GUID-33CA873C-D4FC-4D96-AFFA-6DFD95337032.html). This combination would not be supported by VMware in vSphere 5.1 or vSphere 5.5. It is supported in vSphere 6.0 for both NFS and iSCSI.
       </td>
     </tr>
 
@@ -1272,7 +1272,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        Virtual SAN does not support <a href="http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.storage.doc%2FGUID-8408319D-CA53-4241-A3E4-70057F70030F.html" target="_blank">IPv6 as transport mechanism</a> between nodes.
+        Virtual SAN does not support [IPv6 as transport mechanism](http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.storage.doc%2FGUID-8408319D-CA53-4241-A3E4-70057F70030F.html) between nodes.
       </td>
     </tr>
 
@@ -1321,7 +1321,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        vSphere HA supports both IPv4 and IPv6. A cluster that mixes the use of both of these protocol versions, however, is more likely to <a href="http://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.avail.doc_50%2FGUID-BA85FEC4-A37C-45BA-938D-37B309010D93.html" target="_blank">result in a network partition</a>.
+        vSphere HA supports both IPv4 and IPv6. A cluster that mixes the use of both of these protocol versions, however, is more likely to [result in a network partition](http://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.avail.doc_50%2FGUID-BA85FEC4-A37C-45BA-938D-37B309010D93.html).
       </td>
     </tr>
 
@@ -1411,7 +1411,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        All vCenter Orchestrator components, including plug-ins built by VMware, have been <a href="https://www.vmware.com/support/orchestrator/doc/vcenter-orchestrator-51-release-notes.html" target="_blank">tested and certified to run on IPv6 networks</a>.
+        All vCenter Orchestrator components, including plug-ins built by VMware, have been [tested and certified to run on IPv6 networks](https://www.vmware.com/support/orchestrator/doc/vcenter-orchestrator-51-release-notes.html).
       </td>
     </tr>
 
@@ -1439,7 +1439,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        Site Recovery Manager <a href="http://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/techpaper/whats-new-vmware-vcenter-site-recovery-manager-50-technical-white-paper.pdf" target="_blank">supports IPv6 for all network links</a>
+        Site Recovery Manager [supports IPv6 for all network links](http://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/techpaper/whats-new-vmware-vcenter-site-recovery-manager-50-technical-white-paper.pdf)
       </td>
     </tr>
 
@@ -1461,7 +1461,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        Site Recovery Manager <a href="http://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/techpaper/whats-new-vmware-vcenter-site-recovery-manager-50-technical-white-paper.pdf" target="_blank">supports IPv6 for all network links</a>
+        Site Recovery Manager [supports IPv6 for all network links](http://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/techpaper/whats-new-vmware-vcenter-site-recovery-manager-50-technical-white-paper.pdf)
       </td>
     </tr>
   </table>
@@ -1503,7 +1503,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       </td>
 
       <td >
-        The VXLAN specification includes IPv6 for the outer header since <a href="https://tools.ietf.org/html/draft-mahalingam-dutt-dcops-vxlan-03" target="_blank">revision 2 from February 22, 2013</a>. The VMware implementation does not address IPv6.
+        The VXLAN specification includes IPv6 for the outer header since [revision 2 from February 22, 2013](https://tools.ietf.org/html/draft-mahalingam-dutt-dcops-vxlan-03). The VMware implementation does not address IPv6.
       </td>
     </tr>
 
@@ -1565,7 +1565,7 @@ The management use case assumes that the operator of the virtual infrastructure 
 
 ### Related VMware products
 
-The only other VMware product line that supports IPv6 is Horizon View with <a href="https://www.vmware.com/support/horizon-view/doc/horizon-61-view-release-notes.html" target="_blank">version 6.1</a>.
+The only other VMware product line that supports IPv6 is Horizon View with [version 6.1](https://www.vmware.com/support/horizon-view/doc/horizon-61-view-release-notes.html).
 
 ### Horizon View
 

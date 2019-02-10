@@ -37,7 +37,7 @@ Therefore network devices and hosts need to offer the option to disable the IPv6
 
 From a router perspective on the other hand it is not sufficient to just leave away an IPv6 address on an interface. You need to actively suppress IPv6 Router Announcements (RA) and DHCPv6 Replys as well as filter out IPv6 tunnel protocols.
 
-Tools that come in handy here are IPv6 Router Advertisement Guard (<a title="RFC 6105" href="https://tools.ietf.org/html/rfc6105" target="_blank">RFC 6105</a>) as well as <a href="https://tools.ietf.org/html/draft-ietf-opsec-dhcpv6-shield-01" target="_blank">DHCPv6 Shield</a>, also known as <a href="http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipv6/configuration/15-2s/ip6-15-2s-book/ip6-dhcpv6-guard.html" target="_blank">DHCPv6 Guard</a>.
+Tools that come in handy here are IPv6 Router Advertisement Guard (<a title="RFC 6105" href="https://tools.ietf.org/html/rfc6105" target="_blank">RFC 6105</a>) as well as [DHCPv6 Guard](https://tools.ietf.org/html/draft-ietf-opsec-dhcpv6-shield-01" target="_blank">DHCPv6 Shield</a>, also known as <a href="http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipv6/configuration/15-2s/ip6-15-2s-book/ip6-dhcpv6-guard.html).
 
 ### 2. Manual
 
@@ -45,7 +45,7 @@ The next approach is manually configuring an IPv6 address. This will require man
 
 While this approach is straightforward on a router for IPv4 by solely specifying an IPv4 address, it requires a bit more in IPv6. Here we need to ensure that the router will not send out Router Announcements (RA), including those responding to a router solicitation. Otherwise devices in a network will learn about the used prefix and automatically generate an IPv6 address. That's what SLAAC does and it is described in the next section.
 
-Here is an example for configuring an interface for static IPv6 addressing mode on an <a href="https://www.arista.com/en/" target="_blank">Arista Networks</a> device.
+Here is an example for configuring an interface for static IPv6 addressing mode on an [Arista Networks](https://www.arista.com/en/) device.
 
 <pre>interface Vlan5
    description IPv6-Only (Manual)
@@ -96,7 +96,7 @@ Configuration of a manual IPv6 address is done in Ubuntu 13.10 via the file _/et
 
 ### 3. Stateless Address Auto Configuration (SLAAC)
 
-The next mechanism is completely unknown in IPv4 and therefore new to IPv6. Stateless Address Auto Configuration (SLLAC) is a mechanism described in <a title="RFC 4862" href="https://tools.ietf.org/search/rfc4862" target="_blank">RFC 4862</a>, which uses ICMPv6 packets to let routers in a network regularly announce the configured IPv6 prefix. Upon receiving of such an ICMPv6 packet - called Router Advertisement (RA), hosts will automatically generate an IPv6 address based on their own MAC address and this prefix. The mechanism is called "Stateless" as it doesn't require any state to be kept within the router to avoid IPv6 address collision. Prevention of collisions is solely achieved by utilizing a modified <a href="https://en.wikipedia.org/wiki/MAC_address" target="_blank">EUI-64 mechanism</a>.
+The next mechanism is completely unknown in IPv4 and therefore new to IPv6. Stateless Address Auto Configuration (SLLAC) is a mechanism described in <a title="RFC 4862" href="https://tools.ietf.org/search/rfc4862" target="_blank">RFC 4862</a>, which uses ICMPv6 packets to let routers in a network regularly announce the configured IPv6 prefix. Upon receiving of such an ICMPv6 packet - called Router Advertisement (RA), hosts will automatically generate an IPv6 address based on their own MAC address and this prefix. The mechanism is called "Stateless" as it doesn't require any state to be kept within the router to avoid IPv6 address collision. Prevention of collisions is solely achieved by utilizing a modified [EUI-64 mechanism](https://en.wikipedia.org/wiki/MAC_address).
 
 Figure shows how such a Router Advertisement packet looks like in Wireshark. We can clearly see the advertised prefix as well as the prefix length.
 
@@ -191,7 +191,7 @@ This approach is accomplished by setting the so called "Other" or just "O" flag 
   </p>
 </div>
 
-Before we can configure the "Other" flag on our router, we need to setup a DHCP server, which will serve the nameserver information. In this example I'm using an <a href="https://www.infoblox.com/products/infoblox-appliances/" target="_blank">Infoblox vNIOS grid</a> to do so. Figure 10 shows the configuration.
+Before we can configure the "Other" flag on our router, we need to setup a DHCP server, which will serve the nameserver information. In this example I'm using an [Infoblox vNIOS grid](https://www.infoblox.com/products/infoblox-appliances/) to do so. Figure 10 shows the configuration.
 
 <div id="attachment_611" style="width: 621px" class="wp-caption aligncenter">
   <img class="size-full wp-image-611" src="/content/uploads/2013/11/Infoblox_Nameserver-e1384819649649.png" alt="Figure 10: Infoblox DHCPv6 basic configuration" width="611" height="324" />

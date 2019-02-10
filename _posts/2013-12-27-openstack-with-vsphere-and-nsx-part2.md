@@ -141,7 +141,7 @@ Give the new transport zone a name (See Figure 9). Click on _Save & View_ to fin
   </p>
 </div>
 
-Note down the UUID of the newly created transport zone (See Figure 10). We will need this UUID in a later step to configure the <a href="https://communities.vmware.com/community/vmtn/openstack/" target="_blank">vSphere OpenStack Virtual Appliance (VOVA)</a>.
+Note down the UUID of the newly created transport zone (See Figure 10). We will need this UUID in a later step to configure the [vSphere OpenStack Virtual Appliance (VOVA)](https://communities.vmware.com/community/vmtn/openstack/).
 
 
 
@@ -193,7 +193,7 @@ Give the gateway node a name (See Figure 13). I usually pick the hostname.
   </p>
 </div>
 
-Here leave the settings as is (See Figure 14). A _Management Rendezvous Client_ would be necessary if NSX Controller and NSX Gateway do not have direct network connectivity, the _Tunnel Keep-alive Spray_ would randomize TCP source ports for STT tunnel keep-alives for packet spray across active network path and _VTEP enabled_ would be for physical NSX gateways as e.g. offered by <a href="https://www.arista.com/en/company/news/press-release/614-pr-20130826-01" target="_blank">Arista EOS</a>. As none of this applies here, we will stick to the default settings.
+Here leave the settings as is (See Figure 14). A _Management Rendezvous Client_ would be necessary if NSX Controller and NSX Gateway do not have direct network connectivity, the _Tunnel Keep-alive Spray_ would randomize TCP source ports for STT tunnel keep-alives for packet spray across active network path and _VTEP enabled_ would be for physical NSX gateways as e.g. offered by [Arista EOS](https://www.arista.com/en/company/news/press-release/614-pr-20130826-01). As none of this applies here, we will stick to the default settings.
 
 
 
@@ -448,7 +448,7 @@ Verify your Gateway node configuration and finish the installation of the gatewa
   </p>
 </div>
 
-Note down the UUID of the newly created gateway zone (See Figure 33). We will need this UUID along with the UUID of the transport zone in a later step to configure the <a href="https://communities.vmware.com/community/vmtn/openstack/" target="_blank">vSphere OpenStack Virtual Appliance (VOVA)</a>.
+Note down the UUID of the newly created gateway zone (See Figure 33). We will need this UUID along with the UUID of the transport zone in a later step to configure the [vSphere OpenStack Virtual Appliance (VOVA)](https://communities.vmware.com/community/vmtn/openstack/).
 
 
 

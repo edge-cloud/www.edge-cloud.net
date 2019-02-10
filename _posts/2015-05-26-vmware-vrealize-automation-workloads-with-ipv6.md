@@ -82,7 +82,7 @@ Let's have a brief look at each of them, in order to understand where to start w
 
     Now that we have set the stage with the above network profiles, we can look into possible ways to make this work. The following possibilities should be considered in this specific order due to the associated complexity and gained benefits:
 
-      * **External profile with external address assignment:** In this option network segments (either VLANs or VXLANs) would need to be setup outside of vRA. These network segments would provide the ability to handout IPv6 addresses via DHCPv6, SLAAC, or a <a href="https://www.edge-cloud.net/2013/11/18/ipv6-address-management-hosts/" target="_blank">combination of both</a> from a physical router. <div id="attachment_1633" style="width: 610px" class="wp-caption aligncenter">
+      * **External profile with external address assignment:** In this option network segments (either VLANs or VXLANs) would need to be setup outside of vRA. These network segments would provide the ability to handout IPv6 addresses via DHCPv6, SLAAC, or a [combination of both](https://www.edge-cloud.net/2013/11/18/ipv6-address-management-hosts/) from a physical router. <div id="attachment_1633" style="width: 610px" class="wp-caption aligncenter">
           <img src="/content/uploads/2015/05/vRA_IPv6_External.png" alt="Figure 5: Address assignment via DHCPv6 from upstream router" width="600" height="302" class="size-full wp-image-1633" srcset="/content/uploads/2015/05/vRA_IPv6_External.png 600w, /content/uploads/2015/05/vRA_IPv6_External-360x181.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
 
           <p class="wp-caption-text">
@@ -101,7 +101,7 @@ Let's have a brief look at each of them, in order to understand where to start w
 
           * **External profile with 3rd party software router:** In this option you would try to emulate the “Routed” profile with a 3rd party software router (basically a small Linux VM that is pre-configured for IPv6 and/or can accept configuration changes via a self-made API).
 
-            In this case you would especially want automate the IPv6 address assignment for the VMs living on the network segments within the blueprint as much as possible (See the example with the 3 segments in the figure below). A very elegant way to do this would be to look at the way how major Service Providers (e.g. AT&T or Comcast) assign IPv6 addresses to their customer gateways (CPE). This address assignment can be done via <a href="https://en.wikipedia.org/wiki/Prefix_delegation" target="_blank">DHCPv6-PD (Prefix Delegation)</a> (See Figure 6). </p>
+            In this case you would especially want automate the IPv6 address assignment for the VMs living on the network segments within the blueprint as much as possible (See the example with the 3 segments in the figure below). A very elegant way to do this would be to look at the way how major Service Providers (e.g. AT&T or Comcast) assign IPv6 addresses to their customer gateways (CPE). This address assignment can be done via [DHCPv6-PD (Prefix Delegation)](https://en.wikipedia.org/wiki/Prefix_delegation) (See Figure 6). </p>
             <div id="attachment_1634" style="width: 610px" class="wp-caption aligncenter">
               <img src="/content/uploads/2015/05/vRA_IPv6_DHCP-PD.png" alt="Figure 6: Logical Router acting as DHCPv6-PD CPE device" width="600" height="315" class="size-full wp-image-1634" srcset="/content/uploads/2015/05/vRA_IPv6_DHCP-PD.png 600w, /content/uploads/2015/05/vRA_IPv6_DHCP-PD-360x189.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
 
@@ -120,7 +120,7 @@ Let's have a brief look at each of them, in order to understand where to start w
               * Dynamic routing would not be necessary. Each internal network segment uses the 3rd party virtual router as Def. gw. The 3rd party virtual router uses the upstream router as the Def. GW.
               * The physical upstream router has a static route for the /56 network pointing to the 3rd party virtual router (this is done automatically by the route as part of DHCPv6-PD.
 
-            If desired it is possible to run additional services (e.g. load balancer, firewall via IPtables) on this 3rd party virtual router and make configuration accessible from vRA workflows via a simple custom API. As an alternative it would be possible to use a specialized Linux router distribution such as <a href="https://en.wikipedia.org/wiki/OpenWrt" target="_blank">OpenWRT</a> and allow configuration of the router from within the Blueprint via a Web GUI.
+            If desired it is possible to run additional services (e.g. load balancer, firewall via IPtables) on this 3rd party virtual router and make configuration accessible from vRA workflows via a simple custom API. As an alternative it would be possible to use a specialized Linux router distribution such as [OpenWRT](https://en.wikipedia.org/wiki/OpenWrt) and allow configuration of the router from within the Blueprint via a Web GUI.
 
             **Pro:** Regain advanced possibilities for network design within a blueprint / architecture, while allowing address assignment to all VMs via DHCPv6 and/or SLAAC. Leverage SP-proven network concepts to treat applications like customer networks.
 

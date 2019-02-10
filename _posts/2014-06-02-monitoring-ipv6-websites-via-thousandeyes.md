@@ -15,7 +15,7 @@ tags:
   - Management
   - Network
 ---
-Recently I stumbled over a small startup in San Francisco called <a href="https://www.thousandeyes.com/" target="_blank">ThousandEyes</a>. They provide a service for complete, end-to-end visibility of cloud applications and infrastructure telling you where and why services are breaking or under-performing. This allows SaaS providers to ensure that their application can be leveraged by customers at various locations throughout the world with an optimal or at least acceptable performance. But it also allows Enterprise customers to ensure that the SaaS applications used by the company are available from all campuses and branch offices at the desired performance, taking into consideration all elements of the delivery chain (See Figure 1).
+Recently I stumbled over a small startup in San Francisco called [ThousandEyes](https://www.thousandeyes.com/). They provide a service for complete, end-to-end visibility of cloud applications and infrastructure telling you where and why services are breaking or under-performing. This allows SaaS providers to ensure that their application can be leveraged by customers at various locations throughout the world with an optimal or at least acceptable performance. But it also allows Enterprise customers to ensure that the SaaS applications used by the company are available from all campuses and branch offices at the desired performance, taking into consideration all elements of the delivery chain (See Figure 1).
 
 <div id="attachment_1261" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/05/TE2.png" alt="Figure 1: End-to-end visibility of cloud applications and infrastructure telling you where and why services are breaking" width="600" height="155" class="size-full wp-image-1261" srcset="/content/uploads/2014/05/TE2.png 600w, /content/uploads/2014/05/TE2-360x93.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -41,7 +41,7 @@ While it's great to see that ThousandEyes supports IPv6 at all, there are some l
 
 Instead I had to simulate such a setup by using two agents, one for IPv4 and one for IPv6. Adding more agents would break this model and makes things hard to read and understand.
 
-Also it is currently not possible to install more than one agent on a Linux host requiring separate hosts for the IPv4 and IPv6 agents. But thanks to <a href="https://www.docker.com/" target="_blank">Docker</a> I was able to deploy one agent against the IPv6 address and one agent inside a Docker container against an IPv4 address on the same host. The two agents that you therefore see in Figure 2 are actually both running on the same host. With this I could go on with my initially intended use case.
+Also it is currently not possible to install more than one agent on a Linux host requiring separate hosts for the IPv4 and IPv6 agents. But thanks to [Docker](https://www.docker.com/) I was able to deploy one agent against the IPv6 address and one agent inside a Docker container against an IPv4 address on the same host. The two agents that you therefore see in Figure 2 are actually both running on the same host. With this I could go on with my initially intended use case.
 
 I'm confident that these minor shortcomings will be fixed over time as more and more Enterprise and SaaS provider customers adopt this tool.
 
@@ -147,7 +147,7 @@ Looking at the IPv4 agent we can see that this in this case the webserver is loc
 
 This discrepancy in path chosen for IPv4 and IPv6 traffic as well as the distance between the locations explain the performance difference.
 
-I need to point out that the URL in this example is served by <a href="https://www.cloudflare.com/" target="_blank">CloudFlare</a>, a content delivery network and distributed domain name server service which uses <a href="https://en.wikipedia.org/wiki/Anycast" target="_blank">Anycast</a> for improving website performance and speed, and to protect websites from online threats. As CloudFlare has <a href="https://www.cloudflare.com/network/" target="_blank">Points-of-Presence (POPs)</a> in both Vienna and Frankfurt, traffic can be served by either of these locations, both in IPv4 and IPv6.
+I need to point out that the URL in this example is served by [Points-of-Presence (POPs)](https://www.cloudflare.com/" target="_blank">CloudFlare</a>, a content delivery network and distributed domain name server service which uses <a href="https://en.wikipedia.org/wiki/Anycast" target="_blank">Anycast</a> for improving website performance and speed, and to protect websites from online threats. As CloudFlare has <a href="https://www.cloudflare.com/network/) in both Vienna and Frankfurt, traffic can be served by either of these locations, both in IPv4 and IPv6.
 
 The problem in this case appears to be on the side of the provider in Nuremberg as they prefer a path towards Frankfurt for connecting to AS13335 (CloudFlare) via IPv4 while preferring a path towards Vienna for the same AS via IPv6. Here another nice feature of ThousandEyes comes into play: Share This Screen. This allows me to share the current screen with either live data or "canned" data around the time I have currently selected with someone who is not a customer of ThousandEyes. I can therefore easily share what I just discovered with the Service Provider in Nuremberg, allowing them to reproduce and better understand the issue. A great feature that saves a lot of time (See Figure 10).
 
@@ -251,7 +251,7 @@ It is no secret that older network equipment provides inferior performance for p
 
 ### Summary
 
-ThousandEyes is a very interesting tool for gaining insight into SaaS application performance and your overall network infrastructure. If you are an enterprise relying on SaaS applications such as <a href="https://products.office.com/en-us/" target="_blank">Microsoft Office 365</a> or <a href="https://gsuite.google.com/" target="_blank">Google Apps</a>, this is a great way to ensure that your employees get the performance they expect. It will help you identify issues and let you troubleshoot and resolve them quickly.
+ThousandEyes is a very interesting tool for gaining insight into SaaS application performance and your overall network infrastructure. If you are an enterprise relying on SaaS applications such as [Google Apps](https://products.office.com/en-us/" target="_blank">Microsoft Office 365</a> or <a href="https://gsuite.google.com/), this is a great way to ensure that your employees get the performance they expect. It will help you identify issues and let you troubleshoot and resolve them quickly.
 
 If you are a service provider offering a SaaS application, ThousandEyes is equally valuable as you are now not only able to monitor your service from various locations worldwide, but also drill down deep into any issues in the Internet that might degrade your customer's experience. In the end the customer cares about the end-to-end experience, where a SaaS provider has limited direct control over the delivery chain.
 

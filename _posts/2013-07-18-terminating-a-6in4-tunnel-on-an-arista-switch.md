@@ -14,7 +14,7 @@ tags:
   - Arista
   - Network
 ---
-In a [previous post](https://www.edge-cloud.net/2013/06/24/network-troubleshooting-via-arista-eos-shell/ "Network troubleshooting via Arista EOS shell") I have shown that <a href="https://www.arista.com/en/" target="_blank">Arista switches</a> feature a full fledged Linux system underneath the CLI that is accessible to network administrators via the EOS shell.
+In a [previous post](https://www.edge-cloud.net/2013/06/24/network-troubleshooting-via-arista-eos-shell/ "Network troubleshooting via Arista EOS shell") I have shown that [Arista switches](https://www.arista.com/en/) feature a full fledged Linux system underneath the CLI that is accessible to network administrators via the EOS shell.
 
 Let's use this Linux capability to do something out of the box: Terminate a 6in4 tunnel on an Arista switch to provide IPv6 access.
 
@@ -24,7 +24,7 @@ Please keep in mind that the tunnel termination will be handled by the control p
 
 ### Getting the 6in4 tunnel
 
-Next we need a service provider delivering us the termination or such a tunnel. The easiest way to achieve this is via Hurricane Electric's <a href="https://tunnelbroker.net/" target="_blank">Tunnelbroker service</a>. Within a few minutes you get a 6in4 tunnel this way. Figure 1 shows an example of the details for a 6in4 tunnel provided by Hurricane Electric.
+Next we need a service provider delivering us the termination or such a tunnel. The easiest way to achieve this is via Hurricane Electric's [Tunnelbroker service](https://tunnelbroker.net/). Within a few minutes you get a 6in4 tunnel this way. Figure 1 shows an example of the details for a 6in4 tunnel provided by Hurricane Electric.
 
 
 
@@ -68,7 +68,7 @@ Arista Networks EOS shell
 
 ### Installing necessary modules
 
-In order to configure a 6in4 tunnel under Linux the <a href="http://tldp.org/HOWTO/Adv-Routing-HOWTO/lartc.tunnel-ipv6.addressing.html" target="_blank">Simple Internet Transition (SIT)</a> module needs to be loaded. This module is not loaded by default on Arista switches. Let's do so:
+In order to configure a 6in4 tunnel under Linux the [Simple Internet Transition (SIT)](http://tldp.org/HOWTO/Adv-Routing-HOWTO/lartc.tunnel-ipv6.addressing.html) module needs to be loaded. This module is not loaded by default on Arista switches. Let's do so:
 
 <pre>-bash-4.1# modprobe sit
 </pre>
@@ -107,7 +107,7 @@ Once this works successfully, let's configure routing beyond this first hop via 
 <pre>-bash-4.1# ip route add ::/0 dev he-ipv6
 </pre>
 
-Let's test if this works and ping <a href="https://developers.google.com/speed/public-dns/" target="_blank">Google's public DNS resolver</a>:
+Let's test if this works and ping [Google's public DNS resolver](https://developers.google.com/speed/public-dns/):
 
 <pre>-bash-4.1# ping6 2001:4860:4860::8888
 PING 2001:4860:4860::8888(2001:4860:4860::8888) 56 data bytes

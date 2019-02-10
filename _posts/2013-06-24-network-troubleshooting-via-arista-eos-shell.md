@@ -15,7 +15,7 @@ tags:
   - Network
   - Performance
 ---
-A few days ago the startup <a href="https://www.cumulusnetworks.com/" target="_blank">Cumulus Networks</a> emerged from the clouds with their Cumulus Linux OS for original design manufacturer (ODM) switches based on Broadcom silicon. While the average customer will have to wait a while to get their hands on a Cumulus Networks based device, users of Arista switches can already today use the benefits of a full Linux distribution running on a data center switch.
+A few days ago the startup [Cumulus Networks](https://www.cumulusnetworks.com/) emerged from the clouds with their Cumulus Linux OS for original design manufacturer (ODM) switches based on Broadcom silicon. While the average customer will have to wait a while to get their hands on a Cumulus Networks based device, users of Arista switches can already today use the benefits of a full Linux distribution running on a data center switch.
 
 Arista EOS is based on a Linux kernel and provides full and open access to a Linux shell, allowing installation and use of Linux based management and troubleshooting tools.
 
@@ -23,7 +23,7 @@ In this short post I want to show you two use cases where this capability comes 
 
 ### TCPDump to PCAP
 
-Quite frequently it happens that network devices aren't behaving the way they should be. Let's take the example of a virtual router that doesn't want to form OSPFv3 adjacency with the core switch. What usually helps quite a bit are packet captures of the traffic between the involved network devices. In the past it could be quite challenging acquiring these packet captures, requiring the setup of a <a href="https://en.wikipedia.org/wiki/Port_mirroring" target="_blank">Switched Port Analyzer (SPAN)</a>, Remote Switched Port Analyzer (RSPAN) or even <a href="http://packetpushers.net/erspan-new-favorite-packet-capturing-trick/" target="_blank">Encapsulated Remote Switched Port Analyzer (ERSPAN)</a>.
+Quite frequently it happens that network devices aren't behaving the way they should be. Let's take the example of a virtual router that doesn't want to form OSPFv3 adjacency with the core switch. What usually helps quite a bit are packet captures of the traffic between the involved network devices. In the past it could be quite challenging acquiring these packet captures, requiring the setup of a [Encapsulated Remote Switched Port Analyzer (ERSPAN)](https://en.wikipedia.org/wiki/Port_mirroring" target="_blank">Switched Port Analyzer (SPAN)</a>, Remote Switched Port Analyzer (RSPAN) or even <a href="http://packetpushers.net/erspan-new-favorite-packet-capturing-trick/).
 
 With Arista EOS it becomes much easier, as you can run TCPDump directly on the switch to capture a PCAP file for Wireshark:
 

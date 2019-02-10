@@ -14,7 +14,7 @@ tags:
   - Cloud
   - SDDC
 ---
-This article is part of a <a href="https://www.edge-cloud.net/2015/02/20/sddc-architecture-introduction/" target="_blank">series of articles</a>, focusing on the architecture of an SDDC via VMware Validated Designs.
+This article is part of a [series of articles](https://www.edge-cloud.net/2015/02/20/sddc-architecture-introduction/), focusing on the architecture of an SDDC via VMware Validated Designs.
 
 ### Requirements
 
@@ -26,7 +26,7 @@ A Software Defined Data Center promises to be the new underpinning or platform f
 
 ### Motivation
 
-In this post we will map the <a href="https://www.edge-cloud.net/2015/03/10/sddc-architecture-core-pod/" target="_blank">physical space</a> of the SDDC architecture to the logical space (See Figure 1).
+In this post we will map the [physical space](https://www.edge-cloud.net/2015/03/10/sddc-architecture-core-pod/) of the SDDC architecture to the logical space (See Figure 1).
 
 <div id="attachment_1840" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2015/08/VMWare_Pod_Design_VM_Assignment.png"><img src="/content/uploads/2015/08/VMWare_Pod_Design_VM_Assignment-600x482.png" alt="Figure 1: Mapping of logical to physical components within the SDDC" width="600" height="482" class="size-large wp-image-1840" srcset="/content/uploads/2015/08/VMWare_Pod_Design_VM_Assignment-600x482.png 600w, /content/uploads/2015/08/VMWare_Pod_Design_VM_Assignment-350x281.png 350w, /content/uploads/2015/08/VMWare_Pod_Design_VM_Assignment.png 1300w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -64,7 +64,7 @@ The Management Stack includes:
 The rationale behind using two or more vCenters is based on the following items:
 
   * **Safety:** Ensure that excessive operations of a cloud management platform on one of the the Compute vCenter Servers has no negative impact on the Management vCenter Server and thereby the management stack. It is therefore possible to still manage the SDDC itself in such a situation.
-  * **Security:** The Cloud Management Platform only needs access to the Compute vCenter Servers and never needs to access the Management vCenter Server. This improves security as even when messing up the <a href="https://en.wikipedia.org/wiki/Role-based_access_control" target="_blank">Role-Based Access Control (RBAC)</a> within vCenter, the Cloud Management Platform can never accidentally or on purpose harm the applications within the management stack.
+  * **Security:** The Cloud Management Platform only needs access to the Compute vCenter Servers and never needs to access the Management vCenter Server. This improves security as even when messing up the [Role-Based Access Control (RBAC)](https://en.wikipedia.org/wiki/Role-based_access_control) within vCenter, the Cloud Management Platform can never accidentally or on purpose harm the applications within the management stack.
   * **Scale out:** Using separate vCenter Server for Compute and Management stack allows us to add additional vCenter Servers within the Compute stack in order to cope with increased payload churn rates. This refers to the case where the number of VM lifecycle operations per unit of time exceeds the capacity of a single vCenter. In these cases the task queue would increase without vCenter ever having a chance to work through them in a reasonable time. To get around this scenario you would add Compute vCenter Server(s) and let the Cloud Management Platform distribute the load across them.
 
 With this an SDDC will usually have a single vCenter Server for the Management Stack and one or more vCenter Server for the Compute Stack within a region.
@@ -85,9 +85,9 @@ Each stack would use a dedicated NSX Transport Zone. The reason for this is that
 
 ### vCenter Server to Platform Service Controller Mapping
 
-In this design we use vSphere 6.0, which introduces the <a href="https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2113115" target="_blank">Platform Services Controller (PSC)</a>. The PSC provides a set of common infrastructure services encompassing Single Sign-On (SSO), Licensing, and Certificate Authority. As a result an administrator could log in to any one of the vCenter Servers attached to PSC within a single SSO domain and manage all resources within these attached vCenters. The result is a single pane of glass from a management perspective.
+In this design we use vSphere 6.0, which introduces the [Platform Services Controller (PSC)](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2113115). The PSC provides a set of common infrastructure services encompassing Single Sign-On (SSO), Licensing, and Certificate Authority. As a result an administrator could log in to any one of the vCenter Servers attached to PSC within a single SSO domain and manage all resources within these attached vCenters. The result is a single pane of glass from a management perspective.
 
-While an <a href="https://blogs.vmware.com/vsphere/2015/03/vcenter-server-6-topology-ha.html" target="_blank">HA deployment scenario</a> does exist for the Platform Services Controller, this scenario is not necessary and not recommended in this design. The High Availability (HA) topology would add additional components with the load balancer and would require additional configuration steps. While this would improve the availability of the PSC itself dramatically, the consumer of the PSC - the vCenter Server - are only able to leverage vSphere HA. As such PSC itself could also use vSphere HA, simplifying the topology.
+While an [HA deployment scenario](https://blogs.vmware.com/vsphere/2015/03/vcenter-server-6-topology-ha.html) does exist for the Platform Services Controller, this scenario is not necessary and not recommended in this design. The High Availability (HA) topology would add additional components with the load balancer and would require additional configuration steps. While this would improve the availability of the PSC itself dramatically, the consumer of the PSC - the vCenter Server - are only able to leverage vSphere HA. As such PSC itself could also use vSphere HA, simplifying the topology.
 
 The resulting design (See Figure 2) would also prepare the overall SDDC design to upcoming capabilities around high availability of the PSC.
 
@@ -99,10 +99,10 @@ The resulting design (See Figure 2) would also prepare the overall SDDC design t
   </p>
 </div>
 
-The recommended design is to deploy a pair of Platform Services Controllers per <a href="https://www.edge-cloud.net/2015/07/31/sddc-architecture-regions-and-availability-zones-azs/" target="_blank">Region and Availability Zones (AZ)</a> and join all PSC in a single Single Sign On (SSO) domain. A maximum of 8 PSC can be placed into a single SSO domain. With this restriction it would be possible to span a single SDDC across up to 2 regions with 2 AZs each.
+The recommended design is to deploy a pair of Platform Services Controllers per [Region and Availability Zones (AZ)](https://www.edge-cloud.net/2015/07/31/sddc-architecture-regions-and-availability-zones-azs/) and join all PSC in a single Single Sign On (SSO) domain. A maximum of 8 PSC can be placed into a single SSO domain. With this restriction it would be possible to span a single SDDC across up to 2 regions with 2 AZs each.
 
 Within each AZ, the deployed vCenter Server will be split across the available PSC. In the minimum deployment size where you have only one vCenter Server for Management and one vCenter Server for Compute, this would result in a one-to-one mapping.
 
 In the case of a PSC failure, due to an underlying ESXi host failure, the PSC would be restarted via vSphere HA on another ESXi hosts. This would result in a downtime of multiple minutes for the attached vCenter Servers.
 
-In case of a prolonged downtime of a PSC - e.g. due to VM corruption or alike - the vCenter Servers mapped to this PSC (Red arrows in Figure 2) would not be able to leverage this PSC anymore. In this situation the <a href="http://kb.vmware.com/kb/2113917" target="_blank">vCenter Servers should be re-pointed</a> to the remaining active PSC within a region (Blue arrows in Figure 2). At this point the SDDC is operational again and the defective PSC can be re-build, for the SDDC to return to a redundant operational state.
+In case of a prolonged downtime of a PSC - e.g. due to VM corruption or alike - the vCenter Servers mapped to this PSC (Red arrows in Figure 2) would not be able to leverage this PSC anymore. In this situation the [vCenter Servers should be re-pointed](http://kb.vmware.com/kb/2113917) to the remaining active PSC within a region (Blue arrows in Figure 2). At this point the SDDC is operational again and the defective PSC can be re-build, for the SDDC to return to a redundant operational state.

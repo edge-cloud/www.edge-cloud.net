@@ -18,7 +18,7 @@ In a [previous post](https://www.edge-cloud.net/2013/06/07/measuring-network-thr
 
 ### Amazon AWS
 
-The test series uses one <a href="https://aws.amazon.com/ec2/previous-generation/" target="_blank">m1.medium instance</a> in each region. The latency between the two instances gives us an RTT of 88 ms and therefore allows us to calculate the theoretical maximum throughput based on the bandwidth-delay product.
+The test series uses one [m1.medium instance](https://aws.amazon.com/ec2/previous-generation/) in each region. The latency between the two instances gives us an RTT of 88 ms and therefore allows us to calculate the theoretical maximum throughput based on the bandwidth-delay product.
 
 I'm again using iperf with varying TCP window sizes for this test.
 
@@ -34,7 +34,7 @@ Figure 1 shows the single TCP stream throughput between the two AWS regions. One
 
 Looking at the traceroute between the two instances one can clearly see that Amazon uses its own links to connect the regions.
 
-_Side Note:_ The network team at Amazon AWS should brush up their skills on <a href="https://en.wikipedia.org/wiki/Reverse_DNS_lookup" target="_blank">Reverse DNS lookups</a> as almost none of the routing hops' IP addresses resolves to DNS names. But the Autonomous System (AS) number of hops clearly shows that the IP addresses belong to Amazon.
+_Side Note:_ The network team at Amazon AWS should brush up their skills on [Reverse DNS lookups](https://en.wikipedia.org/wiki/Reverse_DNS_lookup) as almost none of the routing hops' IP addresses resolves to DNS names. But the Autonomous System (AS) number of hops clearly shows that the IP addresses belong to Amazon.
 
 ### "Broken" example, not Amazon AWS
 

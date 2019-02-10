@@ -25,7 +25,7 @@ In this post we will dig a bit deeper and look behind the scenes of our Cloud. F
 
 ### Configure the VMware vCenter Plugin for OpenStack
 
-The idea behind the <a href="http://blogs.vmware.com/vsphere/2013/11/vcenter-web-client-plug-in-for-openstack.html" target="_blank">VMware vCenter Plugin for OpenStack</a> is to provide operators of the virtualization layer insight into the OpenStack layer running on top. This can greatly enhance troubleshooting capabilities, especially for the case that the vSphere virtualization layer and the OpenStack layer are managed by different people or teams.
+The idea behind the [VMware vCenter Plugin for OpenStack](http://blogs.vmware.com/vsphere/2013/11/vcenter-web-client-plug-in-for-openstack.html) is to provide operators of the virtualization layer insight into the OpenStack layer running on top. This can greatly enhance troubleshooting capabilities, especially for the case that the vSphere virtualization layer and the OpenStack layer are managed by different people or teams.
 
 The VMware vCenter Plugin for OpenStack is part of VOVA and is automatically installed once VOVA is pointed to a vCenter. For some reason it currently doesn't auto-configure itself, but requires manual intervention in the vSphere Web Client. Let's therefore perform this manual configuration:
 
@@ -249,7 +249,7 @@ Now you can use Putty or any other SSH client and successfully connect to the ex
 
 ### API-driven creation of a VM in OpenStack
 
-One of the big benefits of OpenStack is the simple, yet very powerful API along with various SDK for all kinds of programming languages. Let's use the <a href="http://docs.openstack.org/developer/python-novaclient/" target="_blank">Python SDK</a> for creating a new VM via the OpenStack API.
+One of the big benefits of OpenStack is the simple, yet very powerful API along with various SDK for all kinds of programming languages. Let's use the [Python SDK](http://docs.openstack.org/developer/python-novaclient/) for creating a new VM via the OpenStack API.
 
 Below is a simple Python script, which will connect to your OpenStack cloud, create a new VM and start it.
 
@@ -286,12 +286,12 @@ The elements that you need to adapt to your own environment are:
   * flavor: The flavor of the VM you want to use.
   * network: The name of the network to which this VM should get connected to.
 
-You can run this script directly from VOVA. As VOVA is based on <a href="https://www.ubuntu.com/" target="_blank">Ubuntu</a> you can use the command `sudo apt-get install python-novaclient` to install the required SDK.
+You can run this script directly from VOVA. As VOVA is based on [Ubuntu](https://www.ubuntu.com/) you can use the command `sudo apt-get install python-novaclient` to install the required SDK.
 
 ### Wrap-Up
 
 Congratulation! We successfully looked behind the scenes into VMware vSphere to see what’s happening during the operation of OpenStack on vSphere. We also installed the VMware vCenter Plugin for Openstack to gain more insight into OpenStack from vSphere, as well as used some of the well-known enterprise-class benefits of vSphere – such as VMotion – along with OpenStack. Furthermore we took a glimpse at how to use OpenStack’s legendary APIs to automate the deployment of a VM. This completes the [series](https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/ "OpenStack with vSphere and NSX") on OpenStack with vSphere and NSX.
 
-If you are at <a href="https://www.vmworld.com/en/us/programs/partner-exchange.html" target="_blank">VMware Partner Exchange (PEX)</a> from February 10-13 2014, head over to the Hands-On Labs and check out the lab "HOL-SDC-1320 - OpenStack on VMware vSphere" in order to get hands-on experience with the setup described in this setup. After PEX this lab will also become available for general usage within the <a href="http://labs.hol.vmware.com/" target="_blank">VMware Hands-On labs</a>. Check it out!
+If you are at [VMware Hands-On labs](https://www.vmworld.com/en/us/programs/partner-exchange.html" target="_blank">VMware Partner Exchange (PEX)</a> from February 10-13 2014, head over to the Hands-On Labs and check out the lab "HOL-SDC-1320 - OpenStack on VMware vSphere" in order to get hands-on experience with the setup described in this setup. After PEX this lab will also become available for general usage within the <a href="http://labs.hol.vmware.com/). Check it out!
 
-Also if you want to learn more about using OpenStack with VMware vSphere, have a look at the VMware whitepaper "<a href="http://blogs.vmware.com/vsphere/2014/01/getting-started-with-openstack-and-vmware-vsphere-white-paper.html" target="_blank">Getting Started with OpenStack and VMware vSphere</a>".
+Also if you want to learn more about using OpenStack with VMware vSphere, have a look at the VMware whitepaper "[Getting Started with OpenStack and VMware vSphere](http://blogs.vmware.com/vsphere/2014/01/getting-started-with-openstack-and-vmware-vsphere-white-paper.html)".

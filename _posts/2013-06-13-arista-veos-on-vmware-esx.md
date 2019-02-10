@@ -14,7 +14,7 @@ tags:
   - Arista
   - Network
 ---
-<a href="https://www.arista.com/en/" target="_blank">Arista</a> EOS is released as a single image that supports all of their hardware platforms. But that same single image can also be run in a virtual machine! While a great article on "<a href="http://www.gad.net/Blog/2012/10/27/building-a-virtual-lab-with-arista-veos-and-virtualbox/" target="_blank">Building a Virtual Lab with Arista vEOS and VirtualBox</a>" already exists, I wanted to accomplish the same with vSphere 5.x.
+[Building a Virtual Lab with Arista vEOS and VirtualBox](https://www.arista.com/en/" target="_blank">Arista</a> EOS is released as a single image that supports all of their hardware platforms. But that same single image can also be run in a virtual machine! While a great article on "<a href="http://www.gad.net/Blog/2012/10/27/building-a-virtual-lab-with-arista-veos-and-virtualbox/)" already exists, I wanted to accomplish the same with vSphere 5.x.
 
 Here's how I did it.
 
@@ -25,7 +25,7 @@ Besides at least one ESXi 5.x host you will need the following files from Arista
   * The bootloader: Aboot-veos-2.0.8.iso
   * The actual vEOS image as a VMDK: EOS-4.12.0-veos.vmdk
 
-Note: This guide is current as of June 13, 2013. I have used the latest available vEOS VMDK file. You might want to check if a newer vEOS files <a href="https://www.arista.com/en/support" target="_blank">was published</a> in the meantime.
+Note: This guide is current as of June 13, 2013. I have used the latest available vEOS VMDK file. You might want to check if a newer vEOS files [was published](https://www.arista.com/en/support) in the meantime.
 
 **Build a base VM image in vSphere**
 

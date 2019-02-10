@@ -13,7 +13,7 @@ categories:
 tags:
   - Cloudflare
 ---
-<a href="https://www.cloudflare.com/" target="_blank">Cloudflare</a> provides a content delivery network and distributed domain name server services to help secure and accelerate websites. This cloud-based service sits between the visitor and the CloudFlare user's hosting provider, acting as a reverse proxy for the website. While the majority of web content management systems have no problem with such an approach out of the box, TYPO3 is different. There are some minor settings that need to be changed for this combination to work. This article will show you how to accomplish this.
+[Cloudflare](https://www.cloudflare.com/) provides a content delivery network and distributed domain name server services to help secure and accelerate websites. This cloud-based service sits between the visitor and the CloudFlare user's hosting provider, acting as a reverse proxy for the website. While the majority of web content management systems have no problem with such an approach out of the box, TYPO3 is different. There are some minor settings that need to be changed for this combination to work. This article will show you how to accomplish this.
 
 
 
@@ -25,11 +25,11 @@ tags:
   </p>
 </div>
 
-<a href="https://typo3.org/" target="_blank">TYPO3</a> is a free and open source web content management system written in PHP, which is more widespread in Europe than in other regions. The biggest market share can be found in German-speaking countries.
+[TYPO3](https://typo3.org/) is a free and open source web content management system written in PHP, which is more widespread in Europe than in other regions. The biggest market share can be found in German-speaking countries.
 
 ## Support for HTTPS
 
-Out of the box Cloudflare provides free SSL support for every website, allowing user to provide HTTPS for their website. This offering is called <a href="https://blog.cloudflare.com/introducing-universal-ssl/" target="_blank">UniversalSSL</a> and it can be used without the origin web server even supporting SSL.
+Out of the box Cloudflare provides free SSL support for every website, allowing user to provide HTTPS for their website. This offering is called [UniversalSSL](https://blog.cloudflare.com/introducing-universal-ssl/) and it can be used without the origin web server even supporting SSL.
 
 As a result you could access a website like example.com under http://www.example.com as well as https://www.example.com.
 
@@ -51,11 +51,11 @@ Use the following Typoscript with Condition inside your main template.
 
 Don't forget to change the sample URL www.example.com with your actual domain.
 
-The better alternative would be to use the more current <a href="https://buzz.typo3.org/people/soeren-malling/article/baseurl-is-dead-long-live-absrefprefix/" target="_blank">config.absRefPrefix</a> capability instead of the legacy config.baseURL. This configuration item would instruct TYPO3 to use relative URLs instead of absolute URLs.
+The better alternative would be to use the more current [config.absRefPrefix](https://buzz.typo3.org/people/soeren-malling/article/baseurl-is-dead-long-live-absrefprefix/) capability instead of the legacy config.baseURL. This configuration item would instruct TYPO3 to use relative URLs instead of absolute URLs.
 
 Ideally you should configure your origin web server with an SSL certificate to enable HTTPS between Cloudflare and your server. For this it is sufficient to use a self-signed certificate.
 
-Also after enabling TYPO3 for UniversalSSL, you can <a href="https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-" target="_blank">force usage of HTTPS</a> on all your pages.
+Also after enabling TYPO3 for UniversalSSL, you can [force usage of HTTPS](https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-) on all your pages.
 
 ## Support for the TYPO3 backend
 
@@ -77,7 +77,7 @@ Don't forget to change the sample URL www.example.com with your actual domain.
 
 ## CloudFlare extension for TYPO3
 
-While not mandatory to operate CloudFlare with a TYPO3 based website, it is highly recommended to use the <a href="https://typo3.org/extensions/repository/view/cloudflare" target="_blank">CloudFlare extension</a> for TYPO3. This excellent extension allows you to flush the CloudFlare cache, restores the origin IP address of the end-user towards TYPO3 and takes care of the above mentioned SSL setup transparently.
+While not mandatory to operate CloudFlare with a TYPO3 based website, it is highly recommended to use the [CloudFlare extension](https://typo3.org/extensions/repository/view/cloudflare) for TYPO3. This excellent extension allows you to flush the CloudFlare cache, restores the origin IP address of the end-user towards TYPO3 and takes care of the above mentioned SSL setup transparently.
 
 ## Summary
 

@@ -15,7 +15,7 @@ tags:
   - Cloud
   - SDDC
 ---
-This article is part of a <a href="https://www.edge-cloud.net/2015/02/20/sddc-architecture-introduction/" target="_blank">series of articles</a>, focusing on the architecture of an SDDC via VMware Validated Designs.
+This article is part of a [series of articles](https://www.edge-cloud.net/2015/02/20/sddc-architecture-introduction/), focusing on the architecture of an SDDC via VMware Validated Designs.
 
 ### Requirements
 
@@ -48,7 +48,7 @@ The SDDC based on a VMware Validated Design use two main network segments:
       * Provide a Jump-Host for more secure access from the corporate network
       * Many other ways to connect admins to admin network
 
-    SDDC management workloads are placed on the management network and fronted with a load balancer. This is a typical concept for web application and shouldn’t be new or surprising. With VMware products this concept already used widely by V<a href="http://www.vmware.com/products/openstack.html" target="_blank">Mware Integrated OpenStack</a> (VIO), but also <a href="http://www.vmware.com/products/vcloud-director.html" target="_blank">VMware vCloud Director</a> and <a href="http://www.vmware.com/products/vrealize-automation.html" target="_blank">VMware vRealize Automation</a>. </li> </ul>
+    SDDC management workloads are placed on the management network and fronted with a load balancer. This is a typical concept for web application and shouldn’t be new or surprising. With VMware products this concept already used widely by V[VMware vRealize Automation](http://www.vmware.com/products/openstack.html" target="_blank">Mware Integrated OpenStack</a> (VIO), but also <a href="http://www.vmware.com/products/vcloud-director.html" target="_blank">VMware vCloud Director</a> and <a href="http://www.vmware.com/products/vrealize-automation.html). </li> </ul>
 
     ### The container concept
 
@@ -67,7 +67,7 @@ The SDDC based on a VMware Validated Design use two main network segments:
       * **Security:** Granular yet simple control who can access what services within a Virtual POD.
       * **Modularity:** Replace or upgrade an application without breaking the entire SDDC as dependencies go via well-know interfaces.
       * **Simplicity:** Reduces the number of required IP addresses on the corporate network, but also keeps the integration effort low, by not requiring dynamic routing towards the corporate network.
-      * **Business Continuity / Disaster Recovery (BC/DR):** Simplifies the Business Continuity / Disaster Recovery (BC/DR) story with <a href="http://www.vmware.com/products/site-recovery-manager.html" target="_blank">VMware Site Recovery Manager (SRM)</a>. See below for more.
+      * **Business Continuity / Disaster Recovery (BC/DR):** Simplifies the Business Continuity / Disaster Recovery (BC/DR) story with [VMware Site Recovery Manager (SRM)](http://www.vmware.com/products/site-recovery-manager.html). See below for more.
       * **IPv6:** Ability to provide the management applications over IPv6 by solely enabling IPv6 on the Virtual IP (VIP) of the NSX Edge load balancer.
 
     ### Virtual PODs for cross-region failover via SRM
@@ -92,7 +92,7 @@ The SDDC based on a VMware Validated Design use two main network segments:
 
     Therefore in order to make the failover complete for end-users of the service, a change to the DNS name of the service is necessary. With that change the DNS entry is re-pointed from the VIP on the NSX Edge in Region A to the VIP on the NSX Edge in Region B.
 
-    Performing such a DNS update can be easily done using corresponding <a href="http://dyn.com/dns/" target="_blank">Dynamic DNS services</a> on the Internet, <a href="http://gnudip2.sourceforge.net/" target="_blank">building your own</a> equivalent or using a <a href="https://gallery.technet.microsoft.com/scriptcenter/Update-DNS-records-with-da10910d" target="_blank">simple script</a> to update you Microsoft DNS server.
+    Performing such a DNS update can be easily done using corresponding [simple script](http://dyn.com/dns/" target="_blank">Dynamic DNS services</a> on the Internet, <a href="http://gnudip2.sourceforge.net/" target="_blank">building your own</a> equivalent or using a <a href="https://gallery.technet.microsoft.com/scriptcenter/Update-DNS-records-with-da10910d) to update you Microsoft DNS server.
 
     Again, no dynamic routing updates are necessary after a SRM failover towards the business network. In fact, you don't even need to run dynamic routing towards the business network unless you want to.
 

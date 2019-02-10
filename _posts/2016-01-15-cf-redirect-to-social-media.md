@@ -15,11 +15,11 @@ tags:
 ---
 It happens to the best: Sometimes a web server just goes down. Ideally you would have redundancy in place for this case, with a second (or even more) web server(s) mirroring your page. But redundancy doesn't come for free: It's costly and might end up being complicated. Therefore you sometimes have no other choice, but to rely on a single origin web server for your web site. Especially when using a web hosting company you rely on whatever redundancy you are provide or more than often not provided with.
 
-Nevertheless you do not want to display just nothing or a nondescript error page to your website users, when the hopefully rare moment hits and your web server does go down. One interesting approach is <a href="https://help.dyn.com/understanding-social-failover/" target="_blank">Dyn's Social Failover</a> capability, which reroutes your web traffic to your Twitter feed, Facebook page, or another URL of your choice, in case your web server goes down.
+Nevertheless you do not want to display just nothing or a nondescript error page to your website users, when the hopefully rare moment hits and your web server does go down. One interesting approach is [Dyn's Social Failover](https://help.dyn.com/understanding-social-failover/) capability, which reroutes your web traffic to your Twitter feed, Facebook page, or another URL of your choice, in case your web server goes down.
 
 ### Using CloudFlare
 
-In this post I want to show you how you can accomplish the same with any of the paid <a href="https://www.cloudflare.com/plans/" target="_blank">CloudFlare plan levels</a>. For these plan types CloudFlare offers the capability to <a href="https://support.cloudflare.com/hc/en-us/articles/200172706-How-do-I-customize-CloudFlare-error-pages-" target="_blank">customize error messages</a> with your own HTML code. One of these error messages would be displayed in the case where CloudFlare cannot contact your web server, e.g. because it is down.
+In this post I want to show you how you can accomplish the same with any of the paid [customize error messages](https://www.cloudflare.com/plans/" target="_blank">CloudFlare plan levels</a>. For these plan types CloudFlare offers the capability to <a href="https://support.cloudflare.com/hc/en-us/articles/200172706-How-do-I-customize-CloudFlare-error-pages-) with your own HTML code. One of these error messages would be displayed in the case where CloudFlare cannot contact your web server, e.g. because it is down.
 
 We can make use of this capability and instead of displaying a custom error page, just display an HTML redirect to a site of your choice. This way your visitors would be redirected to this page in the case of an origin failure (See Figure 1).
 
@@ -59,7 +59,7 @@ You can also see the CloudFlare error box ::CLOUDFLARE\_ERROR\_500S_BOX::, which
 
 ### Uploading the custom error page
 
-Within your CloudFlare account navigate to the <a href="https://www.cloudflare.com/a/customization" target="_blank">Customize</a> app (See Figure 1).
+Within your CloudFlare account navigate to the [Customize](https://www.cloudflare.com/a/customization) app (See Figure 1).
 
 
 

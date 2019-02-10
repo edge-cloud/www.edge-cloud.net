@@ -38,7 +38,7 @@ The NSX vSwitch is a virtual switch for the VMware vSphere platform, similar to 
 
 ### Install the NSX vSwitch
 
-The NSX vSwitch is provided as a <a href="http://blogs.vmware.com/vsphere/2011/09/whats-in-a-vib.html" target="_blank">vSphere Installation Bundle (VIB)</a> that needs to be installed on each ESXi hosts that you plan on using. While various methods exist for installing a VIB on an ESXi host, this article will showcase the installation via an SSH connection.
+The NSX vSwitch is provided as a [vSphere Installation Bundle (VIB)](http://blogs.vmware.com/vsphere/2011/09/whats-in-a-vib.html) that needs to be installed on each ESXi hosts that you plan on using. While various methods exist for installing a VIB on an ESXi host, this article will showcase the installation via an SSH connection.
 
 First make the VIB file available to the ESXi hosts via e.g. shared storage (See Figure 2). This will greatly simplify the work associated with copying the VIB file to the ESXi hosts.
 
@@ -104,7 +104,7 @@ Next, set the default gateway with the command `nsxcli gw/set tunneling &#60;ip 
 ~ #
 </pre>
 
-Next is the creation of a Transport-Net Bridge to which Virtual Machines will later connect to. The name of this Bridge needs to be known to our OpenStack installation for the architecture to work. As we will be using <a href="https://communities.vmware.com/community/vmtn/openstack/" target="_blank">vSphere OpenStack Virtual Appliance (VOVA)</a> this uuid and name must be _NSX-Bridge_.
+Next is the creation of a Transport-Net Bridge to which Virtual Machines will later connect to. The name of this Bridge needs to be known to our OpenStack installation for the architecture to work. As we will be using [vSphere OpenStack Virtual Appliance (VOVA)](https://communities.vmware.com/community/vmtn/openstack/) this uuid and name must be _NSX-Bridge_.
 
 Create the NSX bridge with the command `nsxcli network/add &#60;UUID&#62; &#60;Name&#62;`:
 

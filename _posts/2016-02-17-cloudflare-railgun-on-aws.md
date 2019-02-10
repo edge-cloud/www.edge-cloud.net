@@ -169,7 +169,7 @@ Start by creating a Launch Configuration, where you select the latest Ubuntu Ser
 
 {% include figure image_path="/content/uploads/2016/02/018-EC2_01.png" caption="Figure 23: Create a Launch Configuration - Step 1" %}
 
-As mentioned we will instruct the launch configuration to install and configure the latest version of CloudFlare Railgun on the fly. This can be done via the EC2 <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html" target="_blank">Cloud Init</a> method, where we pass a shell script into the newly created Linux OS.
+As mentioned we will instruct the launch configuration to install and configure the latest version of CloudFlare Railgun on the fly. This can be done via the EC2 [Cloud Init](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) method, where we pass a shell script into the newly created Linux OS.
 
 Below is the script that will be executed upon boot. It will install and configure CloudFlare Railgun. You will have to replace three values within the script:
 
@@ -229,4 +229,4 @@ Now you can login to the CloudFlare Dashboard and test the Railgun setup. If eve
 
 ### Summary
 
-This tutorial showed you how to use Amazon Web Services (AWS), with the services <a href="https://aws.amazon.com/elasticache/" target="_blank">Amazon ElastiCache</a> together with <a href="https://aws.amazon.com/elasticloadbalancing/" target="_blank">AWS Elastic Load Balancing</a>, <a href="https://aws.amazon.com/autoscaling/" target="_blank">AWS Auto Scaling</a> and <a href="https://aws.amazon.com/ec2/" target="_blank">Amazon EC2</a> to quickly and easily setup a highly available CloudFlare Railgun Listener setup.
+This tutorial showed you how to use Amazon Web Services (AWS), with the services [Amazon EC2](https://aws.amazon.com/elasticache/" target="_blank">Amazon ElastiCache</a> together with <a href="https://aws.amazon.com/elasticloadbalancing/" target="_blank">AWS Elastic Load Balancing</a>, <a href="https://aws.amazon.com/autoscaling/" target="_blank">AWS Auto Scaling</a> and <a href="https://aws.amazon.com/ec2/) to quickly and easily setup a highly available CloudFlare Railgun Listener setup.

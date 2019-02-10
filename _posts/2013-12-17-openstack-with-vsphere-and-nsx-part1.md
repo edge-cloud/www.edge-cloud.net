@@ -36,7 +36,7 @@ A VMware NSX setup consists of various components. Each of them has a specific r
   * **NSX Manager**  
     The NSX Manager provides a GUI for operators to setup and configure an NSX network. It is not used by OpenStack itself and could be removed in the case that the operator uses CLI commands for all setup and configuration steps.
 
-If you want to learn more about the architecture of VMware NSX, check out the <a href="http://www.vmware.com/files/pdf/products/nsx/vmw-nsx-network-virtualization-design-guide.pdf" target="_blank">VMware NSX Network Virtualization Design Guide (PDF)</a>.
+If you want to learn more about the architecture of VMware NSX, check out the [VMware NSX Network Virtualization Design Guide (PDF)](http://www.vmware.com/files/pdf/products/nsx/vmw-nsx-network-virtualization-design-guide.pdf).
 
 ### Install Virtual Appliances
 

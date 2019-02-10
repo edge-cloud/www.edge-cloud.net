@@ -30,7 +30,7 @@ This documentation assumes that a healthy Ubuntu 10.04.4 LTS Server, fully funct
 
 This documentation is accurate as of May 31, 2013. These steps have been performed on Ubuntu 10.04.4 Server systems and confirmed to work as described here.
 
-[Update from June 27, 2014]: Trac has added support for Git in never versions. In order to unify configuration of the various version control systems in Trac, the syntax for specifying what system you are using has changed. In Trac 1.0 (trunk, starting from r11082), the components for Subversion support have been moved below tracopt. So you need to explicitly enable them in your Components section within trac.ini. See <a href="https://trac.edgewall.org/wiki/TracSubversion" target="_blank">here</a> fore more details. You will need this information in the "Final Customization" section below.
+[Update from June 27, 2014]: Trac has added support for Git in never versions. In order to unify configuration of the various version control systems in Trac, the syntax for specifying what system you are using has changed. In Trac 1.0 (trunk, starting from r11082), the components for Subversion support have been moved below tracopt. So you need to explicitly enable them in your Components section within trac.ini. See [here](https://trac.edgewall.org/wiki/TracSubversion) fore more details. You will need this information in the "Final Customization" section below.
 
 ### Installing RANCID
 

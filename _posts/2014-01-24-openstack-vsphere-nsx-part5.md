@@ -348,7 +348,7 @@ You can see information about the running VM instance - such as the ID, the stat
   </p>
 </div>
 
-Via the _Console_ you can access your VM instance. Login with the standard username _root_ and the password _vmware_ to this provided Debian image. Afterwards you can control your VM and e.g. test connectivity by pinging the <a href="https://developers.google.com/speed/public-dns/" target="_blank">Google Public DNS Resolver</a> at 8.8.8.8 (See Figure 30).
+Via the _Console_ you can access your VM instance. Login with the standard username _root_ and the password _vmware_ to this provided Debian image. Afterwards you can control your VM and e.g. test connectivity by pinging the [Google Public DNS Resolver](https://developers.google.com/speed/public-dns/) at 8.8.8.8 (See Figure 30).
 
 <div id="attachment_981" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA33-e1389917470547.png" alt="Figure 30: Instance Console" width="600" height="429" class="size-full wp-image-981" />

@@ -18,21 +18,21 @@ tags:
   - Network
   - Ravello-Systems
 ---
-<img src="/content/uploads/2015/08/Ravello_with_Cumulus2-360x185.png" alt="Ravello_with_Cumulus" width="360" height="185" class="alignleft size-medium wp-image-1752" srcset="/content/uploads/2015/08/Ravello_with_Cumulus2-360x185.png 360w, /content/uploads/2015/08/Ravello_with_Cumulus2.png 600w" sizes="(max-width: 360px) 100vw, 360px" />In a [previous post](https://www.edge-cloud.net/2013/06/13/arista-veos-on-vmware-esx/) I've already shown how to build a virtual network lab with Arista vEOS and VMware ESX. In this post we want to take this concept even further to the next level. Instead of Arista vEOS we will use the newly released [Cumulus Networks](https://cumulusnetworks.com/) Virtual Experience (VX) edition. And instead of VMware ESX we will use [Ravello Systems](https://www.ravellosystems.com/), allowing us to use <a href="https://aws.amazon.com/" target="_blank">AWS</a> or <a href="https://cloud.google.com/compute/" target="_blank">Google Compute Engine</a>.
+<img src="/content/uploads/2015/08/Ravello_with_Cumulus2-360x185.png" alt="Ravello_with_Cumulus" width="360" height="185" class="alignleft size-medium wp-image-1752" srcset="/content/uploads/2015/08/Ravello_with_Cumulus2-360x185.png 360w, /content/uploads/2015/08/Ravello_with_Cumulus2.png 600w" sizes="(max-width: 360px) 100vw, 360px" />In a [previous post](https://www.edge-cloud.net/2013/06/13/arista-veos-on-vmware-esx/) I've already shown how to build a virtual network lab with Arista vEOS and VMware ESX. In this post we want to take this concept even further to the next level. Instead of Arista vEOS we will use the newly released [Cumulus Networks](https://cumulusnetworks.com/) Virtual Experience (VX) edition. And instead of VMware ESX we will use [Ravello Systems](https://www.ravellosystems.com/), allowing us to use [Google Compute Engine](https://aws.amazon.com/" target="_blank">AWS</a> or <a href="https://cloud.google.com/compute/).
 
 **Elements used**
 
-Cumulus Networks provides a standard <a href="https://cumulusnetworks.com/what-we-do/" target="_blank">Linux based operating system for data center switches</a>, thus simplifying dramatically the data center operations. If you are familiar with running and operating Linux on a regular server, managing a Cumulus Network based switch shouldn't be a big challenge for you. Also you can now finally leverage the hundreds of existing management, automation and monitoring tools that you know and love for Linux. <a href="https://cumulusnetworks.com/cumulus-vx/" target="_blank">Cumulus Networks Virtual Experience (VX)</a> is a community-supported virtual appliance that enables cloud admins and network engineers to preview and test Cumulus Networks technology at zero cost inside a virtual machine or standard X86 server.
+Cumulus Networks provides a standard [Cumulus Networks Virtual Experience (VX)](https://cumulusnetworks.com/what-we-do/" target="_blank">Linux based operating system for data center switches</a>, thus simplifying dramatically the data center operations. If you are familiar with running and operating Linux on a regular server, managing a Cumulus Network based switch shouldn't be a big challenge for you. Also you can now finally leverage the hundreds of existing management, automation and monitoring tools that you know and love for Linux. <a href="https://cumulusnetworks.com/cumulus-vx/) is a community-supported virtual appliance that enables cloud admins and network engineers to preview and test Cumulus Networks technology at zero cost inside a virtual machine or standard X86 server.
 
-Ravello Systems provides a "<a href="https://www.ravellosystems.com/solutions/virtual-networking-labs" target="_blank">Smart Labs</a>" solution on top of AWS and Google Compute Engine (GCE) based on <a href="https://www.ravellosystems.com/technology/nested-virtualization" target="_blank">nested virtualization</a>. This allows you to run self-contained lab "capsules" with almost any kind of VMware or KVM based virtual machine in them. This approach - proven for years with the VMWorld labs - now allows you to use modern public clouds for test, training and demo purposes at a minimal cost. Specific for networking lab cases Ravello Systems provides <a href="https://www.ravellosystems.com/technology/software-defined-network" target="_blank">virtual L2 networking</a> on top of both AWS and GCE, allowing you to simulate very complex network scenarios.
+Ravello Systems provides a "[virtual L2 networking](https://www.ravellosystems.com/solutions/virtual-networking-labs" target="_blank">Smart Labs</a>" solution on top of AWS and Google Compute Engine (GCE) based on <a href="https://www.ravellosystems.com/technology/nested-virtualization" target="_blank">nested virtualization</a>. This allows you to run self-contained lab "capsules" with almost any kind of VMware or KVM based virtual machine in them. This approach - proven for years with the VMWorld labs - now allows you to use modern public clouds for test, training and demo purposes at a minimal cost. Specific for networking lab cases Ravello Systems provides <a href="https://www.ravellosystems.com/technology/software-defined-network) on top of both AWS and GCE, allowing you to simulate very complex network scenarios.
 
 **Getting Started**
 
-Before you can get started you need an account for Ravello Systems. You can conveniently <a href="https://www.ravellosystems.com/ravello-free-signup/" target="_blank">sign-up</a> for a free trial account. This account will allow you to use Ravello for free for 14 days. You do not need a credit card or any existing cloud credentials with AWS or GCE.
+Before you can get started you need an account for Ravello Systems. You can conveniently [sign-up](https://www.ravellosystems.com/ravello-free-signup/) for a free trial account. This account will allow you to use Ravello for free for 14 days. You do not need a credit card or any existing cloud credentials with AWS or GCE.
 
-Next we need to download the Cumulus Networks VX images in <a href="https://cumulusnetworks.com/cumulus-vx/download/thanks/kvm/" target="_blank">QCOW2 format</a>. This image will later be imported into Ravello Systems.
+Next we need to download the Cumulus Networks VX images in [QCOW2 format](https://cumulusnetworks.com/cumulus-vx/download/thanks/kvm/). This image will later be imported into Ravello Systems.
 
-If you want to save time you can also use my pre-built <a href="https://www.ravellosystems.com/repo/blueprints/62095782" target="_blank">Ravello Systems blueprint for Cumulus Networks VX</a>. See further down for details.
+If you want to save time you can also use my pre-built [Ravello Systems blueprint for Cumulus Networks VX](https://www.ravellosystems.com/repo/blueprints/62095782). See further down for details.
 
 **Architecture**
 
@@ -46,7 +46,7 @@ For this exercise we want to build a very simple two-leaf/two-spine virtual netw
   </p>
 </div>
 
-The architecture will include two spine switches (spine1 and spine2) as well as two leaf switches (leaf1 and leaf2), cross connected in a typical <a href="https://en.wikipedia.org/wiki/Clos_network" target="_blank">CLOS network architecture</a>. For the four point-to-point connections between the devices we will use the depicted RFC1918 IP ranges, while making the management interface of the switches available over the internet (not depicted).
+The architecture will include two spine switches (spine1 and spine2) as well as two leaf switches (leaf1 and leaf2), cross connected in a typical [CLOS network architecture](https://en.wikipedia.org/wiki/Clos_network). For the four point-to-point connections between the devices we will use the depicted RFC1918 IP ranges, while making the management interface of the switches available over the internet (not depicted).
 
 **Uploading the Cumulus Networks VX image into Ravello Systems**
 
@@ -290,10 +290,10 @@ The pings should succeed.
 
 **Save time, use a Ravello Systems Blueprint**
 
-Instead of going through the above steps you can also use my pre-built <a href="https://www.ravellosystems.com/repo/blueprints/62095782" target="_blank">Ravello Systems blueprint for Cumulus Networks VX</a>. Just add this public accessible blueprint to your own Ravello Systems library and deploy the above described network lab in a few minutes.
+Instead of going through the above steps you can also use my pre-built [Ravello Systems blueprint for Cumulus Networks VX](https://www.ravellosystems.com/repo/blueprints/62095782). Just add this public accessible blueprint to your own Ravello Systems library and deploy the above described network lab in a few minutes.
 
 **More capabilities**
 
 Cumulus Networks VX provides a lot more capabilities than what I was able to showcase in this blog post. With the above described simple testbed you are now empowered to explore these capabilities.
 
-Have a look at the <a href="https://docs.cumulusnetworks.com/display/DOCS/Quick+Start+Guide" target="_blank">Cumulus Network Technical Documentation</a> to get inspired on what you can do.
+Have a look at the [Cumulus Network Technical Documentation](https://docs.cumulusnetworks.com/display/DOCS/Quick+Start+Guide) to get inspired on what you can do.

@@ -14,11 +14,11 @@ tags:
   - Cloudflare
   - Google-Analytics
 ---
-<a href="https://www.cloudflare.com/" target="_blank">Cloudflare</a> provides a content delivery network and distributed domain name server services to help secure and accelerate websites. This cloud-based service sits between the visitor and the CloudFlare user’s hosting provider, acting as a reverse proxy for the website.
+[Cloudflare](https://www.cloudflare.com/) provides a content delivery network and distributed domain name server services to help secure and accelerate websites. This cloud-based service sits between the visitor and the CloudFlare user’s hosting provider, acting as a reverse proxy for the website.
 
-This article will help you visualize the global presence of your website, when using CloudFlare, with the well-known tool <a href="https://www.google.com/analytics/" target="_blank">Google Analytics</a>. You need to have your website running through CloudFlare for this to work.
+This article will help you visualize the global presence of your website, when using CloudFlare, with the well-known tool [Google Analytics](https://www.google.com/analytics/). You need to have your website running through CloudFlare for this to work.
 
-<a href="https://www.cloudflare.com/a/sign-up" target="_blank">Signing up</a>&nbsp;wit CloudFlare is easy and free and usually only takes 5 minutes.
+[Signing up](https://www.cloudflare.com/a/sign-up)&nbsp;wit CloudFlare is easy and free and usually only takes 5 minutes.
 
 ### About CloudFlare's Points-of-Presence
 
@@ -40,7 +40,7 @@ Wouldn't it be great to get insight into how much these worldwide locations help
 
 First, set up a custom dimensions for the location of the CloudFlare PoP that serves a request in Google Analytics:
 
-  1. Sign in to <a href="https://www.google.com/analytics/web/#home/" target="_blank">Google Analytics</a>.
+  1. Sign in to [Google Analytics](https://www.google.com/analytics/web/#home/).
   2. Select the **Admin** tab and navigate to the **property to which you want to add custom dimensions**.
   3. In the **Property** column, click **Custom Definitions**, then click **Custom Dimensions**.
   4. Click **New Custom Dimension**.
@@ -66,9 +66,9 @@ First, set up a custom dimensions for the location of the CloudFlare PoP that se
 
 Next we need to embed the Google Analytics tracking code within the website, in order to fill the newly created custom dimension with data. This tracking code has to be placed between the code for creating the Google Analytics tracker, which looks like this: `__gaTracker('create','UA-12345678-1','auto');`, and the code to submit the tracker, which looks like this `__gaTracker('send','pageview');`.
 
-If you are using WordPress the easiest way to include the custom tracking code is by using the "<a href="https://wordpress.org/plugins/google-analytics-for-wordpress/" target="_blank">Google Analytics by Yoast</a>" plugin. This plugin allows you under _Advanced > Custom Code_ to embed the below code right away and without any coding requirements.
+If you are using WordPress the easiest way to include the custom tracking code is by using the "[Google Analytics by Yoast](https://wordpress.org/plugins/google-analytics-for-wordpress/)" plugin. This plugin allows you under _Advanced > Custom Code_ to embed the below code right away and without any coding requirements.
 
-But first we have to actually determine the CloudFlare PoP location that serves a request. For this we can use the HTTP response header "cf-ray", which is added by CLoudFlare for troubleshooting purposes. It includes a numeric value, as well as the <a href="https://www.cloudflarestatus.com/" target="_blank">location code</a> of the CloudFlare PoP.
+But first we have to actually determine the CloudFlare PoP location that serves a request. For this we can use the HTTP response header "cf-ray", which is added by CLoudFlare for troubleshooting purposes. It includes a numeric value, as well as the [location code](https://www.cloudflarestatus.com/) of the CloudFlare PoP.
 
 The below JavaScript code will read the "cf-ray" response header, extract the location ID and push it into the Google Analytics custom dimension variable. Ensure that the numeric ID of this custom dimension variable matches what you have created in above steps.
 
@@ -88,7 +88,7 @@ A few hours after embedding the code you should see your first custom dimension 
 
 You can now create custom reports with the custom dimension in Google Analytics. A simple example would be to determine which CloudFlare PoP serves how many of your audience's session.
 
-  1. Make sure you are still signed in to <a href="https://www.google.com/analytics/web/#home/" target="_blank">Google Analytics</a>.
+  1. Make sure you are still signed in to [Google Analytics](https://www.google.com/analytics/web/#home/).
   2. Select the **Customization** tab and click on **New Custom Report**.
   3. **Name** your Custom Report here.
   4. Select a Metric for which you want to see your Custom Dimensions. I recommend the metric "Sessions" within the "Users" Metric Group.
@@ -125,7 +125,7 @@ One such report could be to map the location from where users connect to the Clo
   </p>
 </div>In this report we can see various users not being served by the closest Point of Presence, but one farther away. This is mostly caused by the way that the Internet works and especially by some
 
-<a href="https://blog.cloudflare.com/the-relative-cost-of-bandwidth-around-the-world/" target="_blank">ISPs not peering directly</a> with content or CDN networks. Instead these ISP use <a href="https://en.wikipedia.org/wiki/Tier_1_network" target="_blank">Tier 1 network provider</a>, which can cause these inefficiencies.
+[Tier 1 network provider](https://blog.cloudflare.com/the-relative-cost-of-bandwidth-around-the-world/" target="_blank">ISPs not peering directly</a> with content or CDN networks. Instead these ISP use <a href="https://en.wikipedia.org/wiki/Tier_1_network), which can cause these inefficiencies.
 
 ### Summary
 

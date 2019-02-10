@@ -18,15 +18,15 @@ tags:
 ---
 Would you like to know the ratio of visitors accessing your website over IPv4 vs. IPv6? Or curious about how many visitors you serve over HTTP/2 vs. SPDY or HTTP 1.1?
 
-Using Google Analytics, CloudFlare and some JavaScript magic we can easily get answers to these questions. For this we will use the principle of <a href="https://en.wikipedia.org/wiki/Real_user_monitoring" target="_blank">Real User Monitoring (RUM)</a>.
+Using Google Analytics, CloudFlare and some JavaScript magic we can easily get answers to these questions. For this we will use the principle of [Real User Monitoring (RUM)](https://en.wikipedia.org/wiki/Real_user_monitoring).
 
-In a <a href="https://www.edge-cloud.net/2015/10/04/cloudflare-pops-in-google-analytics/" target="_blank">previous post</a> I've already shown how we can track the usage of CloudFlare data centers for the delivery of our website in Google Analytics. In this blog post I want to show you how to refine this method even further and also include information about other interesting metrics, such as IPv6 and HTTP/2 usage .
+In a [previous post](https://www.edge-cloud.net/2015/10/04/cloudflare-pops-in-google-analytics/) I've already shown how we can track the usage of CloudFlare data centers for the delivery of our website in Google Analytics. In this blog post I want to show you how to refine this method even further and also include information about other interesting metrics, such as IPv6 and HTTP/2 usage .
 
 ### Possible custom dimensions
 
-In the <a href="https://www.edge-cloud.net/2015/10/04/cloudflare-pops-in-google-analytics/" target="_blank">previous post</a> I used response header information, presented by the CloudFlare edge servers to extract information about the served traffic.
+In the [previous post](https://www.edge-cloud.net/2015/10/04/cloudflare-pops-in-google-analytics/) I used response header information, presented by the CloudFlare edge servers to extract information about the served traffic.
 
-This time we will instead use a <a href="https://support.cloudflare.com/hc/en-us/articles/200169986-Which-CloudFlare-data-center-do-I-reach-" target="_blank">special debugging URL</a> that is available for all CloudFlare powered sites. It is available under `https://www.example.com/cdn-cgi/trace`, where `https://www.example.com/` corresponds to the CloudFlare powered domain.
+This time we will instead use a [special debugging URL](https://support.cloudflare.com/hc/en-us/articles/200169986-Which-CloudFlare-data-center-do-I-reach-) that is available for all CloudFlare powered sites. It is available under `https://www.example.com/cdn-cgi/trace`, where `https://www.example.com/` corresponds to the CloudFlare powered domain.
 
 The result will look like this:
 
@@ -45,7 +45,7 @@ Let's have a closer look at the fields that are interesting to us and what they 
 
   * **ip:** This lists the IP address that was used to contact CloudFlare for this request. We can use this value to determine whether the request was made over IPv4 or IPv6.
   * **visit_scheme:** This will tell you whether the request was made over HTTP or HTTPS. In case you serve traffic only over HTTPS, this is rather not interesting. Otherwise you could use it to determine the traffic split between visitor using an encrypted vs. un-encrypted connection.
-  * **colo:** The CloudFlare Points-of-Presence (PoP), which served this traffic. In the <a href="https://www.edge-cloud.net/2015/10/04/cloudflare-pops-in-google-analytics/" target="_blank">previous post</a> you have already seen how to use this.
+  * **colo:** The CloudFlare Points-of-Presence (PoP), which served this traffic. In the [previous post](https://www.edge-cloud.net/2015/10/04/cloudflare-pops-in-google-analytics/) you have already seen how to use this.
   * **spdy:** The HTTP protocol version that was used to serve this content. Even though the key is called "spdy", the value can also indicate HTTP/2 via "h2" (as depicted above). A value of "3.1" will indicate SPDY/3.1 and "off" will indicate HTTP 1.x.
 
     It would make more sense to have the field "http" available with "http=h2" for HTTP/2, "http=spdy/3.1" for SPDY/3.1, and "http=http/1.x" for HTTP/1.x. But for now the "spdy" field is good enough.
@@ -57,7 +57,7 @@ Now that we know about all this great data at `/cdn-cgi/trace` for our website, 
 
 The trick: We make the user download the data, extract the values and push the results into Google Analytics.
 
-This approach of leveraging a real user to measure or monitor something is called <a href="https://en.wikipedia.org/wiki/Real_user_monitoring" target="_blank">Real User Monitoring</a> or RUM for short.
+This approach of leveraging a real user to measure or monitor something is called [Real User Monitoring](https://en.wikipedia.org/wiki/Real_user_monitoring) or RUM for short.
 
 <div id="attachment_2149" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/RUM-Flowchart.png" rel="attachment wp-att-2149"><img class="size-large wp-image-2149" src="/content/uploads/2016/02/RUM-Flowchart-600x365.png" alt="Figure 1: Interaction between browser, CloudFlare and Google Analytics" width="600" height="365" srcset="/content/uploads/2016/02/RUM-Flowchart-600x365.png 600w, /content/uploads/2016/02/RUM-Flowchart-350x213.png 350w, /content/uploads/2016/02/RUM-Flowchart-768x467.png 768w, /content/uploads/2016/02/RUM-Flowchart.png 943w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -88,7 +88,7 @@ For each value from `/cdn-cgi/trace` that we want to track, we need to create a 
 
 First, set up the custom dimensions in Google Analytics:
 
-  1. Sign in to <a href="https://www.google.com/analytics/web/#home/" target="_blank">Google Analytics</a>.
+  1. Sign in to [Google Analytics](https://www.google.com/analytics/web/#home/).
   2. Select the **Admin** tab and navigate to the **property to which you want to add custom dimensions**.
   3. In the **Property** column, click **Custom Definitions**, then click **Custom Dimensions**.
   4. Click **New Custom Dimension**.
@@ -110,7 +110,7 @@ First, set up the custom dimensions in Google Analytics:
 
 Next we need to embed the Google Analytics tracking code within the website, in order to fill the newly created custom dimensions with data. This tracking code has to be placed between the code for creating the Google Analytics tracker, which looks like this: `__gaTracker('create','UA-12345678-1','auto');`, and the code to submit the tracker, which looks like this `__gaTracker('send','pageview');`.
 
-If you are using WordPress the easiest way to include the custom tracking code is by using the "<a href="https://wordpress.org/plugins/google-analytics-for-wordpress/" target="_blank">Google Analytics by Yoast</a>" plugin. This plugin allows you under _Advanced > Custom Code_ to embed the below code right away and without any coding requirements.
+If you are using WordPress the easiest way to include the custom tracking code is by using the "[Google Analytics by Yoast](https://wordpress.org/plugins/google-analytics-for-wordpress/)" plugin. This plugin allows you under _Advanced > Custom Code_ to embed the below code right away and without any coding requirements.
 
 The below JavaScript code will read the values from `/cdn-cgi/trace`, extract the information we are interested it and push it into the Google Analytics custom dimension variables. Ensure that the numeric IDs of these custom dimension variables matches what you have created in above steps.
 
@@ -166,7 +166,7 @@ A few hours after embedding the code you should see your first custom dimension 
 
 You can now create custom reports with the custom dimensions in Google Analytics. A simple example would be to determine the IPv4 vs. IPv6 traffic ratio.
 
-  1. Make sure you are still signed in to <a href="https://www.google.com/analytics/web/#home/" target="_blank">Google Analytics</a>.
+  1. Make sure you are still signed in to [Google Analytics](https://www.google.com/analytics/web/#home/).
   2. Select the **Customization** tab and click on **New Custom Report**.
   3. **Name** your Custom Report here.
   4. Select a Metric for which you want to see your Custom Dimensions. I recommend the metric "Sessions" within the "Users" Metric Group.
@@ -207,4 +207,4 @@ By combining data from the custom dimension with data collected by Google Analyt
 
 This article has shown you, that you can easily built your own Real User Monitoring system with Google Analytics Custom dimension and some JavaScript code. It allows you to extract many interesting metrics out of your CloudFlare usage and make it available in Google Analytics for further data analysis.
 
-Not only has this site been using the above described method since November 2015, but also another <a href="https://www.cloudflare.com" target="_blank">well-known site</a>, which has provided <a href="https://blog.cloudflare.com/introducing-http2/" target="_blank">interesting insights</a> into the <a href="https://blog.cloudflare.com/cloudflares-impact-on-the-http-2-universe/" target="_blank">HTTP/2 adoption</a>.
+Not only has this site been using the above described method since November 2015, but also another [HTTP/2 adoption](https://www.cloudflare.com" target="_blank">well-known site</a>, which has provided <a href="https://blog.cloudflare.com/introducing-http2/" target="_blank">interesting insights</a> into the <a href="https://blog.cloudflare.com/cloudflares-impact-on-the-http-2-universe/).

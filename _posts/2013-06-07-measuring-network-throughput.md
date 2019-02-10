@@ -23,7 +23,7 @@ Let's have a look behind the scenes of network throughput measurement and unders
 
 ### Sliding window protocols
 
-Most user utilize software based on the <a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol" target="_blank">Transmission Control Protocol (TCP)</a> for measuring the network throughput. it is very important to keep in mind that TCP is a <a href="https://en.wikipedia.org/wiki/Sliding_window_protocol" target="_blank">sliding window protocol</a>.
+Most user utilize software based on the [sliding window protocol](https://en.wikipedia.org/wiki/Transmission_Control_Protocol" target="_blank">Transmission Control Protocol (TCP)</a> for measuring the network throughput. it is very important to keep in mind that TCP is a <a href="https://en.wikipedia.org/wiki/Sliding_window_protocol).
 
 
 
@@ -59,7 +59,7 @@ The propagation time t<sub>prop</sub> for a TCP packet can be determined by meas
 
 Now that we have identified the two most important variables for the performance of TCP based data transfers, let's look at the math behind the sliding window concept:
 
-An important formula is the one for the <a href="https://en.wikipedia.org/wiki/Bandwidth-delay_product" target="_blank">Bandwidth-delay product (BDP)</a>, which is the product of a data link's capacity (in bits per second) and its end-to-end delay (in seconds). The result, an amount of data measured in bits (or bytes), is equivalent to the maximum amount of data on the network circuit at any given time, e.g. data that has been transmitted but not yet acknowledged.
+An important formula is the one for the [Bandwidth-delay product (BDP)](https://en.wikipedia.org/wiki/Bandwidth-delay_product), which is the product of a data link's capacity (in bits per second) and its end-to-end delay (in seconds). The result, an amount of data measured in bits (or bytes), is equivalent to the maximum amount of data on the network circuit at any given time, e.g. data that has been transmitted but not yet acknowledged.
 
 <img src="//s0.wp.com/latex.php?latex=Buffer+%28Mbit%29+%3D+bandwidth+%28Mbit%2Fs%29+%5Ctimes+delay+%28s%29&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="Buffer (Mbit) = bandwidth (Mbit/s) &#92;times delay (s)" title="Buffer (Mbit) = bandwidth (Mbit/s) &#92;times delay (s)" class="latex" />
 
@@ -91,15 +91,15 @@ $latex \frac{64 KByte}{173 ms} = \frac{(64 \times 1024 \times 8 bit)}{0.173 s}
 
 Irrelevant of the actual link speed between the two sites above we will not be able to transfer more than 2.89 Mbit/s with a single TCP stream. Keep in mind that this is the theoretical maximum. In reality the value will be even lower due to packet loss and packet header overhead.
 
-If you get tired of performing the math manually, have a look at the <a href="https://www.switch.ch/network/tools/tcp_throughput/" target="_blank">TCP throughput calculator</a> from switch.ch.
+If you get tired of performing the math manually, have a look at the [TCP throughput calculator](https://www.switch.ch/network/tools/tcp_throughput/) from switch.ch.
 
 ### Limit of TCP Windows field in the protocol header
 
-The TCP window size field within the TCP header is 16 bit and therefore cannot be expanded beyond 64K. How is it then possible to specify a TCP window size higher than 64K? That's where <a href="https://www.ietf.org/rfc/rfc1323.txt" target="_blank">RFC 1323</a> defines a scaling factor, which allows scaling up to larger window sizes and thereby enables TCP tuning. This method increases the maximum window size from 65,535 bytes to 1 gigabyte.
+The TCP window size field within the TCP header is 16 bit and therefore cannot be expanded beyond 64K. How is it then possible to specify a TCP window size higher than 64K? That's where [RFC 1323](https://www.ietf.org/rfc/rfc1323.txt) defines a scaling factor, which allows scaling up to larger window sizes and thereby enables TCP tuning. This method increases the maximum window size from 65,535 bytes to 1 gigabyte.
 
 The window scale option is used only during the TCP 3-way handshake at the beginning of the connection. The window scale value represents the number of bits to left-shift the 16-bit window size field. The window scale value can be set from 0 (no shift) to 14 for each direction independently. Both sides must send the option in their SYN segments to enable window scaling in either direction.
 
-Here is a problem: Some routers and packet firewalls rewrite the window scaling factor during a transmission, which will cause sending and receiving sides to assume different TCP window sizes. The result is non-stable traffic that may be very slow. One can use packet sniffers such as <a href="https://www.wireshark.org/" target="_blank">Wireshark</a> to ensure that the TCP scaling factor are negotiated correctly on sender and receiver side. Figure 3 shows an example of this in Wireshark.
+Here is a problem: Some routers and packet firewalls rewrite the window scaling factor during a transmission, which will cause sending and receiving sides to assume different TCP window sizes. The result is non-stable traffic that may be very slow. One can use packet sniffers such as [Wireshark](https://www.wireshark.org/) to ensure that the TCP scaling factor are negotiated correctly on sender and receiver side. Figure 3 shows an example of this in Wireshark.
 
 
 
@@ -113,7 +113,7 @@ Here is a problem: Some routers and packet firewalls rewrite the window scaling 
 
 ### Hands-On Tests
 
-Now it's time to verify above's theory in practice: For this we will use the tool <a href="https://iperf.fr/" target="_blank">Iperf</a>, which is widely available on Linux. On Ubuntu you can e.g. install Iperf with `sudo apt-get install iperf`.
+Now it's time to verify above's theory in practice: For this we will use the tool [Iperf](https://iperf.fr/), which is widely available on Linux. On Ubuntu you can e.g. install Iperf with `sudo apt-get install iperf`.
 
 In this case the sender host is an Ubuntu machine located in a data center in Frankfurt, Germany and the receiver host is an Ubuntu machine located in a data center in Las Vegas, USA. The latency between the two machines is 173 ms with both machines being connected via an 100 Mbit/s uplink to the internet.
 
@@ -164,7 +164,7 @@ The maximum TCP windows size (sending) in bit from the TCP autotuning settings:
 
 This variable takes 3 different values which holds information on how much TCP sendbuffer memory space each TCP socket has to use. Every TCP socket has this much buffer space to use before the buffer is filled up. Each of the three values are used under different conditions. The first value in this variable tells the minimum TCP send buffer space available for a single TCP socket. The second value in the variable tells us the default buffer space allowed for a single TCP socket to use. The third value tells the kernel the maximum TCP send buffer space. Again we want to manipulate the third value. This time on the sender side
 
-Let's double the TCP Window size, thus reaching 128K. Using the <a href="https://www.switch.ch/network/tools/tcp_throughput/" target="_blank">TCP throughput calculator</a> from switch.ch, we should expect a maximum TCP throughput of 5.92 Mbit/sec with these settings:
+Let's double the TCP Window size, thus reaching 128K. Using the [TCP throughput calculator](https://www.switch.ch/network/tools/tcp_throughput/) from switch.ch, we should expect a maximum TCP throughput of 5.92 Mbit/sec with these settings:
 
 First, change the maximum TCP windows size (receiving) on the receiver:
 
@@ -402,7 +402,7 @@ Instead network architects usually deploy a pair of specialized devices - called
 
 
 
-One vendor offering such devices is Silver Peak, which offers An interesting tool with its<a href="https://www.silver-peak.com/calculator/throughput-calculator" target="_blank">Throughput Calculator</a> from Silver Peak. Similar to the tool from Switch.ch, it will show you the maximum transfer speed that is possible with a given RTT and packet loss rate, while assuming a default TCP window size of 64K. in addition it will also show you the throughput that would be possible over the same link using a Silver Peak WOC pair.
+One vendor offering such devices is Silver Peak, which offers An interesting tool with its[Throughput Calculator](https://www.silver-peak.com/calculator/throughput-calculator) from Silver Peak. Similar to the tool from Switch.ch, it will show you the maximum transfer speed that is possible with a given RTT and packet loss rate, while assuming a default TCP window size of 64K. in addition it will also show you the throughput that would be possible over the same link using a Silver Peak WOC pair.
 
 #### Content Distribution Networks (CDN)
 

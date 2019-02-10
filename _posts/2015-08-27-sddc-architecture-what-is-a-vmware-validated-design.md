@@ -57,7 +57,7 @@ And to take this analogy a bit further: You often end up with the puzzle pieces,
 
 To be clear: The Validated Design is not just the picture on the puzzle box and is also not just a step by step guide on how to fit the puzzle pieces together. It is more than that. Much more.
 
-Let me again use an analogy and return to the car example. Looking at how the <a href="http://www.volkswagenag.com/" target="_blank">Volkswagen Group</a>, which besides Volkswagen also includes Audi as well as brands that are less known in the US, one will notice that they came up with something quite remarkable: A validated base design for a car, where the engine would be mounted sideways (See Figure 2).
+Let me again use an analogy and return to the car example. Looking at how the [Volkswagen Group](http://www.volkswagenag.com/), which besides Volkswagen also includes Audi as well as brands that are less known in the US, one will notice that they came up with something quite remarkable: A validated base design for a car, where the engine would be mounted sideways (See Figure 2).
 
 <div id="attachment_1716" style="width: 370px" class="wp-caption aligncenter">
   <img class="size-medium wp-image-1716" src="/content/uploads/2015/08/SDDC_MQB1-360x220.jpg" alt="Figure 2: Volkswagen's MQB car platform" width="360" height="220" srcset="/content/uploads/2015/08/SDDC_MQB1-360x220.jpg 360w, /content/uploads/2015/08/SDDC_MQB1.jpg 600w" sizes="(max-width: 360px) 100vw, 360px" />
@@ -69,7 +69,7 @@ Let me again use an analogy and return to the car example. Looking at how the <a
 
 This approach enables engineers to innovate faster, much faster. Instead of literally re-inventing the wheel for every new car model, teams can leverage this base design and cut short on the undifferentiated heavy lifting. As an alternative engineering teams can then focus on the differentiation and build a concrete instance on top of this base design (See Figure 3).
 
-This means that the <a href="https://en.wikipedia.org/wiki/Volkswagen_Group_MQB_platform" target="_blank">MQB</a> is actually the foundation of quite different vehicles, ranging from the VW Passat as a sedan to the tiny VW UP!, which is not known in the US.
+This means that the [MQB](https://en.wikipedia.org/wiki/Volkswagen_Group_MQB_platform) is actually the foundation of quite different vehicles, ranging from the VW Passat as a sedan to the tiny VW UP!, which is not known in the US.
 
 <div id="attachment_1717" style="width: 370px" class="wp-caption aligncenter">
   <img class="size-medium wp-image-1717" src="/content/uploads/2015/08/SDDC_MQB2-360x185.jpg" alt="Figure 3: Volkswagen's MQB as platform for innovation" width="360" height="185" srcset="/content/uploads/2015/08/SDDC_MQB2-360x185.jpg 360w, /content/uploads/2015/08/SDDC_MQB2.jpg 600w" sizes="(max-width: 360px) 100vw, 360px" />
@@ -79,7 +79,7 @@ This means that the <a href="https://en.wikipedia.org/wiki/Volkswagen_Group_MQB_
   </p>
 </div>
 
-The VMware Validated Design has a very similar goal: Provide a validated design as the underpinning of the Software Defined Data Center (SDDC), that is on one side uniform enough to provide sufficient guard rails around implementation guidance and underlying validation. On the other hand the VMware Validated Design provides sufficient flexibility to be the common underpinning of many different SDDC instances and as such be the common underpinning of various <a href="https://itoutcomes.vmware.com/" target="_blank">VMware IT Outcomes</a> initiatives.
+The VMware Validated Design has a very similar goal: Provide a validated design as the underpinning of the Software Defined Data Center (SDDC), that is on one side uniform enough to provide sufficient guard rails around implementation guidance and underlying validation. On the other hand the VMware Validated Design provides sufficient flexibility to be the common underpinning of many different SDDC instances and as such be the common underpinning of various [VMware IT Outcomes](https://itoutcomes.vmware.com/) initiatives.
 
 As such an SDDC based on a VMware Validated Design enables you as an IT organization to become a strategic partner and innovator to the business.
 
@@ -103,4 +103,4 @@ With the VMware Validated Designs you can get the undifferentiated heavy lifting
 
 **Want more?**
 
-Attend the VMWorld 2015 sessions "<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5440" target="_blank">SDDC5440 - VMware Validated Designs - A Reference Architecture for the SDDC</a>" and "<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5609" target="_blank">SDDC5609 - VMware Validated Designs for a Software Defined Data Center (SDDC)</a>" to learn more about the VMware Validated Designs.
+Attend the VMWorld 2015 sessions "[SDDC5609 - VMware Validated Designs for a Software Defined Data Center (SDDC)](https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5440" target="_blank">SDDC5440 - VMware Validated Designs - A Reference Architecture for the SDDC</a>" and "<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5609)" to learn more about the VMware Validated Designs.

@@ -13,9 +13,9 @@ categories:
 tags:
   - AWS
 ---
-I have used various services from <a href="https://aws.amazon.com/" target="_blank">Amazon AWS</a> for quite a while now and have always been amazed by what interesting things one can do with this services. Recently I took the AWS training course "<a href="https://www.edge-cloud.net/2014/03/11/architecture-design-vsphere-ipv6/" target="_blank">Architecting on AWS</a>", which gives an awesome overview on what's possible with the AWS service.
+I have used various services from [Architecting on AWS](https://aws.amazon.com/" target="_blank">Amazon AWS</a> for quite a while now and have always been amazed by what interesting things one can do with this services. Recently I took the AWS training course "<a href="https://www.edge-cloud.net/2014/03/11/architecture-design-vsphere-ipv6/)", which gives an awesome overview on what's possible with the AWS service.
 
-During the training some of the participants had quite some trouble with one of the hands-on exercises. As my exercise worked without a flaw, I used the time and started digging deeper what could be wrong. Turns out that <a href="https://aws.amazon.com/s3/" target="_blank">Amazon AWS S3</a> allows users to specify S3 bucket names in the "US Standard" regions that are not allowed like this in any other zone. As most libraries building on top of S3 assume the naming restrictions for all non-"US Standard" regions are also enforced in "US Standard", it breaks functionality of some of these libraries.
+During the training some of the participants had quite some trouble with one of the hands-on exercises. As my exercise worked without a flaw, I used the time and started digging deeper what could be wrong. Turns out that [Amazon AWS S3](https://aws.amazon.com/s3/) allows users to specify S3 bucket names in the "US Standard" regions that are not allowed like this in any other zone. As most libraries building on top of S3 assume the naming restrictions for all non-"US Standard" regions are also enforced in "US Standard", it breaks functionality of some of these libraries.
 
 Let's have a closer look:
 
@@ -33,7 +33,7 @@ When creating an S3 bucket outside "US Standard" neither the S3 Management Conso
   </p>
 </div>
 
-This behavior makes sense as the above bucket name would become reachable under the URL _"http://ThisBucketWillLiveInOregon.s3.amazonaws.com/"_ which is equivalent to e.g. _"http://thisbucketwillliveinoregon.s3.amazonaws.com/"_. On this topic <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a> notes: _"Note that while upper and lower case letters are allowed in domain names, no significance is attached to the case. That is, two names with the same spelling but different case are to be treated as if identical."_
+This behavior makes sense as the above bucket name would become reachable under the URL _"http://ThisBucketWillLiveInOregon.s3.amazonaws.com/"_ which is equivalent to e.g. _"http://thisbucketwillliveinoregon.s3.amazonaws.com/"_. On this topic [RFC1035](https://www.ietf.org/rfc/rfc1035.txt) notes: _"Note that while upper and lower case letters are allowed in domain names, no significance is attached to the case. That is, two names with the same spelling but different case are to be treated as if identical."_
 
 **Creating an S3 bucket in "US Standard"**
 
@@ -65,7 +65,7 @@ Yet again, this also makes sense: The above S3 bucket would be hosted under the 
 
 **Why does it matter?**
 
-Turns out that some libraries for making the S3 REST API available in various programming languages do not take into consideration that "US Standard" allows mixed case S3 buckets. The Python interface to Amazon Web Services "<a href="https://aws.amazon.com/sdk-for-python/" target="_blank">boto</a>" for example assumes that bucket names are always in lower case. Using a bucket with a mixed case name will break uploads and thereby the functionality of the library.
+Turns out that some libraries for making the S3 REST API available in various programming languages do not take into consideration that "US Standard" allows mixed case S3 buckets. The Python interface to Amazon Web Services "[boto](https://aws.amazon.com/sdk-for-python/)" for example assumes that bucket names are always in lower case. Using a bucket with a mixed case name will break uploads and thereby the functionality of the library.
 
 That's exactly what happened with other members of the training course: Their bucket name used non-lower case letters, breaking the provided Python script.
 
@@ -73,8 +73,8 @@ That's exactly what happened with other members of the training course: Their bu
 
 At the same time, the Amazon AWS documentation is pretty extensive and does mention the above special cases. Although one has to say that they are "well hidden".
 
-In the Amazon S3 Developer Guide, the section "<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html" target="_blank">Bucket Restrictions and Limitations</a>" clearly states that in all regions except for the US Standard region a bucket name must comply with certain rules, that will result in a DNS compliant bucket name. While the rules for bucket names in the US Standard region are similar but less restrictive and can result in a bucket name that is not DNS-compliant.
+In the Amazon S3 Developer Guide, the section "[Bucket Restrictions and Limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html)" clearly states that in all regions except for the US Standard region a bucket name must comply with certain rules, that will result in a DNS compliant bucket name. While the rules for bucket names in the US Standard region are similar but less restrictive and can result in a bucket name that is not DNS-compliant.
 
-The section "<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html" target="_blank">Virtual Hosting of Buckets</a>" in the same guide then also states that only lower-case buckets are addressable using the virtual hosting method.
+The section "[Virtual Hosting of Buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html)" in the same guide then also states that only lower-case buckets are addressable using the virtual hosting method.
 
 While it's great that the documentation clearly mentions the restrictions, as an end-user I would prefer consistency between the regions and better error messages.

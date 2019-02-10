@@ -61,7 +61,7 @@ It's important to point out that in this case workloads would be exclusively man
 
 ### POD / Core concept
 
-The POD and core concept leverages individually designed <a href="https://en.wikipedia.org/wiki/Point_of_delivery_(networking)" target="_blank">point-of-delivery (POD)</a>, which connect to a common routed core layer. The routed core spans multiple PODs of different type and generation, treating them as an atomic building block and providing fast and simple interconnect.
+The POD and core concept leverages individually designed [point-of-delivery (POD)](https://en.wikipedia.org/wiki/Point_of_delivery_(networking)), which connect to a common routed core layer. The routed core spans multiple PODs of different type and generation, treating them as an atomic building block and providing fast and simple interconnect.
 
 This approach of scaling out in concrete chunks matches the incremental demand of modern data centers: PODs are designed, engineered, installed and retired as a distinct unit. As such an SDDC can comprise multiple generations of a pod, sitting next to each other, attached to the same shared core and allow an iterative approach, where each pod generation improves on the previous one.
 
@@ -77,13 +77,13 @@ Further splitting PODs by functional capability into Storage POD, Management POD
 
 ### L3 Spine / Leaf network
 
-For many years the predominant data center network design was the <a href="http://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Data_Center/DC_Infra2_5/DCInfra_2.html" target="_blank">three-tier approach</a> of a Core (Layer 3), Aggregation (Layer 2 / Layer 3), Access (Layer 2) tiers. This design approach has been very successful over the last 20 years, allowing network architects to design highly reliable and scalable networks, recent industry developments are breaking the underlying assumptions:
+For many years the predominant data center network design was the [three-tier approach](http://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Data_Center/DC_Infra2_5/DCInfra_2.html) of a Core (Layer 3), Aggregation (Layer 2 / Layer 3), Access (Layer 2) tiers. This design approach has been very successful over the last 20 years, allowing network architects to design highly reliable and scalable networks, recent industry developments are breaking the underlying assumptions:
 
-The three-tier network assumes a significant price difference between network device capable of Layer 3 routing vs. Layer 2 Switching, which is no longer the case. It further assumes that traffic is primarily exchanged between servers and the outside world (<a href="http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends" target="_blank">north-south traffic</a>), while today server-to-server traffic (<a href="http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends" target="_blank">east-west traffic</a>) is more common. Last but least it assumes that the interface speed at the Core and Aggregation tier is significantly higher than in the access layer, which also isn't true anymore thanks to the prevalence of 10 Gigabit Ethernet equipped servers.
+The three-tier network assumes a significant price difference between network device capable of Layer 3 routing vs. Layer 2 Switching, which is no longer the case. It further assumes that traffic is primarily exchanged between servers and the outside world ([east-west traffic](http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends" target="_blank">north-south traffic</a>), while today server-to-server traffic (<a href="http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends)) is more common. Last but least it assumes that the interface speed at the Core and Aggregation tier is significantly higher than in the access layer, which also isn't true anymore thanks to the prevalence of 10 Gigabit Ethernet equipped servers.
 
 At the same time the traditional three-tier design fails to address innovation in modern data centers through its lack of modularity and rigidness. This hampers fast iterations and experimentation, while also preventing to keep up with price/performance improvements in the industry.
 
-Consequently the time has come for a new approach to data center network design, based on <a href="https://code.facebook.com/posts/360346274145943/introducing-data-center-fabric-the-next-generation-facebook-data-center-network/" target="_blank">hyper- or webscale data center center design</a>. Despite their massive scale, hyper- or webscale data centers leverage a network design that starts small and innovates quickly. As such the key differentiator is that a Spine / Leaf network supports you to grow organically in incremental blocks of capacity, starting small each time, while at the same time allowing you to scale almost beyond imagination. Such an approach works very well hand-in-hand with the above mentioned POD / Core concept.
+Consequently the time has come for a new approach to data center network design, based on [hyper- or webscale data center center design](https://code.facebook.com/posts/360346274145943/introducing-data-center-fabric-the-next-generation-facebook-data-center-network/). Despite their massive scale, hyper- or webscale data centers leverage a network design that starts small and innovates quickly. As such the key differentiator is that a Spine / Leaf network supports you to grow organically in incremental blocks of capacity, starting small each time, while at the same time allowing you to scale almost beyond imagination. Such an approach works very well hand-in-hand with the above mentioned POD / Core concept.
 
 ### Management Applications Network Container
 
@@ -120,7 +120,7 @@ Especially with the ambition to address new and old business needs via the suppo
 
 Yet at the same time you also want to limit customization in order to be able to maintain self-service capabilities, as each customization adds complexity and cost.
 
-The solution here is to use a small set of distinct service level tiers. Each service tier implements a certain capability along the spectrum of capabilities. As such it would e.g. be possible to workloads different data stores with varying <a href="https://en.wikipedia.org/wiki/IOPS" target="_blank">IOPS</a>.
+The solution here is to use a small set of distinct service level tiers. Each service tier implements a certain capability along the spectrum of capabilities. As such it would e.g. be possible to workloads different data stores with varying [IOPS](https://en.wikipedia.org/wiki/IOPS).
 
 Another example would be the ability to offer three levels of backup capabilities: The lowest tier, usually called bronze, would offer no backup whatsoever. The next tier, usually called silver, would offer backups within the same region. The most advanced tier, usually called gold, would offer backups within and across regions.
 

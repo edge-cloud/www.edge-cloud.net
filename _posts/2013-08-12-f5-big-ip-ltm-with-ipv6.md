@@ -15,11 +15,11 @@ tags:
   - F5
   - IPv6
 ---
-A very simple way to enable legacy IPv4-based web applications to be reachable via IPv6 is to use an IPv4/IPv6-enabled load balancer to frontend the application. This is e.g. the <a href="http://techblog.netflix.com/2012/07/enabling-support-for-ipv6.html" target="_blank">approach that Netflix took</a> in mid 2012 to enable their service for IPv6 via the AWS Elastic Load Balancers (ELBs).
+A very simple way to enable legacy IPv4-based web applications to be reachable via IPv6 is to use an IPv4/IPv6-enabled load balancer to frontend the application. This is e.g. the [approach that Netflix took](http://techblog.netflix.com/2012/07/enabling-support-for-ipv6.html) in mid 2012 to enable their service for IPv6 via the AWS Elastic Load Balancers (ELBs).
 
 ### Architecture
 
-In this post we will use the <a href="https://f5.com/products/big-ip/local-traffic-manager-ltm" target="_blank">F5 Big-IP Local Traffic Manager (LTM)</a> load balancer to provide this capability. You can either use a physical device or even better the <a href="https://f5.com/products/deployment-methods/virtual-editions" target="_blank">Virtual Edition</a>.
+In this post we will use the [Virtual Edition](https://f5.com/products/big-ip/local-traffic-manager-ltm" target="_blank">F5 Big-IP Local Traffic Manager (LTM)</a> load balancer to provide this capability. You can either use a physical device or even better the <a href="https://f5.com/products/deployment-methods/virtual-editions).
 
 Figure 1 shows how this approach would work: The End-User will connect to the load balancer via IPv6, which means that the load balancer needs to have an IPv6 address reachable by the end-users on its external facing interface. The load balancer then connects to the legacy IPv4 web application via IPv4. This means that no changes are necessary to this legacy web application.
 
@@ -39,9 +39,9 @@ If you are already using a load balancer to frontend your application for IPv4, 
 
 On a first look at the GUI it doesn't appear that the F5 Big-IP supports IPv6 addresses on its interfaces or for nodes. In the corresponding dialogues there are only fields for "IP Address" and "Netmask". For IPv6 we would expect a field for a subnet prefix length instead of the netmask. It turns out that these dialogues gladly accept IPv6 addresses in the typical notation of eight groups of four hexadecimal digits separated by colons along with the subnet prefix length translated into a subnet mask following the same notation.
 
-Although this appears to be a bit awkward at first sight, it will turn out to be much less of a hassle quite quickly: <a href="https://tools.ietf.org/html/rfc5375" target="_blank">RFC 5375 (IPv6 Unicast Address Assignment Considerations)</a> strongly recommends that in IPv6 the subnet prefix length should always be /64. With that we only need to convert this subnet prefix length of /64 into the legacy style netmask notation.
+Although this appears to be a bit awkward at first sight, it will turn out to be much less of a hassle quite quickly: [RFC 5375 (IPv6 Unicast Address Assignment Considerations)](https://tools.ietf.org/html/rfc5375) strongly recommends that in IPv6 the subnet prefix length should always be /64. With that we only need to convert this subnet prefix length of /64 into the legacy style netmask notation.
 
-Using the <a href="https://en.wikipedia.org/wiki/Subnetwork" target="_blank">mechanism known from IPv4</a>, the IPv6 subnet mask for a /64 network would therefore be FFFF:FFFF:FFFF:FFFF:0000:0000:0000:0000 or in short FFFF:FFFF:FFFF:FFFF::. Especially the first notation lets us quickly verify that this netmask is correct:
+Using the [mechanism known from IPv4](https://en.wikipedia.org/wiki/Subnetwork), the IPv6 subnet mask for a /64 network would therefore be FFFF:FFFF:FFFF:FFFF:0000:0000:0000:0000 or in short FFFF:FFFF:FFFF:FFFF::. Especially the first notation lets us quickly verify that this netmask is correct:
 
 IPv6 addresses are 128 bit long. If we want to mask out a subnet with the length of 64 bit, this would require us to mask out half of the bits. With the previously mentioned notation of eight groups of four hexadecimal digits separated by colons, this translates into the four first groups being FFFF in hex, which translates to all 1s in binary. And the remaining four groups being all zeros.
 

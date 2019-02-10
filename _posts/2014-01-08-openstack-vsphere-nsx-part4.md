@@ -30,7 +30,7 @@ It is available for download from the [VMware OpenStack community site](https://
 _Important Notes:_
 
   * The version currently available for download (VOVA 0.2.0) is not what I will be using. I'm using a special version that is not (yet?) publicly available and already includes the OpenStack neutron plugin for VMware NSX.
-  * The network configuration required for VOVA 0.2.0 differs fundamentally from what you will see here, as it uses OpenStack <a href="https://wiki.openstack.org/wiki/UnderstandingFlatNetworking" target="_blank">Flat Networking</a> instead of Neutron.
+  * The network configuration required for VOVA 0.2.0 differs fundamentally from what you will see here, as it uses OpenStack [Flat Networking](https://wiki.openstack.org/wiki/UnderstandingFlatNetworking) instead of Neutron.
   * In this setup we will use a very simple physical network setup. All components will attach to a common Mgmt / VM Network. This means that VOVA uses a single interface only. Please do not use such a simple network setup, sharing management and tenant traffic on the same network segment, in a production environment!
 
 After importing the VOVA appliance it will communicate with the NSX controller cluster and the VMware vSphere vCenter (See Figure 1). But it will also house the OpenStack Neutron plugin and thus provide the DHCP server capability to the OpenStack cloud. This will require VOVA to join the NSX overlay network as a transport node. How this is done will also be shown later on in this article. For now, let's focus on importing and configuring VOVA.
@@ -45,7 +45,7 @@ After importing the VOVA appliance it will communicate with the NSX controller c
 
 ### Gather the pre-requisites
 
-VOVA is provided as an <a href="https://en.wikipedia.org/wiki/Open_Virtualization_Format" target="_blank">Open Virtualization Format</a> image (OVA). During installation one needs to enter the initial configuration parameters, which consists of IP address information for the appliance itself, but also for the services that it interacts with. Before starting the actual OVA import, let's make sure we have all the information available that we need.
+VOVA is provided as an [Open Virtualization Format](https://en.wikipedia.org/wiki/Open_Virtualization_Format) image (OVA). During installation one needs to enter the initial configuration parameters, which consists of IP address information for the appliance itself, but also for the services that it interacts with. Before starting the actual OVA import, let's make sure we have all the information available that we need.
 
 In particular we need:
 
@@ -163,7 +163,7 @@ Complete the OVA import and boot up the VM. The startup procedure can take a few
 
 ### Firewall settings to allow VNC access to VM workloads
 
-OpenStack uses the <a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing" target="_blank">Virtual Network Computing (VNC)</a> protocol to access the VM workloads from the web interface Horizon. In a VMware vSphere environment this requires that the port range TCP/5900 through TCP/6000 is available for VNC connections on every ESXi host in all the clusters that will be managed by the appliance. This in return requires that these ports are allowed within the ESXi firewall of all ESXi hosts. The easiest way to do this in a non-production is setting is just to abuse the existing firewall profile for gdbserver, since this opens everything VNC needs and more.
+OpenStack uses the [Virtual Network Computing (VNC)](https://en.wikipedia.org/wiki/Virtual_Network_Computing) protocol to access the VM workloads from the web interface Horizon. In a VMware vSphere environment this requires that the port range TCP/5900 through TCP/6000 is available for VNC connections on every ESXi host in all the clusters that will be managed by the appliance. This in return requires that these ports are allowed within the ESXi firewall of all ESXi hosts. The easiest way to do this in a non-production is setting is just to abuse the existing firewall profile for gdbserver, since this opens everything VNC needs and more.
 
 Navigate to the ESXi host and select _Manage -> Settings -> System -> Security Profile -> Edit_ (See Figure 11).
 
