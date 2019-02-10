@@ -181,7 +181,7 @@ You can now create custom reports with the custom dimensions in Google Analytics
   </p>
 </div>
 
-The resulting Custom Report will show you how many session &#8211; in total numbers, but also in percent &#8211; were served by which transport method.
+The resulting Custom Report will show you how many session - in total numbers, but also in percent - were served by which transport method.
 
 <div id="attachment_2146" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/RUM_03.png" rel="attachment wp-att-2146"><img class="size-large wp-image-2146" src="/content/uploads/2016/02/RUM_03-600x503.png" alt="Figure 4: Traffic served over IPv4 vs. IPv6" width="600" height="503" srcset="/content/uploads/2016/02/RUM_03-600x503.png 600w, /content/uploads/2016/02/RUM_03-350x294.png 350w, /content/uploads/2016/02/RUM_03-768x644.png 768w, /content/uploads/2016/02/RUM_03.png 936w" sizes="(max-width: 600px) 100vw, 600px" /></a>

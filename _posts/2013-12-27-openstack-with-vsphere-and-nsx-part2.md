@@ -1,6 +1,6 @@
 ---
 id: 651
-title: 'OpenStack with vSphere and NSX &#8211; Part 2: Create and configure the VMware NSX cluster'
+title: 'OpenStack with vSphere and NSX - Part 2: Create and configure the VMware NSX cluster'
 date: 2013-12-27T08:30:17+00:00
 author: Christian Elsen
 excerpt: 'Create and configure the VMware NSX cluster  for a setup including VMware vSphere, VMware NSX and OpenStack.'
@@ -57,7 +57,7 @@ Provide the IP address along with the access credentials of any node within the 
   <img src="/content/uploads/2013/12/NSX-Manager03-e1387399969216.png" alt="Figure 3: Connect to NSX Controller Cluster - Step 1" width="401" height="250" class="size-full wp-image-737" />
 
   <p class="wp-caption-text">
-    Figure 3: Connect to NSX Controller Cluster &#8211; Step 1
+    Figure 3: Connect to NSX Controller Cluster - Step 1
   </p>
 </div>
 
@@ -69,7 +69,7 @@ Next, provide a name for this NSX cluster (See Figure 4).
   <img src="/content/uploads/2013/12/NSX-Manager05-e1387397063919.png" alt="Figure 4: Connect to NSX Controller Cluster - Step 2" width="800" height="558" class="size-full wp-image-739" />
 
   <p class="wp-caption-text">
-    Figure 4: Connect to NSX Controller Cluster &#8211; Step 2
+    Figure 4: Connect to NSX Controller Cluster - Step 2
   </p>
 </div>
 
@@ -83,7 +83,7 @@ Complete your selection by clicking on _Configure_.
   <img src="/content/uploads/2013/12/NSX-Manager06-e1387400019900.png" alt="Figure 5: Connect to NSX Controller Cluster - Step 3" width="600" height="547" class="size-full wp-image-740" />
 
   <p class="wp-caption-text">
-    Figure 5: Connect to NSX Controller Cluster &#8211; Step 3
+    Figure 5: Connect to NSX Controller Cluster - Step 3
   </p>
 </div>
 
@@ -177,7 +177,7 @@ Confirm that the pre-selected transport type is _Gateway_ (See Figure 12).
   <img src="/content/uploads/2013/12/NSX-Manager20.png" alt="Figure 12: Create Gateway - Step 1" width="797" height="500" class="size-full wp-image-747" srcset="/content/uploads/2013/12/NSX-Manager20.png 797w, /content/uploads/2013/12/NSX-Manager20-500x313.png 500w" sizes="(max-width: 797px) 100vw, 797px" />
 
   <p class="wp-caption-text">
-    Figure 12: Create Gateway &#8211; Step 1
+    Figure 12: Create Gateway - Step 1
   </p>
 </div>
 
@@ -189,7 +189,7 @@ Give the gateway node a name (See Figure 13). I usually pick the hostname.
   <img src="/content/uploads/2013/12/NSX-Manager21-e1387400125148.png" alt="Figure 13: Create Gateway - Step 2" width="700" height="439" class="size-full wp-image-748" />
 
   <p class="wp-caption-text">
-    Figure 13: Create Gateway &#8211; Step 2
+    Figure 13: Create Gateway - Step 2
   </p>
 </div>
 
@@ -201,7 +201,7 @@ Here leave the settings as is (See Figure 14). A _Management Rendezvous Client_ 
   <img src="/content/uploads/2013/12/NSX-Manager22.png" alt="Figure 14: Create Gateway - Step 3" width="795" height="499" class="size-full wp-image-749" srcset="/content/uploads/2013/12/NSX-Manager22.png 795w, /content/uploads/2013/12/NSX-Manager22-500x313.png 500w" sizes="(max-width: 795px) 100vw, 795px" />
 
   <p class="wp-caption-text">
-    Figure 14: Create Gateway &#8211; Step 3
+    Figure 14: Create Gateway - Step 3
   </p>
 </div>
 
@@ -213,11 +213,11 @@ Before we can complete the next step, we need to extract the SSL certificate fro
   <img src="/content/uploads/2013/12/NSX-Manager23-e1387400150281.png" alt="Figure 15: Extract NSX Gateway certificate - Step 1" width="600" height="149" class="size-full wp-image-750" />
 
   <p class="wp-caption-text">
-    Figure 15: Extract NSX Gateway certificate &#8211; Step 1
+    Figure 15: Extract NSX Gateway certificate - Step 1
   </p>
 </div>
 
-Copy the certificate including the lines _&#8212;&#8211;BEGIN CERTIFICATE&#8212;&#8211;_ and _&#8212;&#8211;END CERTIFICATE&#8212;&#8211;_ (See Figure 16). We will need this certificate in the next step.
+Copy the certificate including the lines _&#8212;-BEGIN CERTIFICATE&#8212;-_ and _&#8212;-END CERTIFICATE&#8212;-_ (See Figure 16). We will need this certificate in the next step.
 
 
 
@@ -225,7 +225,7 @@ Copy the certificate including the lines _&#8212;&#8211;BEGIN CERTIFICATE&#8212;
   <img src="/content/uploads/2013/12/NSX-Manager24-e1387400170881.png" alt="Figure 16: Extract NSX Gateway certificate - Step 2" width="600" height="372" class="size-full wp-image-751" />
 
   <p class="wp-caption-text">
-    Figure 16: Extract NSX Gateway certificate &#8211; Step 2
+    Figure 16: Extract NSX Gateway certificate - Step 2
   </p>
 </div>
 
@@ -332,7 +332,7 @@ Confirm that the pre-selected transport type is **Service Node** (See Figure 24)
   <img src="/content/uploads/2013/12/NSX-Manager32-e1387400339217.png" alt="Figure 24: Create Service Node - Step 1" width="700" height="440" class="size-full wp-image-759" />
 
   <p class="wp-caption-text">
-    Figure 24: Create Service Node &#8211; Step 1
+    Figure 24: Create Service Node - Step 1
   </p>
 </div>
 
@@ -361,8 +361,8 @@ Return to the NSX Manager Dashboard, where you will see the new service node wit
 
 A Gateway node by itself does not yet offer any functionality. For that we need to configure a gateway service that will leverage the gateway node. Two types of gateway services exist in VMware NSX:
 
-  * Layer 2 (L2) Gateway Services &#8211; allows VMs to be connected at Layer 2 (L2) to an external network
-  * Layer 3 (L3) Gateway Services &#8211; lets you connect logical router ports to physical IP networks via network interfaces on NSX Gateway nodes
+  * Layer 2 (L2) Gateway Services - allows VMs to be connected at Layer 2 (L2) to an external network
+  * Layer 3 (L3) Gateway Services - lets you connect logical router ports to physical IP networks via network interfaces on NSX Gateway nodes
 
 We will configure a L3 Gateway Service (See Figure 26).
 
@@ -396,7 +396,7 @@ Select _L3 Gateway Service_ as the _Gateway Service Type_ (See Figure 28).
   <img src="/content/uploads/2013/12/NSX-Manager42-e1387400466365.png" alt="Figure 28: Create Gateway Service - Step 1" width="700" height="316" class="size-full wp-image-766" />
 
   <p class="wp-caption-text">
-    Figure 28: Create Gateway Service &#8211; Step 1
+    Figure 28: Create Gateway Service - Step 1
   </p>
 </div>
 
@@ -408,7 +408,7 @@ Enter a name for the newly created gateway service (See Figure 29).
   <img src="/content/uploads/2013/12/NSX-Manager43-e1387400495446.png" alt="Figure 29: Create Gateway Service - Step 2" width="700" height="316" class="size-full wp-image-767" />
 
   <p class="wp-caption-text">
-    Figure 29: Create Gateway Service &#8211; Step 2
+    Figure 29: Create Gateway Service - Step 2
   </p>
 </div>
 
@@ -420,7 +420,7 @@ Now we need to specify the gateway node that will execute this gateway service. 
   <img src="/content/uploads/2013/12/NSX-Manager44-e1387400508845.png" alt="Figure 30: Create Gateway Service - Step 3" width="700" height="316" class="size-full wp-image-768" />
 
   <p class="wp-caption-text">
-    Figure 30: Create Gateway Service &#8211; Step 3
+    Figure 30: Create Gateway Service - Step 3
   </p>
 </div>
 
@@ -432,7 +432,7 @@ Select the gateway node that was previously created as well as _breth0_ for the 
   <img src="/content/uploads/2013/12/NSX-Manager45-e1387400523288.png" alt="Figure 31: Create Gateway Service - Step 4" width="400" height="308" class="size-full wp-image-769" />
 
   <p class="wp-caption-text">
-    Figure 31: Create Gateway Service &#8211; Step 4
+    Figure 31: Create Gateway Service - Step 4
   </p>
 </div>
 
@@ -444,7 +444,7 @@ Verify your Gateway node configuration and finish the installation of the gatewa
   <img src="/content/uploads/2013/12/NSX-Manager46-e1387400540432.png" alt="Figure 32: Create Gateway Service - Step 5" width="700" height="315" class="size-full wp-image-770" />
 
   <p class="wp-caption-text">
-    Figure 32: Create Gateway Service &#8211; Step 5
+    Figure 32: Create Gateway Service - Step 5
   </p>
 </div>
 

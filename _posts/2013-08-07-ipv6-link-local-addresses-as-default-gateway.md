@@ -77,7 +77,7 @@ We can clearly see that the IPv6 link-local address for the interface was succes
 
 ### Usage
 
-For end-users this approach simplifies manual configuration of hosts for IPv6 &#8211; as e.g. necessary for servers &#8211; dramatically. They can use the same set of easy to remember and especially quick to type values for the default gateway and the primary and secondary nameserver. Figure 1 shows how this could look like in Windows 2008R2.
+For end-users this approach simplifies manual configuration of hosts for IPv6 - as e.g. necessary for servers - dramatically. They can use the same set of easy to remember and especially quick to type values for the default gateway and the primary and secondary nameserver. Figure 1 shows how this could look like in Windows 2008R2.
 
 <div id="attachment_1006" style="width: 555px" class="wp-caption aligncenter">
   <img src="/content/uploads/2013/08/LinkLocalDefault.png" alt="Figure 1: Using Link-Local IPv6 address as default gateway." width="545" height="448" class="size-full wp-image-1006" srcset="/content/uploads/2013/08/LinkLocalDefault.png 545w, /content/uploads/2013/08/LinkLocalDefault-360x295.png 360w" sizes="(max-width: 545px) 100vw, 545px" />
@@ -91,7 +91,7 @@ For end-users this approach simplifies manual configuration of hosts for IPv6 &#
 
 While we can simplify the life of end-users by using link-local addresses on router interfaces, we are slightly complicating the life of the network operations staff. As now multiple interfaces on a router can end up with the same link-local address of fe80::1, we need to be more explicit when using this interface in troubleshooting.
 
-As an example: In order to ping the above interface, we need to specify the <a href="https://en.wikipedia.org/wiki/IPv6_address#Link-local_addresses_and_zone_indices" target="_blank">zone index</a> &#8211; which usually corresponds to the interface name &#8211; besides the IP address of fe80::1.
+As an example: In order to ping the above interface, we need to specify the <a href="https://en.wikipedia.org/wiki/IPv6_address#Link-local_addresses_and_zone_indices" target="_blank">zone index</a> - which usually corresponds to the interface name - besides the IP address of fe80::1.
 
 This would look like this:
 
@@ -109,7 +109,7 @@ You might wonder why we didn't have to specify a zone index when we entered fe80
 
 ### What about DNS via Anycast?
 
-As mentioned earlier, Anycast &#8211; both in IPv4 and IPv6 &#8211; already gives us the possibility to provide end-users a single or single set of IP addresses for the DNS resolvers, irrespective of their physical location. But why should we "burn" a global unicast IPv6 address for this? Especially as these addresses can be quite long and hard to remember.
+As mentioned earlier, Anycast - both in IPv4 and IPv6 - already gives us the possibility to provide end-users a single or single set of IP addresses for the DNS resolvers, irrespective of their physical location. But why should we "burn" a global unicast IPv6 address for this? Especially as these addresses can be quite long and hard to remember.
 
 Here <a href="https://en.wikipedia.org/wiki/Unique_local_address" target="_blank">unique local addresses (ULA)</a> come to the rescue. In most cases ULA can be treated like <a href="https://tools.ietf.org/html/rfc1918" target="_blank">RFC 1918</a> addresses in IPv4. Prefixes in the fd00::/8 range have similar properties as those of the IPv4 private address ranges:
 

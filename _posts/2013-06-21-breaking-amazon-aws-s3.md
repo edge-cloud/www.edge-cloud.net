@@ -61,7 +61,7 @@ One problem starts when you want to use that bucket in the "US Standard" region 
   </p>
 </div>
 
-Yet again, this also makes sense: The above S3 bucket would be hosted under the URL _"http://DifferentiateBetweenUPPERcaseANDlowerCASE.s3-website-us-east-1.amazonaws.com"_ which according to RFC1035 doesn't differ from _"http://DifferentiateBetweenupperCASEANDLOWERCASE.s3-website-us-east-1.amazonaws.com"_ which the other bucket &#8211; that we previously created &#8211; would receive. Thus two buckets would receive the same URL. That clearly shouldn't happen.
+Yet again, this also makes sense: The above S3 bucket would be hosted under the URL _"http://DifferentiateBetweenUPPERcaseANDlowerCASE.s3-website-us-east-1.amazonaws.com"_ which according to RFC1035 doesn't differ from _"http://DifferentiateBetweenupperCASEANDLOWERCASE.s3-website-us-east-1.amazonaws.com"_ which the other bucket - that we previously created - would receive. Thus two buckets would receive the same URL. That clearly shouldn't happen.
 
 **Why does it matter?**
 

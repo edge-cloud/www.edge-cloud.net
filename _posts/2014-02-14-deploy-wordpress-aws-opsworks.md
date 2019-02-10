@@ -16,7 +16,7 @@ tags:
 ---
 <a href="https://aws.amazon.com/opsworks/" target="_blank">AWS OpsWorks</a> is an application management service that makes it easy for DevOps users to model and manage the entire application from load balancers to databases. It offers a very powerful solution for users to deploy their application easily in AWS without giving up control.
 
-In this post I want to show you how easy it is to use AWS OpsWorks for deploying WordPress &#8211; a typical <a href="https://en.wikipedia.org/wiki/LAMP_(software_bundle)" target="_blank">LAMP</a> application. This includes deploying a fresh blank WordPress install as well as re-creating a WordPress site from a backup for Dev/Test or Disaster Recovery purposes. In all cases it should take you only a few minutes to have a running WordPress site.
+In this post I want to show you how easy it is to use AWS OpsWorks for deploying WordPress - a typical <a href="https://en.wikipedia.org/wiki/LAMP_(software_bundle)" target="_blank">LAMP</a> application. This includes deploying a fresh blank WordPress install as well as re-creating a WordPress site from a backup for Dev/Test or Disaster Recovery purposes. In all cases it should take you only a few minutes to have a running WordPress site.
 
 While I use a Webhoster for running Edge Cloud, I do use the described approach to test changes to WordPress before deploying them into production. And I thereby also know that I could restore Edge Cloud as part of a Disaster Recovery (DR) plan via this approach.
 
@@ -55,10 +55,10 @@ Even though we will run the WordPress site in AWS, we will not make use of AWS c
 
 The deployed architecture will include:
 
-  * **WordPress PHP App:** An EC2 server running Ubuntu Linux with an Apache webserver to host the WordPress PHP application. End-users will be able to access the site via an Elastic IP, which guarantees that the IP address &#8211; or an associated DNS entry &#8211; will remain in place, even if the environment is rebuild.
+  * **WordPress PHP App:** An EC2 server running Ubuntu Linux with an Apache webserver to host the WordPress PHP application. End-users will be able to access the site via an Elastic IP, which guarantees that the IP address - or an associated DNS entry - will remain in place, even if the environment is rebuild.
   * **MySQL Server:** An EC2 server running Ubuntu Linux with MySQL. MySQL will host the database for the WordPress application.
   * **Existing Backup (Optional):** A full backup of an existing WordPress site as a Zip file in a S3 bucket.
-  * **WordPress source code (Optional):** The WordPress source code &#8211; available at <a href="https://wordpress.org/" target="_blank">www.wordpress.org</a> for a fresh install of WordPress.
+  * **WordPress source code (Optional):** The WordPress source code - available at <a href="https://wordpress.org/" target="_blank">www.wordpress.org</a> for a fresh install of WordPress.
 
 ### Getting Started with AWS OpsWorks
 
@@ -101,7 +101,7 @@ Next configure the basic information of your new stack. Give it a useful _Name_ 
   <img src="/content/uploads/2014/02/Opsworks02.png" alt="Figure 5: Add Stack - Step 1" width="600" height="460" class="size-full wp-image-1110" srcset="/content/uploads/2014/02/Opsworks02.png 600w, /content/uploads/2014/02/Opsworks02-360x276.png 360w, /content/uploads/2014/02/Opsworks02-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 5: Add Stack &#8211; Step 1
+    Figure 5: Add Stack - Step 1
   </p>
 </div>
 
@@ -120,7 +120,7 @@ Within the Configuration Management section make sure the selected _Chef version
   <img src="/content/uploads/2014/02/Opsworks03.png" alt="Figure 6: Add Stack - Step 2" width="480" height="322" class="size-full wp-image-1111" srcset="/content/uploads/2014/02/Opsworks03.png 480w, /content/uploads/2014/02/Opsworks03-360x241.png 360w, /content/uploads/2014/02/Opsworks03-1x1.png 1w" sizes="(max-width: 480px) 100vw, 480px" />
 
   <p class="wp-caption-text">
-    Figure 6: Add Stack &#8211; Step 2
+    Figure 6: Add Stack - Step 2
   </p>
 </div>
 
@@ -165,7 +165,7 @@ Paste above Chef JSON code into the _Custom Chef JSON_ field. Then click on _Add
   <img src="/content/uploads/2014/02/Opsworks04.png" alt="Figure 7: Add Stack - Step 3" width="600" height="310" class="size-full wp-image-1112" srcset="/content/uploads/2014/02/Opsworks04.png 600w, /content/uploads/2014/02/Opsworks04-360x186.png 360w, /content/uploads/2014/02/Opsworks04-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 7: Add Stack &#8211; Step 3
+    Figure 7: Add Stack - Step 3
   </p>
 </div>
 
@@ -181,7 +181,7 @@ After you finished creating the Stack you'll end up on the _Stack_ tab. There un
   <img src="/content/uploads/2014/02/Opsworks05.png" alt="Figure 8: Add Layer - Step 1" width="600" height="127" class="size-full wp-image-1113" srcset="/content/uploads/2014/02/Opsworks05.png 600w, /content/uploads/2014/02/Opsworks05-360x76.png 360w, /content/uploads/2014/02/Opsworks05-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 8: Add Layer &#8211; Step 1
+    Figure 8: Add Layer - Step 1
   </p>
 </div>
 
@@ -191,7 +191,7 @@ As the _Layer type_ select _PHP App Server_ and click on _Add Layer_ (See Figure
   <img src="/content/uploads/2014/02/Opsworks06.png" alt="Figure 9: Add Layer - Step 2" width="600" height="178" class="size-full wp-image-1114" srcset="/content/uploads/2014/02/Opsworks06.png 600w, /content/uploads/2014/02/Opsworks06-360x106.png 360w, /content/uploads/2014/02/Opsworks06-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 9: Add Layer &#8211; Step 2
+    Figure 9: Add Layer - Step 2
   </p>
 </div>
 
@@ -201,17 +201,17 @@ You will see your first layer successfully created. Click on _+ Layer_ to create
   <img src="/content/uploads/2014/02/Opsworks07.png" alt="Figure 10: Add Layer - Step 3" width="600" height="181" class="size-full wp-image-1115" srcset="/content/uploads/2014/02/Opsworks07.png 600w, /content/uploads/2014/02/Opsworks07-360x108.png 360w, /content/uploads/2014/02/Opsworks07-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 10: Add Layer &#8211; Step 3
+    Figure 10: Add Layer - Step 3
   </p>
 </div>
 
-As the _Layer type_ select _MySQL_. If you later want to manually connect to the MySQL server &#8211; e.g. for troubleshooting &#8211; note down the automatically created MySQL root password. Next click on _Add Layer_ (See Figure 11).
+As the _Layer type_ select _MySQL_. If you later want to manually connect to the MySQL server - e.g. for troubleshooting - note down the automatically created MySQL root password. Next click on _Add Layer_ (See Figure 11).
 
 <div id="attachment_1116" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/02/Opsworks08.png" alt="Figure 11: Add Layer - Step 4" width="600" height="218" class="size-full wp-image-1116" srcset="/content/uploads/2014/02/Opsworks08.png 600w, /content/uploads/2014/02/Opsworks08-360x130.png 360w, /content/uploads/2014/02/Opsworks08-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 11: Add Layer &#8211; Step 4
+    Figure 11: Add Layer - Step 4
   </p>
 </div>
 
@@ -221,7 +221,7 @@ We are almost done with the layers. We only need to perform some minor changes o
   <img src="/content/uploads/2014/02/Opsworks09.png" alt="Figure 12: Edit PHP Layer - Step 1" width="600" height="55" class="size-full wp-image-1117" srcset="/content/uploads/2014/02/Opsworks09.png 600w, /content/uploads/2014/02/Opsworks09-360x33.png 360w, /content/uploads/2014/02/Opsworks09-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 12: Edit PHP Layer &#8211; Step 1
+    Figure 12: Edit PHP Layer - Step 1
   </p>
 </div>
 
@@ -236,7 +236,7 @@ For the PHP App Server layer we need to define the following two recipes to life
   <img src="/content/uploads/2014/02/Opsworks10.png" alt="Figure 13: Edit PHP Layer - Step 2" width="600" height="462" class="size-full wp-image-1119" srcset="/content/uploads/2014/02/Opsworks10.png 600w, /content/uploads/2014/02/Opsworks10-360x277.png 360w, /content/uploads/2014/02/Opsworks10-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 13: Edit PHP Layer &#8211; Step 2
+    Figure 13: Edit PHP Layer - Step 2
   </p>
 </div>
 
@@ -248,17 +248,17 @@ This assigns a so-called elastic IP address to the PHP App Server EC2 instance, 
   <img src="/content/uploads/2014/02/Opsworks11.png" alt="Figure 14: Edit PHP Layer - Step 3" width="600" height="125" class="size-full wp-image-1120" srcset="/content/uploads/2014/02/Opsworks11.png 600w, /content/uploads/2014/02/Opsworks11-360x75.png 360w, /content/uploads/2014/02/Opsworks11-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 14: Edit PHP Layer &#8211; Step 3
+    Figure 14: Edit PHP Layer - Step 3
   </p>
 </div>
 
-Scroll down to the _Auto Healing_ section and make sure that _Auto healing enabled_ is set to _No_ (See Figure 15). As we will be using EC2 t1.micro instances, these instances can generate a very high load and/or memory usage &#8211; especially at boot time. With auto healing enabled it is possible that AWS OpsWorks interprets this as an issue and attempts to rectify it by recreating the corresponding EC2 instance. Therefore with this simple setup it's safer to leave this turned off.
+Scroll down to the _Auto Healing_ section and make sure that _Auto healing enabled_ is set to _No_ (See Figure 15). As we will be using EC2 t1.micro instances, these instances can generate a very high load and/or memory usage - especially at boot time. With auto healing enabled it is possible that AWS OpsWorks interprets this as an issue and attempts to rectify it by recreating the corresponding EC2 instance. Therefore with this simple setup it's safer to leave this turned off.
 
 <div id="attachment_1121" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/02/Opsworks12.png" alt="Figure 15: Edit PHP Layer - Step 4" width="600" height="106" class="size-full wp-image-1121" srcset="/content/uploads/2014/02/Opsworks12.png 600w, /content/uploads/2014/02/Opsworks12-360x63.png 360w, /content/uploads/2014/02/Opsworks12-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 15: Edit PHP Layer &#8211; Step 4
+    Figure 15: Edit PHP Layer - Step 4
   </p>
 </div>
 
@@ -268,7 +268,7 @@ Next we need to create EC2 instances, one instance per layer in our case. Start 
   <img src="/content/uploads/2014/02/Opsworks13.png" alt="Figure 16: Add an instance - Step 1" width="600" height="239" class="size-full wp-image-1122" srcset="/content/uploads/2014/02/Opsworks13.png 600w, /content/uploads/2014/02/Opsworks13-360x143.png 360w, /content/uploads/2014/02/Opsworks13-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 16: Add an instance &#8211; Step 1
+    Figure 16: Add an instance - Step 1
   </p>
 </div>
 
@@ -278,7 +278,7 @@ As the _Size_ select _t1.micro_ and click on _Add instance_ (See Figure 17).
   <img src="/content/uploads/2014/02/Opsworks14.png" alt="Figure 17: Add an instance - Step 2" width="600" height="255" class="size-full wp-image-1123" srcset="/content/uploads/2014/02/Opsworks14.png 600w, /content/uploads/2014/02/Opsworks14-360x153.png 360w, /content/uploads/2014/02/Opsworks14-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 17: Add an instance &#8211; Step 2
+    Figure 17: Add an instance - Step 2
   </p>
 </div>
 
@@ -288,7 +288,7 @@ Now for the _MySQL Server_ layer select _Add an instance_ (See Figure 18).
   <img src="/content/uploads/2014/02/Opsworks15.png" alt="Figure 18: Add an instance - Step 3" width="600" height="332" class="size-full wp-image-1124" srcset="/content/uploads/2014/02/Opsworks15.png 600w, /content/uploads/2014/02/Opsworks15-360x199.png 360w, /content/uploads/2014/02/Opsworks15-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 18: Add an instance &#8211; Step 3
+    Figure 18: Add an instance - Step 3
   </p>
 </div>
 
@@ -298,7 +298,7 @@ As the _Size_ select _t1.micro_ and select the same or a different _Availability
   <img src="/content/uploads/2014/02/Opsworks16.png" alt="Figure 19: Add an instance - Step 4" width="600" height="258" class="size-full wp-image-1125" srcset="/content/uploads/2014/02/Opsworks16.png 600w, /content/uploads/2014/02/Opsworks16-360x154.png 360w, /content/uploads/2014/02/Opsworks16-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 19: Add an instance &#8211; Step 4
+    Figure 19: Add an instance - Step 4
   </p>
 </div>
 
@@ -322,7 +322,7 @@ Navigate to the _Apps_ tab and click on _Add an app_ (See Figure 21).
   <img src="/content/uploads/2014/02/Opsworks18.png" alt="Figure 21: Add an App - Step 1" width="600" height="122" class="size-full wp-image-1127" srcset="/content/uploads/2014/02/Opsworks18.png 600w, /content/uploads/2014/02/Opsworks18-360x73.png 360w, /content/uploads/2014/02/Opsworks18-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 21: Add an App &#8211; Step 1
+    Figure 21: Add an App - Step 1
   </p>
 </div>
 
@@ -334,7 +334,7 @@ In case you want to restore a backup from the WordPress Backup Plugin BackWPup, 
   <img src="/content/uploads/2014/02/Opsworks19.png" alt="Figure 22: Add an App - Step 2" width="504" height="458" class="size-full wp-image-1128" srcset="/content/uploads/2014/02/Opsworks19.png 504w, /content/uploads/2014/02/Opsworks19-360x327.png 360w, /content/uploads/2014/02/Opsworks19-1x1.png 1w" sizes="(max-width: 504px) 100vw, 504px" />
 
   <p class="wp-caption-text">
-    Figure 22: Add an App &#8211; Step 2
+    Figure 22: Add an App - Step 2
   </p>
 </div>
 

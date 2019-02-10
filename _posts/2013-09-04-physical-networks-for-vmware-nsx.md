@@ -42,7 +42,7 @@ Today's network architects have to face the following challenges while designing
 
       * ### Traffic isolation and multi-tenant security
 
-        Modern data centers &#8211; especially in the cloud age &#8211; cater to multiple tenants at the same time. Not only does this require separation of network traffic between various tenants, but also separation of tenant traffic from management or storage traffic. The last a data center operator wants, are customers digging into data of other customers. With tenants and workloads changing regularly, it should be able to change this traffic isolation within minutes or second and not days or hours.</li>
+        Modern data centers - especially in the cloud age - cater to multiple tenants at the same time. Not only does this require separation of network traffic between various tenants, but also separation of tenant traffic from management or storage traffic. The last a data center operator wants, are customers digging into data of other customers. With tenants and workloads changing regularly, it should be able to change this traffic isolation within minutes or second and not days or hours.</li>
 
           * ### Redundancy and efficiency
 
@@ -66,7 +66,7 @@ Today's network architects have to face the following challenges while designing
 
             Connectivity from within the NSX overlay network to the outside world (WAN or Internet) is provided by VXLAN Tunnel End-Points (VTEP) within the Core layer switches. This capability is e.g. offered by Arista's <a href="https://www.arista.com/en/solutions/network-virtualization" target="_blank">Network Virtualization</a> feature. Thus core devices "translate" between VXLAN segments and VLANs.
 
-            As an alternative this connectivity can also be provided purely in software &#8211; e.g. via an "Edge Rack" &#8211; using the Edge devices within NSX.
+            As an alternative this connectivity can also be provided purely in software - e.g. via an "Edge Rack" - using the Edge devices within NSX.
 
             <div id="attachment_548" style="width: 1004px" class="wp-caption aligncenter">
               <img src="/content/uploads/2013/09/NSXPhysicalDesign.png" alt="Figure 3: Physical Network Design for VMware NSX" width="994" height="802" class="size-full wp-image-548" srcset="/content/uploads/2013/09/NSXPhysicalDesign.png 994w, /content/uploads/2013/09/NSXPhysicalDesign-500x403.png 500w" sizes="(max-width: 994px) 100vw, 994px" />
@@ -86,7 +86,7 @@ Today's network architects have to face the following challenges while designing
 
             ### An Analogy
 
-            Why is the physical network still important in the age of Overlay Networks with VMware NSX? To give an analogy: If you want to provide a reliable and fast logistics service &#8211; such as FedEx or UPS &#8211; you need reliable streets and roads in good shape for the delivery trucks to run on.
+            Why is the physical network still important in the age of Overlay Networks with VMware NSX? To give an analogy: If you want to provide a reliable and fast logistics service - such as FedEx or UPS - you need reliable streets and roads in good shape for the delivery trucks to run on.
 
-            For VMware NSX a solid enterprise class physical network &#8211; as outlined above &#8211; is therefore necessary.
+            For VMware NSX a solid enterprise class physical network - as outlined above - is therefore necessary.
             

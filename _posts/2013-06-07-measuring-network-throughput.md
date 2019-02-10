@@ -53,7 +53,7 @@ In order to guarantee reliable in-order delivery of packets, only a "window" of 
 
 Looking at Figure 1 it should become clear that while increasing the value of the signal propagation time t<sub>prop</sub>, the amount of data that can be transferred in the same time period is reduced. This is caused by the sender spending more time waiting for acknowledgements, before it will send further packages. (See Figure 2)
 
-The propagation time t<sub>prop</sub> for a TCP packet can be determined by measuring the round-trip-time (RTT) of a packet. Here the round-trip-time is twice the propagation time for synchronous links. This can e.g. be done via the well known tool _ping_. The TCP window size is determined by the operating system. During a connection the receiver can also adapt the TCP Window Size &#8211; in both directions &#8211; if the situation changes due to packet loss or buffer fill levels.
+The propagation time t<sub>prop</sub> for a TCP packet can be determined by measuring the round-trip-time (RTT) of a packet. Here the round-trip-time is twice the propagation time for synchronous links. This can e.g. be done via the well known tool _ping_. The TCP window size is determined by the operating system. During a connection the receiver can also adapt the TCP Window Size - in both directions - if the situation changes due to packet loss or buffer fill levels.
 
 ### Bandwidth-delay Product and buffer size
 
@@ -388,7 +388,7 @@ We have seen that increasing the TCP Window Size on the receiver side helps incr
 
 #### WAN Optimization Controller
 
-Instead network architects usually deploy a pair of specialized devices &#8211; called WAN Optimization Controller (WOC) within the network stream. Placed as close as possible to server and client of the stream they act like a proxy in front of the actual server. While these WOC devices also utilize other improvement capabilities, one of their main capabilities is using an optimized transport mechanism with an increased TCP Window size between the.
+Instead network architects usually deploy a pair of specialized devices - called WAN Optimization Controller (WOC) within the network stream. Placed as close as possible to server and client of the stream they act like a proxy in front of the actual server. While these WOC devices also utilize other improvement capabilities, one of their main capabilities is using an optimized transport mechanism with an increased TCP Window size between the.
 
 
 
@@ -420,8 +420,8 @@ While we can indeed not change the laws of physics to decrease the RTT in our eq
 
 
 
-Instead of requesting a file from e.g Los Angeles while being in Munich, Germany, the file could be requested from a CDN node in Frankfurt, Germany. This would reduce the RTT from e.g. ~170 ms to ~4 ms. This is often used by companies and organizations to deliver large software downloads. One such example is <a href="https://my.vmware.com/web/vmware/downloads" title="VMware Download" target="_blank">VMware's software download site using Akamai's CDN</a>.
+Instead of requesting a file from e.g Los Angeles while being in Munich, Germany, the file could be requested from a CDN node in Frankfurt, Germany. This would reduce the RTT from e.g. ~170 ms to ~4 ms. This is often used by companies and organizations to deliver large software downloads. One such example is [VMware's software download site using Akamai's CDN](https://my.vmware.com/web/vmware/downloads).
 
 #### UDP-based file transfer
 
-Last but not least I would like to point out that there are in fact UDP based file transfer solutions out there, such as the one from <a href="http://asperasoft.com" title="Asperasoft" target="_blank">Asperasoft</a>. They overcome the "dangers" of UDP with smartly using a TCP channel for congestion control. Yet at the same time the transfer limit of this pure protocol is bound by the actual link bandwidth. WOC on the other hand usually utilize additional optimization techniques beside TCP window adjustment, giving you effective throughput higher than the maximum link bandwidth. See the previously mentioned Silver Peak calculator for examples.
+Last but not least I would like to point out that there are in fact UDP based file transfer solutions out there, such as the one from [Asperasoft](http://asperasoft.com). They overcome the "dangers" of UDP with smartly using a TCP channel for congestion control. Yet at the same time the transfer limit of this pure protocol is bound by the actual link bandwidth. WOC on the other hand usually utilize additional optimization techniques beside TCP window adjustment, giving you effective throughput higher than the maximum link bandwidth. See the previously mentioned Silver Peak calculator for examples.

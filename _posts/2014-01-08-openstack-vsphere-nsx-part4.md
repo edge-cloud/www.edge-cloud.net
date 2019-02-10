@@ -1,6 +1,6 @@
 ---
 id: 657
-title: 'OpenStack with vSphere and NSX &#8211; Part 4: Import and configure the VMware vSphere OpenStack Virtual Appliance (VOVA)'
+title: 'OpenStack with vSphere and NSX - Part 4: Import and configure the VMware vSphere OpenStack Virtual Appliance (VOVA)'
 date: 2014-01-08T08:29:08+00:00
 author: Christian Elsen
 excerpt: Import and configure the VMware vSphere OpenStack Virtual Appliance (VOVA) for a setup including VMware vSphere, VMware NSX and OpenStack.
@@ -107,7 +107,7 @@ Let's get started by picking the correct file for the import (See Figure 6).
   <img src="/content/uploads/2014/01/VOVA-Import01-e1388781888247.png" alt="Figure 6: OVA Import of VOVA - Step 1" width="700" height="410" class="size-full wp-image-869" />
 
   <p class="wp-caption-text">
-    Figure 6: OVA Import of VOVA &#8211; Step 1
+    Figure 6: OVA Import of VOVA - Step 1
   </p>
 </div>
 
@@ -122,7 +122,7 @@ Choose the default settings or your site specific settings for the rest of the i
   <img src="/content/uploads/2014/01/VOVA-Import02-e1388781915869.png" alt="Figure 7: OVA Import of VOVA - Step 2" width="700" height="410" class="size-full wp-image-870" />
 
   <p class="wp-caption-text">
-    Figure 7: OVA Import of VOVA &#8211; Step 2
+    Figure 7: OVA Import of VOVA - Step 2
   </p>
 </div>
 
@@ -137,7 +137,7 @@ Specify the OpenStack Neutron plugin for VMware NSX information (See Figure 8). 
   <img src="/content/uploads/2014/01/VOVA-Import03-e1388781931805.png" alt="Figure 8: OVA Import of VOVA - Step 3" width="700" height="410" class="size-full wp-image-871" />
 
   <p class="wp-caption-text">
-    Figure 8: OVA Import of VOVA &#8211; Step 3
+    Figure 8: OVA Import of VOVA - Step 3
   </p>
 </div>
 
@@ -147,7 +147,7 @@ Specify the networking properties for the VOVA appliance itself (See Figure 9).
   <img src="/content/uploads/2014/01/VOVA-Import04-e1388781950980.png" alt="Figure 9: OVA Import of VOVA - Step 4" width="700" height="410" class="size-full wp-image-872" />
 
   <p class="wp-caption-text">
-    Figure 9: OVA Import of VOVA &#8211; Step 4
+    Figure 9: OVA Import of VOVA - Step 4
   </p>
 </div>
 

@@ -1,6 +1,6 @@
 ---
 id: 659
-title: 'OpenStack with vSphere and NSX &#8211; Part 6: Install the VMware vCenter Plugin for Openstack and look behind the scenes'
+title: 'OpenStack with vSphere and NSX - Part 6: Install the VMware vCenter Plugin for Openstack and look behind the scenes'
 date: 2014-02-08T10:44:46+00:00
 author: Christian Elsen
 excerpt: Install the VMware NSX plugin into the vSphere OpenStack Virtual Appliance (VOVA) for a setup including VMware vSphere, VMware NSX and OpenStack.
@@ -61,7 +61,7 @@ Next navigate to the _OpenStack_ item in the left-hand navigation tree. Clicking
 
 Configure the _vCenter_ Endpoint first, providing the URL https://vcenter\_ip\_or_fqdn/sdk and the required credentials.
 
-Next configure the _OpenStack_ Keystone Endpoint. Click on the “+” button on the top of the grid, select Keystone and provide the URL &#8211; that you have looked up in the previous step &#8211; and the required credentials. The URL should look like http://vova\_ip\_or_fqdn:5000/v2.0. In my case the Endpoint configuration proved to be very finicky and random. I had to repeat these steps multiple time until both endpoint showed as Active with a green checkmark (See Figure 4).
+Next configure the _OpenStack_ Keystone Endpoint. Click on the “+” button on the top of the grid, select Keystone and provide the URL - that you have looked up in the previous step - and the required credentials. The URL should look like http://vova\_ip\_or_fqdn:5000/v2.0. In my case the Endpoint configuration proved to be very finicky and random. I had to repeat these steps multiple time until both endpoint showed as Active with a green checkmark (See Figure 4).
 
 <div id="attachment_1070" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VC_Plugin_04.png" alt="Figure 4: Fully configured vSphere Web Client Openstack Plugin" width="600" height="254" class="size-full wp-image-1070" srcset="/content/uploads/2014/01/VC_Plugin_04.png 600w, /content/uploads/2014/01/VC_Plugin_04-360x152.png 360w, /content/uploads/2014/01/VC_Plugin_04-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -93,7 +93,7 @@ Within the vSphere Web Client navigate to a VM that was created via OpenStack. N
   <img src="/content/uploads/2014/01/VC_Manage01.png" alt="Figure 6: Perform a VMotion of an OpenStack VM - Step 1" width="600" height="406" class="size-full wp-image-1062" srcset="/content/uploads/2014/01/VC_Manage01.png 600w, /content/uploads/2014/01/VC_Manage01-360x243.png 360w, /content/uploads/2014/01/VC_Manage01-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 6: Perform a VMotion of an OpenStack VM &#8211; Step 1
+    Figure 6: Perform a VMotion of an OpenStack VM - Step 1
   </p>
 </div>
 
@@ -103,7 +103,7 @@ As the migration method choose _Change Host_ in order to move the VM to another 
   <img src="/content/uploads/2014/01/VC_Manage02.png" alt="Figure 7: Perform a VMotion of an OpenStack VM - Step 2" width="600" height="195" class="size-full wp-image-1063" srcset="/content/uploads/2014/01/VC_Manage02.png 600w, /content/uploads/2014/01/VC_Manage02-360x117.png 360w, /content/uploads/2014/01/VC_Manage02-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 7: Perform a VMotion of an OpenStack VM &#8211; Step 2
+    Figure 7: Perform a VMotion of an OpenStack VM - Step 2
   </p>
 </div>
 
@@ -113,7 +113,7 @@ Select the destination cluster and tick the box for _Allow host selection within
   <img src="/content/uploads/2014/01/VC_Manage03.png" alt="Figure 8: Perform a VMotion of an OpenStack VM - Step 3" width="600" height="352" class="size-full wp-image-1064" srcset="/content/uploads/2014/01/VC_Manage03.png 600w, /content/uploads/2014/01/VC_Manage03-360x211.png 360w, /content/uploads/2014/01/VC_Manage03-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 8: Perform a VMotion of an OpenStack VM &#8211; Step 3
+    Figure 8: Perform a VMotion of an OpenStack VM - Step 3
   </p>
 </div>
 
@@ -123,7 +123,7 @@ Select the specific host to which you want to migrate the VM (See Figure 9). Thi
   <img src="/content/uploads/2014/01/VC_Manage04.png" alt="Figure 9: Perform a VMotion of an OpenStack VM - Step 4" width="600" height="351" class="size-full wp-image-1065" srcset="/content/uploads/2014/01/VC_Manage04.png 600w, /content/uploads/2014/01/VC_Manage04-360x210.png 360w, /content/uploads/2014/01/VC_Manage04-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 9: Perform a VMotion of an OpenStack VM &#8211; Step 4
+    Figure 9: Perform a VMotion of an OpenStack VM - Step 4
   </p>
 </div>
 
@@ -133,7 +133,7 @@ Wait for the VMotion to complete successfully. Note that the VM now resided on a
   <img src="/content/uploads/2014/01/VC_Manage05.png" alt="Figure 10: Perform a VMotion of an OpenStack VM - Step 5" width="600" height="212" class="size-full wp-image-1066" srcset="/content/uploads/2014/01/VC_Manage05.png 600w, /content/uploads/2014/01/VC_Manage05-360x127.png 360w, /content/uploads/2014/01/VC_Manage05-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 10: Perform a VMotion of an OpenStack VM &#8211; Step 5
+    Figure 10: Perform a VMotion of an OpenStack VM - Step 5
   </p>
 </div>
 
@@ -151,7 +151,7 @@ Within the OpenStack Web interface navigate to the _Project_ view and there pick
   <img src="/content/uploads/2014/01/DNAT01.png" alt="Figure 11: Associate a floating IP in OpenStack - Step 1" width="600" height="332" class="size-full wp-image-1072" srcset="/content/uploads/2014/01/DNAT01.png 600w, /content/uploads/2014/01/DNAT01-360x199.png 360w, /content/uploads/2014/01/DNAT01-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 11: Associate a floating IP in OpenStack &#8211; Step 1
+    Figure 11: Associate a floating IP in OpenStack - Step 1
   </p>
 </div>
 
@@ -161,7 +161,7 @@ Initially no floating IP address is available within the project to be used. We 
   <img src="/content/uploads/2014/01/DNAT02.png" alt="Figure 12: Associate a floating IP in OpenStack - Step 2" width="600" height="278" class="size-full wp-image-1073" srcset="/content/uploads/2014/01/DNAT02.png 600w, /content/uploads/2014/01/DNAT02-360x166.png 360w, /content/uploads/2014/01/DNAT02-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 12: Associate a floating IP in OpenStack &#8211; Step 2
+    Figure 12: Associate a floating IP in OpenStack - Step 2
   </p>
 </div>
 
@@ -171,7 +171,7 @@ Now select the pool from which you want to select the floating IP address. In th
   <img src="/content/uploads/2014/01/DNAT03.png" alt="Figure 13: Associate a floating IP in OpenStack - Step 3" width="600" height="224" class="size-full wp-image-1074" srcset="/content/uploads/2014/01/DNAT03.png 600w, /content/uploads/2014/01/DNAT03-360x134.png 360w, /content/uploads/2014/01/DNAT03-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 13: Associate a floating IP in OpenStack &#8211; Step 3
+    Figure 13: Associate a floating IP in OpenStack - Step 3
   </p>
 </div>
 
@@ -181,7 +181,7 @@ Now that an IP address from the External pool has been successfully allocated, i
   <img src="/content/uploads/2014/01/DNAT04.png" alt="Figure 14: Associate a floating IP in OpenStack - Step 4" width="600" height="278" class="size-full wp-image-1075" srcset="/content/uploads/2014/01/DNAT04.png 600w, /content/uploads/2014/01/DNAT04-360x166.png 360w, /content/uploads/2014/01/DNAT04-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 14: Associate a floating IP in OpenStack &#8211; Step 4
+    Figure 14: Associate a floating IP in OpenStack - Step 4
   </p>
 </div>
 
@@ -203,7 +203,7 @@ Navigate to the _Access & Security_ tab and select Security Groups. You will fin
   <img src="/content/uploads/2014/01/DNAT06.png" alt="Figure 16: Edit Security Groups in OpenStack - Step 1" width="600" height="265" class="size-full wp-image-1057" srcset="/content/uploads/2014/01/DNAT06.png 600w, /content/uploads/2014/01/DNAT06-360x159.png 360w, /content/uploads/2014/01/DNAT06-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 16: Edit Security Groups in OpenStack &#8211; Step 1
+    Figure 16: Edit Security Groups in OpenStack - Step 1
   </p>
 </div>
 
@@ -213,7 +213,7 @@ Next click on _Add Rules_ to add a rule for SSH (See Figure 17).
   <img src="/content/uploads/2014/01/DNAT07.png" alt="Figure 17: Edit Security Groups in OpenStack - Step 2" width="600" height="256" class="size-full wp-image-1058" srcset="/content/uploads/2014/01/DNAT07.png 600w, /content/uploads/2014/01/DNAT07-360x153.png 360w, /content/uploads/2014/01/DNAT07-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 17: Edit Security Groups in OpenStack &#8211; Step 2
+    Figure 17: Edit Security Groups in OpenStack - Step 2
   </p>
 </div>
 
@@ -223,7 +223,7 @@ As _Rule_ select _SSH_. For _Remote_ select _CIDR_ and for _CIDR_ enter _0.0.0.0
   <img src="/content/uploads/2014/01/DNAT08.png" alt="Figure 18: Edit Security Groups in OpenStack - Step 3" width="600" height="476" class="size-full wp-image-1059" srcset="/content/uploads/2014/01/DNAT08.png 600w, /content/uploads/2014/01/DNAT08-360x285.png 360w, /content/uploads/2014/01/DNAT08-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 18: Edit Security Groups in OpenStack &#8211; Step 3
+    Figure 18: Edit Security Groups in OpenStack - Step 3
   </p>
 </div>
 
@@ -233,7 +233,7 @@ Notice the new rule for SSH, which indicates the correct TCP port 22 for SSH (Se
   <img src="/content/uploads/2014/01/DNAT09.png" alt="Figure 19: Edit Security Groups in OpenStack - Step 4" width="600" height="92" class="size-full wp-image-1060" srcset="/content/uploads/2014/01/DNAT09.png 600w, /content/uploads/2014/01/DNAT09-360x55.png 360w, /content/uploads/2014/01/DNAT09-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 19: Edit Security Groups in OpenStack &#8211; Step 4
+    Figure 19: Edit Security Groups in OpenStack - Step 4
   </p>
 </div>
 
@@ -292,6 +292,6 @@ You can run this script directly from VOVA. As VOVA is based on <a href="https:/
 
 Congratulation! We successfully looked behind the scenes into VMware vSphere to see what’s happening during the operation of OpenStack on vSphere. We also installed the VMware vCenter Plugin for Openstack to gain more insight into OpenStack from vSphere, as well as used some of the well-known enterprise-class benefits of vSphere – such as VMotion – along with OpenStack. Furthermore we took a glimpse at how to use OpenStack’s legendary APIs to automate the deployment of a VM. This completes the [series](https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/ "OpenStack with vSphere and NSX") on OpenStack with vSphere and NSX.
 
-If you are at <a href="https://www.vmworld.com/en/us/programs/partner-exchange.html" target="_blank">VMware Partner Exchange (PEX)</a> from February 10-13 2014, head over to the Hands-On Labs and check out the lab "HOL-SDC-1320 &#8211; OpenStack on VMware vSphere" in order to get hands-on experience with the setup described in this setup. After PEX this lab will also become available for general usage within the <a href="http://labs.hol.vmware.com/" target="_blank">VMware Hands-On labs</a>. Check it out!
+If you are at <a href="https://www.vmworld.com/en/us/programs/partner-exchange.html" target="_blank">VMware Partner Exchange (PEX)</a> from February 10-13 2014, head over to the Hands-On Labs and check out the lab "HOL-SDC-1320 - OpenStack on VMware vSphere" in order to get hands-on experience with the setup described in this setup. After PEX this lab will also become available for general usage within the <a href="http://labs.hol.vmware.com/" target="_blank">VMware Hands-On labs</a>. Check it out!
 
 Also if you want to learn more about using OpenStack with VMware vSphere, have a look at the VMware whitepaper "<a href="http://blogs.vmware.com/vsphere/2014/01/getting-started-with-openstack-and-vmware-vsphere-white-paper.html" target="_blank">Getting Started with OpenStack and VMware vSphere</a>".

@@ -1,6 +1,6 @@
 ---
 id: 648
-title: 'OpenStack with vSphere and NSX &#8211; Part 1: Install and configure the VMware NSX appliances'
+title: 'OpenStack with vSphere and NSX - Part 1: Install and configure the VMware NSX appliances'
 date: 2013-12-17T09:10:57+00:00
 author: Christian Elsen
 excerpt: Install and configure the VMware NSX appliances for a setup including VMware vSphere, VMware NSX and OpenStack.
@@ -17,7 +17,7 @@ tags:
   - OpenStack
   - VMware
 ---
-Welcome to part 1 of the <a href="https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/" title="OpenStack with vSphere and NSX" target="_blank">series</a> on installing OpenStack with VMware vSphere and VMware NSX. This series shows the deployment of an OpenStack cloud that leverages VMware vSphere – along with it’s well-known enterprise-class benefits such as VMotion – as the underlying Hypervisor. In addition, network virtualization within OpenStack will be provided via NSX as a Neutron plugin. This allows the creation of virtual networks within OpenStack that consist of L2 segments and can be interconnected via L3 to each other or the outside world.
+Welcome to part 1 of the [series](https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/) on installing OpenStack with VMware vSphere and VMware NSX. This series shows the deployment of an OpenStack cloud that leverages VMware vSphere – along with it’s well-known enterprise-class benefits such as VMotion – as the underlying Hypervisor. In addition, network virtualization within OpenStack will be provided via NSX as a Neutron plugin. This allows the creation of virtual networks within OpenStack that consist of L2 segments and can be interconnected via L3 to each other or the outside world.
 
 ### VMware NSX components and their role
 

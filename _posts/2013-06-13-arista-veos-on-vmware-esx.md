@@ -41,7 +41,7 @@ Within your vSphere Client create a new _Custom_ Configuration VM
   </p>
 </div>
 
-Select a name &#8211; e.g. _"Arista vEOS 4.12.0"_ &#8211; for your VM and select the Host / Cluster, Resource Pool and Storage applicable to your specific setup.
+Select a name - e.g. _"Arista vEOS 4.12.0"_ - for your VM and select the Host / Cluster, Resource Pool and Storage applicable to your specific setup.
 
 As the Virtual Machine Version select _"Virtual Machine Version: 8"_.
 

@@ -205,7 +205,7 @@ Let’s start with the HTTPS Virtual Server:
   <img src="/content/uploads/2013/05/VirtServ_HTTPS_1.png" alt="Figure 12: Virtual Server for HTTPS - General Properties and Configuration" width="932" height="857" class="size-full wp-image-90" srcset="/content/uploads/2013/05/VirtServ_HTTPS_1.png 932w, /content/uploads/2013/05/VirtServ_HTTPS_1-300x275.png 300w" sizes="(max-width: 932px) 100vw, 932px" />
 
   <p class="wp-caption-text">
-    <br />Figure 12: Virtual Server for HTTPS &#8211; General Properties and Configuration
+    <br />Figure 12: Virtual Server for HTTPS - General Properties and Configuration
   </p>
 </div>
 
@@ -236,7 +236,7 @@ Next we will create the HTTP Virtual Server:
   <img src="/content/uploads/2013/05/VirtServ_HTTP_1.png" alt="Figure 14: Virtual Server for HTTPS - General Properties and Configuration" width="882" height="860" class="size-full wp-image-92" srcset="/content/uploads/2013/05/VirtServ_HTTP_1.png 882w, /content/uploads/2013/05/VirtServ_HTTP_1-300x292.png 300w" sizes="(max-width: 882px) 100vw, 882px" />
 
   <p class="wp-caption-text">
-    <br />Figure 14: Virtual Server for HTTP &#8211; General Properties and Configuration
+    <br />Figure 14: Virtual Server for HTTP - General Properties and Configuration
   </p>
 </div>
 
@@ -248,7 +248,7 @@ Next we will create the HTTP Virtual Server:
   <img src="/content/uploads/2013/05/VirtServ_HTTP_2.png" alt="Figure 15: Virtual Server for HTTP - Resources" width="692" height="598" class="size-full wp-image-93" srcset="/content/uploads/2013/05/VirtServ_HTTP_2.png 692w, /content/uploads/2013/05/VirtServ_HTTP_2-300x259.png 300w" sizes="(max-width: 692px) 100vw, 692px" />
 
   <p class="wp-caption-text">
-    Figure 15: Virtual Server for HTTP &#8211; Resources
+    Figure 15: Virtual Server for HTTP - Resources
   </p>
 </div>
 
@@ -260,7 +260,7 @@ Last let’s create the Console Proxy Virtual Server:
   <img src="/content/uploads/2013/05/VirtServ_CP_1.png" alt="Figure 16: Virtual Server for Console Proxy - General Properties and Configuration" width="882" height="859" class="size-full wp-image-94" srcset="/content/uploads/2013/05/VirtServ_CP_1.png 882w, /content/uploads/2013/05/VirtServ_CP_1-300x292.png 300w" sizes="(max-width: 882px) 100vw, 882px" />
 
   <p class="wp-caption-text">
-    <br />Figure 16: Virtual Server for Console Proxy &#8211; General Properties and Configuration
+    <br />Figure 16: Virtual Server for Console Proxy - General Properties and Configuration
   </p>
 </div>
 
@@ -273,7 +273,7 @@ Last let’s create the Console Proxy Virtual Server:
   <img src="/content/uploads/2013/05/VirtServ_CP_2.png" alt="Figure 17: Virtual Server for Console Proxy - Resources" width="671" height="406" class="size-full wp-image-95" srcset="/content/uploads/2013/05/VirtServ_CP_2.png 671w, /content/uploads/2013/05/VirtServ_CP_2-300x181.png 300w" sizes="(max-width: 671px) 100vw, 671px" />
 
   <p class="wp-caption-text">
-    <br />Figure 17: Virtual Server for Console Proxy &#8211; Resources
+    <br />Figure 17: Virtual Server for Console Proxy - Resources
   </p>
 </div>
 

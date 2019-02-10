@@ -18,7 +18,7 @@ tags:
   - IPv6
   - Network
 ---
-Implementing IPv6 in your network does not require tearing down your aging IPv4 network and replacing it with a new IPv6-enabled network. Instead it is possible &#8211; usually even wise &#8211; to run the IPv4 and IPv6 networks in parallel in what the industry calls a "dual-stack" network, thus adding IPv6 capabilities to your network's existing IPv4 capabilities. While such an endeavor is certainly not trivial, it might be easier than your think.
+Implementing IPv6 in your network does not require tearing down your aging IPv4 network and replacing it with a new IPv6-enabled network. Instead it is possible - usually even wise - to run the IPv4 and IPv6 networks in parallel in what the industry calls a "dual-stack" network, thus adding IPv6 capabilities to your network's existing IPv4 capabilities. While such an endeavor is certainly not trivial, it might be easier than your think.
 
 The following article introduces a six step process for successfully implementing IPv6. It has served me well in past deployments and will hopefully give you some ideas and guidance.
 
@@ -71,7 +71,7 @@ As the outcome of this step, you should have information on what equipment you u
 
 ### Step 3: Network Optimization
 
-The IPv6 implementation in a network is often a quite large endeavor. But it is also your perfect chance to clean up your existing network &#8211; which some might even call a "mess". Most enterprise networks have organically grown over time into what they are today and include numerous artifacts from different implementation phases.
+The IPv6 implementation in a network is often a quite large endeavor. But it is also your perfect chance to clean up your existing network - which some might even call a "mess". Most enterprise networks have organically grown over time into what they are today and include numerous artifacts from different implementation phases.
 
 As such, you should have another look at your existing network and attempt to optimize it. Whatever you can optimize and especially simplify in your existing network today will make your life easier when adding IPv6.
 
@@ -103,7 +103,7 @@ From my experience of using both approaches, Global Address space as well as ULA
 
 ### Step 5: Deploy IPv6 in the network
 
-Once you made it up to here, it's time to put your preparation into action. Surprisingly this step will be very easy, if you've done all your homework right. Configuring IPv6 addresses on network device interfaces is usually straight forward and configuring routing protocols &#8211; such as OSPFv3 &#8211; with IPv6 is also quite simple.
+Once you made it up to here, it's time to put your preparation into action. Surprisingly this step will be very easy, if you've done all your homework right. Configuring IPv6 addresses on network device interfaces is usually straight forward and configuring routing protocols - such as OSPFv3 - with IPv6 is also quite simple.
 
 For Cisco IOS devices you can refer to the <a href="http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipv6/configuration/15-2s/ipv6-15-2s-book.html" target="_blank">IPv6 Implementation Guide</a> or the book <a href="http://amzn.to/1l7EFfh" target="_blank">Cisco Self-Study: Implementing Cisco IPv6 Networks</a>. Also recent course material for the <a href="https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna-routing-switching.html" target="_blank">Cisco Certified Network Associate (CCNA) Routing and Switching</a> certification includes details on implementing IPv6.
 

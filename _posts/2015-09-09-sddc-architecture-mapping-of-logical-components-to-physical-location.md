@@ -1,6 +1,6 @@
 ---
 id: 1692
-title: 'SDDC Architecture &#8211; Mapping of Logical Components to Physical Location'
+title: 'SDDC Architecture - Mapping of Logical Components to Physical Location'
 date: 2015-09-09T09:30:55+00:00
 author: Christian Elsen
 layout: single
@@ -87,7 +87,7 @@ Each stack would use a dedicated NSX Transport Zone. The reason for this is that
 
 In this design we use vSphere 6.0, which introduces the <a href="https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2113115" target="_blank">Platform Services Controller (PSC)</a>. The PSC provides a set of common infrastructure services encompassing Single Sign-On (SSO), Licensing, and Certificate Authority. As a result an administrator could log in to any one of the vCenter Servers attached to PSC within a single SSO domain and manage all resources within these attached vCenters. The result is a single pane of glass from a management perspective.
 
-While an <a href="https://blogs.vmware.com/vsphere/2015/03/vcenter-server-6-topology-ha.html" target="_blank">HA deployment scenario</a> does exist for the Platform Services Controller, this scenario is not necessary and not recommended in this design. The High Availability (HA) topology would add additional components with the load balancer and would require additional configuration steps. While this would improve the availability of the PSC itself dramatically, the consumer of the PSC &#8211; the vCenter Server &#8211; are only able to leverage vSphere HA. As such PSC itself could also use vSphere HA, simplifying the topology.
+While an <a href="https://blogs.vmware.com/vsphere/2015/03/vcenter-server-6-topology-ha.html" target="_blank">HA deployment scenario</a> does exist for the Platform Services Controller, this scenario is not necessary and not recommended in this design. The High Availability (HA) topology would add additional components with the load balancer and would require additional configuration steps. While this would improve the availability of the PSC itself dramatically, the consumer of the PSC - the vCenter Server - are only able to leverage vSphere HA. As such PSC itself could also use vSphere HA, simplifying the topology.
 
 The resulting design (See Figure 2) would also prepare the overall SDDC design to upcoming capabilities around high availability of the PSC.
 
@@ -105,4 +105,4 @@ Within each AZ, the deployed vCenter Server will be split across the available P
 
 In the case of a PSC failure, due to an underlying ESXi host failure, the PSC would be restarted via vSphere HA on another ESXi hosts. This would result in a downtime of multiple minutes for the attached vCenter Servers.
 
-In case of a prolonged downtime of a PSC &#8211; e.g. due to VM corruption or alike &#8211; the vCenter Servers mapped to this PSC (Red arrows in Figure 2) would not be able to leverage this PSC anymore. In this situation the <a href="http://kb.vmware.com/kb/2113917" target="_blank">vCenter Servers should be re-pointed</a> to the remaining active PSC within a region (Blue arrows in Figure 2). At this point the SDDC is operational again and the defective PSC can be re-build, for the SDDC to return to a redundant operational state.
+In case of a prolonged downtime of a PSC - e.g. due to VM corruption or alike - the vCenter Servers mapped to this PSC (Red arrows in Figure 2) would not be able to leverage this PSC anymore. In this situation the <a href="http://kb.vmware.com/kb/2113917" target="_blank">vCenter Servers should be re-pointed</a> to the remaining active PSC within a region (Blue arrows in Figure 2). At this point the SDDC is operational again and the defective PSC can be re-build, for the SDDC to return to a redundant operational state.

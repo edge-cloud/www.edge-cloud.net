@@ -1,6 +1,6 @@
 ---
 id: 653
-title: 'OpenStack with vSphere and NSX &#8211; Part 3: Install and configure the Open vSwitch inside the ESXi hosts'
+title: 'OpenStack with vSphere and NSX - Part 3: Install and configure the Open vSwitch inside the ESXi hosts'
 date: 2014-01-03T08:32:41+00:00
 author: Christian Elsen
 excerpt: ' Install and configure the Open vSwitch inside the ESXi hosts for a setup including VMware vSphere, VMware NSX and OpenStack.'
@@ -121,7 +121,7 @@ Similar to the NSX appliances, the next step registers the NSX vSwitch with the 
 
 Next extract the SSL certificate from the NSX vSwitch with the command `cat /etc/nsxvswitch/nsxvswitch-cert.pem`.
 
-Copy the text including the line _&#8212;&#8211;BEGIN CERTIFICATE&#8212;&#8211;_ and _&#8212;&#8211;END CERTIFICATE&#8212;&#8211;_ (See Figure 4). You will need this text in the next step.
+Copy the text including the line _&#8212;-BEGIN CERTIFICATE&#8212;-_ and _&#8212;-END CERTIFICATE&#8212;-_ (See Figure 4). You will need this text in the next step.
 
 
 
@@ -155,7 +155,7 @@ Confirm that the pre-selected transport type is _Hypervisor_ (See Figure 6).
   <img src="/content/uploads/2013/12/ESXwithOVS08.png" alt="Figure 6: Create Hypervisor - Step 1" width="796" height="498" class="size-full wp-image-800" srcset="/content/uploads/2013/12/ESXwithOVS08.png 796w, /content/uploads/2013/12/ESXwithOVS08-500x312.png 500w" sizes="(max-width: 796px) 100vw, 796px" />
 
   <p class="wp-caption-text">
-    Figure 6: Create Hypervisor &#8211; Step 1
+    Figure 6: Create Hypervisor - Step 1
   </p>
 </div>
 
@@ -167,7 +167,7 @@ Give the gateway node a name (See Figure 7). I usually pick the hostname.
   <img src="/content/uploads/2013/12/ESXwithOVS09-e1387481538689.png" alt="Figure 7: Create Hypervisor - Step 2" width="700" height="439" class="size-full wp-image-801" />
 
   <p class="wp-caption-text">
-    Figure 7: Create Hypervisor &#8211; Step 2
+    Figure 7: Create Hypervisor - Step 2
   </p>
 </div>
 
@@ -179,7 +179,7 @@ As the _Integration Bridge Id_ specify _br-int_ (See Figure 8). Leave the other 
   <img src="/content/uploads/2013/12/ESXwithOVS10-e1387481620574.png" alt="Figure 8: Create Hypervisor - Step 3" width="700" height="439" class="size-full wp-image-802" />
 
   <p class="wp-caption-text">
-    Figure 8: Create Hypervisor &#8211; Step 3
+    Figure 8: Create Hypervisor - Step 3
   </p>
 </div>
 
@@ -191,7 +191,7 @@ Select the _Credential Type_ of _Security Certificate_ and paste the previously 
   <img src="/content/uploads/2013/12/ESXwithOVS11-e1387481703241.png" alt="Figure 9: Create Hypervisor - Step 4" width="700" height="441" class="size-full wp-image-803" />
 
   <p class="wp-caption-text">
-    Figure 9: Create Hypervisor &#8211; Step 4
+    Figure 9: Create Hypervisor - Step 4
   </p>
 </div>
 
@@ -203,7 +203,7 @@ Create a transport connector for the NSX vSwitch using _STT_ as the _transport t
   <img src="/content/uploads/2013/12/ESXwithOVS14-e1387481811683.png" alt="Figure 10: Create Hypervisor - Step 5" width="700" height="440" class="size-full wp-image-804" />
 
   <p class="wp-caption-text">
-    Figure 10: Create Hypervisor &#8211; Step 5
+    Figure 10: Create Hypervisor - Step 5
   </p>
 </div>
 

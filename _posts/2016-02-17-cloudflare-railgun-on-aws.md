@@ -62,7 +62,7 @@ Let's get started by creating a VPC of type "VPC with Public and Private Subnets
   <a href="/content/uploads/2016/02/001-VPC01.png" rel="attachment wp-att-2176"><img src="/content/uploads/2016/02/001-VPC01-600x232.png" alt="Figure 2: VPC with Public and Private Subnets - Step 1" width="600" height="232" class="size-large wp-image-2176" srcset="/content/uploads/2016/02/001-VPC01-600x232.png 600w, /content/uploads/2016/02/001-VPC01-350x135.png 350w, /content/uploads/2016/02/001-VPC01-768x297.png 768w, /content/uploads/2016/02/001-VPC01.png 1048w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 2: VPC with Public and Private Subnets &#8211; Step 1
+    Figure 2: VPC with Public and Private Subnets - Step 1
   </p>
 </div>
 
@@ -72,7 +72,7 @@ Choose your preferred IP CIDR block and provide a meaningful VPC name, such as "
   <a href="/content/uploads/2016/02/002-VPC02.png" rel="attachment wp-att-2177"><img src="/content/uploads/2016/02/002-VPC02-600x335.png" alt="Figure 3: VPC with Public and Private Subnets - Step 2" width="600" height="335" class="size-large wp-image-2177" srcset="/content/uploads/2016/02/002-VPC02-600x335.png 600w, /content/uploads/2016/02/002-VPC02-350x196.png 350w, /content/uploads/2016/02/002-VPC02-768x429.png 768w, /content/uploads/2016/02/002-VPC02.png 1159w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 3: VPC with Public and Private Subnets &#8211; Step 2
+    Figure 3: VPC with Public and Private Subnets - Step 2
   </p>
 </div>
 
@@ -174,7 +174,7 @@ Next start the creation of a new ElastiCache cluster and chose the engine type "
   <a href="/content/uploads/2016/02/007-ElastiCache02.png" rel="attachment wp-att-2186"><img src="/content/uploads/2016/02/007-ElastiCache02-600x253.png" alt="Figure 12: Create an ElastiCache cluster with the engine Memcached - Step 1" width="600" height="253" class="size-large wp-image-2186" srcset="/content/uploads/2016/02/007-ElastiCache02-600x253.png 600w, /content/uploads/2016/02/007-ElastiCache02-350x148.png 350w, /content/uploads/2016/02/007-ElastiCache02-768x324.png 768w, /content/uploads/2016/02/007-ElastiCache02.png 987w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 12: Create an ElastiCache cluster with the engine Memcached &#8211; Step 1
+    Figure 12: Create an ElastiCache cluster with the engine Memcached - Step 1
   </p>
 </div>
 
@@ -184,7 +184,7 @@ Chose the node type depending on your performance needs and select the number of
   <a href="/content/uploads/2016/02/008-ElastiCache03.png" rel="attachment wp-att-2187"><img src="/content/uploads/2016/02/008-ElastiCache03-600x335.png" alt="Figure 13: Create an ElastiCache cluster with the engine Memcached - Step 2" width="600" height="335" class="size-large wp-image-2187" srcset="/content/uploads/2016/02/008-ElastiCache03-600x335.png 600w, /content/uploads/2016/02/008-ElastiCache03-350x196.png 350w, /content/uploads/2016/02/008-ElastiCache03-768x429.png 768w, /content/uploads/2016/02/008-ElastiCache03.png 966w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 13: Create an ElastiCache cluster with the engine Memcached &#8211; Step 2
+    Figure 13: Create an ElastiCache cluster with the engine Memcached - Step 2
   </p>
 </div>
 
@@ -194,7 +194,7 @@ Select the Cache Subnet Group that you created at the beginning of this section.
   <a href="/content/uploads/2016/02/009-ElastiCache04.png" rel="attachment wp-att-2188"><img src="/content/uploads/2016/02/009-ElastiCache04-600x314.png" alt="Figure 14: Create an ElastiCache cluster with the engine Memcached - Step 3" width="600" height="314" class="size-large wp-image-2188" srcset="/content/uploads/2016/02/009-ElastiCache04-600x314.png 600w, /content/uploads/2016/02/009-ElastiCache04-350x183.png 350w, /content/uploads/2016/02/009-ElastiCache04-768x402.png 768w, /content/uploads/2016/02/009-ElastiCache04.png 998w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 14: Create an ElastiCache cluster with the engine Memcached &#8211; Step 3
+    Figure 14: Create an ElastiCache cluster with the engine Memcached - Step 3
   </p>
 </div>
 
@@ -222,7 +222,7 @@ Create a new ELB inside the VPC that you are using for the Railgun setup. For th
   <a href="/content/uploads/2016/02/011-ELB01.png" rel="attachment wp-att-2191"><img src="/content/uploads/2016/02/011-ELB01-600x470.png" alt="Figure 16: Define an Elastic Load Balancer - Step 1" width="600" height="470" class="size-large wp-image-2191" srcset="/content/uploads/2016/02/011-ELB01-600x470.png 600w, /content/uploads/2016/02/011-ELB01-350x274.png 350w, /content/uploads/2016/02/011-ELB01-768x602.png 768w, /content/uploads/2016/02/011-ELB01.png 1182w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 16: Define an Elastic Load Balancer &#8211; Step 1
+    Figure 16: Define an Elastic Load Balancer - Step 1
   </p>
 </div>
 
@@ -232,7 +232,7 @@ Next assign the security group Railgun, which you have created in an earlier ste
   <a href="/content/uploads/2016/02/012-ELB02.png" rel="attachment wp-att-2192"><img src="/content/uploads/2016/02/012-ELB02-600x188.png" alt="Figure 17: Define an Elastic Load Balancer - Step 2" width="600" height="188" class="size-large wp-image-2192" srcset="/content/uploads/2016/02/012-ELB02-600x188.png 600w, /content/uploads/2016/02/012-ELB02-350x110.png 350w, /content/uploads/2016/02/012-ELB02-768x241.png 768w, /content/uploads/2016/02/012-ELB02.png 1180w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 17: Define an Elastic Load Balancer &#8211; Step 2
+    Figure 17: Define an Elastic Load Balancer - Step 2
   </p>
 </div>
 
@@ -242,7 +242,7 @@ Next, configure the Health Check. This will determine how the ELB will probe the
   <a href="/content/uploads/2016/02/013-ELB03.png" rel="attachment wp-att-2193"><img src="/content/uploads/2016/02/013-ELB03-600x188.png" alt="Figure 18: Define an Elastic Load Balancer - Step 4" width="600" height="188" class="size-large wp-image-2193" srcset="/content/uploads/2016/02/013-ELB03-600x188.png 600w, /content/uploads/2016/02/013-ELB03-350x110.png 350w, /content/uploads/2016/02/013-ELB03-768x241.png 768w, /content/uploads/2016/02/013-ELB03.png 1183w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 18: Define an Elastic Load Balancer &#8211; Step 4
+    Figure 18: Define an Elastic Load Balancer - Step 4
   </p>
 </div>
 
@@ -254,7 +254,7 @@ Instead we will solely ensure that the box for "Enable Cross-Zone Load Balancing
   <a href="/content/uploads/2016/02/014-ELB04.png" rel="attachment wp-att-2194"><img src="/content/uploads/2016/02/014-ELB04-600x258.png" alt="Figure 19: Define an Elastic Load Balancer - Step 5" width="600" height="258" class="size-large wp-image-2194" srcset="/content/uploads/2016/02/014-ELB04-600x258.png 600w, /content/uploads/2016/02/014-ELB04-350x150.png 350w, /content/uploads/2016/02/014-ELB04-768x330.png 768w, /content/uploads/2016/02/014-ELB04.png 1183w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 19: Define an Elastic Load Balancer &#8211; Step 5
+    Figure 19: Define an Elastic Load Balancer - Step 5
   </p>
 </div>
 
@@ -264,7 +264,7 @@ You can tag the ELB with a name (See Figure 20).
   <a href="/content/uploads/2016/02/015-ELB05.png" rel="attachment wp-att-2195"><img src="/content/uploads/2016/02/015-ELB05-600x159.png" alt="Figure 20: Define an Elastic Load Balancer - Step 6" width="600" height="159" class="size-large wp-image-2195" srcset="/content/uploads/2016/02/015-ELB05-600x159.png 600w, /content/uploads/2016/02/015-ELB05-350x93.png 350w, /content/uploads/2016/02/015-ELB05-768x204.png 768w, /content/uploads/2016/02/015-ELB05.png 1178w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 20: Define an Elastic Load Balancer &#8211; Step 6
+    Figure 20: Define an Elastic Load Balancer - Step 6
   </p>
 </div>
 
@@ -274,7 +274,7 @@ Before completing the creation of the ELB, you can validate that all settings ha
   <a href="/content/uploads/2016/02/016-ELB06.png" rel="attachment wp-att-2196"><img src="/content/uploads/2016/02/016-ELB06-600x392.png" alt="Figure 21: Define an Elastic Load Balancer - Step 7" width="600" height="392" class="size-large wp-image-2196" srcset="/content/uploads/2016/02/016-ELB06-600x392.png 600w, /content/uploads/2016/02/016-ELB06-350x229.png 350w, /content/uploads/2016/02/016-ELB06-768x502.png 768w, /content/uploads/2016/02/016-ELB06.png 1180w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 21: Define an Elastic Load Balancer &#8211; Step 7
+    Figure 21: Define an Elastic Load Balancer - Step 7
   </p>
 </div>
 
@@ -302,7 +302,7 @@ Start by creating a Launch Configuration, where you select the latest Ubuntu Ser
   <a href="/content/uploads/2016/02/018-EC2_01.png" rel="attachment wp-att-2198"><img src="/content/uploads/2016/02/018-EC2_01-600x369.png" alt="Figure 23: Create a Launch Configuration - Step 1" width="600" height="369" class="size-large wp-image-2198" srcset="/content/uploads/2016/02/018-EC2_01-600x369.png 600w, /content/uploads/2016/02/018-EC2_01-350x215.png 350w, /content/uploads/2016/02/018-EC2_01-768x472.png 768w, /content/uploads/2016/02/018-EC2_01.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 23: Create a Launch Configuration &#8211; Step 1
+    Figure 23: Create a Launch Configuration - Step 1
   </p>
 </div>
 
@@ -331,7 +331,7 @@ Give your Launch Configuration a name and paste the above script into User Data 
   <a href="/content/uploads/2016/02/019-EC2_02.png" rel="attachment wp-att-2199"><img src="/content/uploads/2016/02/019-EC2_02-600x420.png" alt="Figure 24: Create a Launch Configuration - Step 3" width="600" height="420" class="size-large wp-image-2199" srcset="/content/uploads/2016/02/019-EC2_02-600x420.png 600w, /content/uploads/2016/02/019-EC2_02-350x245.png 350w, /content/uploads/2016/02/019-EC2_02-768x537.png 768w, /content/uploads/2016/02/019-EC2_02.png 1036w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 24: Create a Launch Configuration &#8211; Step 3
+    Figure 24: Create a Launch Configuration - Step 3
   </p>
 </div>
 
@@ -341,7 +341,7 @@ Within the Security Group configuration step, select the existing security group
   <a href="/content/uploads/2016/02/020-EC2_03.png" rel="attachment wp-att-2200"><img src="/content/uploads/2016/02/020-EC2_03-600x246.png" alt="Figure 25: Create a Launch Configuration - Step 5" width="600" height="246" class="size-large wp-image-2200" srcset="/content/uploads/2016/02/020-EC2_03-600x246.png 600w, /content/uploads/2016/02/020-EC2_03-350x144.png 350w, /content/uploads/2016/02/020-EC2_03-768x315.png 768w, /content/uploads/2016/02/020-EC2_03.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 25: Create a Launch Configuration &#8211; Step 5
+    Figure 25: Create a Launch Configuration - Step 5
   </p>
 </div>
 
@@ -355,7 +355,7 @@ Select the ELB that you configured under Load Balancing and pick ELB as the Heal
   <a href="/content/uploads/2016/02/021-EC2_04.png" rel="attachment wp-att-2201"><img src="/content/uploads/2016/02/021-EC2_04-557x600.png" alt="Figure 26: Create an Auto Scaling Group - Step 1" width="557" height="600" class="size-large wp-image-2201" srcset="/content/uploads/2016/02/021-EC2_04-557x600.png 557w, /content/uploads/2016/02/021-EC2_04-325x350.png 325w, /content/uploads/2016/02/021-EC2_04-768x827.png 768w, /content/uploads/2016/02/021-EC2_04.png 861w" sizes="(max-width: 557px) 100vw, 557px" /></a>
 
   <p class="wp-caption-text">
-    Figure 26: Create an Auto Scaling Group &#8211; Step 1
+    Figure 26: Create an Auto Scaling Group - Step 1
   </p>
 </div>
 
@@ -365,7 +365,7 @@ As we are solely using the Auto Scaling capability to replace failed Railgun nod
   <a href="/content/uploads/2016/02/022-EC2_05.png" rel="attachment wp-att-2202"><img src="/content/uploads/2016/02/022-EC2_05-600x106.png" alt="Figure 27: Create an Auto Scaling Group - Step 2" width="600" height="106" class="size-large wp-image-2202" srcset="/content/uploads/2016/02/022-EC2_05-600x106.png 600w, /content/uploads/2016/02/022-EC2_05-350x62.png 350w, /content/uploads/2016/02/022-EC2_05-768x136.png 768w, /content/uploads/2016/02/022-EC2_05.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 27: Create an Auto Scaling Group &#8211; Step 2
+    Figure 27: Create an Auto Scaling Group - Step 2
   </p>
 </div>
 
@@ -375,7 +375,7 @@ Next provide what tags you want to apply to all EC2 instances that are created a
   <a href="/content/uploads/2016/02/023-EC2_06.png" rel="attachment wp-att-2203"><img src="/content/uploads/2016/02/023-EC2_06-600x121.png" alt="Figure 28: Create an Auto Scaling Group - Step 4" width="600" height="121" class="size-large wp-image-2203" srcset="/content/uploads/2016/02/023-EC2_06-600x121.png 600w, /content/uploads/2016/02/023-EC2_06-350x71.png 350w, /content/uploads/2016/02/023-EC2_06-768x155.png 768w, /content/uploads/2016/02/023-EC2_06.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 28: Create an Auto Scaling Group &#8211; Step 4
+    Figure 28: Create an Auto Scaling Group - Step 4
   </p>
 </div>
 

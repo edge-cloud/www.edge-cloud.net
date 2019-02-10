@@ -1,6 +1,6 @@
 ---
 id: 661
-title: 'OpenStack with vSphere and NSX &#8211; Part 5: Create virtual networks and launch a VM instance in OpenStack'
+title: 'OpenStack with vSphere and NSX - Part 5: Create virtual networks and launch a VM instance in OpenStack'
 date: 2014-01-24T10:26:16+00:00
 author: Christian Elsen
 excerpt: Create virtual networks and launch a VM instance for a setup including VMware vSphere, VMware NSX and OpenStack.
@@ -40,7 +40,7 @@ After successful login as the user admin you will end up in the admin view of th
   <img src="/content/uploads/2014/01/VOVA02--e1390585711641.png" alt="Figure 2: OpenStack Horizon - Admin View" width="600" height="414" class="size-full wp-image-1044" />
 
   <p class="wp-caption-text">
-    Figure 2: OpenStack Horizon &#8211; Admin View
+    Figure 2: OpenStack Horizon - Admin View
   </p>
 </div>
 
@@ -50,7 +50,7 @@ Let's change over to the project view and see what a tenant would see. While the
   <img src="/content/uploads/2014/01/VOVA03--e1390585949340.png" alt="Figure 3: OpenStack Horizon - Project View" width="600" height="329" class="size-full wp-image-1045" />
 
   <p class="wp-caption-text">
-    Figure 3: OpenStack Horizon &#8211; Project View
+    Figure 3: OpenStack Horizon - Project View
   </p>
 </div>
 
@@ -60,7 +60,7 @@ Next, let's have a look at the initial virtual network topology available to us.
   <img src="/content/uploads/2014/01/VOVA-03-e1390585350706.png" alt="Figure 4: Tenant View - Initially empty network topology" width="600" height="330" class="size-full wp-image-1040" />
 
   <p class="wp-caption-text">
-    Figure 4: Tenant View &#8211; Initially empty network topology
+    Figure 4: Tenant View - Initially empty network topology
   </p>
 </div>
 
@@ -90,7 +90,7 @@ Return to the _Admin_ view, choose the _Networks_ tab and click on _Create Netwo
   <img src="/content/uploads/2014/01/VOVA-05-e1390520071274.png" alt="Figure 6: Admin View - Create new network" width="600" height="250" class="size-full wp-image-1028" />
 
   <p class="wp-caption-text">
-    Figure 6: Admin View &#8211; Create new network
+    Figure 6: Admin View - Create new network
   </p>
 </div>
 
@@ -104,7 +104,7 @@ Give the new network a useful name such as _External_ and tick the _External Net
   </p>
 </div>
 
-Next click on the network name &#8211; here _External_ &#8211; to configure additional settings such as the subnet (See Figure 8).
+Next click on the network name - here _External_ - to configure additional settings such as the subnet (See Figure 8).
 
 <div id="attachment_1017" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA-07-e1390509116599.png" alt="Figure 8: Change network settings" width="600" height="114" class="size-full wp-image-1017" />
@@ -134,7 +134,7 @@ Click on _Subnet Detail_ to continue.
   <img src="/content/uploads/2014/01/VOVA-09-e1390509238631.png" alt="Figure 10: Create Subnet - Step 1" width="600" height="441" class="size-full wp-image-1019" />
 
   <p class="wp-caption-text">
-    Figure 10: Create Subnet &#8211; Step 1
+    Figure 10: Create Subnet - Step 1
   </p>
 </div>
 
@@ -144,7 +144,7 @@ Unselect the _Enable DHCP_ checkbox as this is an external network which either 
   <img src="/content/uploads/2014/01/VOVA-10-e1390509266921.png" alt="Figure 11: Create Subnet - Step 2" width="600" height="428" class="size-full wp-image-1020" />
 
   <p class="wp-caption-text">
-    Figure 11: Create Subnet &#8211; Step 2
+    Figure 11: Create Subnet - Step 2
   </p>
 </div>
 
@@ -166,7 +166,7 @@ Let's return to the tenant's view and see how the previously created external ne
   <img src="/content/uploads/2014/01/VOVA-12-e1390507372328.png" alt="Figure 13: Tenant View - Create internal network" width="600" height="329" class="size-full wp-image-1013" />
 
   <p class="wp-caption-text">
-    Figure 13: Tenant View &#8211; Create internal network
+    Figure 13: Tenant View - Create internal network
   </p>
 </div>
 
@@ -178,17 +178,17 @@ Enter a useful name as the _Network Name_ and click on the _Subnet_ to specify a
   <img src="/content/uploads/2014/01/VOVA15-e1390006239329.png" alt="Figure 14: Create Network - Step 1" width="600" height="265" class="size-full wp-image-963" />
 
   <p class="wp-caption-text">
-    Figure 14: Create Network &#8211; Step 1
+    Figure 14: Create Network - Step 1
   </p>
 </div>
 
-Specify a _Subnet Name_ &#8211; e.g. the value _Internal_ &#8211; along with the _Network Address_. Click on _Subnet Detail_ to continue (See Figure 15).
+Specify a _Subnet Name_ - e.g. the value _Internal_ - along with the _Network Address_. Click on _Subnet Detail_ to continue (See Figure 15).
 
 <div id="attachment_964" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA16-e1390006215285.png" alt="Figure 15: Create Network - Step 2" width="600" height="485" class="size-full wp-image-964" />
 
   <p class="wp-caption-text">
-    Figure 15: Create Network &#8211; Step 2
+    Figure 15: Create Network - Step 2
   </p>
 </div>
 
@@ -198,7 +198,7 @@ Enter the value of the _DNS Name Server_ and finish the dialog with a click on _
   <img src="/content/uploads/2014/01/VOVA17-e1390006190125.png" alt="Figure 16: Create Network - Step 3" width="600" height="428" class="size-full wp-image-965" />
 
   <p class="wp-caption-text">
-    Figure 16: Create Network &#8211; Step 3
+    Figure 16: Create Network - Step 3
   </p>
 </div>
 
@@ -306,13 +306,13 @@ Finally our virtual network in OpenStack as shown in Figure 5 has been completed
 
 Now with the network in place, we are finally ready to deploy a first VM in our OpenStack cloud. From the _Network Topology_ tab click on the _Launch Instance_ button (See Figure 25).
 
-Give your new instance a meaningful name as the _Instance Name_ and select an appropriate _Flavor_ &#8211; e.g. m1.tiny. As the _Instance Boot Source_ choose _Boot from image_ and select as the _Image Name_ the image _debian-2.6.32-i686 (1 GB)_, which comes packaged with VOVA. Click on the _Networking_ tab to continue (See Figure 26).
+Give your new instance a meaningful name as the _Instance Name_ and select an appropriate _Flavor_ - e.g. m1.tiny. As the _Instance Boot Source_ choose _Boot from image_ and select as the _Image Name_ the image _debian-2.6.32-i686 (1 GB)_, which comes packaged with VOVA. Click on the _Networking_ tab to continue (See Figure 26).
 
 <div id="attachment_977" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA29-e1390005641217.png" alt="Figure 26: Launch Instance - Step 1" width="600" height="554" class="size-full wp-image-977" />
 
   <p class="wp-caption-text">
-    Figure 26: Launch Instance &#8211; Step 1
+    Figure 26: Launch Instance - Step 1
   </p>
 </div>
 
@@ -324,7 +324,7 @@ This connect the internal network that we previously created to the first NIC of
   <img src="/content/uploads/2014/01/VOVA30-e1390005620926.png" alt="Figure 27: Launch Instance - Step 2" width="600" height="300" class="size-full wp-image-978" />
 
   <p class="wp-caption-text">
-    Figure 27: Launch Instance &#8211; Step 2
+    Figure 27: Launch Instance - Step 2
   </p>
 </div>
 
@@ -338,7 +338,7 @@ Wait for the new VM instance to be created and powered up. Once the Status indic
   </p>
 </div>
 
-You can see information about the running VM instance &#8211; such as the ID, the status or the IP address. Click on the _Console_ tab to connect to the VM (See Figure 29).
+You can see information about the running VM instance - such as the ID, the status or the IP address. Click on the _Console_ tab to connect to the VM (See Figure 29).
 
 <div id="attachment_980" style="width: 348px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA32-e1389917528313.png" alt="Figure 29: Instance Details" width="338" height="600" class="size-full wp-image-980" />
@@ -360,4 +360,4 @@ Via the _Console_ you can access your VM instance. Login with the standard usern
 
 Congratulations! You have gotten your feet wet using your OpenStack cloud, implementing your first virtual network and attaching a new VM instance to it. All this while leveraging VMware vSphere as the underlying Hypervisor as well as network virtualization provided via VMware NSX as a Neutron plugin.
 
-Next in the [series](https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/ "OpenStack with vSphere and NSX") on OpenStack with vSphere and NSX is [Part 6](https://www.edge-cloud.net/2014/02/08/openstack-vsphere-nsx-part-6/ "OpenStack with vSphere and NSX – Part 6: Install the VMware vCenter Plugin for Openstack and look behind the scenes") where we will look behind the scenes into VMware vSphere to see what's happening during the operation of OpenStack on vSphere. We will also install the VMware vCenter Plugin for Openstack to gain more insight into OpenStack from vSphere, as well as use some of the well-known enterprise-class benefits of vSphere &#8211; such as VMotion – along with OpenStack. Furthermore we will see how to use OpenStack's legendary APIs to automate the deployment of a VM.
+Next in the [series](https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/ "OpenStack with vSphere and NSX") on OpenStack with vSphere and NSX is [Part 6](https://www.edge-cloud.net/2014/02/08/openstack-vsphere-nsx-part-6/ "OpenStack with vSphere and NSX – Part 6: Install the VMware vCenter Plugin for Openstack and look behind the scenes") where we will look behind the scenes into VMware vSphere to see what's happening during the operation of OpenStack on vSphere. We will also install the VMware vCenter Plugin for Openstack to gain more insight into OpenStack from vSphere, as well as use some of the well-known enterprise-class benefits of vSphere - such as VMotion – along with OpenStack. Furthermore we will see how to use OpenStack's legendary APIs to automate the deployment of a VM.

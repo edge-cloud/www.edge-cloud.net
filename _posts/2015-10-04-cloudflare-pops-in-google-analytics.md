@@ -101,7 +101,7 @@ You can now create custom reports with the custom dimension in Google Analytics.
   <p class="wp-caption-text">
     Figure 3: Create a Custom Report in Google Analytics
   </p>
-</div>The resulting Custom Report will show you how many session &#8211; in total numbers, but also in percent &#8211; were served by which CloudFlare PoP. Using the "Percantage" button you can quickly generate a pie chart with the data (See Figure 4). In the example below you can see that the three most used CloudFlare PoPs for this site are San Jose, Chicago and Frankfurt (Germany).
+</div>The resulting Custom Report will show you how many session - in total numbers, but also in percent - were served by which CloudFlare PoP. Using the "Percantage" button you can quickly generate a pie chart with the data (See Figure 4). In the example below you can see that the three most used CloudFlare PoPs for this site are San Jose, Chicago and Frankfurt (Germany).
 
 <div id="attachment_1880" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2015/10/CloudFlare-PoP-Utilization.png"><img src="/content/uploads/2015/10/CloudFlare-PoP-Utilization-600x288.png" alt="Figure 4: Your CloudFlare PoP utilization" width="600" height="288" class="size-large wp-image-1880" srcset="/content/uploads/2015/10/CloudFlare-PoP-Utilization-600x288.png 600w, /content/uploads/2015/10/CloudFlare-PoP-Utilization-350x168.png 350w, /content/uploads/2015/10/CloudFlare-PoP-Utilization.png 1185w" sizes="(max-width: 600px) 100vw, 600px" /></a>

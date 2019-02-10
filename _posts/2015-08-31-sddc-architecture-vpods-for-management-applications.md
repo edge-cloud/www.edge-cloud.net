@@ -1,6 +1,6 @@
 ---
 id: 1695
-title: 'SDDC Architecture &#8211; Virtual PODs for Management applications'
+title: 'SDDC Architecture - Virtual PODs for Management applications'
 date: 2015-08-31T13:00:48+00:00
 author: Christian Elsen
 layout: single
@@ -84,7 +84,7 @@ The SDDC based on a VMware Validated Design use two main network segments:
 
     One of the fundamental concepts of the Virtual PODs is that for a given management application, the same IPv4 subnet is used within each region’s VPOD. In the example, depicted in Figure 3 this means that the Virtual POD in bother regions uses the IPv4 subnet 192.168.11.0/24.
 
-    As a result, in combination with VMware SRM, there is no need to change the IP addresses and therefore also SSL certificates of the service nodes for a recovered application like VMware vRealize Automation. This is a major benefit as an application like VMware vRealize Automation requires multiple cumbersome steps &#8211; including manipulation of the database entries &#8211; to change the IP addresses of a once installed instance.
+    As a result, in combination with VMware SRM, there is no need to change the IP addresses and therefore also SSL certificates of the service nodes for a recovered application like VMware vRealize Automation. This is a major benefit as an application like VMware vRealize Automation requires multiple cumbersome steps - including manipulation of the database entries - to change the IP addresses of a once installed instance.
 
     The NSX Edge devices in both regions have equivalent settings for load balancer rules and firewall rules, except for the IP addresses on the Business and Management network. As a result the virtual IPs (VIP) between these two different load balancers are obviously different, but the underlying load balancer configuration is the same.
 

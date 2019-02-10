@@ -96,7 +96,7 @@ Configuration of a manual IPv6 address is done in Ubuntu 13.10 via the file _/et
 
 ### 3. Stateless Address Auto Configuration (SLAAC)
 
-The next mechanism is completely unknown in IPv4 and therefore new to IPv6. Stateless Address Auto Configuration (SLLAC) is a mechanism described in <a title="RFC 4862" href="https://tools.ietf.org/search/rfc4862" target="_blank">RFC 4862</a>, which uses ICMPv6 packets to let routers in a network regularly announce the configured IPv6 prefix. Upon receiving of such an ICMPv6 packet &#8211; called Router Advertisement (RA), hosts will automatically generate an IPv6 address based on their own MAC address and this prefix. The mechanism is called "Stateless" as it doesn't require any state to be kept within the router to avoid IPv6 address collision. Prevention of collisions is solely achieved by utilizing a modified <a href="https://en.wikipedia.org/wiki/MAC_address" target="_blank">EUI-64 mechanism</a>.
+The next mechanism is completely unknown in IPv4 and therefore new to IPv6. Stateless Address Auto Configuration (SLLAC) is a mechanism described in <a title="RFC 4862" href="https://tools.ietf.org/search/rfc4862" target="_blank">RFC 4862</a>, which uses ICMPv6 packets to let routers in a network regularly announce the configured IPv6 prefix. Upon receiving of such an ICMPv6 packet - called Router Advertisement (RA), hosts will automatically generate an IPv6 address based on their own MAC address and this prefix. The mechanism is called "Stateless" as it doesn't require any state to be kept within the router to avoid IPv6 address collision. Prevention of collisions is solely achieved by utilizing a modified <a href="https://en.wikipedia.org/wiki/MAC_address" target="_blank">EUI-64 mechanism</a>.
 
 Figure shows how such a Router Advertisement packet looks like in Wireshark. We can clearly see the advertised prefix as well as the prefix length.
 
@@ -112,7 +112,7 @@ Before we can dive into the configuration of SLAAC, we need to understand that S
 
 For Linux to pick up IPv6 via SLAAC, the interface has to be configured in `/etc/network/interfaces` via `iface eth0 inet6 auto`.
 
-### 3.1 Stateless &#8211; Nameserver configured manually
+### 3.1 Stateless - Nameserver configured manually
 
 In this approach we will combine SLAAC for automatic configuration of the hosts address and gateway information along with manually configuring the Nameserver on each host.
 
@@ -136,7 +136,7 @@ Figure 6 shows an example of how this would look like in Windows.
 
 The manual configuration under Ubuntu 13.10 is quite simple: Just add the line `dns-nameservers fd80::10 fd80::11` to the corresponding interface section within the file `/etc/network/interfaces`.
 
-### 3.2 Stateless &#8211; Nameserver via RDNSS
+### 3.2 Stateless - Nameserver via RDNSS
 
 Recursive DNS Server (RDNSS) and DNS Search List (DNSSL) as defined in <a title="RFC6106" href="https://tools.ietf.org/html/rfc6106" target="_blank">RFC 6106</a> are basically an extensions to the RA mechanism.
 
@@ -177,11 +177,11 @@ Install the RDNSS package via `sudo apt-get install rdnssd` and add the line `*.
 
 As very few clients support RDNSS and DNSSL today, this addressing approach is not recommended for production solutions.
 
-### 3.3 Stateless &#8211; Nameserver with DHCPv6
+### 3.3 Stateless - Nameserver with DHCPv6
 
 The next approach involves still using Router Advertisements for the address assignment, but relying on DHCPv6 to hand out the Nameserver information. This approach is still stateless as the DHCPv6 server solely hands out static information about a networks domain information. It does not keep any state about a DHCPv6 lease for a client.
 
-This approach is accomplished by setting the so called "Other" or just "O" flag within the Router Advertisements as shown in Figure 9. This will instruct clients to generate their IPv6 address based on the included prefix, but DHCP for the nameserver &#8211; or "other" &#8211; information.
+This approach is accomplished by setting the so called "Other" or just "O" flag within the Router Advertisements as shown in Figure 9. This will instruct clients to generate their IPv6 address based on the included prefix, but DHCP for the nameserver - or "other" - information.
 
 <div id="attachment_608" style="width: 575px" class="wp-caption aligncenter">
   <img class="size-full wp-image-608" src="/content/uploads/2013/11/Capture_RA_O-Flag.png" alt="Figure 9: RA with &quot;Other&quot; flag set." width="565" height="419" srcset="/content/uploads/2013/11/Capture_RA_O-Flag.png 565w, /content/uploads/2013/11/Capture_RA_O-Flag-500x370.png 500w" sizes="(max-width: 565px) 100vw, 565px" />

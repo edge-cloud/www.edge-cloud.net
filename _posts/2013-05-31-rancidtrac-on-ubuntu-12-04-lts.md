@@ -20,7 +20,7 @@ tags:
 
 Today we want to look at the possibility to automatically save the text-based configuration of network devices and make them browse-able via a web-based interface. The solution will also discover configuration changes and notify the network operations team of these changes.
 
-To do so we will be using <a href="http://www.shrubbery.net/rancid/" title="RANCID (Really Awesome New Cisco confIg Differ)" target="_blank">RANCID</a> (Really Awesome New Cisco confIg Differ) from Shrubbery Networks as well as <a href="https://trac.edgewall.org/" title="Integrated SCM &#038; Project Management" target="_blank">TRAC</a> (Integrated SCM & Project Management).
+To do so we will be using [TRAC](http://www.shrubbery.net/rancid/" title="RANCID (Really Awesome New Cisco confIg Differ)" target="_blank">RANCID</a> (Really Awesome New Cisco confIg Differ) from Shrubbery Networks as well as <a href="https://trac.edgewall.org/) (Integrated SCM & Project Management).
 
 RANCID monitors a router's (or more generally a device's) configuration, including software and hardware (cards, serial numbers, etc) and uses CVS (Concurrent Version System) or Subversion to maintain history of changes and notify users of these. TRAC is a web-based wiki and issue tracking system for software development projects. It provides an interface to ​Subversion or ​Git, which is the primary reason for using it in this project.
 
@@ -147,7 +147,7 @@ Assuming that runs without any errors, you should see one or more new directorie
 /var/lib/rancid/network/router.db
 </pre>
 
-Make the SVN readable by the www-data group &#8211; used by the Apache web server, so it can be accessed by TRAC:
+Make the SVN readable by the www-data group - used by the Apache web server, so it can be accessed by TRAC:
 
 <pre>[rancid@netconf ~]$ exit
 [user@netconf ~]$ sudo chgrp -R www-data /var/lib/rancid/SVN/
@@ -305,7 +305,7 @@ prefs = disabled
 help = disabled
 </pre>
 
-Place the file of a logo &#8211; e.g. _netconf.png_ &#8211; for your TRAC website into the folder `/var/trac/netconf/htdocs/` and enable it within the TRAC configuration file `/var/trac/netconf/conf/trac.ini`:
+Place the file of a logo - e.g. _netconf.png_ - for your TRAC website into the folder `/var/trac/netconf/htdocs/` and enable it within the TRAC configuration file `/var/trac/netconf/conf/trac.ini`:
 
 <pre>[header_logo]
 alt = NetConf

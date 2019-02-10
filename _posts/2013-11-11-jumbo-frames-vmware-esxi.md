@@ -15,7 +15,7 @@ categories:
 tags:
   - VMware
 ---
-Ethernet's default maximum size for data transmission is 1500 bytes due to legacy compatibility reasons. Unfortunately with newer high-speed networks &#8211; such as 10 Gigabit Ethernet (10 GigE) &#8211; breaking up data into chunks of 1500 bytes &#8211; also called frames &#8211; creates a lot of overhead with a high header to payload ratio. This not only creates a higher than necessary overhead on the Hypervisor's CPU, but also prevents one from utilizing the full capabilities of the network hardware. For example: On a 10Gbit link it is possible that you will only be able to transmit about 3-4 Gbps of data between machines using 1500 byte frames, while you can easily saturate 10Gbit when using jumbo frames.
+Ethernet's default maximum size for data transmission is 1500 bytes due to legacy compatibility reasons. Unfortunately with newer high-speed networks - such as 10 Gigabit Ethernet (10 GigE) - breaking up data into chunks of 1500 bytes - also called frames - creates a lot of overhead with a high header to payload ratio. This not only creates a higher than necessary overhead on the Hypervisor's CPU, but also prevents one from utilizing the full capabilities of the network hardware. For example: On a 10Gbit link it is possible that you will only be able to transmit about 3-4 Gbps of data between machines using 1500 byte frames, while you can easily saturate 10Gbit when using jumbo frames.
 
 ### Background
 
@@ -27,7 +27,7 @@ Jumbo frames should only used in a controlled and segmented environment, for exa
 
 One of the main use case for Jumbo Frames within VMware vSphere is between an ESXi host and an iSCSI or NFS storage array. Another common use case is between ESXi hosts for VMotion traffic. While this post focuses on the former use case, it is easily transferable to the later.
 
-VMware ESXi uses so-called VMkernel ports to connect the Hypervisor to a storage array. You can think of this port as the Hypervisor kernel's equivalent to a vNIC for Virtual Machines. In order to use Jumbo Frames between the Hypervisor and the storage array, all elements in between need to be configured for at least the desired MTU size &#8211; here 9000. (See Figure 1).
+VMware ESXi uses so-called VMkernel ports to connect the Hypervisor to a storage array. You can think of this port as the Hypervisor kernel's equivalent to a vNIC for Virtual Machines. In order to use Jumbo Frames between the Hypervisor and the storage array, all elements in between need to be configured for at least the desired MTU size - here 9000. (See Figure 1).
 
 <div id="attachment_567" style="width: 522px" class="wp-caption aligncenter">
   <img src="/content/uploads/2013/11/JumboFrames.png" alt="Figure 1: Jumbo Frames for storage arrays with VMware ESXi" width="512" height="257" class="size-full wp-image-567" srcset="/content/uploads/2013/11/JumboFrames.png 512w, /content/uploads/2013/11/JumboFrames-500x250.png 500w" sizes="(max-width: 512px) 100vw, 512px" />
@@ -39,7 +39,7 @@ VMware ESXi uses so-called VMkernel ports to connect the Hypervisor to a storage
 
 This includes the physical storage array, the physical switch, potentially the physical server (e.g. for the Cisco UCS, where this server includes networking capabilities), the VMware Virtual Switch (both default vSwitch and Distributed vSwitch) and last but not least the VMkernel port itself.
 
-It is important to note that the network elements only need to be configured for _at least_ the desired MTU size. If the MTU size ends up being higher, it will not impact functionality. As an example: The <a href="https://www.arista.com/en/" title="Arista Networks" target="_blank">Arista Networks</a> switches have a default MTU size of 9216 bytes, which can remain as is. No need to make any changes here.
+It is important to note that the network elements only need to be configured for _at least_ the desired MTU size. If the MTU size ends up being higher, it will not impact functionality. As an example: The [Arista Networks](https://www.arista.com/en/) switches have a default MTU size of 9216 bytes, which can remain as is. No need to make any changes here.
 
 I'll leave the exercise of figuring out how to configure your physical equipment to a MTU size of 9000 to you. Unfortunately almost every vendor has a different approach for achieving this.
 
@@ -125,7 +125,7 @@ You will have to repeat these steps for all VMkernel ports on all your hosts tha
 
 With all the configuration changes needed at so many different places, it is easy to miss a spot or two. Therefore it is highly recommend to test your settings, before declaring victory.
 
-For this purpose we will use the ESXi tool vmkping to send test traffic from an ESXi host to the storage array or another ESXi host &#8211; depending on your use case.
+For this purpose we will use the ESXi tool vmkping to send test traffic from an ESXi host to the storage array or another ESXi host - depending on your use case.
 
 <div id="attachment_577" style="width: 605px" class="wp-caption aligncenter">
   <img src="/content/uploads/2013/11/Capture09.png" alt="Figure 8: Options for the tool vmkping " width="595" height="354" class="size-full wp-image-577" srcset="/content/uploads/2013/11/Capture09.png 595w, /content/uploads/2013/11/Capture09-500x297.png 500w" sizes="(max-width: 595px) 100vw, 595px" />
@@ -141,7 +141,7 @@ One is the ability to set the so-called DF bit or "Do not fragment" with the _-d
 
 Unfortunately the build-in documentation for this tool isn't very good, as it doesn't tell you that the _-s_ switch specifies the payload size of the ICMP packet. You therefore need to add 8 bytes of ICMP headers and 20 bytes of IP headers before you end up with the frame size that will actually hit the wire. (See Figure 9).
 
-Also the "Do not fragment" will instruct the network layer of the ESXi host as well as all other network elements not to fragment &#8211; therefore not to split up &#8211; the packet.
+Also the "Do not fragment" will instruct the network layer of the ESXi host as well as all other network elements not to fragment - therefore not to split up - the packet.
 
 <div id="attachment_578" style="width: 579px" class="wp-caption aligncenter">
   <img src="/content/uploads/2013/11/ICMP-Packet.png" alt="Figure 9: IP Datagram" width="569" height="262" class="size-full wp-image-578" srcset="/content/uploads/2013/11/ICMP-Packet.png 569w, /content/uploads/2013/11/ICMP-Packet-500x230.png 500w" sizes="(max-width: 569px) 100vw, 569px" />

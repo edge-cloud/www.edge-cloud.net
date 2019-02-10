@@ -1,6 +1,6 @@
 ---
 id: 1481
-title: 'Software Defined Data Center (SDDC) Architecture &#8211; Introduction'
+title: 'Software Defined Data Center (SDDC) Architecture - Introduction'
 date: 2015-02-20T17:05:15+00:00
 author: Christian Elsen
 layout: single
@@ -44,9 +44,9 @@ Last but not least, in order to compete with the abilities and the price of web-
 
 ### Hardware and Software efficiencies
 
-The traditional approach to data centers was often a combination of one-size fits all &#8211; for simplifying operations &#8211; as well as best-is-just-good-enough &#8211; due to the requirement of running mission critical workloads. While the requirement for reliability doesn't go away, new and old business needs (see next section) have more differentiated requirements for business continuity and disaster recovery. This offers the possibility to shift certain capabilities around availability from hardware to software or even give up on them altogether within the infrastructure. Let the application itself deal with failures.
+The traditional approach to data centers was often a combination of one-size fits all - for simplifying operations - as well as best-is-just-good-enough - due to the requirement of running mission critical workloads. While the requirement for reliability doesn't go away, new and old business needs (see next section) have more differentiated requirements for business continuity and disaster recovery. This offers the possibility to shift certain capabilities around availability from hardware to software or even give up on them altogether within the infrastructure. Let the application itself deal with failures.
 
-One of the corner stones of a Software Defined Data Center is the introduction of virtualization for not only compute, but also networking &#8211; known as Software Defined Networking (SDN), and storage &#8211; known as Software Defined Storage (SDS). This allows the tear-down of resource silos, allow resource pooling and thereby the reduction of costs.
+One of the corner stones of a Software Defined Data Center is the introduction of virtualization for not only compute, but also networking - known as Software Defined Networking (SDN), and storage - known as Software Defined Storage (SDS). This allows the tear-down of resource silos, allow resource pooling and thereby the reduction of costs.
 
 ### New and old business needs
 

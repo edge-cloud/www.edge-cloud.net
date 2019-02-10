@@ -1,6 +1,6 @@
 ---
 id: 1714
-title: 'SDDC Architecture &#8211; What is a VMware validated design?'
+title: 'SDDC Architecture - What is a VMware validated design?'
 date: 2015-08-27T12:23:22+00:00
 author: Christian Elsen
 layout: single
@@ -51,7 +51,7 @@ And to take this analogy a bit further: You often end up with the puzzle pieces,
   <img class="size-medium wp-image-1715" src="/content/uploads/2015/08/SDDC_Pieces-360x270.jpg" alt="Figure 1: The challenge - SDDCs come in lots of pieces" width="360" height="270" srcset="/content/uploads/2015/08/SDDC_Pieces-360x270.jpg 360w, /content/uploads/2015/08/SDDC_Pieces.jpg 600w" sizes="(max-width: 360px) 100vw, 360px" />
 
   <p class="wp-caption-text">
-    Figure 1: The challenge &#8211; SDDCs come in lots of pieces
+    Figure 1: The challenge - SDDCs come in lots of pieces
   </p>
 </div>
 
@@ -103,4 +103,4 @@ With the VMware Validated Designs you can get the undifferentiated heavy lifting
 
 **Want more?**
 
-Attend the VMWorld 2015 sessions "<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5440" target="_blank">SDDC5440 &#8211; VMware Validated Designs &#8211; A Reference Architecture for the SDDC</a>" and "<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5609" target="_blank">SDDC5609 &#8211; VMware Validated Designs for a Software Defined Data Center (SDDC)</a>" to learn more about the VMware Validated Designs.
+Attend the VMWorld 2015 sessions "<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5440" target="_blank">SDDC5440 - VMware Validated Designs - A Reference Architecture for the SDDC</a>" and "<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5609" target="_blank">SDDC5609 - VMware Validated Designs for a Software Defined Data Center (SDDC)</a>" to learn more about the VMware Validated Designs.

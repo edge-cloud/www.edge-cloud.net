@@ -22,7 +22,7 @@ This is where DNS-based Authentication of Named Entities (DANE) comes into the p
 
 ### Background
 
-DNS-based Authentication of Named Entities (DANE, <a href="https://tools.ietf.org/html/rfc6698" target="_blank">RFC6698</a>) allow <a href="https://en.wikipedia.org/wiki/X.509" target="_blank">X.509 certificates</a>, commonly used for <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">Transport Layer Security (TLS)</a>, to be bound to DNS names using <a href="https://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions" target="_blank">Domain Name System Security Extensions</a> (DNSSEC). DNSSEC assures users that the information you obtain from DNS &#8211; in this case the fingerprint of the X.509 certificate came from the correct source, was complete and its integrity was not compromised during the transfer. All answers from DNSSEC protected zones are digitally signed. By checking the digital signature, a DNS resolver is able to check if the information is identical (i.e. unmodified and complete) to the information published by the zone owner and served on an authoritative DNS server (See Figure 1). Refer to "<a href="http://www.nic.cz/page/444/how-dnssec-works/" target="_blank">How DNSSEC works</a>" from NIC.CZ for more information.
+DNS-based Authentication of Named Entities (DANE, <a href="https://tools.ietf.org/html/rfc6698" target="_blank">RFC6698</a>) allow <a href="https://en.wikipedia.org/wiki/X.509" target="_blank">X.509 certificates</a>, commonly used for <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">Transport Layer Security (TLS)</a>, to be bound to DNS names using <a href="https://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions" target="_blank">Domain Name System Security Extensions</a> (DNSSEC). DNSSEC assures users that the information you obtain from DNS - in this case the fingerprint of the X.509 certificate came from the correct source, was complete and its integrity was not compromised during the transfer. All answers from DNSSEC protected zones are digitally signed. By checking the digital signature, a DNS resolver is able to check if the information is identical (i.e. unmodified and complete) to the information published by the zone owner and served on an authoritative DNS server (See Figure 1). Refer to "<a href="http://www.nic.cz/page/444/how-dnssec-works/" target="_blank">How DNSSEC works</a>" from NIC.CZ for more information.
 
 <div id="attachment_1338" style="width: 587px" class="wp-caption aligncenter">
   <img class="size-full wp-image-1338" src="/content/uploads/2014/06/dnssec_scheme.png" alt="Figure 1: DNSSEC concept (From NIC.CZ)" width="577" height="371" srcset="/content/uploads/2014/06/dnssec_scheme.png 577w, /content/uploads/2014/06/dnssec_scheme-360x231.png 360w" sizes="(max-width: 577px) 100vw, 577px" />
@@ -164,7 +164,7 @@ Within the _A records_ section click on _NEW RECORD_ (See Figure 11).
   <img class="size-full wp-image-1329" src="/content/uploads/2014/06/DNS11.png" alt="Figure 11: Create a new A record - Step 1" width="600" height="223" srcset="/content/uploads/2014/06/DNS11.png 600w, /content/uploads/2014/06/DNS11-360x133.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 11: Create a new A record &#8211; Step 1
+    Figure 11: Create a new A record - Step 1
   </p>
 </div>
 
@@ -174,7 +174,7 @@ Enter the _Record name_ and the _Record value_ (IP address) for your HTTPS webse
   <img class="size-full wp-image-1330" src="/content/uploads/2014/06/DNS12.png" alt="Figure 12: Create a new A record - Step 2" width="600" height="215" srcset="/content/uploads/2014/06/DNS12.png 600w, /content/uploads/2014/06/DNS12-360x129.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
 
   <p class="wp-caption-text">
-    Figure 12: Create a new A record &#8211; Step 2
+    Figure 12: Create a new A record - Step 2
   </p>
 </div>
 

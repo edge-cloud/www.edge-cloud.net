@@ -1,6 +1,6 @@
 ---
 id: 1854
-title: 'SDDC Architecture &#8211; Business Continuity with multiple regions'
+title: 'SDDC Architecture - Business Continuity with multiple regions'
 date: 2015-09-11T14:34:07+00:00
 author: Christian Elsen
 layout: single
@@ -92,7 +92,7 @@ The IPv4 subnets within the VLAN "islands" (Figure 3, yellow network) are routed
 
 The public facing Ext-Management network (Figure 3, blue network) of both regions is assumed to be reachable by users of the SDDC and is also assumed to both connect to external resources, such as Active Directory or DNS.
 
-The load balancers &#8211; here NSX Edge devices &#8211; across the two regions must be configured with the same settings (while taking into account the differing external IP addresses) for a given management application and it's SRM shadow segment. This configuration sync needs to happen either manually or can be accomplished via scripting.
+The load balancers - here NSX Edge devices - across the two regions must be configured with the same settings (while taking into account the differing external IP addresses) for a given management application and it's SRM shadow segment. This configuration sync needs to happen either manually or can be accomplished via scripting.
 
 It is assumed that Active Directory and DNS services are running at both the primary and secondary location. It is advisable to use <a href="https://en.wikipedia.org/wiki/Anycast" target="_blank">Anycast</a> to make DNS Resolvers available under the same IPv4 address at different location, as well as using Global Traffic Management to make local Active Directory Domain Controllers available under a common global domain name.
 

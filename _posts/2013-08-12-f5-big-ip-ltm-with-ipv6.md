@@ -127,7 +127,7 @@ The creation of a virtual server for our legacy IPv4 web application differs onl
 
 ### VMware vCloud Director via IPv6?
 
-In a <a href="https://www.edge-cloud.net/2013/05/20/configuring-f5-big-ip-with-vcd/" title="Configuring F5 Big-IP LTM with VMware vCloud Director [Updated]" target="_blank">previous post</a> I have shown how to configure the F5 Big-IP LTM with VMware vCloud Director (vCD) in an IPv4 setup. These two posts combined raise the question whether one could use an F5 Big-IP load balancer to quickly and easily enable VMware vCloud director to be accessible via IPv6 without having to change anything within vCD itself.
+In a [previous post](https://www.edge-cloud.net/2013/05/20/configuring-f5-big-ip-with-vcd/) I have shown how to configure the F5 Big-IP LTM with VMware vCloud Director (vCD) in an IPv4 setup. These two posts combined raise the question whether one could use an F5 Big-IP load balancer to quickly and easily enable VMware vCloud director to be accessible via IPv6 without having to change anything within vCD itself.
 
 It is straight forward and easy to apply the above to the mentioned post and indeed make the HTTP Redirect, the HTTPS traffic and even the Console Proxy available under an IPv6 address via the F5 Big-IP. The HTTP Redirect as well as the HTTPS traffic will work without a flaw, making the web interface of vCD available via IPv6.
 

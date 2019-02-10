@@ -27,7 +27,7 @@ The solution simplifies deploying and managing large-scale wireless LANs by mana
 
 Despite these outstanding capabilities, Cisco's WLC brings rather limited and complicated capabilities to the table when it comes to creating a simple captive portal for Wifi users, where authentication of valid customers is performed via voucher codes.
 
-Here <a href="http://www.open-mesh.com/" target="_blank">Open-Mesh</a> with it's cloud-based <a href="https://www.cloudtrax.com/" target="_blank">CloudTrax controller</a> offers a very simple and cost-effective solution to deploy a Wifi network &#8211; e.g. within a hotel, restaurant, college campus or other location &#8211; for users to authenticate via a Captive Portal for free, with a free or prepaid voucher or via PayPal payment (See Figure 2).
+Here <a href="http://www.open-mesh.com/" target="_blank">Open-Mesh</a> with it's cloud-based <a href="https://www.cloudtrax.com/" target="_blank">CloudTrax controller</a> offers a very simple and cost-effective solution to deploy a Wifi network - e.g. within a hotel, restaurant, college campus or other location - for users to authenticate via a Captive Portal for free, with a free or prepaid voucher or via PayPal payment (See Figure 2).
 
 <div id="attachment_1455" style="width: 297px" class="wp-caption aligncenter">
   <img src="/content/uploads/2015/01/cloudtrax-stati-008.png" alt="Figure 2: Captive Portal provided by CloudTrax" width="287" height="216" class="size-full wp-image-1455" />
@@ -53,7 +53,7 @@ With Cisco WLC a service set identifier (SSID) is mapped to a VLAN within a port
 
 ### Open-Mesh physical setup
 
-The Cisco WLC does not directly support interacting with the CloudTrax-based Captive Portal. This capability is restricted to Open-Mesh based devices. In order to make a Cisco WLC based WiFi network work with CloudTrax, the solution is to place an Open-Mesh device &#8211; e.g. the <a href="http://www.open-mesh.com/products/access-points/grp-om2p.html" target="_blank">OM2P</a> &#8211; between the Cisco WLC based WiFi network an the internet (See Figure 4).
+The Cisco WLC does not directly support interacting with the CloudTrax-based Captive Portal. This capability is restricted to Open-Mesh based devices. In order to make a Cisco WLC based WiFi network work with CloudTrax, the solution is to place an Open-Mesh device - e.g. the <a href="http://www.open-mesh.com/products/access-points/grp-om2p.html" target="_blank">OM2P</a> - between the Cisco WLC based WiFi network an the internet (See Figure 4).
 
 <div id="attachment_1458" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2015/01/OM2P.png" alt="Figure 4: Physical Open-Mesh setup" width="600" height="369" class="size-full wp-image-1458" srcset="/content/uploads/2015/01/OM2P.png 600w, /content/uploads/2015/01/OM2P-360x221.png 360w" sizes="(max-width: 600px) 100vw, 600px" />

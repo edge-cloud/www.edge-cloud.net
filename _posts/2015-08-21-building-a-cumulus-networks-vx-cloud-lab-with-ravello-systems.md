@@ -24,7 +24,7 @@ tags:
 
 Cumulus Networks provides a standard <a href="https://cumulusnetworks.com/what-we-do/" target="_blank">Linux based operating system for data center switches</a>, thus simplifying dramatically the data center operations. If you are familiar with running and operating Linux on a regular server, managing a Cumulus Network based switch shouldn't be a big challenge for you. Also you can now finally leverage the hundreds of existing management, automation and monitoring tools that you know and love for Linux. <a href="https://cumulusnetworks.com/cumulus-vx/" target="_blank">Cumulus Networks Virtual Experience (VX)</a> is a community-supported virtual appliance that enables cloud admins and network engineers to preview and test Cumulus Networks technology at zero cost inside a virtual machine or standard X86 server.
 
-Ravello Systems provides a "<a href="https://www.ravellosystems.com/solutions/virtual-networking-labs" target="_blank">Smart Labs</a>" solution on top of AWS and Google Compute Engine (GCE) based on <a href="https://www.ravellosystems.com/technology/nested-virtualization" target="_blank">nested virtualization</a>. This allows you to run self-contained lab "capsules" with almost any kind of VMware or KVM based virtual machine in them. This approach &#8211; proven for years with the VMWorld labs &#8211; now allows you to use modern public clouds for test, training and demo purposes at a minimal cost. Specific for networking lab cases Ravello Systems provides <a href="https://www.ravellosystems.com/technology/software-defined-network" target="_blank">virtual L2 networking</a> on top of both AWS and GCE, allowing you to simulate very complex network scenarios.
+Ravello Systems provides a "<a href="https://www.ravellosystems.com/solutions/virtual-networking-labs" target="_blank">Smart Labs</a>" solution on top of AWS and Google Compute Engine (GCE) based on <a href="https://www.ravellosystems.com/technology/nested-virtualization" target="_blank">nested virtualization</a>. This allows you to run self-contained lab "capsules" with almost any kind of VMware or KVM based virtual machine in them. This approach - proven for years with the VMWorld labs - now allows you to use modern public clouds for test, training and demo purposes at a minimal cost. Specific for networking lab cases Ravello Systems provides <a href="https://www.ravellosystems.com/technology/software-defined-network" target="_blank">virtual L2 networking</a> on top of both AWS and GCE, allowing you to simulate very complex network scenarios.
 
 **Getting Started**
 
@@ -50,7 +50,7 @@ The architecture will include two spine switches (spine1 and spine2) as well as 
 
 **Uploading the Cumulus Networks VX image into Ravello Systems**
 
-Once you have received your login credentials for your Ravello Systems account, you can start your cloud lab experience by uploading the Cumulus Networks VX images &#8211; in QCOW2 format &#8211; into Ravello Systems (See Figure 2).
+Once you have received your login credentials for your Ravello Systems account, you can start your cloud lab experience by uploading the Cumulus Networks VX images - in QCOW2 format - into Ravello Systems (See Figure 2).
 
 
 
@@ -100,7 +100,7 @@ Entering these IP information will not actually configure the interfaces corresp
 
 You should be able to see that by default all network interfaces would reside on the same network segment as it is the case for the so far unconfigured devices "Cumulus VX1", "Cumulus VX2", and "Cumulus VX3".
 
-For the configured device "Cumulus VX &#8211; Spine 1", the interfaces "swp1" and "swp2" have already been moved to separate network segments.
+For the configured device "Cumulus VX - Spine 1", the interfaces "swp1" and "swp2" have already been moved to separate network segments.
 
 <div id="attachment_1802" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2015/08/Capture061.png"><img src="/content/uploads/2015/08/Capture061-600x369.png" alt="Figure 6: Mix of configured and unconfigured Cumulus Networks VX devices" width="600" height="369" class="size-large wp-image-1802" srcset="/content/uploads/2015/08/Capture061-600x369.png 600w, /content/uploads/2015/08/Capture061-350x215.png 350w, /content/uploads/2015/08/Capture061.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -166,7 +166,7 @@ Returning to the Canvas view within Ravello Systems, you will see the four Cumul
 
 **Deploy the network testbed**
 
-Next we want to deploy &#8211; called "Publish" in Ravello Systems terms &#8211; the network testbed to either AWS or GCE, so that we can use it. To do so, just hit "Publish" and confirm the default settings to publish the testbed in the most cost effective location (See Figure 11).
+Next we want to deploy - called "Publish" in Ravello Systems terms - the network testbed to either AWS or GCE, so that we can use it. To do so, just hit "Publish" and confirm the default settings to publish the testbed in the most cost effective location (See Figure 11).
 
 <div id="attachment_1749" style="width: 351px" class="wp-caption aligncenter">
   <a href="/content/uploads/2015/08/Capture11.png"><img src="/content/uploads/2015/08/Capture11-341x360.png" alt="Figure 11: Deploy the Ravello Systems application" width="341" height="360" class="size-medium wp-image-1749" srcset="/content/uploads/2015/08/Capture11-341x360.png 341w, /content/uploads/2015/08/Capture11.png 569w" sizes="(max-width: 341px) 100vw, 341px" /></a>

@@ -49,7 +49,7 @@ I'm confident that these minor shortcomings will be fixed over time as more and 
 
 You can define four kinds of tests within ThousandEyes. Depending on which test you select, sub-tests are either automatically created or can be created on demand. The example in Figure 3 shows a "HTTP Server Only" test which probes the URL of this blog site with a given interval. This test will provide you with web site specific metrics around Availability, Response Time and Fetch Time. More advanced Web tests are possible, but I will not cover them here.
 
-With the tick box "Enable network measurements" you activate a so-called network test against the same hostname and port that gives insight into end-to-end metrics like Latency, Packet Loss or Jitter. Also tests for providing information around Bandwidth and MTU &#8211; important for discovering problematic tunnels &#8211; can be added. A network test can also be configured manually.
+With the tick box "Enable network measurements" you activate a so-called network test against the same hostname and port that gives insight into end-to-end metrics like Latency, Packet Loss or Jitter. Also tests for providing information around Bandwidth and MTU - important for discovering problematic tunnels - can be added. A network test can also be configured manually.
 
 A network test will also automatically create a BGP test against the IPv4 and/or IPv6 prefix that the hostname resolves to. More about this later on.
 
@@ -119,7 +119,7 @@ Within the Network End-to-End Metrics we will find information about Loss, Laten
 
 ### Network Path Visualization
 
-The Network Path Visualization is a graphical Traceroute on steroids. Using TCP instead of ICMP &#8211; which might be filtered or take a different path &#8211; it shows all detected path between an agent and target along with valuable information. Hovering the mouse over the hops of the IPv6 connection will show information about each of the hops. The same applies for the link between two hops (See Figure 8).
+The Network Path Visualization is a graphical Traceroute on steroids. Using TCP instead of ICMP - which might be filtered or take a different path - it shows all detected path between an agent and target along with valuable information. Hovering the mouse over the hops of the IPv6 connection will show information about each of the hops. The same applies for the link between two hops (See Figure 8).
 
 This way we can quickly determine that the IPv6 agent reaches the webserver for the configured URL via the Vienna Internet Exchange in Vienna, Austria. The agent itself is located in Nuremberg, Germany about 300 miles / 480 km away from Vienna.
 
@@ -159,7 +159,7 @@ The problem in this case appears to be on the side of the provider in Nuremberg 
   </p>
 </div>
 
-### Network &#8211; BGP Route Visualization &#8211; IPv6
+### Network - BGP Route Visualization - IPv6
 
 Let's drill down even further into the BGP Route Visualization. We will start with IPv6. Here we see the BGP connectivity between ThousandEyes public agents and the target AS. Unfortunately the number of IPv6 capable public agents is very limited. Nevertheless we can see CloudFlare (AS13335) connecting to large transit providers such as Telia Sonera (AS1299) (See Figure 11).
 
@@ -173,7 +173,7 @@ Let's drill down even further into the BGP Route Visualization. We will start wi
   </p>
 </div>
 
-### Network &#8211; BGP Route Visualization &#8211; IPv4
+### Network - BGP Route Visualization - IPv4
 
 Next we will look at the BGP routes for IPv4. Before we can do so, we will notice something interesting. ThousandEyes has discovered three applicable prefixes for the URL that was provided. There is a /21 and two more specific /24 prefixes (See Figure 12). Note that the URLs hostname actually resolves via DNS to two IPv4 addresses, one in each of the /24 prefixes.
 
@@ -217,7 +217,7 @@ ThousandEyes raises this anomaly as an alert, which you might have seen in Figur
 
 Let's look at another interesting use case for ThousandEyes: IPv4 vs. IPv6 path performance. In this case we will have a look at an IPv4/IPv6 Dualstack target in the same physical location. Thus no Anycast this time.
 
-One path leverages IPv6, the other one IPv4 (See Figure 15). Here we can clearly see issues with the IPv6 path &#8211; depicted in red &#8211; within the provider network that hosts the target.
+One path leverages IPv6, the other one IPv4 (See Figure 15). Here we can clearly see issues with the IPv6 path - depicted in red - within the provider network that hosts the target.
 
 <div id="attachment_1262" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/05/AboveNet01.png" alt="Figure 15: IPv4 vs IPv6 path with issues in IPv6 path" width="600" height="361" class="size-full wp-image-1262" srcset="/content/uploads/2014/05/AboveNet01.png 600w, /content/uploads/2014/05/AboveNet01-360x216.png 360w" sizes="(max-width: 600px) 100vw, 600px" />

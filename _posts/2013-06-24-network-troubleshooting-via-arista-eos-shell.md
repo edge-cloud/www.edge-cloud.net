@@ -46,7 +46,7 @@ tcpdump: listening on vlan51, link-type EN10MB (Ethernet), capture size 65535 by
 [user@ams-core01a ~]$
 </pre>
 
-Next we copy the files to another host &#8211; here a NOC jumpbox &#8211; to open it in Wireshark. That can easily be done via the installed SSH SCP client:
+Next we copy the files to another host - here a NOC jumpbox - to open it in Wireshark. That can easily be done via the installed SSH SCP client:
 
 <pre>[user@ams-core01a ~]$ scp /mnt/flash/int-vlan51.pcap root@noc01.edge-cloud.net:/tmp
 The authenticity of host 'noc01.edge-cloud.net (2a01:4f8:d12:11c4::2)' can't be established.
@@ -70,7 +70,7 @@ The capture PCAP file can be opened directly in Wireshark as shown in Figure 1:
 
 ### Throughput testing with iperf
 
-In the previous blog post <a href="https://www.edge-cloud.net/2013/06/07/measuring-network-throughput/" title="Measuring Network Throughput" target="_blank"><em>Measuring Network Throughput</em></a>, I already showcased how to use iperf to measure the TCP throughput between two hosts. The good news: Arista EOS has iperf pre-installed. You can therefore use an Arista device to perform network throughput tests for TCP and UDP.
+In the previous blog post [<em>Measuring Network Throughput</em>](https://www.edge-cloud.net/2013/06/07/measuring-network-throughput/), I already showcased how to use iperf to measure the TCP throughput between two hosts. The good news: Arista EOS has iperf pre-installed. You can therefore use an Arista device to perform network throughput tests for TCP and UDP.
 
 Let's have a look: If you are not yet in the EOS shell mode, change into it from the priviliged CLI mode:
 
@@ -125,7 +125,7 @@ TCP window size: 16.0 KByte (default)
 [user@ams-core01a ~]$
 </pre>
 
-If you read the blog post <a href="https://www.edge-cloud.net/2013/06/07/measuring-network-throughput/" title="Measuring Network Throughput" target="_blank"><em>Measuring Network Throughput</em></a>, you will remember that TCP throughput depends on the link latency and the TCP window size.
+If you read the blog post [<em>Measuring Network Throughput</em>](https://www.edge-cloud.net/2013/06/07/measuring-network-throughput/), you will remember that TCP throughput depends on the link latency and the TCP window size.
 
 In the above example we didn't specify the TCP window size, but used the standard Linux auto-tuning TCP buffer limit. Here Arista has already done some tuning for us and set this auto-tuning TCP buffer limit to 4096 KByte.
 
