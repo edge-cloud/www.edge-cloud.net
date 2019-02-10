@@ -75,11 +75,11 @@ Next create another private subnet. Here also pick a different AZ to the one tha
 
 After successfully creating all the necessary subnets, it's time to create the security groups. One will be used to allow Railgun traffic and another one will be used to allow Memcached traffic.
 
-Let&#8217;s start by creating the Security Group for Memcached traffic (See Figure 7).
+Let's start by creating the Security Group for Memcached traffic (See Figure 7).
 
 {% include figure image_path="/content/uploads/2016/02/005-VPC06.png" caption="Figure 7: Create a Security Group for Memcached" %}
 
-For the newly created Memcached security group, add an Inbound Rule. Select &#8220;Custom TCP Rule&#8221; with the protocol TCP and the port range 11211. As the Source you can select the IP range of your newly created VPC or limit it even further to the public subnets (See Figure 8).
+For the newly created Memcached security group, add an Inbound Rule. Select "Custom TCP Rule" with the protocol TCP and the port range 11211. As the Source you can select the IP range of your newly created VPC or limit it even further to the public subnets (See Figure 8).
 
 {% include figure image_path="/content/uploads/2016/02/005-VPC07.png" caption="Figure 8: Configure the Inbound Rules for the Memcached Security Group" %}
 
@@ -87,7 +87,7 @@ Next, create a Security Group for Railgun traffic (See Figure 9).
 
 {% include figure image_path="/content/uploads/2016/02/005-VPC08.png" caption="Figure 9: Create a Security Group for Railgun" %}
 
-For the newly created Railgun security group, add an Inbound Rule. Select &#8220;Custom TCP Rule&#8221; with the protocol TCP and the port range 2408. As the Source you can select 0.0.0.0/0 to open up access to all of the public Internet. As an alternative you could limit access even further to the [CloudFlare IP ranges](https://www.cloudflare.com/ips/) only (See Figure 8).
+For the newly created Railgun security group, add an Inbound Rule. Select "Custom TCP Rule" with the protocol TCP and the port range 2408. As the Source you can select 0.0.0.0/0 to open up access to all of the public Internet. As an alternative you could limit access even further to the [CloudFlare IP ranges](https://www.cloudflare.com/ips/) only (See Figure 8).
 
 {% include figure image_path="/content/uploads/2016/02/005-VPC09.png" caption="Figure 10: Configure the Inbound Rules for the Railgun Security Group" %}
 
@@ -103,7 +103,7 @@ Lookup the subnet IDs for the two private subnets that you created and start the
 
 {% include figure image_path="/content/uploads/2016/02/006-ElastiCache01.png" caption="Figure 11: Create a Cache Subnet Group for Memcached" %}
 
-Next start the creation of a new ElastiCache cluster and chose the engine type &#8220;Memcached&#8221; (See Figure 12).
+Next start the creation of a new ElastiCache cluster and chose the engine type "Memcached" (See Figure 12).
 
 {% include figure image_path="/content/uploads/2016/02/007-ElastiCache02.png" caption="Figure 12: Create an ElastiCache cluster with the engine Memcached - Step 1" %}
 
@@ -111,7 +111,7 @@ Chose the node type depending on your performance needs and select the number of
 
 {% include figure image_path="/content/uploads/2016/02/008-ElastiCache03.png" caption="Figure 13: Create an ElastiCache cluster with the engine Memcached - Step 2" %}
 
-Select the Cache Subnet Group that you created at the beginning of this section. Use the Availability Zone policy of &#8220;Spread Nodes Across Zones&#8221;. This will ensure that in case of a Availability Zone failure, you still have one ElastiCache node left. For the VPC Security Group select the &#8220;Memcached&#8221; security group that you created (See Figure 14).
+Select the Cache Subnet Group that you created at the beginning of this section. Use the Availability Zone policy of "Spread Nodes Across Zones". This will ensure that in case of a Availability Zone failure, you still have one ElastiCache node left. For the VPC Security Group select the "Memcached" security group that you created (See Figure 14).
 
 {% include figure image_path="/content/uploads/2016/02/009-ElastiCache04.png" caption="Figure 14: Create an ElastiCache cluster with the engine Memcached - Step 3" %}
 
@@ -127,7 +127,7 @@ The Elastic Load Balancer (ELB) serves the purpose of distributing incoming traf
 
 This configuration also allows to scale out the number of Railgun nodes or scale up the size of the Railgun nodes, without impacting production traffic.
 
-Create a new ELB inside the VPC that you are using for the Railgun setup. For the Listener Configuration chose TCP as the Load Balancer as well as Instance protocol. Enter &#8220;2408&#8221; as the Load Balancer and Instance port. For the subnets, select the two public subnets that you created earlier (See Figure 16).
+Create a new ELB inside the VPC that you are using for the Railgun setup. For the Listener Configuration chose TCP as the Load Balancer as well as Instance protocol. Enter "2408" as the Load Balancer and Instance port. For the subnets, select the two public subnets that you created earlier (See Figure 16).
 
 {% include figure image_path="/content/uploads/2016/02/011-ELB01.png" caption="Figure 16: Define an Elastic Load Balancer - Step 1" %}
 
@@ -141,7 +141,7 @@ Next, configure the Health Check. This will determine how the ELB will probe the
 
 In the next step you would add the various instances to the ELB. As we have not yet created any Railgun instances, we will not add any instance here.
 
-Instead we will solely ensure that the box for &#8220;Enable Cross-Zone Load Balancing&#8221; has been ticked (See Figure 19).
+Instead we will solely ensure that the box for "Enable Cross-Zone Load Balancing" has been ticked (See Figure 19).
 
 {% include figure image_path="/content/uploads/2016/02/014-ELB04.png" caption="Figure 19: Define an Elastic Load Balancer - Step 4" %}
 
@@ -191,7 +191,7 @@ Give your Launch Configuration a name and paste the above script into User Data 
 
 {% include figure image_path="/content/uploads/2016/02/019-EC2_02.png" caption="Figure 24: Create a Launch Configuration - Step 2" %}
 
-Within the Security Group configuration step, select the existing security group &#8220;Railgun&#8221; (See Figure 25). You have configured this security group in a previous step.
+Within the Security Group configuration step, select the existing security group "Railgun" (See Figure 25). You have configured this security group in a previous step.
 
 {% include figure image_path="/content/uploads/2016/02/020-EC2_03.png" caption="Figure 25: Create a Launch Configuration - Step 3" %}
 
@@ -203,11 +203,11 @@ Select the ELB that you configured under Load Balancing and pick ELB as the Heal
 
 {% include figure image_path="/content/uploads/2016/02/021-EC2_04.png" caption="Figure 26: Create an Auto Scaling Group - Step 1" %}
 
-As we are solely using the Auto Scaling capability to replace failed Railgun nodes, pick &#8220;Keep this group at its initial size&#8221; for the scaling policy (See Figure 27).
+As we are solely using the Auto Scaling capability to replace failed Railgun nodes, pick "Keep this group at its initial size" for the scaling policy (See Figure 27).
 
 {% include figure image_path="/content/uploads/2016/02/022-EC2_05.png" caption="Figure 27: Create an Auto Scaling Group - Step 2" %}
 
-Next provide what tags you want to apply to all EC2 instances that are created as part of the Auto Scaling group. It is highly recommended to at least define the tag &#8220;Name&#8221; (See Figure 28).
+Next provide what tags you want to apply to all EC2 instances that are created as part of the Auto Scaling group. It is highly recommended to at least define the tag "Name" (See Figure 28).
 
 {% include figure image_path="/content/uploads/2016/02/023-EC2_06.png" caption="Figure 28: Create an Auto Scaling Group - Step 3" %}
 
@@ -215,15 +215,15 @@ This not only concludes the configuration of the Auto Scaling setup, but of your
 
 ### Testing the setup
 
-Now, with the setup in place it&#8217;s time to wait for the Railgun nodes to boot up and configure correctly. You can head over to the ELB setup and look at the instances under the configured load balancer. While the nodes are still initializing you should see the status &#8220;OutOfService&#8221; displayed (See Figure 29).
+Now, with the setup in place it's time to wait for the Railgun nodes to boot up and configure correctly. You can head over to the ELB setup and look at the instances under the configured load balancer. While the nodes are still initializing you should see the status "OutOfService" displayed (See Figure 29).
 
 {% include figure image_path="/content/uploads/2016/02/024-STAT01.png" caption="Figure 29: Monitor the Load Balancer Instances" %}
 
-After a few minutes the status of the instances should change to &#8220;InService&#8221;, indicating that the Railgun Listener nodes are up and running and accept traffic over port TCP/2408 (See Figure 30).
+After a few minutes the status of the instances should change to "InService", indicating that the Railgun Listener nodes are up and running and accept traffic over port TCP/2408 (See Figure 30).
 
 {% include figure image_path="/content/uploads/2016/02/024-STAT01-.png" caption="Figure 30: ELB instances in status *InService*" %}
 
-Now you can login to the CloudFlare Dashboard and test the Railgun setup. If everything is working you should see a &#8220;compression\_ratio&#8221;, as well as &#8220;origin\_response_time&#8221; displayed (See Figure 31).
+Now you can login to the CloudFlare Dashboard and test the Railgun setup. If everything is working you should see a "compression\_ratio", as well as "origin\_response_time" displayed (See Figure 31).
 
 {% include figure image_path="/content/uploads/2016/02/023-RG01.png" caption="Figure 31: Validate the functionality of Railgun" %}
 
