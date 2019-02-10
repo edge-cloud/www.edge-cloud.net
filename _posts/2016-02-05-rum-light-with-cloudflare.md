@@ -175,4 +175,4 @@ By combining data from the custom dimension with data collected by Google Analyt
 
 This article has shown you, that you can easily built your own Real User Monitoring system with Google Analytics Custom dimension and some JavaScript code. It allows you to extract many interesting metrics out of your CloudFlare usage and make it available in Google Analytics for further data analysis.
 
-Not only has this site been using the above described method since November 2015, but also another [HTTP/2 adoption](https://www.cloudflare.com"), which has provided [interesting insights](https://blog.cloudflare.com/introducing-http2/) into the [deployment of IPv6](https://blog.cloudflare.com/cloudflares-impact-on-the-http-2-universe/).
+Not only has this site been using the above described method since November 2015, but also another [HTTP/2 adoption](https://www.cloudflare.com"), which has provided [interesting insights](https://blog.cloudflare.com/introducing-http2/) into the [HTTP/2 adoption](https://blog.cloudflare.com/cloudflares-impact-on-the-http-2-universe/).
