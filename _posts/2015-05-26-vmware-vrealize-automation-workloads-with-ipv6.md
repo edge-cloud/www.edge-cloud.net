@@ -16,7 +16,7 @@ tags:
   - NSX
   - VMware
 ---
-Unfortunately VMware&#8217;s primary Cloud Management Platform (CMP) for the Enterprise, VMware vRealize Automation (vRA) does not support IPv6-enabled workloads out of the box. This applies to IPv6-only workloads as well as IPv4/IPv6 Dualstack workloads.
+Unfortunately VMware's primary Cloud Management Platform (CMP) for the Enterprise, VMware vRealize Automation (vRA) does not support IPv6-enabled workloads out of the box. This applies to IPv6-only workloads as well as IPv4/IPv6 Dualstack workloads.
 
 The reason for this shortcoming can partially be found within vRA, which lacks the ability to manage the lifecycle of an IPv6 enabled VM as well as associated networks. But it is also due to the lacking support of automatic IPv6 address assignment towards VMs in VMware NSX, which provides advanced network capabilities in vRA.
 
@@ -24,9 +24,9 @@ With various workarounds it is nevertheless possible to utilize VMware vRealize 
 
 ### vRealize Automation Network profiles
 
-VMware&#8217;s vRealize Automation provides four different kinds of “network profiles”, which become part of a blueprint and therefore determine how the Virtual Machines within such a blueprint are connected to the network.
+VMware's vRealize Automation provides four different kinds of “network profiles”, which become part of a blueprint and therefore determine how the Virtual Machines within such a blueprint are connected to the network.
 
-Let&#8217;s have a brief look at each of them, in order to understand where to start with possible workarounds:
+Let's have a brief look at each of them, in order to understand where to start with possible workarounds:
 
   * **Private:** Here the VMs of an instantiated blueprint would not have outbound connectivity, but instead all networking would be isolated (contained) within the instantiated blueprint. Such a network can include a virtual router but does not have to. For our IPv6 with VMware vRealize Automation (vRA) use case this profile is irrelevant (see Figure 1). <div id="attachment_1621" style="width: 532px" class="wp-caption aligncenter">
       <img src="/content/uploads/2015/05/vRA_Profile_Private.png" alt="Figure 1: vRA Network Profile: Private" width="522" height="295" class="size-full wp-image-1621" srcset="/content/uploads/2015/05/vRA_Profile_Private.png 522w, /content/uploads/2015/05/vRA_Profile_Private-360x203.png 360w" sizes="(max-width: 522px) 100vw, 522px" />
@@ -48,7 +48,7 @@ Let&#8217;s have a brief look at each of them, in order to understand where to s
       </p>
     </div>
 
-  * **Routed:** This profile is very similar to the NAT profile, except that the virtual router does not provide NAT gateway capabilities, but instead routes the subnets (In the below figure it&#8217;s 3 of them: “Web”, “App”, and “Database”) to the upstream router via static, or better dynamic routing (See Figure 3). <div id="attachment_1626" style="width: 574px" class="wp-caption aligncenter">
+  * **Routed:** This profile is very similar to the NAT profile, except that the virtual router does not provide NAT gateway capabilities, but instead routes the subnets (In the below figure it's 3 of them: “Web”, “App”, and “Database”) to the upstream router via static, or better dynamic routing (See Figure 3). <div id="attachment_1626" style="width: 574px" class="wp-caption aligncenter">
       <img src="/content/uploads/2015/05/vRA_Profile_Routed.png" alt="Figure 3: vRealize Automation Network Profile: Routed" width="564" height="296" class="size-full wp-image-1626" srcset="/content/uploads/2015/05/vRA_Profile_Routed.png 564w, /content/uploads/2015/05/vRA_Profile_Routed-360x189.png 360w" sizes="(max-width: 564px) 100vw, 564px" />
 
       <p class="wp-caption-text">

@@ -94,13 +94,13 @@ The SDDC based on a VMware Validated Design use two main network segments:
 
     Performing such a DNS update can be easily done using corresponding <a href="http://dyn.com/dns/" target="_blank">Dynamic DNS services</a> on the Internet, <a href="http://gnudip2.sourceforge.net/" target="_blank">building your own</a> equivalent or using a <a href="https://gallery.technet.microsoft.com/scriptcenter/Update-DNS-records-with-da10910d" target="_blank">simple script</a> to update you Microsoft DNS server.
 
-    Again, no dynamic routing updates are necessary after a SRM failover towards the business network. In fact, you don&#8217;t even need to run dynamic routing towards the business network unless you want to.
+    Again, no dynamic routing updates are necessary after a SRM failover towards the business network. In fact, you don't even need to run dynamic routing towards the business network unless you want to.
 
     ### Virtual PODs and SRM failover testing
 
     An interesting, but also very important feature of VMware Site Recovery Manager (SRM) is the ability to test a failover. In this case the application remains operational and untouched in the primary location. In the recovery location a second instance of the application is created based on a snapshot of the most recent replicated data. While this failover-test application is running, replication between sites is unaffected. Also after the test completes the failover-test application along with the snapshot data can be discarded.
 
-    With the Virtual PODs you can test the functionality of the failover-test application in the actual environment that the application would be restored to. No special test network constructs are necessary. Instead you deploy the failover-test application into the second regions vPOD where you can access this application under the corresponding Virtual IP. You could even place a test DNS entry on this VIP. As long as you don&#8217;t touch the DNS entry for the primary application it will not be affected.
+    With the Virtual PODs you can test the functionality of the failover-test application in the actual environment that the application would be restored to. No special test network constructs are necessary. Instead you deploy the failover-test application into the second regions vPOD where you can access this application under the corresponding Virtual IP. You could even place a test DNS entry on this VIP. As long as you don't touch the DNS entry for the primary application it will not be affected.
 
     ### Summary
 

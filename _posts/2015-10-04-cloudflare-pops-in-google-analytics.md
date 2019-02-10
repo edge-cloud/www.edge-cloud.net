@@ -20,7 +20,7 @@ This article will help you visualize the global presence of your website, when u
 
 <a href="https://www.cloudflare.com/a/sign-up" target="_blank">Signing up</a>&nbsp;wit CloudFlare is easy and free and usually only takes 5 minutes.
 
-### About CloudFlare&#8217;s Points-of-Presence
+### About CloudFlare's Points-of-Presence
 
 CloudFlare currently uses 63 data centers worldwide as points-of-presence to deliver fast and secure website traffic (See Figure 1).
 
@@ -34,7 +34,7 @@ CloudFlare currently uses 63 data centers worldwide as points-of-presence to del
 
 
 
-Wouldn&#8217;t it be great to get insight into how much these worldwide locations help you with your website? In this post you will learn how to get started by gaining insight into which CloudFlare location delivers your website traffic.
+Wouldn't it be great to get insight into how much these worldwide locations help you with your website? In this post you will learn how to get started by gaining insight into which CloudFlare location delivers your website traffic.
 
 ### Create a custom dimension in Google Analytics
 
@@ -52,7 +52,7 @@ First, set up a custom dimensions for the location of the CloudFlare PoP that se
     Choose to track at the Hit, Session, User, or Product level. For this scenario I recommend to choose Hit or rather Session.
   7. Check the **Active** box to start collecting data and see the dimension in your reports right away. To create the dimension but have it remain inactive, uncheck the box.
   8. Click **Create**.
-  9. Note down the dimension ID from the displayed example codes. In the example for this blog post the dimension ID is &#8220;1&#8221; (See Figure 2).
+  9. Note down the dimension ID from the displayed example codes. In the example for this blog post the dimension ID is "1" (See Figure 2).
 
 <div id="attachment_1883" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2015/10/Create-Custom-Dimension.png"><img src="/content/uploads/2015/10/Create-Custom-Dimension-600x210.png" alt="Figure 2: Create a Google Analytics Custom Dimension" width="600" height="210" class="size-large wp-image-1883" srcset="/content/uploads/2015/10/Create-Custom-Dimension-600x210.png 600w, /content/uploads/2015/10/Create-Custom-Dimension-350x123.png 350w, /content/uploads/2015/10/Create-Custom-Dimension.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -66,11 +66,11 @@ First, set up a custom dimensions for the location of the CloudFlare PoP that se
 
 Next we need to embed the Google Analytics tracking code within the website, in order to fill the newly created custom dimension with data. This tracking code has to be placed between the code for creating the Google Analytics tracker, which looks like this: `__gaTracker('create','UA-12345678-1','auto');`, and the code to submit the tracker, which looks like this `__gaTracker('send','pageview');`.
 
-If you are using WordPress the easiest way to include the custom tracking code is by using the &#8220;<a href="https://wordpress.org/plugins/google-analytics-for-wordpress/" target="_blank">Google Analytics by Yoast</a>&#8221; plugin. This plugin allows you under _Advanced > Custom Code_ to embed the below code right away and without any coding requirements.
+If you are using WordPress the easiest way to include the custom tracking code is by using the "<a href="https://wordpress.org/plugins/google-analytics-for-wordpress/" target="_blank">Google Analytics by Yoast</a>" plugin. This plugin allows you under _Advanced > Custom Code_ to embed the below code right away and without any coding requirements.
 
-But first we have to actually determine the CloudFlare PoP location that serves a request. For this we can use the HTTP response header &#8220;cf-ray&#8221;, which is added by CLoudFlare for troubleshooting purposes. It includes a numeric value, as well as the <a href="https://www.cloudflarestatus.com/" target="_blank">location code</a> of the CloudFlare PoP.
+But first we have to actually determine the CloudFlare PoP location that serves a request. For this we can use the HTTP response header "cf-ray", which is added by CLoudFlare for troubleshooting purposes. It includes a numeric value, as well as the <a href="https://www.cloudflarestatus.com/" target="_blank">location code</a> of the CloudFlare PoP.
 
-The below JavaScript code will read the &#8220;cf-ray&#8221; response header, extract the location ID and push it into the Google Analytics custom dimension variable. Ensure that the numeric ID of this custom dimension variable matches what you have created in above steps.
+The below JavaScript code will read the "cf-ray" response header, extract the location ID and push it into the Google Analytics custom dimension variable. Ensure that the numeric ID of this custom dimension variable matches what you have created in above steps.
 
 <pre>function loc(){
 var req = new XMLHttpRequest();
@@ -86,13 +86,13 @@ A few hours after embedding the code you should see your first custom dimension 
 
 ### Create a custom report in Google Analytics
 
-You can now create custom reports with the custom dimension in Google Analytics. A simple example would be to determine which CloudFlare PoP serves how many of your audience&#8217;s session.
+You can now create custom reports with the custom dimension in Google Analytics. A simple example would be to determine which CloudFlare PoP serves how many of your audience's session.
 
   1. Make sure you are still signed in to <a href="https://www.google.com/analytics/web/#home/" target="_blank">Google Analytics</a>.
   2. Select the **Customization** tab and click on **New Custom Report**.
   3. **Name** your Custom Report here.
-  4. Select a Metric for which you want to see your Custom Dimensions. I recommend the metric &#8220;Sessions&#8221; within the &#8220;Users&#8221; Metric Group.
-  5. Next select the custom dimension that you created as the &#8220;Dimension Drilldown&#8221; (See Figure 3).
+  4. Select a Metric for which you want to see your Custom Dimensions. I recommend the metric "Sessions" within the "Users" Metric Group.
+  5. Next select the custom dimension that you created as the "Dimension Drilldown" (See Figure 3).
   6. Click on the **Save** button.
 
 <div id="attachment_1879" style="width: 610px" class="wp-caption aligncenter">
@@ -101,7 +101,7 @@ You can now create custom reports with the custom dimension in Google Analytics.
   <p class="wp-caption-text">
     Figure 3: Create a Custom Report in Google Analytics
   </p>
-</div>The resulting Custom Report will show you how many session &#8211; in total numbers, but also in percent &#8211; were served by which CloudFlare PoP. Using the &#8220;Percantage&#8221; button you can quickly generate a pie chart with the data (See Figure 4). In the example below you can see that the three most used CloudFlare PoPs for this site are San Jose, Chicago and Frankfurt (Germany).
+</div>The resulting Custom Report will show you how many session &#8211; in total numbers, but also in percent &#8211; were served by which CloudFlare PoP. Using the "Percantage" button you can quickly generate a pie chart with the data (See Figure 4). In the example below you can see that the three most used CloudFlare PoPs for this site are San Jose, Chicago and Frankfurt (Germany).
 
 <div id="attachment_1880" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2015/10/CloudFlare-PoP-Utilization.png"><img src="/content/uploads/2015/10/CloudFlare-PoP-Utilization-600x288.png" alt="Figure 4: Your CloudFlare PoP utilization" width="600" height="288" class="size-large wp-image-1880" srcset="/content/uploads/2015/10/CloudFlare-PoP-Utilization-600x288.png 600w, /content/uploads/2015/10/CloudFlare-PoP-Utilization-350x168.png 350w, /content/uploads/2015/10/CloudFlare-PoP-Utilization.png 1185w" sizes="(max-width: 600px) 100vw, 600px" /></a>

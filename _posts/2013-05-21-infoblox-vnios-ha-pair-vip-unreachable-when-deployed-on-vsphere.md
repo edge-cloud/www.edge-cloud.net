@@ -13,7 +13,7 @@ tags:
   - Infoblox
   - VMware
 ---
-Yesterday I stumbled over an interesting networking problem while deploying an <a href="https://www.infoblox.com/" title="Infoblox" target="_blank">Infoblox</a> vNIOS IPAM HA pair on a fresh installation of VMware vSphere: After setting up the vNIOS appliances to act as an HA pair, it&#8217;s floating virtual IP address was not reachable from the rest of the network. Yet, at the same time the individual IP addresses of the LAN interface were reachable.
+Yesterday I stumbled over an interesting networking problem while deploying an <a href="https://www.infoblox.com/" title="Infoblox" target="_blank">Infoblox</a> vNIOS IPAM HA pair on a fresh installation of VMware vSphere: After setting up the vNIOS appliances to act as an HA pair, it's floating virtual IP address was not reachable from the rest of the network. Yet, at the same time the individual IP addresses of the LAN interface were reachable.
 
 The cause for this issue is rooted in the way Infoblox implements the HA functionality &#8211; which is similar to the implementation of HA in various other product &#8211; but especially to the default security settings of a vDS and vSwitch in vSphere.
 
@@ -39,10 +39,10 @@ As a result frames from the above mentioned floating MAC address are discarded b
   <img src="/content/uploads/2013/05/PortGroupSecurity.png" alt="Figure 2: Allow &quot;MAC address changes&quot; and &quot;Forged Transmits&quot; on a vDS" width="1114" height="749" class="size-full wp-image-125" srcset="/content/uploads/2013/05/PortGroupSecurity.png 1114w, /content/uploads/2013/05/PortGroupSecurity-300x201.png 300w, /content/uploads/2013/05/PortGroupSecurity-1024x688.png 1024w" sizes="(max-width: 1114px) 100vw, 1114px" />
 
   <p class="wp-caption-text">
-    <br />Figure 2: Allow &#8220;MAC address changes&#8221; and &#8220;Forged Transmits&#8221; on a vDS
+    <br />Figure 2: Allow "MAC address changes" and "Forged Transmits" on a vDS
   </p>
 </div>
 
 
 
-In order to fix this issue, the port-profile to which the vNIOS HA and LAN ports connect to, have to allow more than one MAC address per vNIC. This can be done by changing the security settings of the port-group to accept &#8220;MAC address changes&#8221; and &#8220;Forged transmits&#8221;, as shown in Figure 2.
+In order to fix this issue, the port-profile to which the vNIOS HA and LAN ports connect to, have to allow more than one MAC address per vNIC. This can be done by changing the security settings of the port-group to accept "MAC address changes" and "Forged transmits", as shown in Figure 2.

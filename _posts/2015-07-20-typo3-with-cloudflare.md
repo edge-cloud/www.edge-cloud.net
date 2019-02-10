@@ -13,7 +13,7 @@ categories:
 tags:
   - Cloudflare
 ---
-<a href="https://www.cloudflare.com/" target="_blank">Cloudflare</a> provides a content delivery network and distributed domain name server services to help secure and accelerate websites. This cloud-based service sits between the visitor and the CloudFlare user&#8217;s hosting provider, acting as a reverse proxy for the website. While the majority of web content management systems have no problem with such an approach out of the box, TYPO3 is different. There are some minor settings that need to be changed for this combination to work. This article will show you how to accomplish this.
+<a href="https://www.cloudflare.com/" target="_blank">Cloudflare</a> provides a content delivery network and distributed domain name server services to help secure and accelerate websites. This cloud-based service sits between the visitor and the CloudFlare user's hosting provider, acting as a reverse proxy for the website. While the majority of web content management systems have no problem with such an approach out of the box, TYPO3 is different. There are some minor settings that need to be changed for this combination to work. This article will show you how to accomplish this.
 
 
 
@@ -35,7 +35,7 @@ As a result you could access a website like example.com under http://www.example
 
 Most content management system allow a website to be accessed both via HTTP and HTTPS by using relative links to include content, such as style sheets or images. TYPO3 unfortunately traditionally uses absolute URLs, which leads to a broken website when visiting a TYPO3 instance that was setup for HTTP via HTTPS or vice versa.
 
-While this has been fixed in newer version of TYPO3, this legacy behavior can still be found in older versions or after upgrades where the configuration wasn&#8217;t adapted accordingly.
+While this has been fixed in newer version of TYPO3, this legacy behavior can still be found in older versions or after upgrades where the configuration wasn't adapted accordingly.
 
 It is very easy and straight forward to change this behavior though. Doing so will instruct TYPO3 to change the Base URL depending on how the content was accessed via Cloudflare, acting as a Reverse Proxy. This means that if an end-user connects to a website via Cloudflare and HTTPS, the Base URL in TYPO3 will include https://, even though the origin server was contacted via HTTP by Cloudflare.
 
@@ -49,7 +49,7 @@ Use the following Typoscript with Condition inside your main template.
 
 > [global]
 
-Don&#8217;t forget to change the sample URL www.example.com with your actual domain.
+Don't forget to change the sample URL www.example.com with your actual domain.
 
 The better alternative would be to use the more current <a href="https://buzz.typo3.org/people/soeren-malling/article/baseurl-is-dead-long-live-absrefprefix/" target="_blank">config.absRefPrefix</a> capability instead of the legacy config.baseURL. This configuration item would instruct TYPO3 to use relative URLs instead of absolute URLs.
 
@@ -65,15 +65,15 @@ But there is also an easy fix for this behavior. TYPO3 allows the configuration 
 
 Just add the following entries to your _typo3conf/localconf.php_ file.
 
-> $GLOBALS\[&#8216;TYPO3\_CONF\_VARS&#8217;\]\[&#8216;SYS&#8217;\][&#8216;reverseProxyIP&#8217;] = &#8216;*&#8217;;
+> $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxyIP'] = '*';
 
-> $GLOBALS\[&#8216;TYPO3\_CONF\_VARS&#8217;\]\[&#8216;SYS&#8217;\][&#8216;reverseProxyHeaderMultiValue&#8217;] = &#8216;first&#8217;;
+> $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxyHeaderMultiValue'] = 'first';
 
-> $GLOBALS\[&#8216;TYPO3\_CONF\_VARS&#8217;\]\[&#8216;SYS&#8217;\][&#8216;reverseProxySSL&#8217;] = &#8216;*&#8217;;
+> $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxySSL'] = '*';
 
-> $GLOBALS\[&#8216;TYPO3\_CONF\_VARS&#8217;\]\[&#8216;SYS&#8217;\][&#8216;trustedHostsPattern&#8217;] = &#8216;(www.)?example.com&#8217;;
+> $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['trustedHostsPattern'] = '(www.)?example.com';
 
-Don&#8217;t forget to change the sample URL www.example.com with your actual domain.
+Don't forget to change the sample URL www.example.com with your actual domain.
 
 ## CloudFlare extension for TYPO3
 

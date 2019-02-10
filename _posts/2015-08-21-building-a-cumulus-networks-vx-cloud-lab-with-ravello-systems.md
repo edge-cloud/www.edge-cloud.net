@@ -18,13 +18,13 @@ tags:
   - Network
   - Ravello-Systems
 ---
-<img src="/content/uploads/2015/08/Ravello_with_Cumulus2-360x185.png" alt="Ravello_with_Cumulus" width="360" height="185" class="alignleft size-medium wp-image-1752" srcset="/content/uploads/2015/08/Ravello_with_Cumulus2-360x185.png 360w, /content/uploads/2015/08/Ravello_with_Cumulus2.png 600w" sizes="(max-width: 360px) 100vw, 360px" />In a [previous post](https://www.edge-cloud.net/2013/06/13/arista-veos-on-vmware-esx/) I&#8217;ve already shown how to build a virtual network lab with Arista vEOS and VMware ESX. In this post we want to take this concept even further to the next level. Instead of Arista vEOS we will use the newly released [Cumulus Networks](https://cumulusnetworks.com/) Virtual Experience (VX) edition. And instead of VMware ESX we will use [Ravello Systems](https://www.ravellosystems.com/), allowing us to use <a href="https://aws.amazon.com/" target="_blank">AWS</a> or <a href="https://cloud.google.com/compute/" target="_blank">Google Compute Engine</a>.
+<img src="/content/uploads/2015/08/Ravello_with_Cumulus2-360x185.png" alt="Ravello_with_Cumulus" width="360" height="185" class="alignleft size-medium wp-image-1752" srcset="/content/uploads/2015/08/Ravello_with_Cumulus2-360x185.png 360w, /content/uploads/2015/08/Ravello_with_Cumulus2.png 600w" sizes="(max-width: 360px) 100vw, 360px" />In a [previous post](https://www.edge-cloud.net/2013/06/13/arista-veos-on-vmware-esx/) I've already shown how to build a virtual network lab with Arista vEOS and VMware ESX. In this post we want to take this concept even further to the next level. Instead of Arista vEOS we will use the newly released [Cumulus Networks](https://cumulusnetworks.com/) Virtual Experience (VX) edition. And instead of VMware ESX we will use [Ravello Systems](https://www.ravellosystems.com/), allowing us to use <a href="https://aws.amazon.com/" target="_blank">AWS</a> or <a href="https://cloud.google.com/compute/" target="_blank">Google Compute Engine</a>.
 
 **Elements used**
 
-Cumulus Networks provides a standard <a href="https://cumulusnetworks.com/what-we-do/" target="_blank">Linux based operating system for data center switches</a>, thus simplifying dramatically the data center operations. If you are familiar with running and operating Linux on a regular server, managing a Cumulus Network based switch shouldn&#8217;t be a big challenge for you. Also you can now finally leverage the hundreds of existing management, automation and monitoring tools that you know and love for Linux. <a href="https://cumulusnetworks.com/cumulus-vx/" target="_blank">Cumulus Networks Virtual Experience (VX)</a> is a community-supported virtual appliance that enables cloud admins and network engineers to preview and test Cumulus Networks technology at zero cost inside a virtual machine or standard X86 server.
+Cumulus Networks provides a standard <a href="https://cumulusnetworks.com/what-we-do/" target="_blank">Linux based operating system for data center switches</a>, thus simplifying dramatically the data center operations. If you are familiar with running and operating Linux on a regular server, managing a Cumulus Network based switch shouldn't be a big challenge for you. Also you can now finally leverage the hundreds of existing management, automation and monitoring tools that you know and love for Linux. <a href="https://cumulusnetworks.com/cumulus-vx/" target="_blank">Cumulus Networks Virtual Experience (VX)</a> is a community-supported virtual appliance that enables cloud admins and network engineers to preview and test Cumulus Networks technology at zero cost inside a virtual machine or standard X86 server.
 
-Ravello Systems provides a &#8220;<a href="https://www.ravellosystems.com/solutions/virtual-networking-labs" target="_blank">Smart Labs</a>&#8221; solution on top of AWS and Google Compute Engine (GCE) based on <a href="https://www.ravellosystems.com/technology/nested-virtualization" target="_blank">nested virtualization</a>. This allows you to run self-contained lab &#8220;capsules&#8221; with almost any kind of VMware or KVM based virtual machine in them. This approach &#8211; proven for years with the VMWorld labs &#8211; now allows you to use modern public clouds for test, training and demo purposes at a minimal cost. Specific for networking lab cases Ravello Systems provides <a href="https://www.ravellosystems.com/technology/software-defined-network" target="_blank">virtual L2 networking</a> on top of both AWS and GCE, allowing you to simulate very complex network scenarios.
+Ravello Systems provides a "<a href="https://www.ravellosystems.com/solutions/virtual-networking-labs" target="_blank">Smart Labs</a>" solution on top of AWS and Google Compute Engine (GCE) based on <a href="https://www.ravellosystems.com/technology/nested-virtualization" target="_blank">nested virtualization</a>. This allows you to run self-contained lab "capsules" with almost any kind of VMware or KVM based virtual machine in them. This approach &#8211; proven for years with the VMWorld labs &#8211; now allows you to use modern public clouds for test, training and demo purposes at a minimal cost. Specific for networking lab cases Ravello Systems provides <a href="https://www.ravellosystems.com/technology/software-defined-network" target="_blank">virtual L2 networking</a> on top of both AWS and GCE, allowing you to simulate very complex network scenarios.
 
 **Getting Started**
 
@@ -62,11 +62,11 @@ Once you have received your login credentials for your Ravello Systems account, 
   </p>
 </div>
 
-You can leave most of the settings as default, when importing the VM. Please note that you will need to add two network interfaces, resulting in a total of three network interfaces. It is recommended to call the first interface &#8220;eth0&#8221;, the second interface &#8220;swp1&#8221;, and the third interface &#8220;swp2&#8221;.
+You can leave most of the settings as default, when importing the VM. Please note that you will need to add two network interfaces, resulting in a total of three network interfaces. It is recommended to call the first interface "eth0", the second interface "swp1", and the third interface "swp2".
 
 **Creating an application**
 
-Next create an &#8220;application&#8221; within Ravello Systems that maps to your desired network architecture. Place four instance of the previously imported Cumulus Networks VX image into this application (See Figure 3). It is recommend to position them in a similar fashion to the network diagram in Figure 1. This will provide you a better overview and simplify the configuration.
+Next create an "application" within Ravello Systems that maps to your desired network architecture. Place four instance of the previously imported Cumulus Networks VX image into this application (See Figure 3). It is recommend to position them in a similar fashion to the network diagram in Figure 1. This will provide you a better overview and simplify the configuration.
 
 <div id="attachment_1799" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2015/08/Capture03.png"><img src="/content/uploads/2015/08/Capture03-600x402.png" alt="Figure 3: Basic application with 4 Cumulus Networks VX devices" width="600" height="402" class="size-large wp-image-1799" srcset="/content/uploads/2015/08/Capture03-600x402.png 600w, /content/uploads/2015/08/Capture03-350x234.png 350w, /content/uploads/2015/08/Capture03.png 1004w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -86,7 +86,7 @@ Next choose the first VM in your Ravello Systems application and give it a meani
   </p>
 </div>
 
-Also configure the interfaces &#8220;swp1&#8221; and &#8220;swp2&#8221; according to the network diagram in Figure 1. For this you have to change the IP configuration for each of the two interfaces from DHCP to static and enter the static IP address as well as network mask (See Figure 5).
+Also configure the interfaces "swp1" and "swp2" according to the network diagram in Figure 1. For this you have to change the IP configuration for each of the two interfaces from DHCP to static and enter the static IP address as well as network mask (See Figure 5).
 
 <div id="attachment_1801" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2015/08/Capture05.png"><img src="/content/uploads/2015/08/Capture05-600x297.png" alt="Figure 5: Network Configuration for Cumulus Networks devices" width="600" height="297" class="size-large wp-image-1801" srcset="/content/uploads/2015/08/Capture05-600x297.png 600w, /content/uploads/2015/08/Capture05-350x173.png 350w, /content/uploads/2015/08/Capture05.png 1351w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -98,9 +98,9 @@ Also configure the interfaces &#8220;swp1&#8221; and &#8220;swp2&#8221; accordin
 
 Entering these IP information will not actually configure the interfaces correspondingly inside the Cumulus Networks VX device. Instead it will instruct Ravello Systems to place the interfaces on separate network segments (See Figure 6).
 
-You should be able to see that by default all network interfaces would reside on the same network segment as it is the case for the so far unconfigured devices &#8220;Cumulus VX1&#8221;, &#8220;Cumulus VX2&#8221;, and &#8220;Cumulus VX3&#8221;.
+You should be able to see that by default all network interfaces would reside on the same network segment as it is the case for the so far unconfigured devices "Cumulus VX1", "Cumulus VX2", and "Cumulus VX3".
 
-For the configured device &#8220;Cumulus VX &#8211; Spine 1&#8221;, the interfaces &#8220;swp1&#8221; and &#8220;swp2&#8221; have already been moved to separate network segments.
+For the configured device "Cumulus VX &#8211; Spine 1", the interfaces "swp1" and "swp2" have already been moved to separate network segments.
 
 <div id="attachment_1802" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2015/08/Capture061.png"><img src="/content/uploads/2015/08/Capture061-600x369.png" alt="Figure 6: Mix of configured and unconfigured Cumulus Networks VX devices" width="600" height="369" class="size-large wp-image-1802" srcset="/content/uploads/2015/08/Capture061-600x369.png 600w, /content/uploads/2015/08/Capture061-350x215.png 350w, /content/uploads/2015/08/Capture061.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -126,7 +126,7 @@ The resulting network map within Ravello Systems should look like depicted in Fi
 
 You should see the four point-to-point network segments with two connections per segment.
 
-The fifth network segment, connecting to all devices provides external connectivity via the router symbol depicted at the bottom. This network segment connects to the management port &#8220;eth0&#8221; on the Cumulus Networks VX device.
+The fifth network segment, connecting to all devices provides external connectivity via the router symbol depicted at the bottom. This network segment connects to the management port "eth0" on the Cumulus Networks VX device.
 
 **Providing access via SSH**
 
@@ -142,7 +142,7 @@ If you select a single Cumulus Networks VX instance within your Ravello Systems 
 
 Once deployed you will be able to access each of the Cumulus Networks VX devices via the build-in Ravello Systems console. While the Ravello Systems console is a great way to interact with virtual machines, we also want to be able to use SSH access for accessing each of the Cumulus Networks VX devices. This will simplify the configuration in subsequent steps and feel more natural.
 
-For doing so, you have to add a &#8220;Service&#8221; for each of the VMs within your Ravello Systems application and configure it for SSH with port TCP/22 against the interface DHCP. The interface DHCP corresponds to eth0 (See Figure 9).
+For doing so, you have to add a "Service" for each of the VMs within your Ravello Systems application and configure it for SSH with port TCP/22 against the interface DHCP. The interface DHCP corresponds to eth0 (See Figure 9).
 
 
 
@@ -166,7 +166,7 @@ Returning to the Canvas view within Ravello Systems, you will see the four Cumul
 
 **Deploy the network testbed**
 
-Next we want to deploy &#8211; called &#8220;Publish&#8221; in Ravello Systems terms &#8211; the network testbed to either AWS or GCE, so that we can use it. To do so, just hit &#8220;Publish&#8221; and confirm the default settings to publish the testbed in the most cost effective location (See Figure 11).
+Next we want to deploy &#8211; called "Publish" in Ravello Systems terms &#8211; the network testbed to either AWS or GCE, so that we can use it. To do so, just hit "Publish" and confirm the default settings to publish the testbed in the most cost effective location (See Figure 11).
 
 <div id="attachment_1749" style="width: 351px" class="wp-caption aligncenter">
   <a href="/content/uploads/2015/08/Capture11.png"><img src="/content/uploads/2015/08/Capture11-341x360.png" alt="Figure 11: Deploy the Ravello Systems application" width="341" height="360" class="size-medium wp-image-1749" srcset="/content/uploads/2015/08/Capture11-341x360.png 341w, /content/uploads/2015/08/Capture11.png 569w" sizes="(max-width: 341px) 100vw, 341px" /></a>
@@ -182,7 +182,7 @@ By default the tesbed will only be deployed for 2 hours. After this it will be s
 
 After a few minutes your testbed should be published to either AWS or GCE and each VM should be up and running. At this point you can connect via SSH to each of the Cumulus Networks VX nodes.
 
-Use the hostname or IP address shown for each VM within the Ravello Systems Console along with the username &#8220;cumulus&#8221; and the password &#8220;CumulusLinux!&#8221; (See Figure 12).
+Use the hostname or IP address shown for each VM within the Ravello Systems Console along with the username "cumulus" and the password "CumulusLinux!" (See Figure 12).
 
 <div id="attachment_1807" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2015/08/Capture13.png"><img src="/content/uploads/2015/08/Capture13-600x309.png" alt="Figure 12: Accessing Cumulus Networks VX nodes via SSH" width="600" height="309" class="size-large wp-image-1807" srcset="/content/uploads/2015/08/Capture13-600x309.png 600w, /content/uploads/2015/08/Capture13-350x181.png 350w, /content/uploads/2015/08/Capture13.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -196,9 +196,9 @@ Keep in mind, that the Cumulus Network VX nodes are still unconfigured at this p
 
 **Basic network testbed configuration**
 
-In this step we want to perform basic network configuration and at least enable the Cumulus Networks VX nodes to communicate with each other. For this we will configure all &#8220;swp&#8221; interfaces on all devices as a routed port with the IPv4 address depicted in Figure 1.
+In this step we want to perform basic network configuration and at least enable the Cumulus Networks VX nodes to communicate with each other. For this we will configure all "swp" interfaces on all devices as a routed port with the IPv4 address depicted in Figure 1.
 
-We will start by connecting to Spine1 via SSH. Next configure the IPv4 addresses via editing the file &#8220;/etc/network/interfaces&#8221;. You can do so using &#8220;sudo&#8221; and your favorite browser:
+We will start by connecting to Spine1 via SSH. Next configure the IPv4 addresses via editing the file "/etc/network/interfaces". You can do so using "sudo" and your favorite browser:
 
 <pre>cumulus@cumulus$ sudo vi /etc/network/interfaces
 </pre>
@@ -219,7 +219,7 @@ Next restart the Cumulus Networks VX networking for the configuration to be appl
 <pre>cumulus@cumulus$ sudo service networking restart
 </pre>
 
-Repeat the above steps for the other three devices. Remember to adapt the IPv4 addresses in the file &#8220;/etc/network/interfaces&#8221; for the interfaces &#8220;swp1&#8221; and &#8220;swp2&#8221; according to the network diagram in Figure 1.
+Repeat the above steps for the other three devices. Remember to adapt the IPv4 addresses in the file "/etc/network/interfaces" for the interfaces "swp1" and "swp2" according to the network diagram in Figure 1.
 
 **Testing your network setup**
 
@@ -272,7 +272,7 @@ For each device within your testbed you should see the following four interfaces
   * swp1: Switchport interface with IPv4 address, connected to another spine or leaf switch
   * swp2: Switchport interface with IPv4 address, connected to another spine or leaf switch
 
-Next verify if you can ping the adjacent interface of another connected switch. From the device &#8220;Spine1&#8221; we can try to ping the interface &#8220;swp1&#8221; with the IPv4 address 10.1.0.2 on the switch &#8220;Leaf1&#8221;:
+Next verify if you can ping the adjacent interface of another connected switch. From the device "Spine1" we can try to ping the interface "swp1" with the IPv4 address 10.1.0.2 on the switch "Leaf1":
 
 <pre>cumulus@spine1$ ping -c 3 10.1.0.2
 PING 10.1.0.2 (10.1.0.2) 56(84) bytes of data.

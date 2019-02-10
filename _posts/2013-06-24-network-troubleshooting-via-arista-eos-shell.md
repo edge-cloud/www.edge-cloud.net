@@ -23,7 +23,7 @@ In this short post I want to show you two use cases where this capability comes 
 
 ### TCPDump to PCAP
 
-Quite frequently it happens that network devices aren&#8217;t behaving the way they should be. Let&#8217;s take the example of a virtual router that doesn&#8217;t want to form OSPFv3 adjacency with the core switch. What usually helps quite a bit are packet captures of the traffic between the involved network devices. In the past it could be quite challenging acquiring these packet captures, requiring the setup of a <a href="https://en.wikipedia.org/wiki/Port_mirroring" target="_blank">Switched Port Analyzer (SPAN)</a>, Remote Switched Port Analyzer (RSPAN) or even <a href="http://packetpushers.net/erspan-new-favorite-packet-capturing-trick/" target="_blank">Encapsulated Remote Switched Port Analyzer (ERSPAN)</a>.
+Quite frequently it happens that network devices aren't behaving the way they should be. Let's take the example of a virtual router that doesn't want to form OSPFv3 adjacency with the core switch. What usually helps quite a bit are packet captures of the traffic between the involved network devices. In the past it could be quite challenging acquiring these packet captures, requiring the setup of a <a href="https://en.wikipedia.org/wiki/Port_mirroring" target="_blank">Switched Port Analyzer (SPAN)</a>, Remote Switched Port Analyzer (RSPAN) or even <a href="http://packetpushers.net/erspan-new-favorite-packet-capturing-trick/" target="_blank">Encapsulated Remote Switched Port Analyzer (ERSPAN)</a>.
 
 With Arista EOS it becomes much easier, as you can run TCPDump directly on the switch to capture a PCAP file for Wireshark:
 
@@ -36,7 +36,7 @@ Arista Networks EOS shell
 [user@ams-core01a ~]$
 </pre>
 
-Next, start the pre-installed tcpdump in PCAP capturing mode on the desired interface. Here I run it on the VLAN interface _vlan51_ and capture the file into the flash. Once you&#8217;re done with the packet capture, press Ctrl + C to abort tcpdump:
+Next, start the pre-installed tcpdump in PCAP capturing mode on the desired interface. Here I run it on the VLAN interface _vlan51_ and capture the file into the flash. Once you're done with the packet capture, press Ctrl + C to abort tcpdump:
 
 <pre>[user@ams-core01a ~]$ tcpdump -i vlan51 -s 65535 -w /mnt/flash/int-vlan51.pcap
 tcpdump: listening on vlan51, link-type EN10MB (Ethernet), capture size 65535 bytes
@@ -72,7 +72,7 @@ The capture PCAP file can be opened directly in Wireshark as shown in Figure 1:
 
 In the previous blog post <a href="https://www.edge-cloud.net/2013/06/07/measuring-network-throughput/" title="Measuring Network Throughput" target="_blank"><em>Measuring Network Throughput</em></a>, I already showcased how to use iperf to measure the TCP throughput between two hosts. The good news: Arista EOS has iperf pre-installed. You can therefore use an Arista device to perform network throughput tests for TCP and UDP.
 
-Let&#8217;s have a look: If you are not yet in the EOS shell mode, change into it from the priviliged CLI mode:
+Let's have a look: If you are not yet in the EOS shell mode, change into it from the priviliged CLI mode:
 
 <pre>ams-core01a#bash
 
@@ -127,7 +127,7 @@ TCP window size: 16.0 KByte (default)
 
 If you read the blog post <a href="https://www.edge-cloud.net/2013/06/07/measuring-network-throughput/" title="Measuring Network Throughput" target="_blank"><em>Measuring Network Throughput</em></a>, you will remember that TCP throughput depends on the link latency and the TCP window size.
 
-In the above example we didn&#8217;t specify the TCP window size, but used the standard Linux auto-tuning TCP buffer limit. Here Arista has already done some tuning for us and set this auto-tuning TCP buffer limit to 4096 KByte.
+In the above example we didn't specify the TCP window size, but used the standard Linux auto-tuning TCP buffer limit. Here Arista has already done some tuning for us and set this auto-tuning TCP buffer limit to 4096 KByte.
 
 <pre>[user@ams-core01a ~]$ cat /proc/sys/net/ipv4/tcp_rmem
 4096    87380   4194304

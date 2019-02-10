@@ -62,14 +62,14 @@ The deployed architecture will include:
 
 ### Getting Started with AWS OpsWorks
 
-Let&#8217;s head over to the AWS OpsWorks console at <a href="https://console.aws.amazon.com/opsworks" target="_blank">console.aws.amazon.com/opsworks</a> to get started. Login with your existing AWS credentials. AWS OpsWorks itself is a global service and you therefore do not need to pick a region at this point.
+Let's head over to the AWS OpsWorks console at <a href="https://console.aws.amazon.com/opsworks" target="_blank">console.aws.amazon.com/opsworks</a> to get started. Login with your existing AWS credentials. AWS OpsWorks itself is a global service and you therefore do not need to pick a region at this point.
 
 Creating a service or application in AWS OpsWorks includes 4 steps (See Figure 3):
 
   1. **Add a stack:** Define a stack for an application which includes information about e.g. the AWS region. You can have multiple stacks in various regions.
   2. **Add layers:** Each stack consist of one or more layers, with each layer having a certain function. Here we will use a PHP App Server layer and a MySQL database layer.
   3. **Add an app:** Define the application to be run via a source code repository or file bundle. This includes the ability to use <a href="https://github.com/" target="_blank">Github</a> and <a href="https://en.wikipedia.org/wiki/Apache_Subversion" target="_blank">Subversion</a>, a simple Zip file via a HTTP or HTTPS URL or a ZIP file in a S3 bucket.
-  4. **Deploy and manage:** Deploy the application by starting the layer&#8217;s instances. Manage further capabilities such as deploying another application version at runtime.
+  4. **Deploy and manage:** Deploy the application by starting the layer's instances. Manage further capabilities such as deploying another application version at runtime.
 
 <div id="attachment_1118" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/02/Steps.png" alt="Figure 3: AWS OpsWorks Deployment Steps" width="600" height="155" class="size-full wp-image-1118" srcset="/content/uploads/2014/02/Steps.png 600w, /content/uploads/2014/02/Steps-360x93.png 360w, /content/uploads/2014/02/Steps-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -105,14 +105,14 @@ Next configure the basic information of your new stack. Give it a useful _Name_ 
   </p>
 </div>
 
-AWS OpsWorks uses the configuration management tool <a href="https://www.chef.io/chef/" target="_blank">Chef</a> to configure the EC2 instances within each layer. For this it provides so-called Chef &#8220;recipes&#8221; that describe how server applications (such as Apache or MySQL) are managed and how they are to be configured. These recipes describe a series of resources that should be in a particular state: packages that should be installed, services that should be running, or files that should be written.
+AWS OpsWorks uses the configuration management tool <a href="https://www.chef.io/chef/" target="_blank">Chef</a> to configure the EC2 instances within each layer. For this it provides so-called Chef "recipes" that describe how server applications (such as Apache or MySQL) are managed and how they are to be configured. These recipes describe a series of resources that should be in a particular state: packages that should be installed, services that should be running, or files that should be written.
 
 While AWS OpsWorks provides many useful recipes out of the box we want to add a few minor custom recipes. In particulare we will use two custom recipes which can be found at <a href="https://github.com/chriselsen/opsworks-cookbooks" target="_blank">https://github.com/chriselsen/opsworks-cookbooks</a>:
 
-  * AWS-Ubuntu: Configure an AWS Opsworks Ubuntu image with a swap space. This is aimed at t1.micro instances to prevent &#8220;out of memory&#8221; issues.
+  * AWS-Ubuntu: Configure an AWS Opsworks Ubuntu image with a swap space. This is aimed at t1.micro instances to prevent "out of memory" issues.
   * WordPress: Configure WordPress via the wp-config.php file to interact with the MySQL server. It can be used for a fresh install or a restore from a Backup using BackWPup. The wp-config.php will be filled with the IP address and credentials to access the MySQL server.
 
-You don&#8217;t need to understand or even recreate these recipes. I have provided them in a form that allows you to directly use them yourself.
+You don't need to understand or even recreate these recipes. I have provided them in a form that allows you to directly use them yourself.
 
 Within the Configuration Management section make sure the selected _Chef version_ is _11.4_ and that _Use custom Chef cookbooks_ is selected with _Yes_. Specify the _Repository type_ with _Git_ and the _Repository URL_ with _https://github.com/chriselsen/opsworks-cookbooks.git_ (See Figure 6).
 
@@ -131,7 +131,7 @@ The two things to tune will be:
   1. WWW Document Root permission: We want to change the www document root permission to the default user www-data under Ubuntu.
   2. Apache Prefork and Keepalive tuning: As we will be using the memory constraint EC2 flavor t1.micro, we want to make changes to the Apache Prefork and Keepalive settings to better adapt to this flavor type.
 
-In AWS Opsworks the setup and configuration of Apache is performed by Chef recipes that use various parameters which can be controlled by the user via a simple JSON file. This way we don&#8217;t have to create a custom Chef recipe or even manually perform changes of our servers. Instead we can look up the <a href="http://docs.aws.amazon.com/opsworks/latest/userguide/attributes-recipes-apache.html" target="_blank">apache2 attributes</a> which are configurable and create a custom JSON file.
+In AWS Opsworks the setup and configuration of Apache is performed by Chef recipes that use various parameters which can be controlled by the user via a simple JSON file. This way we don't have to create a custom Chef recipe or even manually perform changes of our servers. Instead we can look up the <a href="http://docs.aws.amazon.com/opsworks/latest/userguide/attributes-recipes-apache.html" target="_blank">apache2 attributes</a> which are configurable and create a custom JSON file.
 
 This JSON file will look as follows:
 
@@ -173,9 +173,9 @@ This completes the creation of the stack.
 
 ### Add Layers
 
-Next is the creation of the application stack layers. One for the PHP App Server layer and one for the MySQL database layer. Let&#8217;s start with the PHP App Server layer.
+Next is the creation of the application stack layers. One for the PHP App Server layer and one for the MySQL database layer. Let's start with the PHP App Server layer.
 
-After you finished creating the Stack you&#8217;ll end up on the _Stack_ tab. There under the _Add your first layer section_ click on _Add a layer_ (See Figure 8).
+After you finished creating the Stack you'll end up on the _Stack_ tab. There under the _Add your first layer section_ click on _Add a layer_ (See Figure 8).
 
 <div id="attachment_1113" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/02/Opsworks05.png" alt="Figure 8: Add Layer - Step 1" width="600" height="127" class="size-full wp-image-1113" srcset="/content/uploads/2014/02/Opsworks05.png 600w, /content/uploads/2014/02/Opsworks05-360x76.png 360w, /content/uploads/2014/02/Opsworks05-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -225,7 +225,7 @@ We are almost done with the layers. We only need to perform some minor changes o
   </p>
 </div>
 
-Although we have already pointed AWS OpsWorks to our custom Chef cookbooks, we still need to assign the individual recipes to the correct layer and lifecycle event. In AWS OpsWorks a layer has a sequence of <a href="http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-events.html" target="_blank">five lifecycle events</a>, each of which has an associated set of recipes that are specific to the layer. When an event occurs on a layer&#8217;s instance, AWS OpsWorks automatically runs the appropriate set of recipes.
+Although we have already pointed AWS OpsWorks to our custom Chef cookbooks, we still need to assign the individual recipes to the correct layer and lifecycle event. In AWS OpsWorks a layer has a sequence of <a href="http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-events.html" target="_blank">five lifecycle events</a>, each of which has an associated set of recipes that are specific to the layer. When an event occurs on a layer's instance, AWS OpsWorks automatically runs the appropriate set of recipes.
 
 For the PHP App Server layer we need to define the following two recipes to lifecycle events (See Figure 13).
 
@@ -252,7 +252,7 @@ This assigns a so-called elastic IP address to the PHP App Server EC2 instance, 
   </p>
 </div>
 
-Scroll down to the _Auto Healing_ section and make sure that _Auto healing enabled_ is set to _No_ (See Figure 15). As we will be using EC2 t1.micro instances, these instances can generate a very high load and/or memory usage &#8211; especially at boot time. With auto healing enabled it is possible that AWS OpsWorks interprets this as an issue and attempts to rectify it by recreating the corresponding EC2 instance. Therefore with this simple setup it&#8217;s safer to leave this turned off.
+Scroll down to the _Auto Healing_ section and make sure that _Auto healing enabled_ is set to _No_ (See Figure 15). As we will be using EC2 t1.micro instances, these instances can generate a very high load and/or memory usage &#8211; especially at boot time. With auto healing enabled it is possible that AWS OpsWorks interprets this as an issue and attempts to rectify it by recreating the corresponding EC2 instance. Therefore with this simple setup it's safer to leave this turned off.
 
 <div id="attachment_1121" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/02/Opsworks12.png" alt="Figure 15: Edit PHP Layer - Step 4" width="600" height="106" class="size-full wp-image-1121" srcset="/content/uploads/2014/02/Opsworks12.png 600w, /content/uploads/2014/02/Opsworks12-360x63.png 360w, /content/uploads/2014/02/Opsworks12-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -354,7 +354,7 @@ Return to the _Instances_ tab and click on _Start All Instances_ (See Figure 23)
   </p>
 </div>
 
-Once the instances are fully deployed, you&#8217;ll see the instances to move from the _stopped_ state to the _online_ state. Look up the IP address for the instance in the PHP App Server layer. This IP address should be marked with _EIP_ for Elastic IP (See Figure 24). This is the IP address under which your WordPress installation will be available.
+Once the instances are fully deployed, you'll see the instances to move from the _stopped_ state to the _online_ state. Look up the IP address for the instance in the PHP App Server layer. This IP address should be marked with _EIP_ for Elastic IP (See Figure 24). This is the IP address under which your WordPress installation will be available.
 
 <div id="attachment_1130" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/02/Opsworks21.png" alt="Figure 24: All instances are active" width="600" height="350" class="size-full wp-image-1130" srcset="/content/uploads/2014/02/Opsworks21.png 600w, /content/uploads/2014/02/Opsworks21-360x210.png 360w, /content/uploads/2014/02/Opsworks21-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -384,7 +384,7 @@ You can shutdown instances and restart them if you want to take a break in your 
 
 But in the case you want to keep the stack for disaster recovery purposes, you want the instances to be rebuild with the latest version of your application and database during the recovery. Therefore you will want to discard the EC2 instances while keeping the Elastic IP address.
 
-Therefore first power down all layer instances. Then delete the PHP App Server instance. Make sure to untick the box for _Delete Instance&#8217;s Elastic IP_ for the PHP App Server instance (See Figure 26). This way you can reuse the Elastic IP address when you spin up new instances again.
+Therefore first power down all layer instances. Then delete the PHP App Server instance. Make sure to untick the box for _Delete Instance's Elastic IP_ for the PHP App Server instance (See Figure 26). This way you can reuse the Elastic IP address when you spin up new instances again.
 
 <div id="attachment_1151" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/02/Opsworks23.png" alt="Figure 26: Keep the Elastic IP when deleting a PHP App Server instance" width="600" height="169" class="size-full wp-image-1151" srcset="/content/uploads/2014/02/Opsworks23.png 600w, /content/uploads/2014/02/Opsworks23-360x101.png 360w, /content/uploads/2014/02/Opsworks23-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -394,7 +394,7 @@ Therefore first power down all layer instances. Then delete the PHP App Server i
   </p>
 </div>
 
-Next delete the MySQL instance. Here select _Delete instance&#8217;s EBS volumes_ to delete the current database content (See Figure 27). The database content will be restored as part of the restore process from the backup in the S3 bucket.
+Next delete the MySQL instance. Here select _Delete instance's EBS volumes_ to delete the current database content (See Figure 27). The database content will be restored as part of the restore process from the backup in the S3 bucket.
 
 <div id="attachment_1152" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/02/Opsworks24.png" alt="Figure 27: Delete the instances EBS volume for the MySQL server" width="600" height="170" class="size-full wp-image-1152" srcset="/content/uploads/2014/02/Opsworks24.png 600w, /content/uploads/2014/02/Opsworks24-360x102.png 360w, /content/uploads/2014/02/Opsworks24-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />

@@ -81,7 +81,7 @@ Within the file "CloudWatchMetaData-swagger.json" change the ARN on line 50 to t
 
 Create a new Amazon API Gateway using "Import from Swagger" and pasting the content of the above file.
 
-This will automatically create the API Gateway with all it&#8217;s settings for you (See Figure 3).
+This will automatically create the API Gateway with all it's settings for you (See Figure 3).
 
 {% include figure image_path="/content/uploads/2016/10/Analytics_03.png" alt="Figure 3: Amazon API Gateway created from Swagger definition" caption="Figure 3: Amazon API Gateway created from Swagger definition" %}
 

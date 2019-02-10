@@ -13,9 +13,9 @@ categories:
 tags:
   - Cloudflare
 ---
-It happens to the best: Sometimes a web server just goes down. Ideally you would have redundancy in place for this case, with a second (or even more) web server(s) mirroring your page. But redundancy doesn&#8217;t come for free: It&#8217;s costly and might end up being complicated. Therefore you sometimes have no other choice, but to rely on a single origin web server for your web site. Especially when using a web hosting company you rely on whatever redundancy you are provide or more than often not provided with.
+It happens to the best: Sometimes a web server just goes down. Ideally you would have redundancy in place for this case, with a second (or even more) web server(s) mirroring your page. But redundancy doesn't come for free: It's costly and might end up being complicated. Therefore you sometimes have no other choice, but to rely on a single origin web server for your web site. Especially when using a web hosting company you rely on whatever redundancy you are provide or more than often not provided with.
 
-Nevertheless you do not want to display just nothing or a nondescript error page to your website users, when the hopefully rare moment hits and your web server does go down. One interesting approach is <a href="https://help.dyn.com/understanding-social-failover/" target="_blank">Dyn&#8217;s Social Failover</a> capability, which reroutes your web traffic to your Twitter feed, Facebook page, or another URL of your choice, in case your web server goes down.
+Nevertheless you do not want to display just nothing or a nondescript error page to your website users, when the hopefully rare moment hits and your web server does go down. One interesting approach is <a href="https://help.dyn.com/understanding-social-failover/" target="_blank">Dyn's Social Failover</a> capability, which reroutes your web traffic to your Twitter feed, Facebook page, or another URL of your choice, in case your web server goes down.
 
 ### Using CloudFlare
 
@@ -33,11 +33,11 @@ We can make use of this capability and instead of displaying a custom error page
 
 ### CloudFlare custom error pages as redirect
 
-Forwarding a web browser to another website via an HTML page is quite simple and straight forward. It basically requires a single line of HTML code. For a custom error page, CloudFlare requires certain content to be show within the page for troubleshooting. In our case we don&#8217;t really care about this information as we will anyways redirect the user. Nevertheless the special CloudFlare Error box has to be included, otherwise you are not able to later utilize the HTML page. A small trick is to change the background color of our redirect page to use a black background. This way end-users won&#8217;t be confused by any error message being displayed briefly.
+Forwarding a web browser to another website via an HTML page is quite simple and straight forward. It basically requires a single line of HTML code. For a custom error page, CloudFlare requires certain content to be show within the page for troubleshooting. In our case we don't really care about this information as we will anyways redirect the user. Nevertheless the special CloudFlare Error box has to be included, otherwise you are not able to later utilize the HTML page. A small trick is to change the background color of our redirect page to use a black background. This way end-users won't be confused by any error message being displayed briefly.
 
 ### Preparing the custom error page
 
-Let&#8217;s start by creating the custom error page. You can create and host this page on any place that is accessible from the Internet. This can be a temporary spot and can even be on the site that you want to use the redirect with. This page is only used briefly while CloudFlare downloads the custom error page. It will not be used during an actual outage.
+Let's start by creating the custom error page. You can create and host this page on any place that is accessible from the Internet. This can be a temporary spot and can even be on the site that you want to use the redirect with. This page is only used briefly while CloudFlare downloads the custom error page. It will not be used during an actual outage.
 
 In this example I place the below custom error page at `https://www.edge-cloud.net/redirect.html`.
 
@@ -53,7 +53,7 @@ In this example I place the below custom error page at `https://www.edge-cloud.n
 &lt;/html&gt;
 </pre>
 
-You can see in the third row the actual redirect, which in this case points to my Twitter home page. We also don&#8217;t want Robots to index this temporary redirect page and certainly not to follow the redirect link. That&#8217;s what the next line is for.
+You can see in the third row the actual redirect, which in this case points to my Twitter home page. We also don't want Robots to index this temporary redirect page and certainly not to follow the redirect link. That's what the next line is for.
 
 You can also see the CloudFlare error box ::CLOUDFLARE\_ERROR\_500S_BOX::, which must be included. More on this later.
 
@@ -71,7 +71,7 @@ Within your CloudFlare account navigate to the <a href="https://www.cloudflare.c
   </p>
 </div>
 
-Next find the box for &#8220;500 Class Errors&#8221;. This is the kind of error that would be displayed when your origin cannot be contacted by CloudFlare and your website cannot be served. Within this box click on the &#8220;Customize&#8221; button (See Figure 2).
+Next find the box for "500 Class Errors". This is the kind of error that would be displayed when your origin cannot be contacted by CloudFlare and your website cannot be served. Within this box click on the "Customize" button (See Figure 2).
 
 <div id="attachment_2118" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/01/Customize02.png" rel="attachment wp-att-2118"><img src="/content/uploads/2016/01/Customize02-600x126.png" alt="Figure 3: Customize 500 Class errors" width="600" height="126" class="size-large wp-image-2118" srcset="/content/uploads/2016/01/Customize02-600x126.png 600w, /content/uploads/2016/01/Customize02-350x73.png 350w, /content/uploads/2016/01/Customize02-768x161.png 768w, /content/uploads/2016/01/Customize02.png 981w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -81,7 +81,7 @@ Next find the box for &#8220;500 Class Errors&#8221;. This is the kind of error 
   </p>
 </div>
 
-Now provide the URL to your custom error page into the &#8220;Address of customized page&#8221; field. In this example it would be `https://www.edge-cloud.net/redirect.html`.
+Now provide the URL to your custom error page into the "Address of customized page" field. In this example it would be `https://www.edge-cloud.net/redirect.html`.
 
 Notice the warning that the CloudFlare error box ::CLOUDFLARE\_ERROR\_500S_BOX:: has to be included in the custom page (See Figure 3). Lucky for us, we already did this earlier.
 
@@ -93,7 +93,7 @@ Notice the warning that the CloudFlare error box ::CLOUDFLARE\_ERROR\_500S_BOX::
   </p>
 </div>
 
-Now you can click on the &#8220;Preview&#8221; button: A new tab will open in which you will briefly see a black page. Within a few moments this black page should redirect you to the site you selected. Once everything is working for you, click on the &#8220;Publish&#8221; button within the CloudFlare window. That&#8217;s it. You are all set.
+Now you can click on the "Preview" button: A new tab will open in which you will briefly see a black page. Within a few moments this black page should redirect you to the site you selected. Once everything is working for you, click on the "Publish" button within the CloudFlare window. That's it. You are all set.
 
 ### Summary
 

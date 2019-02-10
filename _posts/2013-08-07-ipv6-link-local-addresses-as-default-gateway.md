@@ -18,17 +18,17 @@ tags:
   - IPv6
   - Network
 ---
-One of the big benefits in IPv6 is the automatic configuration capability for hosts via <a href="https://www.edge-cloud.net/2013/11/18/ipv6-address-management-hosts/#Stateless_address_autoconfiguration_.28SLAAC.29" target="_blank">Stateless address autoconfiguration (SLAAC)</a>. Yet sometimes even in IPv6 one wants to solely manually configure hosts in a L2 segment. For this use case one needs to provide basic network information to the user configuring the host. This usually includes at least the IP address of the host along with the prefix length, the default gateway and the DNS resolver. Wouldn&#8217;t it be great if we could tell users that the default gateway and the DNS resolver are always the same, no matter what network segment the host is in? And wouldn&#8217;t it be great if these IPv6 addresses for default gateway and DNS resolver were short and easy to remember?
+One of the big benefits in IPv6 is the automatic configuration capability for hosts via <a href="https://www.edge-cloud.net/2013/11/18/ipv6-address-management-hosts/#Stateless_address_autoconfiguration_.28SLAAC.29" target="_blank">Stateless address autoconfiguration (SLAAC)</a>. Yet sometimes even in IPv6 one wants to solely manually configure hosts in a L2 segment. For this use case one needs to provide basic network information to the user configuring the host. This usually includes at least the IP address of the host along with the prefix length, the default gateway and the DNS resolver. Wouldn't it be great if we could tell users that the default gateway and the DNS resolver are always the same, no matter what network segment the host is in? And wouldn't it be great if these IPv6 addresses for default gateway and DNS resolver were short and easy to remember?
 
 ### IPv6 use case
 
-While it&#8217;s already possible to achieve something similar for the DNS resolver in IPv4, in IPv6 link-local addresses enable us to use the same default gateway in every network segment. Simplified speaking link-local addresses translate into having the same subnet available on each L2 segment. Thus this allows network engineers to configure the default gateway for client machines to be always the same. Here it doesn&#8217;t matter whether this default gateway for static routing is provided via a single interface, via <a href="https://en.wikipedia.org/wiki/Hot_Standby_Router_Protocol" target="_blank">Hot Standby Router Protocol (HSRP)</a> or <a href="https://en.wikipedia.org/wiki/Virtual_Router_Redundancy_Protocol" target="_blank">Virtual Router Redundancy Protocol (VRPP)</a>.
+While it's already possible to achieve something similar for the DNS resolver in IPv4, in IPv6 link-local addresses enable us to use the same default gateway in every network segment. Simplified speaking link-local addresses translate into having the same subnet available on each L2 segment. Thus this allows network engineers to configure the default gateway for client machines to be always the same. Here it doesn't matter whether this default gateway for static routing is provided via a single interface, via <a href="https://en.wikipedia.org/wiki/Hot_Standby_Router_Protocol" target="_blank">Hot Standby Router Protocol (HSRP)</a> or <a href="https://en.wikipedia.org/wiki/Virtual_Router_Redundancy_Protocol" target="_blank">Virtual Router Redundancy Protocol (VRPP)</a>.
 
-As a result a network engineer can give users a very simple to follow statement for manually configuring their hosts with IPv6: &#8220;The default gateway is always fe80::1&#8221;. Thanks to Anycast we can already make similar statements for e.g. DNS, with &#8220;The DNS resolvers are always fd53::11 and fd53::12&#8221;.
+As a result a network engineer can give users a very simple to follow statement for manually configuring their hosts with IPv6: "The default gateway is always fe80::1". Thanks to Anycast we can already make similar statements for e.g. DNS, with "The DNS resolvers are always fd53::11 and fd53::12".
 
 ### Network Design
 
-In the IPv4 world it is very common to use the first address within an IPv4 subnet as the default gateway, along with the second and third address potentially being used for individual HSRP/VRPP nodes. Thus on the network 192.168.0.0/24, the default gateway would usually be 192.168.0.1. In case of network architects using /24 networks for end-user facing usage, this often translates into the easy statement of &#8220;Always use the .1 as the default gateway.&#8221; With IPv6 we can simplify this statement further and use a link-local address as the default gateway.
+In the IPv4 world it is very common to use the first address within an IPv4 subnet as the default gateway, along with the second and third address potentially being used for individual HSRP/VRPP nodes. Thus on the network 192.168.0.0/24, the default gateway would usually be 192.168.0.1. In case of network architects using /24 networks for end-user facing usage, this often translates into the easy statement of "Always use the .1 as the default gateway." With IPv6 we can simplify this statement further and use a link-local address as the default gateway.
 
 In IPv6 Link-Local addresses are mandatory addresses according to <a href="https://tools.ietf.org/html/rfc4291" target="_blank">RFC 4291</a>. This means that all interfaces are required to have at least one Link-Local unicast address from the address block fe80::/10, which has been reserved for link-local unicast addressing. The actual link-local addresses are though assigned with the prefix fe80::/64.
 
@@ -42,7 +42,7 @@ After having decided to use the link-local address fe80::1 as the default gatewa
 
 Most network vendors offer a way for manually configuring an additional link-local address on an interface that slightly differs from the way a regular global unicast address is configured.
 
-Both Cisco and Brocade do not use a prefix-length as part of the configuration, but instead use the keyword &#8220;link-local&#8221;. Juniper on the other side treats configuring a link-local IPv6 address the same way as configuring a global unicast address.
+Both Cisco and Brocade do not use a prefix-length as part of the configuration, but instead use the keyword "link-local". Juniper on the other side treats configuring a link-local IPv6 address the same way as configuring a global unicast address.
 
 With a Cisco IOS device, the configuration would look like this:
 
@@ -105,11 +105,11 @@ Cisco#</pre>
 
 Be careful as Cisco IOS requires the interface name to be case sensitive. Also you cannot abbreviate it. This is definitely an annoyance that someone should file as a bug.
 
-You might wonder why we didn&#8217;t have to specify a zone index when we entered fe80::1 as the default gateway in Windows above. The answer to this can be found in <a href="https://tools.ietf.org/html/rfc4007#section-6" target="_blank">RFC 4007, section 6</a>, where it states: &#8220;An implementation should also support the concept of a &#8220;default&#8221; zone for each scope&#8221;. Thus Windows above is using this &#8220;default&#8221; zone.
+You might wonder why we didn't have to specify a zone index when we entered fe80::1 as the default gateway in Windows above. The answer to this can be found in <a href="https://tools.ietf.org/html/rfc4007#section-6" target="_blank">RFC 4007, section 6</a>, where it states: "An implementation should also support the concept of a "default" zone for each scope". Thus Windows above is using this "default" zone.
 
 ### What about DNS via Anycast?
 
-As mentioned earlier, Anycast &#8211; both in IPv4 and IPv6 &#8211; already gives us the possibility to provide end-users a single or single set of IP addresses for the DNS resolvers, irrespective of their physical location. But why should we &#8220;burn&#8221; a global unicast IPv6 address for this? Especially as these addresses can be quite long and hard to remember.
+As mentioned earlier, Anycast &#8211; both in IPv4 and IPv6 &#8211; already gives us the possibility to provide end-users a single or single set of IP addresses for the DNS resolvers, irrespective of their physical location. But why should we "burn" a global unicast IPv6 address for this? Especially as these addresses can be quite long and hard to remember.
 
 Here <a href="https://en.wikipedia.org/wiki/Unique_local_address" target="_blank">unique local addresses (ULA)</a> come to the rescue. In most cases ULA can be treated like <a href="https://tools.ietf.org/html/rfc1918" target="_blank">RFC 1918</a> addresses in IPv4. Prefixes in the fd00::/8 range have similar properties as those of the IPv4 private address ranges:
 
@@ -117,13 +117,13 @@ Here <a href="https://en.wikipedia.org/wiki/Unique_local_address" target="_blank
   * They are not guaranteed to be globally unique.
   * Reverse Domain Name System (DNS) entries (under ip6.arpa) for fd00::/8 ULAs cannot be delegated in the global DNS.
 
-It&#8217;s a good idea to keep DNS resolvers to be accessible from within an organization only, which is another good reason to use ULA for this use case. Also not everyone has the luxury to own an easy to remember IP address such as Google with 8.8.8.8 for their public resolver.
+It's a good idea to keep DNS resolvers to be accessible from within an organization only, which is another good reason to use ULA for this use case. Also not everyone has the luxury to own an easy to remember IP address such as Google with 8.8.8.8 for their public resolver.
 
-Therefore let&#8217;s use the addresses fd53::11 and fd53::12 for our internal DNS resolver, making them easy to remember, by combining the non-changeable ULA address part with 53 as DNS uses the protocol TCP/53 and UDP/53. We can even make up the story for end-users that &#8220;fd&#8221; stands for &#8220;fixed DNS&#8221;, helping them to remember this service IP.
+Therefore let's use the addresses fd53::11 and fd53::12 for our internal DNS resolver, making them easy to remember, by combining the non-changeable ULA address part with 53 as DNS uses the protocol TCP/53 and UDP/53. We can even make up the story for end-users that "fd" stands for "fixed DNS", helping them to remember this service IP.
 
-Yet, we will chose the last octect to be 11 and 12 instead of 1 and 2 to ensure that users don&#8217;t confuse these addresses with an default gateway.
+Yet, we will chose the last octect to be 11 and 12 instead of 1 and 2 to ensure that users don't confuse these addresses with an default gateway.
 
-With Anycast it&#8217;s actually not necessary to have two different IP addresses for a company-internal DNS resolver, as it&#8217;s a better idea to handle the failure of a DNS server via ther Anycast routing. But some applications and especially some humans are not happy, when they don&#8217;t see two different IP addresses for a DNS resolver.
+With Anycast it's actually not necessary to have two different IP addresses for a company-internal DNS resolver, as it's a better idea to handle the failure of a DNS server via ther Anycast routing. But some applications and especially some humans are not happy, when they don't see two different IP addresses for a DNS resolver.
 
 ### Where is it used in the wild?
 
@@ -135,9 +135,9 @@ So far I have not seen anyone using ULA for internal DNS resolver.
 
 ### Hall of shame
 
-Unfortunately there are various vendors out there, crippling their product&#8217;s IPv6 support and thus preventing usage of the above IPv6 deployment pattern.
+Unfortunately there are various vendors out there, crippling their product's IPv6 support and thus preventing usage of the above IPv6 deployment pattern.
 
-Examples for this are VMware ESXi, which dropped support for link-local addresses as default gateways in version 5.0 of the hypervisor. Even the Cisco documentation <a href="http://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Borderless_Networks/Internet_Edge/InternetEdgeIPv6.html#wp390490" target="_blank">&#8220;Deploying IPv6 in the Internet Edge&#8221;</a> picked up on this shortcoming.
+Examples for this are VMware ESXi, which dropped support for link-local addresses as default gateways in version 5.0 of the hypervisor. Even the Cisco documentation <a href="http://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Borderless_Networks/Internet_Edge/InternetEdgeIPv6.html#wp390490" target="_blank">"Deploying IPv6 in the Internet Edge"</a> picked up on this shortcoming.
 
 
 
@@ -149,7 +149,7 @@ Examples for this are VMware ESXi, which dropped support for link-local addresse
   </p>
 </div>
 
-Another example is Arista, which doesn&#8217;t support manually configuring link-local addresses yet:
+Another example is Arista, which doesn't support manually configuring link-local addresses yet:
 
 <pre>Arista(s2)(config-if-Vl51)#ipv6 address fe80::1/64
 % Configuring Link local addresses not yet supported</pre>
@@ -158,6 +158,6 @@ But at least Arista was quick to react when pointing out this shortcoming and cr
 
 ### Analogy
 
-The proposed solution is similar to using a vanity number such as 55555 (5 times 5) for the internal helpdesk through a companies PBX. While employees could just as well use a phone book every time to lookup the Helpdesk&#8217;s phone number, using an easy to remember number makes life much easier for end-users.
+The proposed solution is similar to using a vanity number such as 55555 (5 times 5) for the internal helpdesk through a companies PBX. While employees could just as well use a phone book every time to lookup the Helpdesk's phone number, using an easy to remember number makes life much easier for end-users.
 
 Also in this analogy the Helpdesk is for internal use only, why accomplishing the same with the global telephone number 1-800-HELP4ME would be possible but fulfill a different use case.

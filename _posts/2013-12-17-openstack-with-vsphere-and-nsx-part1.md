@@ -103,7 +103,7 @@ Password updated successfully.
 nsx-controller #  
 </pre>
 
-Next, configure the appliance&#8217;s hostname with the `set hostname &#60;hostname&#62;` command:
+Next, configure the appliance's hostname with the `set hostname &#60;hostname&#62;` command:
 
 <pre>nsx-controller # set hostname nsxc-l-01a
 nsxc-l-01a #
@@ -132,7 +132,7 @@ SNMP: disabled
 nsxc-l-01a #
 </pre>
 
-Next, it&#8217;s time to add a default route via the command `add network route 0.0.0.0 0.0.0.0 &#60;gateway&#62;`:
+Next, it's time to add a default route via the command `add network route 0.0.0.0 0.0.0.0 &#60;gateway&#62;`:
 
 <pre>nsxc-l-01a # add network route 0.0.0.0 0.0.0.0 192.168.110.1
 nsxc-l-01a #
@@ -172,7 +172,7 @@ Next we will perform the node specific configuration on the Controller node, the
 
 ### Controller Node
 
-We need to specify for the controller node which IP address should be used as the management address as well as the API address. This is necessary for the case that an NSX controller is deployed with multiple IP addresses in different subnets. As mentioned earlier I&#8217;ll keep it single, utilizing only a single subnet.
+We need to specify for the controller node which IP address should be used as the management address as well as the API address. This is necessary for the case that an NSX controller is deployed with multiple IP addresses in different subnets. As mentioned earlier I'll keep it single, utilizing only a single subnet.
 
 First, set the IP address the controller should use for management traffic with the command `set control-cluster management-address &#60;IP address&#62;`
 
@@ -237,4 +237,4 @@ Manager CA certificate synchronized
 nsxg-l-01a #
 </pre>
 
-This completes the installation of the NSX appliances. Next in the [series on OpenStack with vSphere and NSX](https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/ "OpenStack with vSphere and NSX") is [Part 2](https://www.edge-cloud.net/2013/12/27/openstack-with-vsphere-and-nsx-part2/ "OpenStack with vSphere and NSX – Part 2: Create and configure the VMware NSX cluster") with the creation and configuration the VMware NSX cluster via the NSX manager. While we finished the installation and basic configuration of the VMware NSX appliances in this post, the next post will show how to use the NSX Manager&#8217;s web-based GUI to join these parts together and build the basic functionality of an NSX installation.
+This completes the installation of the NSX appliances. Next in the [series on OpenStack with vSphere and NSX](https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/ "OpenStack with vSphere and NSX") is [Part 2](https://www.edge-cloud.net/2013/12/27/openstack-with-vsphere-and-nsx-part2/ "OpenStack with vSphere and NSX – Part 2: Create and configure the VMware NSX cluster") with the creation and configuration the VMware NSX cluster via the NSX manager. While we finished the installation and basic configuration of the VMware NSX appliances in this post, the next post will show how to use the NSX Manager's web-based GUI to join these parts together and build the basic functionality of an NSX installation.

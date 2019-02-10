@@ -22,7 +22,7 @@ Today we want to look at the possibility to automatically save the text-based co
 
 To do so we will be using <a href="http://www.shrubbery.net/rancid/" title="RANCID (Really Awesome New Cisco confIg Differ)" target="_blank">RANCID</a> (Really Awesome New Cisco confIg Differ) from Shrubbery Networks as well as <a href="https://trac.edgewall.org/" title="Integrated SCM &#038; Project Management" target="_blank">TRAC</a> (Integrated SCM & Project Management).
 
-RANCID monitors a router&#8217;s (or more generally a device&#8217;s) configuration, including software and hardware (cards, serial numbers, etc) and uses CVS (Concurrent Version System) or Subversion to maintain history of changes and notify users of these. TRAC is a web-based wiki and issue tracking system for software development projects. It provides an interface to ​Subversion or ​Git, which is the primary reason for using it in this project.
+RANCID monitors a router's (or more generally a device's) configuration, including software and hardware (cards, serial numbers, etc) and uses CVS (Concurrent Version System) or Subversion to maintain history of changes and notify users of these. TRAC is a web-based wiki and issue tracking system for software development projects. It provides an interface to ​Subversion or ​Git, which is the primary reason for using it in this project.
 
 ### Prerequisites
 
@@ -30,7 +30,7 @@ This documentation assumes that a healthy Ubuntu 10.04.4 LTS Server, fully funct
 
 This documentation is accurate as of May 31, 2013. These steps have been performed on Ubuntu 10.04.4 Server systems and confirmed to work as described here.
 
-[Update from June 27, 2014]: Trac has added support for Git in never versions. In order to unify configuration of the various version control systems in Trac, the syntax for specifying what system you are using has changed. In Trac 1.0 (trunk, starting from r11082), the components for Subversion support have been moved below tracopt. So you need to explicitly enable them in your Components section within trac.ini. See <a href="https://trac.edgewall.org/wiki/TracSubversion" target="_blank">here</a> fore more details. You will need this information in the &#8220;Final Customization&#8221; section below.
+[Update from June 27, 2014]: Trac has added support for Git in never versions. In order to unify configuration of the various version control systems in Trac, the syntax for specifying what system you are using has changed. In Trac 1.0 (trunk, starting from r11082), the components for Subversion support have been moved below tracopt. So you need to explicitly enable them in your Components section within trac.ini. See <a href="https://trac.edgewall.org/wiki/TracSubversion" target="_blank">here</a> fore more details. You will need this information in the "Final Customization" section below.
 
 ### Installing RANCID
 
@@ -40,9 +40,9 @@ Install RANCID as well as Subversion via the Ubuntu software repository:
 
 ### Configuring RANCID
 
-The installation creates a new user and group named _“rancid”_ with a home directory of /var/lib/rancid. Now, we must create at least one device group in RANCID to logically organize our devices. Groups can be based on any criteria you wish. So if you&#8217;ve got one physical location you could create &#8220;router&#8221;, &#8220;firewall&#8221;, and &#8220;switch&#8221; groups, or, in larger environments with multiple physical locations, group names such as &#8220;Los Angeles&#8221;, &#8220;San Francisco&#8221;, and &#8220;New York&#8221; may be a better choice. Or in smaller setups you could chose to use a single group. For this example we&#8217;ll create a single group called &#8220;network&#8221;.
+The installation creates a new user and group named _“rancid”_ with a home directory of /var/lib/rancid. Now, we must create at least one device group in RANCID to logically organize our devices. Groups can be based on any criteria you wish. So if you've got one physical location you could create "router", "firewall", and "switch" groups, or, in larger environments with multiple physical locations, group names such as "Los Angeles", "San Francisco", and "New York" may be a better choice. Or in smaller setups you could chose to use a single group. For this example we'll create a single group called "network".
 
-Before editing the sample file, it&#8217;s good practice to start by making a backup copy of the original _rancid.conf_ file.
+Before editing the sample file, it's good practice to start by making a backup copy of the original _rancid.conf_ file.
 
 <pre>sudo cp /etc/rancid/rancid.conf /etc/rancid/rancid.conf.ORIGINAL</pre>
 
@@ -66,13 +66,13 @@ RCSSYS=svn; export RCSSYS</pre>
 
 Next we want to configure the system, so that RANCID can send e-mail notifications for changes performed on each group of devices. For this a local MTA should be installed and configured.
 
-For this documentation we will assume that this MTA will be Postfix, configured with as &#8220;Internet with smarthost&#8221;.
+For this documentation we will assume that this MTA will be Postfix, configured with as "Internet with smarthost".
 
 Install Postfix
 
 <pre>sudo apt-get install postfix</pre>
 
-As the mail configuration type choose &#8220;Internet with smarthost&#8221;:
+As the mail configuration type choose "Internet with smarthost":
 
 <div id="attachment_180" style="width: 510px" class="wp-caption aligncenter">
   <img src="/content/uploads/2013/05/InternetSmartHost-500x276.png" alt="Figure 1: Postfix mail configuration type" width="500" height="276" class="size-medium wp-image-180" srcset="/content/uploads/2013/05/InternetSmartHost-500x276.png 500w, /content/uploads/2013/05/InternetSmartHost.png 721w" sizes="(max-width: 500px) 100vw, 500px" />
@@ -121,7 +121,7 @@ After saving your changes and exiting, you’ll need to let your MTA know about 
 
 ### Subversion Repository
 
-Your device&#8217;s configuration files will be stored in a Subversion (SVN). This provides a way to track changes over time as well as provides you with a bit of disaster recovery. In order to prepare SVN we must create a folder structure based off of the RANCID groups that we created earlier. This command needs to be run as the &#8220;rancid&#8221; user that was created when the RANCID software was first installed.
+Your device's configuration files will be stored in a Subversion (SVN). This provides a way to track changes over time as well as provides you with a bit of disaster recovery. In order to prepare SVN we must create a folder structure based off of the RANCID groups that we created earlier. This command needs to be run as the "rancid" user that was created when the RANCID software was first installed.
 
 <pre>[user@netconf ~]$ sudo su - rancid
 [rancid@netconf ~]$ /var/lib/rancid/bin/rancid-cvs
@@ -177,7 +177,7 @@ Refer to `man cloginrc` to see the details of all the available options and keyw
 
 This guide will assume the simplest setup in which local usernames and passwords are defined on the end devices themselves. Keep in that mind that the file .cloginrc should not be world readable/writable and be owned by the user _rancid_, created earlier.
 
-Here&#8217;s some example information for a .cloginrc file:
+Here's some example information for a .cloginrc file:
 
 <pre>#Firewall
 add method firewall.edge-cloud.net ssh
@@ -192,7 +192,7 @@ The basic test utilizes the clogin application to verify login into a device:
 <pre>[user@netconf ~]$ sudo su -c "/usr/lib/rancid/bin/clogin -f /var/lib/rancid/.cloginrc firewall.edge-cloud.net" -s /bin/bash -l rancid
 </pre>
 
-The clogin application will use the .clogin configuration file specified by the -f variable and will automatically login to the device named firewall.edge-cloud.net. When it&#8217;s all said and done you should end up in enable mode on the firewall device. If there are problems, clogin does an excellent job of providing pointed advice on what is wrong.
+The clogin application will use the .clogin configuration file specified by the -f variable and will automatically login to the device named firewall.edge-cloud.net. When it's all said and done you should end up in enable mode on the firewall device. If there are problems, clogin does an excellent job of providing pointed advice on what is wrong.
 
 With RANCID now configured, it’s time to test it out! Let’s manually invoke “rancid-run” (as the “rancid” user) to see if everything works!
 
@@ -266,7 +266,7 @@ Restart the Apache service with `sudo service apache2 restart`.
 
 ### Enabling SVN in TRAC
 
-The TRAC SVN browser is disabled at this stage as the SVN path hasn&#8217;t been configured yet. Let&#8217;s configure the SVN path in TRAC now.
+The TRAC SVN browser is disabled at this stage as the SVN path hasn't been configured yet. Let's configure the SVN path in TRAC now.
 
 Edit the TRAC configuration file `/var/trac/netconf/conf/trac.ini`.
 
@@ -277,7 +277,7 @@ Add the SVN repository:
 
 ### Final customizations
 
-Although your installation should be running at this point, we want to perform some final customization to &#8220;pretty it up&#8221;. This includes adding a logo to TRAC, enabling the SVN browser and disabling any module not used.
+Although your installation should be running at this point, we want to perform some final customization to "pretty it up". This includes adding a logo to TRAC, enabling the SVN browser and disabling any module not used.
 
 Make the SVN Browser the default module to load when accessing the web interface:
 
@@ -286,7 +286,7 @@ Make the SVN Browser the default module to load when accessing the web interface
 default_handler = BrowserModule
 </pre>
 
-Disable all modules that you don&#8217;t need. TRAC&#8217;s Wiki and Ticket module could very well be used for network documentation purposes as well as tracking configuration change requests. In this documentation we will focus on solely using the SVN browser.
+Disable all modules that you don't need. TRAC's Wiki and Ticket module could very well be used for network documentation purposes as well as tracking configuration change requests. In this documentation we will focus on solely using the SVN browser.
 
 Add the following block yo your TRAC configuration file:
 

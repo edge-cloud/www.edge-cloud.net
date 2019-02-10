@@ -57,7 +57,7 @@ This means that VMware Integrated OpenStack (VIO) could easily replace VMware vR
 
 Or in another scenario it would be possible to run both VMware vCloud Director (vCD) and VMware Integrated OpenStack in parallel within the Cloud Management Layer on top of the same Virtual Infrastructure Layer.
 
-It&#8217;s important to point out that in this case workloads would be exclusively managed by one of the two CMS.
+It's important to point out that in this case workloads would be exclusively managed by one of the two CMS.
 
 ### POD / Core concept
 
@@ -79,7 +79,7 @@ Further splitting PODs by functional capability into Storage POD, Management POD
 
 For many years the predominant data center network design was the <a href="http://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Data_Center/DC_Infra2_5/DCInfra_2.html" target="_blank">three-tier approach</a> of a Core (Layer 3), Aggregation (Layer 2 / Layer 3), Access (Layer 2) tiers. This design approach has been very successful over the last 20 years, allowing network architects to design highly reliable and scalable networks, recent industry developments are breaking the underlying assumptions:
 
-The three-tier network assumes a significant price difference between network device capable of Layer 3 routing vs. Layer 2 Switching, which is no longer the case. It further assumes that traffic is primarily exchanged between servers and the outside world (<a href="http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends" target="_blank">north-south traffic</a>), while today server-to-server traffic (<a href="http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends" target="_blank">east-west traffic</a>) is more common. Last but least it assumes that the interface speed at the Core and Aggregation tier is significantly higher than in the access layer, which also isn&#8217;t true anymore thanks to the prevalence of 10 Gigabit Ethernet equipped servers.
+The three-tier network assumes a significant price difference between network device capable of Layer 3 routing vs. Layer 2 Switching, which is no longer the case. It further assumes that traffic is primarily exchanged between servers and the outside world (<a href="http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends" target="_blank">north-south traffic</a>), while today server-to-server traffic (<a href="http://blogs.cisco.com/security/trends-in-data-center-security-part-1-traffic-trends" target="_blank">east-west traffic</a>) is more common. Last but least it assumes that the interface speed at the Core and Aggregation tier is significantly higher than in the access layer, which also isn't true anymore thanks to the prevalence of 10 Gigabit Ethernet equipped servers.
 
 At the same time the traditional three-tier design fails to address innovation in modern data centers through its lack of modularity and rigidness. This hampers fast iterations and experimentation, while also preventing to keep up with price/performance improvements in the industry.
 
@@ -89,7 +89,7 @@ Consequently the time has come for a new approach to data center network design,
 
 With the network containers for management applications we place each management application in a dedicated network container with an NSX Edge acting as firewall, load balancer, and gateway of that container. With the previously presented management applications this means that we have one container for VMware vRealize Automation, another one for vRealize Operations and a third one for vRealize LogInsight.
 
-These network container then connect to a &#8220;business network&#8221; on which end-user facing services &#8211; such as the vRealize Automation Web interface &#8211; are presented, as well as a &#8220;management network&#8221; via which infrastructure admins connect. Nevertheless components within each network container are protected against these two networks, which present two different trust zones, besides the network container as a third trust zone.
+These network container then connect to a "business network" on which end-user facing services &#8211; such as the vRealize Automation Web interface &#8211; are presented, as well as a "management network" via which infrastructure admins connect. Nevertheless components within each network container are protected against these two networks, which present two different trust zones, besides the network container as a third trust zone.
 
 <div id="attachment_1704" style="width: 370px" class="wp-caption aligncenter">
   <img src="/content/uploads/2015/08/Object_oriented_design_object-360x263.jpg" alt="Figure 4: Object-oriented design: Object" width="360" height="263" class="size-medium wp-image-1704" srcset="/content/uploads/2015/08/Object_oriented_design_object-360x263.jpg 360w, /content/uploads/2015/08/Object_oriented_design_object.jpg 510w" sizes="(max-width: 360px) 100vw, 360px" />
@@ -103,11 +103,11 @@ To draw an analogy of what this means: Let’s look at the Object Oriented (OO) 
 
 With the SDDC network container, we want to enforce access to services through the front door, via the Load Balancer. In OO this is equivalent to accessing an object via methods.
 
-With the network container we want to prevent access through the &#8220;backdoor&#8221; or direct node access for end-users. In OO this is equivalent to accessing attributes directly, which would violate the OO concept.
+With the network container we want to prevent access through the "backdoor" or direct node access for end-users. In OO this is equivalent to accessing attributes directly, which would violate the OO concept.
 
 As a result network container provide us with a few benefits:
 
-  * **Security:** Granular yet simple control who can access what kind of service through the &#8220;front door&#8221; (load balancer).
+  * **Security:** Granular yet simple control who can access what kind of service through the "front door" (load balancer).
   * **Modularity:** Replace or upgrade an application without breaking the entire SDDC as dependencies are established via well-know interfaces.
   * **Simplicity:** Reduce the number of required IP addresses on the business network, keeping the integration effort low and enabling deployment on the Internet.
 
@@ -116,7 +116,7 @@ As a result network container provide us with a few benefits:
 
 ### Service Level tiers
 
-Especially with the ambition to address new and old business needs via the support of legacy applications with traditional business continuity and disaster recovery needs, in addition to new cloud-native applications, a one-size fits all approach doesn&#8217;t work anymore. Such an approach would either become prohibitively expensive by providing all workloads with the same level of high end treatment or would fall short on the provided business value through capabilities.
+Especially with the ambition to address new and old business needs via the support of legacy applications with traditional business continuity and disaster recovery needs, in addition to new cloud-native applications, a one-size fits all approach doesn't work anymore. Such an approach would either become prohibitively expensive by providing all workloads with the same level of high end treatment or would fall short on the provided business value through capabilities.
 
 Yet at the same time you also want to limit customization in order to be able to maintain self-service capabilities, as each customization adds complexity and cost.
 

@@ -80,7 +80,7 @@ Ensure that the VIB is installed successfully.
 
 ### Configure the NSX vSwitch
 
-While the configuration of the Standard vSwitch and the virtual Distributed Switch is usually done via vCenter, the NSX vSwitch is configured via the CLI. Therefore let&#8217;s go ahead and configure the NSX vSwitch for this host.
+While the configuration of the Standard vSwitch and the virtual Distributed Switch is usually done via vCenter, the NSX vSwitch is configured via the CLI. Therefore let's go ahead and configure the NSX vSwitch for this host.
 
 Start by linking the NSX vSwitch to a physical uplink interface (vmnic). This is done via the command `nsxcli uplink/connect &#60;interface&#62;`:
 
@@ -133,7 +133,7 @@ Copy the text including the line _&#8212;&#8211;BEGIN CERTIFICATE&#8212;&#8211;_
   </p>
 </div>
 
-Don&#8217;t close the SSH session yet. We will need to come back.
+Don't close the SSH session yet. We will need to come back.
 
 Return to the NSX Manager Dashboard. Within the Summary of Transport Components section, click on Add within the Hypervisor row (See Figure 5).
 
@@ -231,7 +231,7 @@ You should see the ESXi host with the NSX vSwitch successfully added as a hyperv
   </p>
 </div>
 
-As a last step we need to instruct VMware NSX to export the OpenStack virtual machine virtual interface (vif) UUID as extra information besides the VMware vSphere one. This is necessary as OpenStack uses a different UUID than VMware vSphere does. Without this setting OpenStack wouldn&#8217;t &#8220;recognize&#8221; a VM that it created for further operations via the Neutron API.
+As a last step we need to instruct VMware NSX to export the OpenStack virtual machine virtual interface (vif) UUID as extra information besides the VMware vSphere one. This is necessary as OpenStack uses a different UUID than VMware vSphere does. Without this setting OpenStack wouldn't "recognize" a VM that it created for further operations via the Neutron API.
 
 Instruct NSX to allow custom vifs with the command `nsxd --allow-custom-vifs`. When asked for a username and password, enter the username and password for the ESXi host.
 

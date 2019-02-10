@@ -15,7 +15,7 @@ categories:
 tags:
   - VMware
 ---
-Ethernet&#8217;s default maximum size for data transmission is 1500 bytes due to legacy compatibility reasons. Unfortunately with newer high-speed networks &#8211; such as 10 Gigabit Ethernet (10 GigE) &#8211; breaking up data into chunks of 1500 bytes &#8211; also called frames &#8211; creates a lot of overhead with a high header to payload ratio. This not only creates a higher than necessary overhead on the Hypervisor&#8217;s CPU, but also prevents one from utilizing the full capabilities of the network hardware. For example: On a 10Gbit link it is possible that you will only be able to transmit about 3-4 Gbps of data between machines using 1500 byte frames, while you can easily saturate 10Gbit when using jumbo frames.
+Ethernet's default maximum size for data transmission is 1500 bytes due to legacy compatibility reasons. Unfortunately with newer high-speed networks &#8211; such as 10 Gigabit Ethernet (10 GigE) &#8211; breaking up data into chunks of 1500 bytes &#8211; also called frames &#8211; creates a lot of overhead with a high header to payload ratio. This not only creates a higher than necessary overhead on the Hypervisor's CPU, but also prevents one from utilizing the full capabilities of the network hardware. For example: On a 10Gbit link it is possible that you will only be able to transmit about 3-4 Gbps of data between machines using 1500 byte frames, while you can easily saturate 10Gbit when using jumbo frames.
 
 ### Background
 
@@ -27,7 +27,7 @@ Jumbo frames should only used in a controlled and segmented environment, for exa
 
 One of the main use case for Jumbo Frames within VMware vSphere is between an ESXi host and an iSCSI or NFS storage array. Another common use case is between ESXi hosts for VMotion traffic. While this post focuses on the former use case, it is easily transferable to the later.
 
-VMware ESXi uses so-called VMkernel ports to connect the Hypervisor to a storage array. You can think of this port as the Hypervisor kernel&#8217;s equivalent to a vNIC for Virtual Machines. In order to use Jumbo Frames between the Hypervisor and the storage array, all elements in between need to be configured for at least the desired MTU size &#8211; here 9000. (See Figure 1).
+VMware ESXi uses so-called VMkernel ports to connect the Hypervisor to a storage array. You can think of this port as the Hypervisor kernel's equivalent to a vNIC for Virtual Machines. In order to use Jumbo Frames between the Hypervisor and the storage array, all elements in between need to be configured for at least the desired MTU size &#8211; here 9000. (See Figure 1).
 
 <div id="attachment_567" style="width: 522px" class="wp-caption aligncenter">
   <img src="/content/uploads/2013/11/JumboFrames.png" alt="Figure 1: Jumbo Frames for storage arrays with VMware ESXi" width="512" height="257" class="size-full wp-image-567" srcset="/content/uploads/2013/11/JumboFrames.png 512w, /content/uploads/2013/11/JumboFrames-500x250.png 500w" sizes="(max-width: 512px) 100vw, 512px" />
@@ -41,7 +41,7 @@ This includes the physical storage array, the physical switch, potentially the p
 
 It is important to note that the network elements only need to be configured for _at least_ the desired MTU size. If the MTU size ends up being higher, it will not impact functionality. As an example: The <a href="https://www.arista.com/en/" title="Arista Networks" target="_blank">Arista Networks</a> switches have a default MTU size of 9216 bytes, which can remain as is. No need to make any changes here.
 
-I&#8217;ll leave the exercise of figuring out how to configure your physical equipment to a MTU size of 9000 to you. Unfortunately almost every vendor has a different approach for achieving this.
+I'll leave the exercise of figuring out how to configure your physical equipment to a MTU size of 9000 to you. Unfortunately almost every vendor has a different approach for achieving this.
 
 ### Configuring ESXi
 
@@ -137,11 +137,11 @@ For this purpose we will use the ESXi tool vmkping to send test traffic from an 
 
 Looking at the options of the vmkping tool, we see two options that are important for this test. (See Figure 8).
 
-One is the ability to set the so-called DF bit or &#8220;Do not fragment&#8221; with the _-d_ switch. The other is the ability to specify the desired payload size for the ping packet with the _-s_ switch.
+One is the ability to set the so-called DF bit or "Do not fragment" with the _-d_ switch. The other is the ability to specify the desired payload size for the ping packet with the _-s_ switch.
 
-Unfortunately the build-in documentation for this tool isn&#8217;t very good, as it doesn&#8217;t tell you that the _-s_ switch specifies the payload size of the ICMP packet. You therefore need to add 8 bytes of ICMP headers and 20 bytes of IP headers before you end up with the frame size that will actually hit the wire. (See Figure 9).
+Unfortunately the build-in documentation for this tool isn't very good, as it doesn't tell you that the _-s_ switch specifies the payload size of the ICMP packet. You therefore need to add 8 bytes of ICMP headers and 20 bytes of IP headers before you end up with the frame size that will actually hit the wire. (See Figure 9).
 
-Also the &#8220;Do not fragment&#8221; will instruct the network layer of the ESXi host as well as all other network elements not to fragment &#8211; therefore not to split up &#8211; the packet.
+Also the "Do not fragment" will instruct the network layer of the ESXi host as well as all other network elements not to fragment &#8211; therefore not to split up &#8211; the packet.
 
 <div id="attachment_578" style="width: 579px" class="wp-caption aligncenter">
   <img src="/content/uploads/2013/11/ICMP-Packet.png" alt="Figure 9: IP Datagram" width="569" height="262" class="size-full wp-image-578" srcset="/content/uploads/2013/11/ICMP-Packet.png 569w, /content/uploads/2013/11/ICMP-Packet-500x230.png 500w" sizes="(max-width: 569px) 100vw, 569px" />

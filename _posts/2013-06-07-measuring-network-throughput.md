@@ -17,9 +17,9 @@ tags:
   - Network
   - Performance
 ---
-The topic of measuring network throughput between network devices comes up quite frequently: It ranges from users claiming (and sometimes almost blaming) that the 100 Mbps Internet uplink in reality is only 10 Mbps to being surprised why they can&#8217;t transfer that multi-gigabyte file via FTP faster between data center locations.
+The topic of measuring network throughput between network devices comes up quite frequently: It ranges from users claiming (and sometimes almost blaming) that the 100 Mbps Internet uplink in reality is only 10 Mbps to being surprised why they can't transfer that multi-gigabyte file via FTP faster between data center locations.
 
-Let&#8217;s have a look behind the scenes of network throughput measurement and understand why users are often actually measuring something completely different, but also how to get more &#8220;performance&#8221; out of these connections.
+Let's have a look behind the scenes of network throughput measurement and understand why users are often actually measuring something completely different, but also how to get more "performance" out of these connections.
 
 ### Sliding window protocols
 
@@ -37,7 +37,7 @@ Most user utilize software based on the <a href="https://en.wikipedia.org/wiki/T
 
 
 
-In order to guarantee reliable in-order delivery of packets, only a &#8220;window&#8221; of packets may be send without the receiver acknowledging them (See Figure 1). The size of this &#8220;window&#8221; is governed by the receiver and is referred to as the _TCP Window Size_. This way the receiver ensures that it can actually process the incoming data without &#8220;choking&#8221; on it.
+In order to guarantee reliable in-order delivery of packets, only a "window" of packets may be send without the receiver acknowledging them (See Figure 1). The size of this "window" is governed by the receiver and is referred to as the _TCP Window Size_. This way the receiver ensures that it can actually process the incoming data without "choking" on it.
 
 
 
@@ -57,15 +57,15 @@ The propagation time t<sub>prop</sub> for a TCP packet can be determined by meas
 
 ### Bandwidth-delay Product and buffer size
 
-Now that we have identified the two most important variables for the performance of TCP based data transfers, let&#8217;s look at the math behind the sliding window concept:
+Now that we have identified the two most important variables for the performance of TCP based data transfers, let's look at the math behind the sliding window concept:
 
-An important formula is the one for the <a href="https://en.wikipedia.org/wiki/Bandwidth-delay_product" target="_blank">Bandwidth-delay product (BDP)</a>, which is the product of a data link&#8217;s capacity (in bits per second) and its end-to-end delay (in seconds). The result, an amount of data measured in bits (or bytes), is equivalent to the maximum amount of data on the network circuit at any given time, e.g. data that has been transmitted but not yet acknowledged.
+An important formula is the one for the <a href="https://en.wikipedia.org/wiki/Bandwidth-delay_product" target="_blank">Bandwidth-delay product (BDP)</a>, which is the product of a data link's capacity (in bits per second) and its end-to-end delay (in seconds). The result, an amount of data measured in bits (or bytes), is equivalent to the maximum amount of data on the network circuit at any given time, e.g. data that has been transmitted but not yet acknowledged.
 
 <img src="//s0.wp.com/latex.php?latex=Buffer+%28Mbit%29+%3D+bandwidth+%28Mbit%2Fs%29+%5Ctimes+delay+%28s%29&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="Buffer (Mbit) = bandwidth (Mbit/s) &#92;times delay (s)" title="Buffer (Mbit) = bandwidth (Mbit/s) &#92;times delay (s)" class="latex" />
 
 The result of the BDP can also be interpreted as the required receiver TCP window size to maximize the performance on the data link.
 
-Let&#8217;s use an example:
+Let's use an example:
 
 Round-Trip-Time between the US west coast (Las Vegas) and Europe (Germany): 173 ms
 
@@ -75,11 +75,11 @@ Available bandwidth between the two sites: 100 Mbit/s
 
 This means that we would need a TCP Window Size of at least 2.1625 MByte to fully utilize the 100 Mbit/s link.
 
-We have seen, that in reality both the delay between sender and receiver as well as the TCP window size within the receiver are given. As we cannot change the laws of physics, the only value we can change is the TCP window size. Let&#8217;s shuffle the formula, to calculate the maxim bandwidth that can be achieved with a given RTT and TCP window size instead:
+We have seen, that in reality both the delay between sender and receiver as well as the TCP window size within the receiver are given. As we cannot change the laws of physics, the only value we can change is the TCP window size. Let's shuffle the formula, to calculate the maxim bandwidth that can be achieved with a given RTT and TCP window size instead:
 
 <img src="//s0.wp.com/latex.php?latex=bandwidth+%28Mbit%2Fs%29+%3D+%5Cfrac%7BBuffer+%28Mbit%29%7D%7Bdelay+%28s%29%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="bandwidth (Mbit/s) = &#92;frac{Buffer (Mbit)}{delay (s)}" title="bandwidth (Mbit/s) = &#92;frac{Buffer (Mbit)}{delay (s)}" class="latex" />
 
-Let&#8217;s use another example:
+Let's use another example:
 
 Round-Trip-Time between the US west coast (Las Vegas) and Europe (Germany): 173 ms
 
@@ -95,7 +95,7 @@ If you get tired of performing the math manually, have a look at the <a href="ht
 
 ### Limit of TCP Windows field in the protocol header
 
-The TCP window size field within the TCP header is 16 bit and therefore cannot be expanded beyond 64K. How is it then possible to specify a TCP window size higher than 64K? That&#8217;s where <a href="https://www.ietf.org/rfc/rfc1323.txt" target="_blank">RFC 1323</a> defines a scaling factor, which allows scaling up to larger window sizes and thereby enables TCP tuning. This method increases the maximum window size from 65,535 bytes to 1 gigabyte.
+The TCP window size field within the TCP header is 16 bit and therefore cannot be expanded beyond 64K. How is it then possible to specify a TCP window size higher than 64K? That's where <a href="https://www.ietf.org/rfc/rfc1323.txt" target="_blank">RFC 1323</a> defines a scaling factor, which allows scaling up to larger window sizes and thereby enables TCP tuning. This method increases the maximum window size from 65,535 bytes to 1 gigabyte.
 
 The window scale option is used only during the TCP 3-way handshake at the beginning of the connection. The window scale value represents the number of bits to left-shift the 16-bit window size field. The window scale value can be set from 0 (no shift) to 14 for each direction independently. Both sides must send the option in their SYN segments to enable window scaling in either direction.
 
@@ -113,7 +113,7 @@ Here is a problem: Some routers and packet firewalls rewrite the window scaling 
 
 ### Hands-On Tests
 
-Now it&#8217;s time to verify above&#8217;s theory in practice: For this we will use the tool <a href="https://iperf.fr/" target="_blank">Iperf</a>, which is widely available on Linux. On Ubuntu you can e.g. install Iperf with `sudo apt-get install iperf`.
+Now it's time to verify above's theory in practice: For this we will use the tool <a href="https://iperf.fr/" target="_blank">Iperf</a>, which is widely available on Linux. On Ubuntu you can e.g. install Iperf with `sudo apt-get install iperf`.
 
 In this case the sender host is an Ubuntu machine located in a data center in Frankfurt, Germany and the receiver host is an Ubuntu machine located in a data center in Las Vegas, USA. The latency between the two machines is 173 ms with both machines being connected via an 100 Mbit/s uplink to the internet.
 
@@ -136,11 +136,11 @@ TCP window size: 64 KByte (default)
 
 The result is what we would expect from the theory and math in the previous section. It also shows nicely that the result is well below the 100 Mbit/s of the Internet links.
 
-Let&#8217;s try to increase the TCP Window size on the receiver and run the test again.
+Let's try to increase the TCP Window size on the receiver and run the test again.
 
-As Iperf is a user process it cannot actually increase the TCP Window size beyond what&#8217;s set in the Kernel. We therefore have to make these changes directly in the Kernel.
+As Iperf is a user process it cannot actually increase the TCP Window size beyond what's set in the Kernel. We therefore have to make these changes directly in the Kernel.
 
-As a first step it&#8217;s advisable to have a look at the current TCP Window settings on the receiver and make note of them, so that they can be restored.
+As a first step it's advisable to have a look at the current TCP Window settings on the receiver and make note of them, so that they can be restored.
 
 The way the TCP Window works is that sender and receiver negotiate an optimal window size based on various factors. Therefore Linux has two values for the TCP Window. The _default_ value, which is the starting window size and the _max_ value, which is the upper bound of it:
 
@@ -164,7 +164,7 @@ The maximum TCP windows size (sending) in bit from the TCP autotuning settings:
 
 This variable takes 3 different values which holds information on how much TCP sendbuffer memory space each TCP socket has to use. Every TCP socket has this much buffer space to use before the buffer is filled up. Each of the three values are used under different conditions. The first value in this variable tells the minimum TCP send buffer space available for a single TCP socket. The second value in the variable tells us the default buffer space allowed for a single TCP socket to use. The third value tells the kernel the maximum TCP send buffer space. Again we want to manipulate the third value. This time on the sender side
 
-Let&#8217;s double the TCP Window size, thus reaching 128K. Using the <a href="https://www.switch.ch/network/tools/tcp_throughput/" target="_blank">TCP throughput calculator</a> from switch.ch, we should expect a maximum TCP throughput of 5.92 Mbit/sec with these settings:
+Let's double the TCP Window size, thus reaching 128K. Using the <a href="https://www.switch.ch/network/tools/tcp_throughput/" target="_blank">TCP throughput calculator</a> from switch.ch, we should expect a maximum TCP throughput of 5.92 Mbit/sec with these settings:
 
 First, change the maximum TCP windows size (receiving) on the receiver:
 
@@ -199,13 +199,13 @@ Again, the result is what we would expect from the theory and math in the previo
 
 Be advised that there is a limit to this approach: If you keep doubling the TCP window size, you will at one point reach the buffer limits of your OS and therefore not experience any additional performance gains anymore.
 
-### Real &#8220;bandwidth&#8221; tests
+### Real "bandwidth" tests
 
-<span style="color: red">Warning! You should perform &#8220;bandwidth&#8221; tests of your links only when they are not in use. Otherwise your results will not be meaningful. Also, while I show you how to use UDP to determine the bandwidth of a link, this protocol does not bring any form of congestion control. While this is a good thing for measuring the bandwidth on an un-utilized link, you will starve out other traffic on a utilized link. You will basically cause a denial of service attack on the link. Therefore proceed with uttermost care!</span>
+<span style="color: red">Warning! You should perform "bandwidth" tests of your links only when they are not in use. Otherwise your results will not be meaningful. Also, while I show you how to use UDP to determine the bandwidth of a link, this protocol does not bring any form of congestion control. While this is a good thing for measuring the bandwidth on an un-utilized link, you will starve out other traffic on a utilized link. You will basically cause a denial of service attack on the link. Therefore proceed with uttermost care!</span>
 
 So far we have learned that the throughput of a single TCP is limited by the TCP window size and the RTT. But what happens if I use multiple TCP streams in parallel? Looking at how TCP works, each of these TCP streams should be able to create an individual maximum throughput as determined in the previous section. Furthermore they should share the available bandwidth fairly with each other until nothing is left.
 
-Let&#8217;s see if this is really the case:
+Let's see if this is really the case:
 
 On the receiver host we again start Iperf as a server and advice it to use the TCP window size of 128K:
 
@@ -251,7 +251,7 @@ Again, be advised that there is a limit to this approach: While you can keep inc
 
 So far we have only been able to verify that we can transfer with rates of about 47.8 Mbit/s between sender and receiver in our example. While this is already a huge increase to the 2.77 Mbit/s that we measured originally, it still falls short of the 100 Mbit/s that we should be getting.
 
-Let&#8217;s change our so far strategy and switch over to a protocol that does not suffer from the limitations of a sliding window protocol: UDP to the rescue. UDP does not utilize a feedback channel to notice network congestion or receiver buffer exhaustion. It is a &#8220;fire and forget&#8221; protocol. That makes it very dangerous for sending data at a sustained high data rate, which data transfer would bring to the table. It will basically overrun any other TCP traffic and completely utilize any available bandwidth. Bottom line: Used on a shared link the following approach will equal to a denial of service attack. Therefore do not use it on a shared link, especially if it is carrying production traffic.
+Let's change our so far strategy and switch over to a protocol that does not suffer from the limitations of a sliding window protocol: UDP to the rescue. UDP does not utilize a feedback channel to notice network congestion or receiver buffer exhaustion. It is a "fire and forget" protocol. That makes it very dangerous for sending data at a sustained high data rate, which data transfer would bring to the table. It will basically overrun any other TCP traffic and completely utilize any available bandwidth. Bottom line: Used on a shared link the following approach will equal to a denial of service attack. Therefore do not use it on a shared link, especially if it is carrying production traffic.
 
 On the receiver host we again start Iperf as a server. But this time we start it in UDP mode:
 
@@ -277,7 +277,7 @@ UDP buffer size:  224 KByte (default)
 
 The results show that we can transfer 98.0 Mbit/s with UDP between sender and receiver host, which is close to the expected maximum of 100 Mbit/s. Again, you have to factor in protocol overhead why you will not achieve the full 100 Mbit/s throughput.
 
-Now let&#8217;s see what would happen to a TCP transfer between the same hosts running at the same time.
+Now let's see what would happen to a TCP transfer between the same hosts running at the same time.
 
 For this we need to open two Terminal or SSH connections to the sender at the same time.
 
@@ -287,7 +287,7 @@ On the receiver host we start one instance of Iperf as a UDP server and one inst
 user@receiver:~$ iperf -s -w 131072 &
 </pre>
 
-Don&#8217;t forget to kill these processes once you are done!
+Don't forget to kill these processes once you are done!
 
 On the sender side we will start two tests at exactly the same time. One test with Iperf in TCP mode. And another test with Iperf in UDP mode, again asking it to attempt to sent 110 Mbit/s of traffic. To showcase better the effect of UDP traffic flooding a link we will ask Iperf to run 10 UDP test in parallel. Make sure to start both tests at the same time:
 
@@ -420,8 +420,8 @@ While we can indeed not change the laws of physics to decrease the RTT in our eq
 
 
 
-Instead of requesting a file from e.g Los Angeles while being in Munich, Germany, the file could be requested from a CDN node in Frankfurt, Germany. This would reduce the RTT from e.g. ~170 ms to ~4 ms. This is often used by companies and organizations to deliver large software downloads. One such example is <a href="https://my.vmware.com/web/vmware/downloads" title="VMware Download" target="_blank">VMware&#8217;s software download site using Akamai&#8217;s CDN</a>.
+Instead of requesting a file from e.g Los Angeles while being in Munich, Germany, the file could be requested from a CDN node in Frankfurt, Germany. This would reduce the RTT from e.g. ~170 ms to ~4 ms. This is often used by companies and organizations to deliver large software downloads. One such example is <a href="https://my.vmware.com/web/vmware/downloads" title="VMware Download" target="_blank">VMware's software download site using Akamai's CDN</a>.
 
 #### UDP-based file transfer
 
-Last but not least I would like to point out that there are in fact UDP based file transfer solutions out there, such as the one from <a href="http://asperasoft.com" title="Asperasoft" target="_blank">Asperasoft</a>. They overcome the &#8220;dangers&#8221; of UDP with smartly using a TCP channel for congestion control. Yet at the same time the transfer limit of this pure protocol is bound by the actual link bandwidth. WOC on the other hand usually utilize additional optimization techniques beside TCP window adjustment, giving you effective throughput higher than the maximum link bandwidth. See the previously mentioned Silver Peak calculator for examples.
+Last but not least I would like to point out that there are in fact UDP based file transfer solutions out there, such as the one from <a href="http://asperasoft.com" title="Asperasoft" target="_blank">Asperasoft</a>. They overcome the "dangers" of UDP with smartly using a TCP channel for congestion control. Yet at the same time the transfer limit of this pure protocol is bound by the actual link bandwidth. WOC on the other hand usually utilize additional optimization techniques beside TCP window adjustment, giving you effective throughput higher than the maximum link bandwidth. See the previously mentioned Silver Peak calculator for examples.

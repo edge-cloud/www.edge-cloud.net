@@ -29,11 +29,11 @@ It is available for download from the [VMware OpenStack community site](https://
 
 _Important Notes:_
 
-  * The version currently available for download (VOVA 0.2.0) is not what I will be using. I&#8217;m using a special version that is not (yet?) publicly available and already includes the OpenStack neutron plugin for VMware NSX.
+  * The version currently available for download (VOVA 0.2.0) is not what I will be using. I'm using a special version that is not (yet?) publicly available and already includes the OpenStack neutron plugin for VMware NSX.
   * The network configuration required for VOVA 0.2.0 differs fundamentally from what you will see here, as it uses OpenStack <a href="https://wiki.openstack.org/wiki/UnderstandingFlatNetworking" target="_blank">Flat Networking</a> instead of Neutron.
   * In this setup we will use a very simple physical network setup. All components will attach to a common Mgmt / VM Network. This means that VOVA uses a single interface only. Please do not use such a simple network setup, sharing management and tenant traffic on the same network segment, in a production environment!
 
-After importing the VOVA appliance it will communicate with the NSX controller cluster and the VMware vSphere vCenter (See Figure 1). But it will also house the OpenStack Neutron plugin and thus provide the DHCP server capability to the OpenStack cloud. This will require VOVA to join the NSX overlay network as a transport node. How this is done will also be shown later on in this article. For now, let&#8217;s focus on importing and configuring VOVA.
+After importing the VOVA appliance it will communicate with the NSX controller cluster and the VMware vSphere vCenter (See Figure 1). But it will also house the OpenStack Neutron plugin and thus provide the DHCP server capability to the OpenStack cloud. This will require VOVA to join the NSX overlay network as a transport node. How this is done will also be shown later on in this article. For now, let's focus on importing and configuring VOVA.
 
 <div id="attachment_866" style="width: 810px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/vPod-VOVA-Version2.png" alt="Figure 1: VMware OpenStack Virtual Appliance (VOVA) in the overal setup" width="800" height="270" class="size-full wp-image-866" srcset="/content/uploads/2014/01/vPod-VOVA-Version2.png 800w, /content/uploads/2014/01/vPod-VOVA-Version2-500x168.png 500w" sizes="(max-width: 800px) 100vw, 800px" />
@@ -45,17 +45,17 @@ After importing the VOVA appliance it will communicate with the NSX controller c
 
 ### Gather the pre-requisites
 
-VOVA is provided as an <a href="https://en.wikipedia.org/wiki/Open_Virtualization_Format" target="_blank">Open Virtualization Format</a> image (OVA). During installation one needs to enter the initial configuration parameters, which consists of IP address information for the appliance itself, but also for the services that it interacts with. Before starting the actual OVA import, let&#8217;s make sure we have all the information available that we need.
+VOVA is provided as an <a href="https://en.wikipedia.org/wiki/Open_Virtualization_Format" target="_blank">Open Virtualization Format</a> image (OVA). During installation one needs to enter the initial configuration parameters, which consists of IP address information for the appliance itself, but also for the services that it interacts with. Before starting the actual OVA import, let's make sure we have all the information available that we need.
 
 In particular we need:
 
   * IP addressing information for VOVA, including default gateway and DNS resolver.
   * IP address and account credentials of the vSphere vCenter.
   * IP address and account credentials of the NSX Controller Cluster.
-  * Name of the &#8220;Datacenter&#8221;, &#8220;Clusters&#8221; and &#8220;Datastores&#8221; in vCenter for the cluster that VOVA will manage.
+  * Name of the "Datacenter", "Clusters" and "Datastores" in vCenter for the cluster that VOVA will manage.
   * UUID of the NSX Transport Zone and UUID of the Gateway Service.
 
-Within the vSphere Web Client look up the Name of the &#8220;Datacenter&#8221;, &#8220;Clusters&#8221; and &#8220;Datastores&#8221; in vCenter (See Figure 2). If you are only using a single datastore that is accessible from all ESXi servers within the cluster, you do not need to look up its name.
+Within the vSphere Web Client look up the Name of the "Datacenter", "Clusters" and "Datastores" in vCenter (See Figure 2). If you are only using a single datastore that is accessible from all ESXi servers within the cluster, you do not need to look up its name.
 
 <div id="attachment_862" style="width: 210px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA-Pre01-e1388779801263.png" alt="Figure 2: Datacenter and Cluster name for configuration of VOVA" width="200" height="176" class="size-full wp-image-862" />
@@ -101,7 +101,7 @@ Ensure that you collected the above information without any errors or mistakes. 
 
 Next comes the import of the OVA image for the VMware vSphere OpenStack Virtual Appliance. This step does not differ dramatically from what we already know about OVA imports.
 
-Let&#8217;s get started by picking the correct file for the import (See Figure 6).
+Let's get started by picking the correct file for the import (See Figure 6).
 
 <div id="attachment_869" style="width: 710px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA-Import01-e1388781888247.png" alt="Figure 6: OVA Import of VOVA - Step 1" width="700" height="410" class="size-full wp-image-869" />
@@ -115,7 +115,7 @@ Choose the default settings or your site specific settings for the rest of the i
 
   * IP address and port of the vCenter Server.
   * Accound credential for the vCenter Server with sufficient privileges.
-  * Name of the &#8220;Datacenter&#8221; that contains the clusters and name of the clusters that will be managed by OpenStack.
+  * Name of the "Datacenter" that contains the clusters and name of the clusters that will be managed by OpenStack.
   * Search pattern for datastores that will be used by OpenStack. Leave this field blank to use all datastores or if you only have a single data store.
 
 <div id="attachment_870" style="width: 710px" class="wp-caption aligncenter">
@@ -151,7 +151,7 @@ Specify the networking properties for the VOVA appliance itself (See Figure 9).
   </p>
 </div>
 
-Complete the OVA import and boot up the VM. The startup procedure can take a few minutes, after which you can connect with a Web Browser to the IP address or hostname of the VOVA appliance (See Figure 10). Don&#8217;t login yet as we are not done yet.
+Complete the OVA import and boot up the VM. The startup procedure can take a few minutes, after which you can connect with a Web Browser to the IP address or hostname of the VOVA appliance (See Figure 10). Don't login yet as we are not done yet.
 
 <div id="attachment_874" style="width: 410px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA10-e1388782013698.png" alt="Figure 10: VMware OpenStack Virtual Appliance (VOVA) login screen" width="400" height="595" class="size-full wp-image-874" />
@@ -185,7 +185,7 @@ Ensure the checkbox for the security profile _gdbserver_ is ticked and confirm w
   <img src="/content/uploads/2014/01/VOVA12-e1388782809403.png" alt="Figure 12: Enable the &quot;gdbserver&quot; security profile to enable VNC access to guests" width="700" height="491" class="size-full wp-image-876" />
 
   <p class="wp-caption-text">
-    Figure 12: Enable the &#8220;gdbserver&#8221; security profile to enable VNC access to guests
+    Figure 12: Enable the "gdbserver" security profile to enable VNC access to guests
   </p>
 </div>
 
@@ -195,7 +195,7 @@ This completes the import and configuration of the VMware vSphere OpenStack Virt
 
 Next we need to install the Open vSwitch (OVS) on VOVA. This is necessary as the Neutron plugin of OpenStack serves as the DHCP server on the L2 segments that will be created. As the Neutron plugin resides on VOVA, it needs to have connectivity to the NSX overlay network.
 
-The OVS is not yet installed in VOVA out-of-the-box, as it needs to match the NSX version that is being used. In the future it might be possible that the following steps become largely redundant as VOVA might take the NSX version as a configuration parameter and install the correct corresponding OVS version. Let&#8217;s do it manually for now.
+The OVS is not yet installed in VOVA out-of-the-box, as it needs to match the NSX version that is being used. In the future it might be possible that the following steps become largely redundant as VOVA might take the NSX version as a configuration parameter and install the correct corresponding OVS version. Let's do it manually for now.
 
 Login via SSH to the VOVA host and use the default credentials with the username _root_ and the password _vmware_.
 

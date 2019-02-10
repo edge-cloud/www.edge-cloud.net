@@ -1,6 +1,6 @@
 ---
 id: 2140
-title: 'RUM &#8220;Light&#8221; with CloudFlare and Google Analytics'
+title: 'RUM "Light" with CloudFlare and Google Analytics'
 date: 2016-02-05T08:00:31+00:00
 author: Christian Elsen
 excerpt: Would you like to know the ratio of visitors accessing your website over IPv4 vs. IPv6? Or curious about how many visitors you serve over HTTP/2 vs. SPDY or HTTP 1.1? Using Google Analytics, CloudFlare and some JavaScript magic we can easily get answers to these questions. For this we will use the principle of Real User Monitoring (RUM).
@@ -20,7 +20,7 @@ Would you like to know the ratio of visitors accessing your website over IPv4 vs
 
 Using Google Analytics, CloudFlare and some JavaScript magic we can easily get answers to these questions. For this we will use the principle of <a href="https://en.wikipedia.org/wiki/Real_user_monitoring" target="_blank">Real User Monitoring (RUM)</a>.
 
-In a <a href="https://www.edge-cloud.net/2015/10/04/cloudflare-pops-in-google-analytics/" target="_blank">previous post</a> I&#8217;ve already shown how we can track the usage of CloudFlare data centers for the delivery of our website in Google Analytics. In this blog post I want to show you how to refine this method even further and also include information about other interesting metrics, such as IPv6 and HTTP/2 usage .
+In a <a href="https://www.edge-cloud.net/2015/10/04/cloudflare-pops-in-google-analytics/" target="_blank">previous post</a> I've already shown how we can track the usage of CloudFlare data centers for the delivery of our website in Google Analytics. In this blog post I want to show you how to refine this method even further and also include information about other interesting metrics, such as IPv6 and HTTP/2 usage .
 
 ### Possible custom dimensions
 
@@ -41,14 +41,14 @@ spdy=h2
 loc=US
 </pre>
 
-Let&#8217;s have a closer look at the fields that are interesting to us and what they mean:
+Let's have a closer look at the fields that are interesting to us and what they mean:
 
   * **ip:** This lists the IP address that was used to contact CloudFlare for this request. We can use this value to determine whether the request was made over IPv4 or IPv6.
   * **visit_scheme:** This will tell you whether the request was made over HTTP or HTTPS. In case you serve traffic only over HTTPS, this is rather not interesting. Otherwise you could use it to determine the traffic split between visitor using an encrypted vs. un-encrypted connection.
   * **colo:** The CloudFlare Points-of-Presence (PoP), which served this traffic. In the <a href="https://www.edge-cloud.net/2015/10/04/cloudflare-pops-in-google-analytics/" target="_blank">previous post</a> you have already seen how to use this.
-  * **spdy:** The HTTP protocol version that was used to serve this content. Even though the key is called &#8220;spdy&#8221;, the value can also indicate HTTP/2 via &#8220;h2&#8221; (as depicted above). A value of &#8220;3.1&#8221; will indicate SPDY/3.1 and &#8220;off&#8221; will indicate HTTP 1.x.
+  * **spdy:** The HTTP protocol version that was used to serve this content. Even though the key is called "spdy", the value can also indicate HTTP/2 via "h2" (as depicted above). A value of "3.1" will indicate SPDY/3.1 and "off" will indicate HTTP 1.x.
 
-    It would make more sense to have the field &#8220;http&#8221; available with &#8220;http=h2&#8221; for HTTP/2, &#8220;http=spdy/3.1&#8221; for SPDY/3.1, and &#8220;http=http/1.x&#8221; for HTTP/1.x. But for now the &#8220;spdy&#8221; field is good enough.
+    It would make more sense to have the field "http" available with "http=h2" for HTTP/2, "http=spdy/3.1" for SPDY/3.1, and "http=http/1.x" for HTTP/1.x. But for now the "spdy" field is good enough.
   * **loc:** The country that CloudFlare located the visitor in. This information is already available in Google Analytics, we therefore do not need to extract it here.
 
 ### How does Real User Monitoring fit into the picture?
@@ -110,7 +110,7 @@ First, set up the custom dimensions in Google Analytics:
 
 Next we need to embed the Google Analytics tracking code within the website, in order to fill the newly created custom dimensions with data. This tracking code has to be placed between the code for creating the Google Analytics tracker, which looks like this: `__gaTracker('create','UA-12345678-1','auto');`, and the code to submit the tracker, which looks like this `__gaTracker('send','pageview');`.
 
-If you are using WordPress the easiest way to include the custom tracking code is by using the &#8220;<a href="https://wordpress.org/plugins/google-analytics-for-wordpress/" target="_blank">Google Analytics by Yoast</a>&#8221; plugin. This plugin allows you under _Advanced > Custom Code_ to embed the below code right away and without any coding requirements.
+If you are using WordPress the easiest way to include the custom tracking code is by using the "<a href="https://wordpress.org/plugins/google-analytics-for-wordpress/" target="_blank">Google Analytics by Yoast</a>" plugin. This plugin allows you under _Advanced > Custom Code_ to embed the below code right away and without any coding requirements.
 
 The below JavaScript code will read the values from `/cdn-cgi/trace`, extract the information we are interested it and push it into the Google Analytics custom dimension variables. Ensure that the numeric IDs of these custom dimension variables matches what you have created in above steps.
 
@@ -169,8 +169,8 @@ You can now create custom reports with the custom dimensions in Google Analytics
   1. Make sure you are still signed in to <a href="https://www.google.com/analytics/web/#home/" target="_blank">Google Analytics</a>.
   2. Select the **Customization** tab and click on **New Custom Report**.
   3. **Name** your Custom Report here.
-  4. Select a Metric for which you want to see your Custom Dimensions. I recommend the metric &#8220;Sessions&#8221; within the &#8220;Users&#8221; Metric Group.
-  5. Next select the custom dimension for the IP Transport Method (IPv4 vs. IPv6), that you created as the &#8220;Dimension Drilldown&#8221; (See Figure 3).
+  4. Select a Metric for which you want to see your Custom Dimensions. I recommend the metric "Sessions" within the "Users" Metric Group.
+  5. Next select the custom dimension for the IP Transport Method (IPv4 vs. IPv6), that you created as the "Dimension Drilldown" (See Figure 3).
   6. Click on the **Save** button.
 
 <div id="attachment_2145" style="width: 537px" class="wp-caption aligncenter">

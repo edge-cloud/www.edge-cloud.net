@@ -14,9 +14,9 @@ tags:
   - Arista
   - Network
 ---
-<a href="https://www.arista.com/en/" target="_blank">Arista</a> EOS is released as a single image that supports all of their hardware platforms. But that same single image can also be run in a virtual machine! While a great article on &#8220;<a href="http://www.gad.net/Blog/2012/10/27/building-a-virtual-lab-with-arista-veos-and-virtualbox/" target="_blank">Building a Virtual Lab with Arista vEOS and VirtualBox</a>&#8221; already exists, I wanted to accomplish the same with vSphere 5.x.
+<a href="https://www.arista.com/en/" target="_blank">Arista</a> EOS is released as a single image that supports all of their hardware platforms. But that same single image can also be run in a virtual machine! While a great article on "<a href="http://www.gad.net/Blog/2012/10/27/building-a-virtual-lab-with-arista-veos-and-virtualbox/" target="_blank">Building a Virtual Lab with Arista vEOS and VirtualBox</a>" already exists, I wanted to accomplish the same with vSphere 5.x.
 
-Here&#8217;s how I did it.
+Here's how I did it.
 
 **Pre-Requisites**
 
@@ -41,9 +41,9 @@ Within your vSphere Client create a new _Custom_ Configuration VM
   </p>
 </div>
 
-Select a name &#8211; e.g. _&#8220;Arista vEOS 4.12.0&#8221;_ &#8211; for your VM and select the Host / Cluster, Resource Pool and Storage applicable to your specific setup.
+Select a name &#8211; e.g. _"Arista vEOS 4.12.0"_ &#8211; for your VM and select the Host / Cluster, Resource Pool and Storage applicable to your specific setup.
 
-As the Virtual Machine Version select _&#8220;Virtual Machine Version: 8&#8221;_.
+As the Virtual Machine Version select _"Virtual Machine Version: 8"_.
 
 
 
@@ -55,7 +55,7 @@ As the Virtual Machine Version select _&#8220;Virtual Machine Version: 8&#8221;_
   </p>
 </div>
 
-As the Guest Operating System choose _&#8220;Linux&#8221;_ -> _&#8220;Other 2.6.x Linux (32-bit)&#8221;_.
+As the Guest Operating System choose _"Linux"_ -> _"Other 2.6.x Linux (32-bit)"_.
 
 
 
@@ -67,7 +67,7 @@ As the Guest Operating System choose _&#8220;Linux&#8221;_ -> _&#8220;Other 2.6.
   </p>
 </div>
 
-For the CPU settings choose 1 as the _&#8220;Number of Virtual Sockets&#8221;_ and also 1 as the _&#8220;Number of cores per virtual socket&#8221;_.
+For the CPU settings choose 1 as the _"Number of Virtual Sockets"_ and also 1 as the _"Number of cores per virtual socket"_.
 
 
 
@@ -79,7 +79,7 @@ For the CPU settings choose 1 as the _&#8220;Number of Virtual Sockets&#8221;_ a
   </p>
 </div>
 
-Increase the _&#8220;Memory Size&#8221;_ to 2 GB.
+Increase the _"Memory Size"_ to 2 GB.
 
 
 
@@ -93,7 +93,7 @@ Increase the _&#8220;Memory Size&#8221;_ to 2 GB.
 
 Increase the number of NICs to 4 and choose _E1000_ as the _Adapter_ for all of them. Connect each NIC to a port-group applicable to your specific setup.
 
-The _&#8220;NIC 1&#8221;_ will appear as the _&#8220;Mgmt&#8221;_ interface within vEOS. If you didn&#8217;t create any port-groups specific to your vEOS setup so far, don&#8217;t worry: Just pick any available port-group. We will get a chance again to change this later.
+The _"NIC 1"_ will appear as the _"Mgmt"_ interface within vEOS. If you didn't create any port-groups specific to your vEOS setup so far, don't worry: Just pick any available port-group. We will get a chance again to change this later.
 
 
 
@@ -105,7 +105,7 @@ The _&#8220;NIC 1&#8221;_ will appear as the _&#8220;Mgmt&#8221;_ interface with
   </p>
 </div>
 
-Leave the &#8220;SCSI Controller&#8221; at the default value of &#8220;LSI Logic Parallel&#8221;. We will not actually use a SCSI controller.
+Leave the "SCSI Controller" at the default value of "LSI Logic Parallel". We will not actually use a SCSI controller.
 
 
 
@@ -117,7 +117,7 @@ Leave the &#8220;SCSI Controller&#8221; at the default value of &#8220;LSI Logic
   </p>
 </div>
 
-At this point we will not create a disk. Therefore select &#8220;Do not create disk&#8221; under &#8220;Select disk&#8221;.
+At this point we will not create a disk. Therefore select "Do not create disk" under "Select disk".
 
 
 
@@ -129,7 +129,7 @@ At this point we will not create a disk. Therefore select &#8220;Do not create d
   </p>
 </div>
 
-Complete the &#8220;Create New Virtual Machine&#8221; wizard. _Do bot power up the VM yet!!_
+Complete the "Create New Virtual Machine" wizard. _Do bot power up the VM yet!!_
 
 
 
@@ -137,7 +137,7 @@ Complete the &#8220;Create New Virtual Machine&#8221; wizard. _Do bot power up t
   <img src="/content/uploads/2013/06/NewVM13.png" alt="Figure 9: Complete &quot;Create New Virtual Machine&quot; wizard" width="731" height="623" class="size-full wp-image-333" srcset="/content/uploads/2013/06/NewVM13.png 731w, /content/uploads/2013/06/NewVM13-500x426.png 500w" sizes="(max-width: 731px) 100vw, 731px" />
 
   <p class="wp-caption-text">
-    Figure 9: Complete &#8220;Create New Virtual Machine&#8221; wizard
+    Figure 9: Complete "Create New Virtual Machine" wizard
   </p>
 </div>
 
@@ -157,9 +157,9 @@ Next upload the Aboot-veos-2.0.8.iso bootloader and EOS-4.12.0-veos.vmdk disk im
 
 **Change the Virtual Machine settings**
 
-Although we just created the VM for vEOS, we already need to change its settings again. Open the VM&#8217;s properties via _&#8220;Edit Settings&#8221;_.
+Although we just created the VM for vEOS, we already need to change its settings again. Open the VM's properties via _"Edit Settings"_.
 
-Remove the &#8220;Floppy drive 1&#8221; hardware item.
+Remove the "Floppy drive 1" hardware item.
 
 
 
@@ -171,7 +171,7 @@ Remove the &#8220;Floppy drive 1&#8221; hardware item.
   </p>
 </div>
 
-Map the _&#8220;CD/DVD drive 1&#8221;_ to the _Aboot-veos-2.0.8.iso_ bootloader image residing on your datastore. This file needs to remain mounted. It is not only used for installation, but for all future boot cycles.
+Map the _"CD/DVD drive 1"_ to the _Aboot-veos-2.0.8.iso_ bootloader image residing on your datastore. This file needs to remain mounted. It is not only used for installation, but for all future boot cycles.
 
 
 
@@ -183,7 +183,7 @@ Map the _&#8220;CD/DVD drive 1&#8221;_ to the _Aboot-veos-2.0.8.iso_ bootloader 
   </p>
 </div>
 
-Add a new device of the type _&#8220;Hard Disk&#8221;_.
+Add a new device of the type _"Hard Disk"_.
 
 
 
@@ -195,7 +195,7 @@ Add a new device of the type _&#8220;Hard Disk&#8221;_.
   </p>
 </div>
 
-Choose &#8220;Use an existing virtual disk&#8221; as the disk type.
+Choose "Use an existing virtual disk" as the disk type.
 
 
 
@@ -219,15 +219,15 @@ Select the _EOS-4.12.0-veos.vmdk_ disk image file residing on your datastore.
   </p>
 </div>
 
-Accept the proposed _&#8220;Virtual Device Node&#8221;_ with _&#8220;IDE (0:0)&#8221;_.
+Accept the proposed _"Virtual Device Node"_ with _"IDE (0:0)"_.
 
-Re-connect any NIC devices that you want to change and didn&#8217;t get a chance so far.
+Re-connect any NIC devices that you want to change and didn't get a chance so far.
 
-Close the &#8220;Add Hardware&#8221; wizard and the _&#8220;Virtual Machine Properties&#8221;_ dialog.
+Close the "Add Hardware" wizard and the _"Virtual Machine Properties"_ dialog.
 
 _Boot your vEOS VM_
 
-Now it&#8217;s time to test if things are working. Power up the vEOS VM and open the Console.
+Now it's time to test if things are working. Power up the vEOS VM and open the Console.
 
 
 
@@ -241,7 +241,7 @@ Now it&#8217;s time to test if things are working. Power up the vEOS VM and open
 
 It will take a few moments for vEOS to complete the first boot during which the virtual Flash is being initialized.
 
-Once the boot process is complete you can login with the username _&#8220;admin&#8221;_ and e.g. list the physical interfaces.
+Once the boot process is complete you can login with the username _"admin"_ and e.g. list the physical interfaces.
 
 
 
@@ -255,7 +255,7 @@ Once the boot process is complete you can login with the username _&#8220;admin&
 
 Enjoy your newly installed vEOS on ESX!
 
-**What&#8217;s next?**
+**What's next?**
 
 As a next step you could import the above vEOS instance into VMware vCloud Director and create simple or complex vApps of vEOS instances depicting various network architectures.
 

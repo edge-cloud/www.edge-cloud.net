@@ -18,9 +18,9 @@ tags:
   - OpenStack
   - VMware
 ---
-In a previous post I have already written about <a href="https://www.edge-cloud.net/2013/09/04/physical-networks-for-vmware-nsx/" title="Physical networks for VMware NSX" target="_blank">Physical networks for VMware NSX</a>. Now it&#8217;s time to put everything together and showcase you how VMware vSphere, VMware NSX and OpenStack come together for a cloud with network virtualization via overlay networks.
+In a previous post I have already written about <a href="https://www.edge-cloud.net/2013/09/04/physical-networks-for-vmware-nsx/" title="Physical networks for VMware NSX" target="_blank">Physical networks for VMware NSX</a>. Now it's time to put everything together and showcase you how VMware vSphere, VMware NSX and OpenStack come together for a cloud with network virtualization via overlay networks.
 
-As this includes quite a few steps, I&#8217;ll split the posts into a series with this one serving as the introduction.
+As this includes quite a few steps, I'll split the posts into a series with this one serving as the introduction.
 
 ### Goal
 
@@ -45,8 +45,8 @@ In summary we will end up with:
 One might wonder why to choose VMware vSphere as the Hypervisor of choice for such a setup and not use e.g. KVM instead. Two main reasons come to mind, why the presented architecture is a viable solution:
 
   1. Usage of Enterprise-class features  
-    Using VMware vSphere with OpenStack will present the entire cluster as a single &#8220;node&#8221; to OpenStack, allowing Administrators to rely on well-known enterprise class features of the VMware vSphere Hypervisor. This includes e.g. Dynamic Resource Scheduling (DRS) to better distribute the workload across Hypervisors, VMotion to free up a Hypervisor in order to perform preventive maintenance or High Availability (HA) to restart workloads in case of hardware failures.  
-    The predominant model for cloud computing assumes that all components can fail at any time. Thus the application within the workloads need to ensure redundancy. Using VMware vSphere as the Hypervisor of choice with OpenStack, one can deviate from this model and offer a highly reliable cloud instead, known from managed service provider offerings using virtualization today. But it&#8217;s also possible to create a hybrid approach, offering both a pure cloud experience as well as a highly available experience within the same cloud.  
+    Using VMware vSphere with OpenStack will present the entire cluster as a single "node" to OpenStack, allowing Administrators to rely on well-known enterprise class features of the VMware vSphere Hypervisor. This includes e.g. Dynamic Resource Scheduling (DRS) to better distribute the workload across Hypervisors, VMotion to free up a Hypervisor in order to perform preventive maintenance or High Availability (HA) to restart workloads in case of hardware failures.  
+    The predominant model for cloud computing assumes that all components can fail at any time. Thus the application within the workloads need to ensure redundancy. Using VMware vSphere as the Hypervisor of choice with OpenStack, one can deviate from this model and offer a highly reliable cloud instead, known from managed service provider offerings using virtualization today. But it's also possible to create a hybrid approach, offering both a pure cloud experience as well as a highly available experience within the same cloud.  
     &nbsp;
   2. Ease of deploying VMware vSphere vs Openstack with KVM  
     Deploying OpenStack with KVM is not easy. Instead it is quite a challenging task, which is why various companies &#8211; such as e.g. <a href="https://www.mirantis.com/" title="Mirantis" target="_blank">Mirantis</a> &#8211; try to fill this void and offer deployment services or products for OpenStack installation. Deploying a VMware vSphere cluster on the other hand is pretty simple and there are numerous <a href="http://amzn.to/2eF0rgc" target="_blank">books</a>, <a href="http://labs.hol.vmware.com/" title="VMware Hands-On labs" target="_blank">hands-on labs</a> or other forms of documentation out there to help. Thus using VMware vSphere as your Hypervisor of choice greatly simplifies the deployment of OpenStack.  
@@ -62,8 +62,8 @@ For this setup we will assume the following prerequisites are already in place:
       * Version 5.5 or higher.
       * vCenter can either be on Windows or as VMware vCenter Server Appliance (VCSA). I will use VCSA.
       * At least one free vmnic for binding the NSX vSwitch
-      * A single &#8220;Datacenter&#8221; should be configured in vCenter (This is a temporary limitation as safety precaution).
-      * DRS should enabled with &#8220;Fully automated&#8221; placement turned on.
+      * A single "Datacenter" should be configured in vCenter (This is a temporary limitation as safety precaution).
+      * DRS should enabled with "Fully automated" placement turned on.
       * The cluster should have only Datastores that are shared among all hosts in the cluster. It is recommended to use a single shared datastore for the cluster.
 
 As part of this walk-through series, we will add the following components:

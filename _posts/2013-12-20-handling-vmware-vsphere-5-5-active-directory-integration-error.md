@@ -14,7 +14,7 @@ categories:
 tags:
   - VMware
 ---
-While attempting to integrate the VMware vSphere 5.5 vCenter Server Appliance (vCSA) with Microsoft Active Directory you might have stumbled over the error message &#8220;Error: Idm client exception: Failed to establish server connection&#8221;. This article will show you how to work around this issue and still use Active Directory with your vCSA.
+While attempting to integrate the VMware vSphere 5.5 vCenter Server Appliance (vCSA) with Microsoft Active Directory you might have stumbled over the error message "Error: Idm client exception: Failed to establish server connection". This article will show you how to work around this issue and still use Active Directory with your vCSA.
 
 ### Reproduce the error
 
@@ -68,7 +68,7 @@ Next, try to create a new _Identity Source_ (See Figure 4).
   </p>
 </div>
 
-As the vCSA is already joined to the Active Directory domain the expectation would be to use the _Integrated Windows Authentication_ for Active Directory along with using the vCSA machine account. In the end, that&#8217;s why we added vCSA to the Active Directory in the first place. Unfortunately we will soon see that we are let down on this expectation.
+As the vCSA is already joined to the Active Directory domain the expectation would be to use the _Integrated Windows Authentication_ for Active Directory along with using the vCSA machine account. In the end, that's why we added vCSA to the Active Directory in the first place. Unfortunately we will soon see that we are let down on this expectation.
 
 For now select as the _Identity source type_ the value _Active Directory (Integrated Windows Authentication)_, confirm your domain name and select _Use machine account_ (See Figure 5).
 
@@ -106,7 +106,7 @@ Next, navigate to _Administration -> Configuration -> Single Sign-On -> Users an
   </p>
 </div>
 
-Instead of displaying the users from Active Directory as expected, vCSA shows the error message &#8220;Error: Idm client exception: Failed to establish server connection&#8221;. Thus it appears as if the default Active Directory integration in vCSA is broken (See Figure 8).
+Instead of displaying the users from Active Directory as expected, vCSA shows the error message "Error: Idm client exception: Failed to establish server connection". Thus it appears as if the default Active Directory integration in vCSA is broken (See Figure 8).
 
 
 
@@ -120,7 +120,7 @@ Instead of displaying the users from Active Directory as expected, vCSA shows th
 
 ### The Workaround
 
-Now that we have seen the issue, let&#8217;s work around it. This way we can still achieve the goal of using Active Directory as an identity source for SSO in VMware vSphere.
+Now that we have seen the issue, let's work around it. This way we can still achieve the goal of using Active Directory as an identity source for SSO in VMware vSphere.
 
 Start by removing the Active Directory identity source that you previously created (See Figure 9).
 
@@ -136,14 +136,14 @@ Start by removing the Active Directory identity source that you previously creat
 
 Create a new identity source. This time select for the _Identity source type_ the value _Active Directory as a LDAP server_. Fill out the remaining fields as follows (See Figure 10):
 
-  * Name: Your AD domain name; E.g. &#8220;corp.local&#8221;
-  * Base DN for users: Split your domain name in pieces along the dots (&#8220;.&#8221;) and prefix each part with a &#8220;dc=&#8221;. Place commas &#8220;,&#8221; in between each part; E.g. &#8220;dc=corp,dc=local&#8221;
-  * Domain name: Your AD domain name; E.g. &#8220;corp.local&#8221;
-  * Domain alias: Your netbios name of the AD domain; E.g. &#8220;CORP&#8221;
-  * Base DN for groups: Same a the Base DN for users; E.g. &#8220;dc=corp,dc=local&#8221;
-  * Primary Server URL: The Active Directory server as a URL with the protocol &#8220;ldap://&#8221; and the port 389.; E.g. ldap://192.168.110.10:389
+  * Name: Your AD domain name; E.g. "corp.local"
+  * Base DN for users: Split your domain name in pieces along the dots (".") and prefix each part with a "dc=". Place commas "," in between each part; E.g. "dc=corp,dc=local"
+  * Domain name: Your AD domain name; E.g. "corp.local"
+  * Domain alias: Your netbios name of the AD domain; E.g. "CORP"
+  * Base DN for groups: Same a the Base DN for users; E.g. "dc=corp,dc=local"
+  * Primary Server URL: The Active Directory server as a URL with the protocol "ldap://" and the port 389.; E.g. ldap://192.168.110.10:389
   * Secondary Sever URL: Another Active Directory server as a URL if you have one. Otherwise leave it blank; E.g. ldap://192.168.110.20:389
-  * Username: An Active Directory username in netbios notation with privileges to read all users and groups; E.g. &#8220;CORPAdministrator&#8221;
+  * Username: An Active Directory username in netbios notation with privileges to read all users and groups; E.g. "CORPAdministrator"
   * Password: The password of the above user.
 
 <div id="attachment_833" style="width: 610px" class="wp-caption aligncenter">
@@ -190,7 +190,7 @@ Now, if you return to _Administration -> Configuration -> Single Sign-On -> User
   </p>
 </div>
 
-Don&#8217;t forget to add users from your Active Directory to corresponding vCSA groups to grant access to these users (See Figure 14).
+Don't forget to add users from your Active Directory to corresponding vCSA groups to grant access to these users (See Figure 14).
 
 
 
@@ -202,7 +202,7 @@ Don&#8217;t forget to add users from your Active Directory to corresponding vCSA
   </p>
 </div>
 
-Also don&#8217;t forget to add users from your Active Directory to the vCenter Permissions (See Figure 15).
+Also don't forget to add users from your Active Directory to the vCenter Permissions (See Figure 15).
 
 
 

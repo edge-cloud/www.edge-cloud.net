@@ -47,9 +47,9 @@ We will look at BC/DR capabilities for the workloads of the SDDC separately.
 
 ### Disaster Recovery Design Example
 
-Within this example, the SDDC includes two locations: A protected &#8220;Region A&#8221; in San Francisco, CA and a &#8220;Region B&#8221; for recovery purposes in Los Angeles. VMware&#8217;s Site Recovery Manager (SRM) provides a solution for automating the creation and execution of a disaster recovery plan or workflows between these two regions for the above described management applications.
+Within this example, the SDDC includes two locations: A protected "Region A" in San Francisco, CA and a "Region B" for recovery purposes in Los Angeles. VMware's Site Recovery Manager (SRM) provides a solution for automating the creation and execution of a disaster recovery plan or workflows between these two regions for the above described management applications.
 
-Region A initially hosts the management application virtual machine workloads, that are being protected. As such this region is referred to as the &#8220;protected region&#8221;.
+Region A initially hosts the management application virtual machine workloads, that are being protected. As such this region is referred to as the "protected region".
 
 ### Logical Design
 
@@ -74,7 +74,7 @@ The vCenter Server design includes a total of two virtual vCenter Server systems
 
 Physically moving a service from one region to another represents a networking challenge. Additional complexities can be introduced if applications have hard-coded IP addresses. Network addressing space and IP address assignment design considerations require that you choose to use either the same IP address or different IP address within the recovery region.
 
-While protecting typical 3 tier web applications, this problem <a href="https://www.edge-cloud.net/2015/08/31/sddc-architecture-vpods-for-management-applications/" target="_blank">can be simplified</a> by leveraging a load balancer to separate between a public reachable network segment, and a private network segment. On the public network segment, the web application is accessible via one or more virtual IP (VIP) addresses, while the inner working of the application are &#8220;hidden&#8221; on the isolated private network segment. Following this approach it is possible to treat the internal private network segment as a VLAN or VXLAN island without the requirement to change the IPv4 subnet between regions during a failover. Solely the external IPv4 address of the load balancer VIP changes between regions.
+While protecting typical 3 tier web applications, this problem <a href="https://www.edge-cloud.net/2015/08/31/sddc-architecture-vpods-for-management-applications/" target="_blank">can be simplified</a> by leveraging a load balancer to separate between a public reachable network segment, and a private network segment. On the public network segment, the web application is accessible via one or more virtual IP (VIP) addresses, while the inner working of the application are "hidden" on the isolated private network segment. Following this approach it is possible to treat the internal private network segment as a VLAN or VXLAN island without the requirement to change the IPv4 subnet between regions during a failover. Solely the external IPv4 address of the load balancer VIP changes between regions.
 
 After a failover the recovered service is available under a different IPv4 address (VIP), which requires DNS entries to be changed. This can easily be accomplished in an automated manner (See Figure 3).
 
@@ -88,11 +88,11 @@ After a failover the recovered service is available under a different IPv4 addre
 
 The vSphere Management networks (Figure 3, grey network) between SDDC regions have to be interconnected via VPN or MPLS. Various options exist for accomplishing such a cross-connect, ranging from VMware NSX Edge devices with IPSec VPN to various hardware based network products.
 
-The IPv4 subnets within the VLAN &#8220;islands&#8221; (Figure 3, yellow network) are routed within the vSphere management network (Figure 3, grey network) of a region. Nodes within these &#8220;islands&#8221; are therefore reachable from within the SDDC (including Jump-Hosts, SSLVPN connections or alike). As these IPv4 subnets overlap across a region, care must be taken that these IPv4 subnet are not propagated beyond a region.
+The IPv4 subnets within the VLAN "islands" (Figure 3, yellow network) are routed within the vSphere management network (Figure 3, grey network) of a region. Nodes within these "islands" are therefore reachable from within the SDDC (including Jump-Hosts, SSLVPN connections or alike). As these IPv4 subnets overlap across a region, care must be taken that these IPv4 subnet are not propagated beyond a region.
 
 The public facing Ext-Management network (Figure 3, blue network) of both regions is assumed to be reachable by users of the SDDC and is also assumed to both connect to external resources, such as Active Directory or DNS.
 
-The load balancers &#8211; here NSX Edge devices &#8211; across the two regions must be configured with the same settings (while taking into account the differing external IP addresses) for a given management application and it&#8217;s SRM shadow segment. This configuration sync needs to happen either manually or can be accomplished via scripting.
+The load balancers &#8211; here NSX Edge devices &#8211; across the two regions must be configured with the same settings (while taking into account the differing external IP addresses) for a given management application and it's SRM shadow segment. This configuration sync needs to happen either manually or can be accomplished via scripting.
 
 It is assumed that Active Directory and DNS services are running at both the primary and secondary location. It is advisable to use <a href="https://en.wikipedia.org/wiki/Anycast" target="_blank">Anycast</a> to make DNS Resolvers available under the same IPv4 address at different location, as well as using Global Traffic Management to make local Active Directory Domain Controllers available under a common global domain name.
 

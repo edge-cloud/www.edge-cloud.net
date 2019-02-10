@@ -63,7 +63,7 @@ Let me again use an analogy and return to the car example. Looking at how the <a
   <img class="size-medium wp-image-1716" src="/content/uploads/2015/08/SDDC_MQB1-360x220.jpg" alt="Figure 2: Volkswagen's MQB car platform" width="360" height="220" srcset="/content/uploads/2015/08/SDDC_MQB1-360x220.jpg 360w, /content/uploads/2015/08/SDDC_MQB1.jpg 600w" sizes="(max-width: 360px) 100vw, 360px" />
 
   <p class="wp-caption-text">
-    Figure 2: Volkswagen&#8217;s MQB car platform
+    Figure 2: Volkswagen's MQB car platform
   </p>
 </div>
 
@@ -75,7 +75,7 @@ This means that the <a href="https://en.wikipedia.org/wiki/Volkswagen_Group_MQB_
   <img class="size-medium wp-image-1717" src="/content/uploads/2015/08/SDDC_MQB2-360x185.jpg" alt="Figure 3: Volkswagen's MQB as platform for innovation" width="360" height="185" srcset="/content/uploads/2015/08/SDDC_MQB2-360x185.jpg 360w, /content/uploads/2015/08/SDDC_MQB2.jpg 600w" sizes="(max-width: 360px) 100vw, 360px" />
 
   <p class="wp-caption-text">
-    Figure 3: Volkswagen&#8217;s MQB as platform for innovation
+    Figure 3: Volkswagen's MQB as platform for innovation
   </p>
 </div>
 
@@ -95,7 +95,7 @@ An SDDC based on the VMware Validated Design should serve as a simple and stable
   </p>
 </div>
 
-Keep in mind: Just because something can be done, doesn&#8217;t mean it should be done. The quality of a design does not increase with the number of elements. Instead with an increase of elements the complexity increases, which usually leads to a poor design.
+Keep in mind: Just because something can be done, doesn't mean it should be done. The quality of a design does not increase with the number of elements. Instead with an increase of elements the complexity increases, which usually leads to a poor design.
 
 **Summary**
 
@@ -103,4 +103,4 @@ With the VMware Validated Designs you can get the undifferentiated heavy lifting
 
 **Want more?**
 
-Attend the VMWorld 2015 sessions &#8220;<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5440" target="_blank">SDDC5440 &#8211; VMware Validated Designs &#8211; A Reference Architecture for the SDDC</a>&#8221; and &#8220;<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5609" target="_blank">SDDC5609 &#8211; VMware Validated Designs for a Software Defined Data Center (SDDC)</a>&#8221; to learn more about the VMware Validated Designs.
+Attend the VMWorld 2015 sessions "<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5440" target="_blank">SDDC5440 &#8211; VMware Validated Designs &#8211; A Reference Architecture for the SDDC</a>" and "<a href="https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=5609" target="_blank">SDDC5609 &#8211; VMware Validated Designs for a Software Defined Data Center (SDDC)</a>" to learn more about the VMware Validated Designs.

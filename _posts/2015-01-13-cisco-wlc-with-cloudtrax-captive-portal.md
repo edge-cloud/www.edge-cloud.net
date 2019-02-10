@@ -25,9 +25,9 @@ The solution simplifies deploying and managing large-scale wireless LANs by mana
   </p>
 </div>
 
-Despite these outstanding capabilities, Cisco&#8217;s WLC brings rather limited and complicated capabilities to the table when it comes to creating a simple captive portal for Wifi users, where authentication of valid customers is performed via voucher codes.
+Despite these outstanding capabilities, Cisco's WLC brings rather limited and complicated capabilities to the table when it comes to creating a simple captive portal for Wifi users, where authentication of valid customers is performed via voucher codes.
 
-Here <a href="http://www.open-mesh.com/" target="_blank">Open-Mesh</a> with it&#8217;s cloud-based <a href="https://www.cloudtrax.com/" target="_blank">CloudTrax controller</a> offers a very simple and cost-effective solution to deploy a Wifi network &#8211; e.g. within a hotel, restaurant, college campus or other location &#8211; for users to authenticate via a Captive Portal for free, with a free or prepaid voucher or via PayPal payment (See Figure 2).
+Here <a href="http://www.open-mesh.com/" target="_blank">Open-Mesh</a> with it's cloud-based <a href="https://www.cloudtrax.com/" target="_blank">CloudTrax controller</a> offers a very simple and cost-effective solution to deploy a Wifi network &#8211; e.g. within a hotel, restaurant, college campus or other location &#8211; for users to authenticate via a Captive Portal for free, with a free or prepaid voucher or via PayPal payment (See Figure 2).
 
 <div id="attachment_1455" style="width: 297px" class="wp-caption aligncenter">
   <img src="/content/uploads/2015/01/cloudtrax-stati-008.png" alt="Figure 2: Captive Portal provided by CloudTrax" width="287" height="216" class="size-full wp-image-1455" />
@@ -37,7 +37,7 @@ Here <a href="http://www.open-mesh.com/" target="_blank">Open-Mesh</a> with it&#
   </p>
 </div>
 
-But if you already made a large financial and time investment into your Cisco WLC based Wifi network you do not necessarily want to rip and replace this network with an Open-Mesh network. Instead you might want to use the best of both worlds: The rock solid Cisco hardware with the easy to use CloudTrax captive portal. In this article I&#8217;ll show you how to do exactly this.
+But if you already made a large financial and time investment into your Cisco WLC based Wifi network you do not necessarily want to rip and replace this network with an Open-Mesh network. Instead you might want to use the best of both worlds: The rock solid Cisco hardware with the easy to use CloudTrax captive portal. In this article I'll show you how to do exactly this.
 
 ### Existing Cisco WLC network
 
@@ -75,7 +75,7 @@ Please refer to the CloudTrax documentation at <a href="https://www.cloudtrax.co
 
 ### Public SSID settings tab
 
-You don&#8217;t actually want to use the Open-Mesh device to provide any wireless capabilities. This should all be handled by the Cisco WLC-based network. Unfortunately it is not possible to turn off the wireless capabilities on an Open-Mesh device completely. Instead we will need to make some configuration changes to make the wireless network on the Open-Mesh device as inaccessible as possible. First, choose an SSID that _does not_ correspond to the SSID that is configured in the Cisco WLC for the public accessible network and also hide this SSID (See Figure 5). Bottom-line: You don&#8217;t want clients to connect to the Open-Mesh device, but to the Cisco WLC network.
+You don't actually want to use the Open-Mesh device to provide any wireless capabilities. This should all be handled by the Cisco WLC-based network. Unfortunately it is not possible to turn off the wireless capabilities on an Open-Mesh device completely. Instead we will need to make some configuration changes to make the wireless network on the Open-Mesh device as inaccessible as possible. First, choose an SSID that _does not_ correspond to the SSID that is configured in the Cisco WLC for the public accessible network and also hide this SSID (See Figure 5). Bottom-line: You don't want clients to connect to the Open-Mesh device, but to the Cisco WLC network.
 
 
 
@@ -89,7 +89,7 @@ You don&#8217;t actually want to use the Open-Mesh device to provide any wireles
 
 ### Private SSID settings tab
 
-Similar for the private SSID. You do not actually want to provide this network via the Open-Mesh device. Therefore turn it off completely. But also make sure that the &#8220;Wired Clients&#8221; tick box _is not_ selected (See Figure 6). This way the Cisco WLC based network will be mapped to the public network in CloudTrax and can use the captive portal.
+Similar for the private SSID. You do not actually want to provide this network via the Open-Mesh device. Therefore turn it off completely. But also make sure that the "Wired Clients" tick box _is not_ selected (See Figure 6). This way the Cisco WLC based network will be mapped to the public network in CloudTrax and can use the captive portal.
 
 
 
@@ -121,7 +121,7 @@ You can also remove the antenna from the Open-Mesh device to further reduce the 
 
 Unfortunately we are not done yet at this point. We need to add a custom script on the Open-Mesh device, so that it can handle the static IP address of the WLC device. We also need to configure the WLC with such a static address for the network issued by the Open-Mesh device.
 
-First connect to the Open-Mesh device via SSH and lookup the IP address information used for the public SSID via the command &#8220;ifconfig br-pub&#8221;. The result should look like this:
+First connect to the Open-Mesh device via SSH and lookup the IP address information used for the public SSID via the command "ifconfig br-pub". The result should look like this:
 
 <pre>root@N3:~# ifconfig br-pub
 br-pub    Link encap:Ethernet  HWaddr AC:86:12:34:56:78
@@ -147,7 +147,7 @@ With these information we can now configure the Cisco WLC device to be at 10.255
   </p>
 </div>
 
-Next create the file &#8220;_/sbin/wlc_&#8221; inside the Open-Mesh device with the following content. Replace the IP address 10.255.48.2 with the IP address that corresponds to the WLC in your setup.
+Next create the file "_/sbin/wlc_" inside the Open-Mesh device with the following content. Replace the IP address 10.255.48.2 with the IP address that corresponds to the WLC in your setup.
 
 <pre>#!/bin/sh
 
@@ -162,7 +162,7 @@ ping -c3 10.255.48.2 > /dev/null 2>&1 || {
 }
 </pre>
 
-This script will test connectivity to the WLC and if this test fails, re-configure the network interfaces on the Open-Mesh device. This script should run regularly, as configuration changes pushed from CloudTrax can undo any changes. This can be accomplished by creating a symbolic link from /sbin/wlc to /etc/cron.5mins/wlc with the command &#8220;_ln -s /sbin/wlc /etc/cron.5mins/wlc_&#8220;.
+This script will test connectivity to the WLC and if this test fails, re-configure the network interfaces on the Open-Mesh device. This script should run regularly, as configuration changes pushed from CloudTrax can undo any changes. This can be accomplished by creating a symbolic link from /sbin/wlc to /etc/cron.5mins/wlc with the command "_ln -s /sbin/wlc /etc/cron.5mins/wlc_".
 
 Check your results with:
 

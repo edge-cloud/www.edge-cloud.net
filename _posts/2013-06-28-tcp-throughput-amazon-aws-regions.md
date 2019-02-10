@@ -14,13 +14,13 @@ tags:
   - AWS
   - Performance
 ---
-In a <a href="https://www.edge-cloud.net/2013/06/07/measuring-network-throughput/" title="Measuring Network Throughput" target="_blank">previous post</a> I wrote about &#8220;Measuring Network Throughput&#8221;. Today I want to share a few quick performance test results that I assembled for the single TCP session throughput between the Amazon AWS Oregon and N. Virginia regions.
+In a <a href="https://www.edge-cloud.net/2013/06/07/measuring-network-throughput/" title="Measuring Network Throughput" target="_blank">previous post</a> I wrote about "Measuring Network Throughput". Today I want to share a few quick performance test results that I assembled for the single TCP session throughput between the Amazon AWS Oregon and N. Virginia regions.
 
 ### Amazon AWS
 
 The test series uses one <a href="https://aws.amazon.com/ec2/previous-generation/" target="_blank">m1.medium instance</a> in each region. The latency between the two instances gives us an RTT of 88 ms and therefore allows us to calculate the theoretical maximum throughput based on the bandwidth-delay product.
 
-I&#8217;m again using iperf with varying TCP window sizes for this test.
+I'm again using iperf with varying TCP window sizes for this test.
 
 <div id="attachment_435" style="width: 635px" class="wp-caption aligncenter">
   <img src="/content/uploads/2013/06/Broken-TCP-throughput.png" alt="Figure 1: Single TCP stream throughput between AWS regions" width="625" height="293" class="size-full wp-image-435" srcset="/content/uploads/2013/06/Broken-TCP-throughput.png 625w, /content/uploads/2013/06/Broken-TCP-throughput-500x234.png 500w" sizes="(max-width: 625px) 100vw, 625px" />
@@ -34,11 +34,11 @@ Figure 1 shows the single TCP stream throughput between the two AWS regions. One
 
 Looking at the traceroute between the two instances one can clearly see that Amazon uses its own links to connect the regions.
 
-_Side Note:_ The network team at Amazon AWS should brush up their skills on <a href="https://en.wikipedia.org/wiki/Reverse_DNS_lookup" target="_blank">Reverse DNS lookups</a> as almost none of the routing hops&#8217; IP addresses resolves to DNS names. But the Autonomous System (AS) number of hops clearly shows that the IP addresses belong to Amazon.
+_Side Note:_ The network team at Amazon AWS should brush up their skills on <a href="https://en.wikipedia.org/wiki/Reverse_DNS_lookup" target="_blank">Reverse DNS lookups</a> as almost none of the routing hops' IP addresses resolves to DNS names. But the Autonomous System (AS) number of hops clearly shows that the IP addresses belong to Amazon.
 
-### &#8220;Broken&#8221; example, not Amazon AWS
+### "Broken" example, not Amazon AWS
 
-Let&#8217;s have a look at another example, not Amazon AWS. This time the two workloads reside in data centers in Miami (Florida) and Las Vegas (Nevada). The RTT between the two workloads is 75 ms. In this case the sites are not connected via dedicated links, but instead both sites are connected to the internet via 100 MBits/sec uplinks. Thus the traffic between the sites traverses the Internet.
+Let's have a look at another example, not Amazon AWS. This time the two workloads reside in data centers in Miami (Florida) and Las Vegas (Nevada). The RTT between the two workloads is 75 ms. In this case the sites are not connected via dedicated links, but instead both sites are connected to the internet via 100 MBits/sec uplinks. Thus the traffic between the sites traverses the Internet.
 
 <div id="attachment_434" style="width: 635px" class="wp-caption aligncenter">
   <img src="/content/uploads/2013/06/AmazonAWS-throughput1.png" alt="Figure 2: Broken single TCP stream throughput (Not Amazon AWS)" width="625" height="299" class="size-full wp-image-434" srcset="/content/uploads/2013/06/AmazonAWS-throughput1.png 625w, /content/uploads/2013/06/AmazonAWS-throughput1-500x239.png 500w" sizes="(max-width: 625px) 100vw, 625px" />

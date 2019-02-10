@@ -23,9 +23,9 @@ In [Part 1](https://www.edge-cloud.net/2013/12/17/openstack-with-vsphere-and-nsx
 
 ### Connect the NSX Manager to the NSX Cluster
 
-Let&#8217;s start by making the NSX Manager aware of the NSX Cluster to be used. This will allow us in subsequent steps to manage this NSX cluster and add further components.
+Let's start by making the NSX Manager aware of the NSX Cluster to be used. This will allow us in subsequent steps to manage this NSX cluster and add further components.
 
-First login to the NSX Manager with the credentials that were set in the previous post (See Figure 1). By default this would be the username &#8220;admin&#8221; along with the password &#8220;admin&#8221;.
+First login to the NSX Manager with the credentials that were set in the previous post (See Figure 1). By default this would be the username "admin" along with the password "admin".
 
 
 
@@ -87,7 +87,7 @@ Complete your selection by clicking on _Configure_.
   </p>
 </div>
 
-You should see the NSX controller cluster successfully added with the Connection status as &#8220;Up&#8221; (See Figure 6).
+You should see the NSX controller cluster successfully added with the Connection status as "Up" (See Figure 6).
 
 
 
@@ -248,7 +248,7 @@ Next, we need to create a transport connector for the NSX Gateway. A transport c
 
 We will use STT as the transport type in this setup. And remember that we are only using a single transport zone.
 
-Let&#8217;s get started by clicking on _Add Connector_ (See Figure 18).
+Let's get started by clicking on _Add Connector_ (See Figure 18).
 
 
 
@@ -304,7 +304,7 @@ You should see the NSX gateway successfully added with the Connection status as 
   <img src="/content/uploads/2013/12/NSX-Manager30-e1387398765956.png" alt="Figure 22: NSX Gateway displaying status of &quot;Connected&quot;" width="800" height="141" class="size-full wp-image-757" />
 
   <p class="wp-caption-text">
-    Figure 22: NSX Gateway displaying status of &#8220;Connected&#8221;
+    Figure 22: NSX Gateway displaying status of "Connected"
   </p>
 </div>
 

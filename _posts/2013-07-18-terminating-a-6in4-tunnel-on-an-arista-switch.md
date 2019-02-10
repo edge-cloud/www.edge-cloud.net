@@ -16,15 +16,15 @@ tags:
 ---
 In a [previous post](https://www.edge-cloud.net/2013/06/24/network-troubleshooting-via-arista-eos-shell/ "Network troubleshooting via Arista EOS shell") I have shown that <a href="https://www.arista.com/en/" target="_blank">Arista switches</a> feature a full fledged Linux system underneath the CLI that is accessible to network administrators via the EOS shell.
 
-Let&#8217;s use this Linux capability to do something out of the box: Terminate a 6in4 tunnel on an Arista switch to provide IPv6 access.
+Let's use this Linux capability to do something out of the box: Terminate a 6in4 tunnel on an Arista switch to provide IPv6 access.
 
-Via the CLI this is not possible as Arista does not support 6in4 tunnel in EOS. Therefore let&#8217;s use the Linux-based EOS shell.
+Via the CLI this is not possible as Arista does not support 6in4 tunnel in EOS. Therefore let's use the Linux-based EOS shell.
 
-Please keep in mind that the tunnel termination will be handled by the control plane in software and not in hardware. Thus don&#8217;t expect any miracles with regards to throughput.
+Please keep in mind that the tunnel termination will be handled by the control plane in software and not in hardware. Thus don't expect any miracles with regards to throughput.
 
 ### Getting the 6in4 tunnel
 
-Next we need a service provider delivering us the termination or such a tunnel. The easiest way to achieve this is via Hurricane Electric&#8217;s <a href="https://tunnelbroker.net/" target="_blank">Tunnelbroker service</a>. Within a few minutes you get a 6in4 tunnel this way. Figure 1 shows an example of the details for a 6in4 tunnel provided by Hurricane Electric.
+Next we need a service provider delivering us the termination or such a tunnel. The easiest way to achieve this is via Hurricane Electric's <a href="https://tunnelbroker.net/" target="_blank">Tunnelbroker service</a>. Within a few minutes you get a 6in4 tunnel this way. Figure 1 shows an example of the details for a 6in4 tunnel provided by Hurricane Electric.
 
 
 
@@ -38,7 +38,7 @@ Next we need a service provider delivering us the termination or such a tunnel. 
 
 ### Prerequisites
 
-Before starting with the configuration of the 6in4 tunnel from within the Arista EOS shell, let&#8217;s make sure that we can actually contact the service provider&#8217;s tunnel endpoint via ping from the Arista CLI.
+Before starting with the configuration of the 6in4 tunnel from within the Arista EOS shell, let's make sure that we can actually contact the service provider's tunnel endpoint via ping from the Arista CLI.
 
 <pre>ams-core01a(config)#ping 216.66.84.46
 PING 216.66.84.46 (216.66.84.46) 72(100) bytes of data.
@@ -53,7 +53,7 @@ PING 216.66.84.46 (216.66.84.46) 72(100) bytes of data.
 rtt min/avg/max/mdev = 0.638/0.652/0.674/0.030 ms, ipg/ewma 1.039/0.663 ms
 </pre>
 
-Once we confirm connectivity, we can get started with the actual configuration. For this let&#8217;s enter into the EOS shell mode and become super user:
+Once we confirm connectivity, we can get started with the actual configuration. For this let's enter into the EOS shell mode and become super user:
 
 <pre>ams-core01a#bash
 
@@ -68,12 +68,12 @@ Arista Networks EOS shell
 
 ### Installing necessary modules
 
-In order to configure a 6in4 tunnel under Linux the <a href="http://tldp.org/HOWTO/Adv-Routing-HOWTO/lartc.tunnel-ipv6.addressing.html" target="_blank">Simple Internet Transition (SIT)</a> module needs to be loaded. This module is not loaded by default on Arista switches. Let&#8217;s do so:
+In order to configure a 6in4 tunnel under Linux the <a href="http://tldp.org/HOWTO/Adv-Routing-HOWTO/lartc.tunnel-ipv6.addressing.html" target="_blank">Simple Internet Transition (SIT)</a> module needs to be loaded. This module is not loaded by default on Arista switches. Let's do so:
 
 <pre>-bash-4.1# modprobe sit
 </pre>
 
-Now we can configure the 6in4 tunnel to Hurricane Electric and make it available under the interface name &#8220;he-ipv6&#8221;, enable IPv6 on this interface and assign the correct IPv6 address:
+Now we can configure the 6in4 tunnel to Hurricane Electric and make it available under the interface name "he-ipv6", enable IPv6 on this interface and assign the correct IPv6 address:
 
 <pre>-bash-4.1# ip tunnel add he-ipv6 mode sit remote 216.66.84.46 local 212.123.xxx.xxx ttl 255
 -bash-4.1# ip link set he-ipv6 up
@@ -86,7 +86,7 @@ The 6in4 tunnel to Hurricane Electric should now be up and running.
 
 ### Testing IPv6 connectivity from the EOS shell
 
-Before declaring success, let&#8217;s ensure that we can actually carry IPv6 traffic across the tunnel. We will start by attempting to ping the IPv6 address of the tunnel&#8217;s remote interface at Hurricane Electric.
+Before declaring success, let's ensure that we can actually carry IPv6 traffic across the tunnel. We will start by attempting to ping the IPv6 address of the tunnel's remote interface at Hurricane Electric.
 
 <pre>-bash-4.1# ping6 2001:470:xxxx:xxxx::1
 PING 2001:470:xxxx:xxxx::1(2001:470:xxxx:xxxx::1) 56 data bytes
@@ -102,12 +102,12 @@ PING 2001:470:xxxx:xxxx::1(2001:470:xxxx:xxxx::1) 56 data bytes
 rtt min/avg/max/mdev = 0.693/0.723/0.742/0.031 ms
 </pre>
 
-Once this works successfully, let&#8217;s configure routing beyond this first hop via a default route:
+Once this works successfully, let's configure routing beyond this first hop via a default route:
 
 <pre>-bash-4.1# ip route add ::/0 dev he-ipv6
 </pre>
 
-Let&#8217;s test if this works and ping <a href="https://developers.google.com/speed/public-dns/" target="_blank">Google&#8217;s public DNS resolver</a>:
+Let's test if this works and ping <a href="https://developers.google.com/speed/public-dns/" target="_blank">Google's public DNS resolver</a>:
 
 <pre>-bash-4.1# ping6 2001:4860:4860::8888
 PING 2001:4860:4860::8888(2001:4860:4860::8888) 56 data bytes
@@ -127,7 +127,7 @@ It does, which means that we have successfully enabled IPv6 connectivity via a 6
 
 ### Testing IPv6 connectivity from the Arista CLI
 
-So far we have configured the 6in4 tunnel and tested its functionality from the Arista EOS shell. But does that mean that the changes we performed will actually be available to traffic that traverses the switch? In other words: Can we actually connect machines to my Arista switch that will gain IPv6 connectivity this way? Let&#8217;s try it out by testing network connectivity from the Arista CLI.
+So far we have configured the 6in4 tunnel and tested its functionality from the Arista EOS shell. But does that mean that the changes we performed will actually be available to traffic that traverses the switch? In other words: Can we actually connect machines to my Arista switch that will gain IPv6 connectivity this way? Let's try it out by testing network connectivity from the Arista CLI.
 
 First exit the Arista EOS shell into the CLI.
 
@@ -137,7 +137,7 @@ logout
 logout
 </pre>
 
-Let&#8217;s ping the Google DNS resolver again and see what happens:
+Let's ping the Google DNS resolver again and see what happens:
 
 <pre>ams-core01a#ping ipv6 2001:4860:4860::8888
 PING 2001:4860:4860::8888(2001:4860:4860::8888) 72 data bytes
@@ -155,7 +155,7 @@ ams-core01a#
 
 That works like a charm.
 
-Of course there must be some drawback to all of this: As the interface &#8220;he-ipv6&#8221; is not known to the Arista CLI, it will not be displayed from within the CLI. Thus it appears like hidden from the network administrator and is only accessible via the EOS shell. This makes troubleshooting a bit more challenging as e.g. the IPv6 routing table will appear to be empty even though we just verified that we have IPv6 connectivity to the Internet.
+Of course there must be some drawback to all of this: As the interface "he-ipv6" is not known to the Arista CLI, it will not be displayed from within the CLI. Thus it appears like hidden from the network administrator and is only accessible via the EOS shell. This makes troubleshooting a bit more challenging as e.g. the IPv6 routing table will appear to be empty even though we just verified that we have IPv6 connectivity to the Internet.
 
 <pre>ams-core01a#sh ipv6 route ::/0
 IPv6 Routing Table - 35 entries
@@ -169,4 +169,4 @@ ams-core01a#
 
 Please keep in mind that due to the operational challenges around troubleshooting the above setup as well as the rather mediocre throughput of the 6in4 tunnel, this configuration is not recommended for production usage. Also keep in mind that the above changes would not survive a reboot of the switch.
 
-Instead this article showed you how powerful Arista&#8217;s underlying Linux OS really is.
+Instead this article showed you how powerful Arista's underlying Linux OS really is.

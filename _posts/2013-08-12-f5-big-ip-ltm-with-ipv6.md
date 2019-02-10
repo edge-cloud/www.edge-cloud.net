@@ -23,7 +23,7 @@ In this post we will use the <a href="https://f5.com/products/big-ip/local-traff
 
 Figure 1 shows how this approach would work: The End-User will connect to the load balancer via IPv6, which means that the load balancer needs to have an IPv6 address reachable by the end-users on its external facing interface. The load balancer then connects to the legacy IPv4 web application via IPv4. This means that no changes are necessary to this legacy web application.
 
-If you are already using a load balancer to frontend your application for IPv4, this same load balancer can also terminate your IPv6 traffic. But you&#8217;re also free to use a separate &#8220;IPv6-only&#8221; load balancer, if your operational need dictates this.
+If you are already using a load balancer to frontend your application for IPv4, this same load balancer can also terminate your IPv6 traffic. But you're also free to use a separate "IPv6-only" load balancer, if your operational need dictates this.
 
 
 
@@ -37,7 +37,7 @@ If you are already using a load balancer to frontend your application for IPv4, 
 
 ### F5 Big-IP and IPv6
 
-On a first look at the GUI it doesn&#8217;t appear that the F5 Big-IP supports IPv6 addresses on its interfaces or for nodes. In the corresponding dialogues there are only fields for &#8220;IP Address&#8221; and &#8220;Netmask&#8221;. For IPv6 we would expect a field for a subnet prefix length instead of the netmask. It turns out that these dialogues gladly accept IPv6 addresses in the typical notation of eight groups of four hexadecimal digits separated by colons along with the subnet prefix length translated into a subnet mask following the same notation.
+On a first look at the GUI it doesn't appear that the F5 Big-IP supports IPv6 addresses on its interfaces or for nodes. In the corresponding dialogues there are only fields for "IP Address" and "Netmask". For IPv6 we would expect a field for a subnet prefix length instead of the netmask. It turns out that these dialogues gladly accept IPv6 addresses in the typical notation of eight groups of four hexadecimal digits separated by colons along with the subnet prefix length translated into a subnet mask following the same notation.
 
 Although this appears to be a bit awkward at first sight, it will turn out to be much less of a hassle quite quickly: <a href="https://tools.ietf.org/html/rfc5375" target="_blank">RFC 5375 (IPv6 Unicast Address Assignment Considerations)</a> strongly recommends that in IPv6 the subnet prefix length should always be /64. With that we only need to convert this subnet prefix length of /64 into the legacy style netmask notation.
 
@@ -45,13 +45,13 @@ Using the <a href="https://en.wikipedia.org/wiki/Subnetwork" target="_blank">mec
 
 IPv6 addresses are 128 bit long. If we want to mask out a subnet with the length of 64 bit, this would require us to mask out half of the bits. With the previously mentioned notation of eight groups of four hexadecimal digits separated by colons, this translates into the four first groups being FFFF in hex, which translates to all 1s in binary. And the remaining four groups being all zeros.
 
-_Note:_ In older versions of Big-IP, F5 has a bug that doesn&#8217;t allow you to use address shortening via double-colons (&#8220;::&#8221;) through the GUI or tmsh. Instead all IPv6 addresses need to be written out. Thus the address 20BA:DD06:F00D:1234::11 would need to become 20BA:DD06:F00D:1234:0:0:0:11.
+_Note:_ In older versions of Big-IP, F5 has a bug that doesn't allow you to use address shortening via double-colons ("::") through the GUI or tmsh. Instead all IPv6 addresses need to be written out. Thus the address 20BA:DD06:F00D:1234::11 would need to become 20BA:DD06:F00D:1234:0:0:0:11.
 
 ### Configure the external interface for IPv6
 
 In a first step we need to assign an IPv6 address to the external interface of the F5 Big-IP load balancer. In this example we will use the two IPv6 addresses 20BA:DD06:F00D:1234::11/64 and 20BA:DD06:F00D:1234::12/64 for the actual nodes and 20BA:DD06:F00D:1234::10/64 as the floating address.
 
-Let&#8217;s start by creating a new Self-IP under the _Network -> Self IPs_ tab.
+Let's start by creating a new Self-IP under the _Network -> Self IPs_ tab.
 
 
 

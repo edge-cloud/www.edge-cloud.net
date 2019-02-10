@@ -27,7 +27,7 @@ In this post we will dig a bit deeper and look behind the scenes of our Cloud. F
 
 The idea behind the <a href="http://blogs.vmware.com/vsphere/2013/11/vcenter-web-client-plug-in-for-openstack.html" target="_blank">VMware vCenter Plugin for OpenStack</a> is to provide operators of the virtualization layer insight into the OpenStack layer running on top. This can greatly enhance troubleshooting capabilities, especially for the case that the vSphere virtualization layer and the OpenStack layer are managed by different people or teams.
 
-The VMware vCenter Plugin for OpenStack is part of VOVA and is automatically installed once VOVA is pointed to a vCenter. For some reason it currently doesn&#8217;t auto-configure itself, but requires manual intervention in the vSphere Web Client. Let&#8217;s therefore perform this manual configuration:
+The VMware vCenter Plugin for OpenStack is part of VOVA and is automatically installed once VOVA is pointed to a vCenter. For some reason it currently doesn't auto-configure itself, but requires manual intervention in the vSphere Web Client. Let's therefore perform this manual configuration:
 
 First you need to lookup the Identity API Endpoint information within your OpenStack deployment. Navigate to the _Project_ view and the _Access & Security_ tab. Under the _API Access_ tab lookup the _Service Endpoint_ for the _Identity_ service (See Figure 1).
 
@@ -85,7 +85,7 @@ Once this has been done you can navigate inside the vSphere Web Client to a VMs 
 
 ### Perform a VMotion of an OpenStack VM
 
-One of the most heavily used features in VMware vSphere is probably VMotion. Together with the core concept of server virtualization it allows operators to migrate virtual machines within a cluster off a specific hardware host and perform maintenance on this host. This in return leads to a huge increase of uptime for workloads. We will now demonstrate exactly this capability by moving a VM that was created on vSphere via the OpenStack interface from one host to another host. This would allow us to perform maintenance on the physical host without affecting the workloads presented in OpenStack. Let&#8217;s get started.
+One of the most heavily used features in VMware vSphere is probably VMotion. Together with the core concept of server virtualization it allows operators to migrate virtual machines within a cluster off a specific hardware host and perform maintenance on this host. This in return leads to a huge increase of uptime for workloads. We will now demonstrate exactly this capability by moving a VM that was created on vSphere via the OpenStack interface from one host to another host. This would allow us to perform maintenance on the physical host without affecting the workloads presented in OpenStack. Let's get started.
 
 Within the vSphere Web Client navigate to a VM that was created via OpenStack. Note down the current host that this VM is running on. Perform a right-click and choose _Migrate&#8230;_ (See Figure 6).
 
@@ -155,7 +155,7 @@ Within the OpenStack Web interface navigate to the _Project_ view and there pick
   </p>
 </div>
 
-Initially no floating IP address is available within the project to be used. We therefore need to allocate a new address. For this click on the &#8220;+&#8221; icon next to the IP address field (See Figure 12).
+Initially no floating IP address is available within the project to be used. We therefore need to allocate a new address. For this click on the "+" icon next to the IP address field (See Figure 12).
 
 <div id="attachment_1073" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/DNAT02.png" alt="Figure 12: Associate a floating IP in OpenStack - Step 2" width="600" height="278" class="size-full wp-image-1073" srcset="/content/uploads/2014/01/DNAT02.png 600w, /content/uploads/2014/01/DNAT02-360x166.png 360w, /content/uploads/2014/01/DNAT02-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -187,7 +187,7 @@ Now that an IP address from the External pool has been successfully allocated, i
 
 The instances view will now display the associated external IP address for the VM besides the internal address (See Figure 15).
 
-In case you would try to connect to this external IP address now, the result would be disappointing: It won&#8217;t work. That&#8217;s because the default Security Group settings associated with the VM prevent this access. The idea here is to prevent any kind of external access by default and require users to explicitly grant specific access. Therefore we need to e.g. allow SSH access to the VM, before we can fire up Putty and connect.
+In case you would try to connect to this external IP address now, the result would be disappointing: It won't work. That's because the default Security Group settings associated with the VM prevent this access. The idea here is to prevent any kind of external access by default and require users to explicitly grant specific access. Therefore we need to e.g. allow SSH access to the VM, before we can fire up Putty and connect.
 
 <div id="attachment_1076" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/DNAT05.png" alt="Figure 15: Successfully associate a floating IP in OpenStack" width="600" height="206" class="size-full wp-image-1076" srcset="/content/uploads/2014/01/DNAT05.png 600w, /content/uploads/2014/01/DNAT05-360x123.png 360w, /content/uploads/2014/01/DNAT05-1x1.png 1w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -249,7 +249,7 @@ Now you can use Putty or any other SSH client and successfully connect to the ex
 
 ### API-driven creation of a VM in OpenStack
 
-One of the big benefits of OpenStack is the simple, yet very powerful API along with various SDK for all kinds of programming languages. Let&#8217;s use the <a href="http://docs.openstack.org/developer/python-novaclient/" target="_blank">Python SDK</a> for creating a new VM via the OpenStack API.
+One of the big benefits of OpenStack is the simple, yet very powerful API along with various SDK for all kinds of programming languages. Let's use the <a href="http://docs.openstack.org/developer/python-novaclient/" target="_blank">Python SDK</a> for creating a new VM via the OpenStack API.
 
 Below is a simple Python script, which will connect to your OpenStack cloud, create a new VM and start it.
 
@@ -292,6 +292,6 @@ You can run this script directly from VOVA. As VOVA is based on <a href="https:/
 
 Congratulation! We successfully looked behind the scenes into VMware vSphere to see what’s happening during the operation of OpenStack on vSphere. We also installed the VMware vCenter Plugin for Openstack to gain more insight into OpenStack from vSphere, as well as used some of the well-known enterprise-class benefits of vSphere – such as VMotion – along with OpenStack. Furthermore we took a glimpse at how to use OpenStack’s legendary APIs to automate the deployment of a VM. This completes the [series](https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/ "OpenStack with vSphere and NSX") on OpenStack with vSphere and NSX.
 
-If you are at <a href="https://www.vmworld.com/en/us/programs/partner-exchange.html" target="_blank">VMware Partner Exchange (PEX)</a> from February 10-13 2014, head over to the Hands-On Labs and check out the lab &#8220;HOL-SDC-1320 &#8211; OpenStack on VMware vSphere&#8221; in order to get hands-on experience with the setup described in this setup. After PEX this lab will also become available for general usage within the <a href="http://labs.hol.vmware.com/" target="_blank">VMware Hands-On labs</a>. Check it out!
+If you are at <a href="https://www.vmworld.com/en/us/programs/partner-exchange.html" target="_blank">VMware Partner Exchange (PEX)</a> from February 10-13 2014, head over to the Hands-On Labs and check out the lab "HOL-SDC-1320 &#8211; OpenStack on VMware vSphere" in order to get hands-on experience with the setup described in this setup. After PEX this lab will also become available for general usage within the <a href="http://labs.hol.vmware.com/" target="_blank">VMware Hands-On labs</a>. Check it out!
 
-Also if you want to learn more about using OpenStack with VMware vSphere, have a look at the VMware whitepaper &#8220;<a href="http://blogs.vmware.com/vsphere/2014/01/getting-started-with-openstack-and-vmware-vsphere-white-paper.html" target="_blank">Getting Started with OpenStack and VMware vSphere</a>&#8220;.
+Also if you want to learn more about using OpenStack with VMware vSphere, have a look at the VMware whitepaper "<a href="http://blogs.vmware.com/vsphere/2014/01/getting-started-with-openstack-and-vmware-vsphere-white-paper.html" target="_blank">Getting Started with OpenStack and VMware vSphere</a>".

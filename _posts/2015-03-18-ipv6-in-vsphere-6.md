@@ -32,7 +32,7 @@ For each use case this article lists what capabilities and features supported IP
 
 _Note:_ Only NSX-v 6.1.3, <a href="http://www.vmware.com/resources/compatibility/sim/interop_matrix.php" target="_blank">supports</a> vSphere 6.0.
 
-Let&#8217;s have a look at these two use cases in more detail:
+Let's have a look at these two use cases in more detail:
 
 ### Tenant Use Case
 

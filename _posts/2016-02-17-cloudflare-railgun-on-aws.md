@@ -56,7 +56,7 @@ We will use <a href="https://aws.amazon.com/vpc/" target="_blank">Amazon Virtual
 
 Two security groups, one for Railgun and one for ElastiCache, will be used to ensure that only valid traffic can reach the nodes.
 
-Let&#8217;s get started by creating a VPC of type &#8220;VPC with Public and Private Subnets&#8221; (See Figure 2).
+Let's get started by creating a VPC of type "VPC with Public and Private Subnets" (See Figure 2).
 
 <div id="attachment_2176" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/001-VPC01.png" rel="attachment wp-att-2176"><img src="/content/uploads/2016/02/001-VPC01-600x232.png" alt="Figure 2: VPC with Public and Private Subnets - Step 1" width="600" height="232" class="size-large wp-image-2176" srcset="/content/uploads/2016/02/001-VPC01-600x232.png 600w, /content/uploads/2016/02/001-VPC01-350x135.png 350w, /content/uploads/2016/02/001-VPC01-768x297.png 768w, /content/uploads/2016/02/001-VPC01.png 1048w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -66,7 +66,7 @@ Let&#8217;s get started by creating a VPC of type &#8220;VPC with Public and Pri
   </p>
 </div>
 
-Choose your preferred IP CIDR block and provide a meaningful VPC name, such as &#8220;Railgun-HA&#8221;. Consciously pick an Availability Zone for both subnets and include the AZ identifier in the subnet name. This will later help you identify which subnet is used for what purpose and resides in what AZ. For the NAT instance information chose &#8220;Use a NAT gateway instead&#8221; (see Figure 3).
+Choose your preferred IP CIDR block and provide a meaningful VPC name, such as "Railgun-HA". Consciously pick an Availability Zone for both subnets and include the AZ identifier in the subnet name. This will later help you identify which subnet is used for what purpose and resides in what AZ. For the NAT instance information chose "Use a NAT gateway instead" (see Figure 3).
 
 <div id="attachment_2177" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/002-VPC02.png" rel="attachment wp-att-2177"><img src="/content/uploads/2016/02/002-VPC02-600x335.png" alt="Figure 3: VPC with Public and Private Subnets - Step 2" width="600" height="335" class="size-large wp-image-2177" srcset="/content/uploads/2016/02/002-VPC02-600x335.png 600w, /content/uploads/2016/02/002-VPC02-350x196.png 350w, /content/uploads/2016/02/002-VPC02-768x429.png 768w, /content/uploads/2016/02/002-VPC02.png 1159w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -76,9 +76,9 @@ Choose your preferred IP CIDR block and provide a meaningful VPC name, such as &
   </p>
 </div>
 
-The VPC template for &#8220;VPC with Public and Private Subnets&#8221; will only create a single public and private subnet. But we will want to leverage two public and two private subnets, across two AZ in order to build a true highly available solution. Therefore we now need to create another public and private subnet within the VPC.
+The VPC template for "VPC with Public and Private Subnets" will only create a single public and private subnet. But we will want to leverage two public and two private subnets, across two AZ in order to build a true highly available solution. Therefore we now need to create another public and private subnet within the VPC.
 
-Let&#8217;s start by creating another public subnet. Pick a different AZ to the one that was selected when creating the VPC. Also try to come up with a pattern for assigning the CIDR blocks. Here I use even numbers for the third octet in case it is a public subnet and uneven numbers in case it is a private subnet (See Figure 4).
+Let's start by creating another public subnet. Pick a different AZ to the one that was selected when creating the VPC. Also try to come up with a pattern for assigning the CIDR blocks. Here I use even numbers for the third octet in case it is a public subnet and uneven numbers in case it is a private subnet (See Figure 4).
 
 <div id="attachment_2178" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/003-VPC03.png" rel="attachment wp-att-2178"><img src="/content/uploads/2016/02/003-VPC03-600x315.png" alt="Figure 4: Add another Public subnet" width="600" height="315" class="size-large wp-image-2178" srcset="/content/uploads/2016/02/003-VPC03-600x315.png 600w, /content/uploads/2016/02/003-VPC03-350x184.png 350w, /content/uploads/2016/02/003-VPC03.png 655w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -88,7 +88,7 @@ Let&#8217;s start by creating another public subnet. Pick a different AZ to the 
   </p>
 </div>
 
-In order to make the newly created subnet a public subnet, you have to change the routing policy, so that the destination 0.0.0.0/0 points to an internet gateway, which is indicated via the target name prefix of &#8220;igw&#8221; (See Figure 5).
+In order to make the newly created subnet a public subnet, you have to change the routing policy, so that the destination 0.0.0.0/0 points to an internet gateway, which is indicated via the target name prefix of "igw" (See Figure 5).
 
 <div id="attachment_2180" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/005-VPC05.png" rel="attachment wp-att-2180"><img src="/content/uploads/2016/02/005-VPC05-600x268.png" alt="Figure 5: Configure the Internet Gateway for the Public Subnet" width="600" height="268" class="size-large wp-image-2180" srcset="/content/uploads/2016/02/005-VPC05-600x268.png 600w, /content/uploads/2016/02/005-VPC05-350x156.png 350w, /content/uploads/2016/02/005-VPC05.png 620w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -108,9 +108,9 @@ Next create another private subnet. Here also pick a different AZ to the one tha
   </p>
 </div>
 
-After successfully creating all the necessary subnets, it&#8217;s time to create the security groups. One will be used to allow Railgun traffic and another one will be used to allow Memcached traffic.
+After successfully creating all the necessary subnets, it's time to create the security groups. One will be used to allow Railgun traffic and another one will be used to allow Memcached traffic.
 
-Let&#8217;s start by creating the Security Group for Memcached traffic (See Figure 7).
+Let's start by creating the Security Group for Memcached traffic (See Figure 7).
 
 <div id="attachment_2181" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/005-VPC06.png" rel="attachment wp-att-2181"><img src="/content/uploads/2016/02/005-VPC06-600x250.png" alt="Figure 7: Create a Security Group for Memcached" width="600" height="250" class="size-large wp-image-2181" srcset="/content/uploads/2016/02/005-VPC06-600x250.png 600w, /content/uploads/2016/02/005-VPC06-350x146.png 350w, /content/uploads/2016/02/005-VPC06.png 654w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -120,7 +120,7 @@ Let&#8217;s start by creating the Security Group for Memcached traffic (See Figu
   </p>
 </div>
 
-For the newly created Memcached security group, add an Inbound Rule. Select &#8220;Custom TCP Rule&#8221; with the protocol TCP and the port range 11211. As the Source you can select the IP range of your newly created VPC or limit it even further to the public subnets (See Figure 8).
+For the newly created Memcached security group, add an Inbound Rule. Select "Custom TCP Rule" with the protocol TCP and the port range 11211. As the Source you can select the IP range of your newly created VPC or limit it even further to the public subnets (See Figure 8).
 
 <div id="attachment_2182" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/005-VPC07.png" rel="attachment wp-att-2182"><img src="/content/uploads/2016/02/005-VPC07-600x146.png" alt="Figure 8: Configure the Inbound Rules for the Memcached Security Group" width="600" height="146" class="size-large wp-image-2182" srcset="/content/uploads/2016/02/005-VPC07-600x146.png 600w, /content/uploads/2016/02/005-VPC07-350x85.png 350w, /content/uploads/2016/02/005-VPC07-768x186.png 768w, /content/uploads/2016/02/005-VPC07.png 936w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -140,7 +140,7 @@ Next, create a Security Group for Railgun traffic (See Figure 9).
   </p>
 </div>
 
-For the newly created Railgun security group, add an Inbound Rule. Select &#8220;Custom TCP Rule&#8221; with the protocol TCP and the port range 2408. As the Source you can select 0.0.0.0/0 to open up access to all of the public Internet. As an alternative you could limit access even further to the <a href="https://www.cloudflare.com/ips/" target="_blank">CloudFlare IP ranges</a> only (See Figure 8).
+For the newly created Railgun security group, add an Inbound Rule. Select "Custom TCP Rule" with the protocol TCP and the port range 2408. As the Source you can select 0.0.0.0/0 to open up access to all of the public Internet. As an alternative you could limit access even further to the <a href="https://www.cloudflare.com/ips/" target="_blank">CloudFlare IP ranges</a> only (See Figure 8).
 
 <div id="attachment_2184" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/005-VPC09.png" rel="attachment wp-att-2184"><img src="/content/uploads/2016/02/005-VPC09-600x145.png" alt="Figure 10: Configure the Inbound Rules for the Railgun Security Group" width="600" height="145" class="size-large wp-image-2184" srcset="/content/uploads/2016/02/005-VPC09-600x145.png 600w, /content/uploads/2016/02/005-VPC09-350x85.png 350w, /content/uploads/2016/02/005-VPC09-768x186.png 768w, /content/uploads/2016/02/005-VPC09.png 942w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -168,7 +168,7 @@ Lookup the subnet IDs for the two private subnets that you created and start the
   </p>
 </div>
 
-Next start the creation of a new ElastiCache cluster and chose the engine type &#8220;Memcached&#8221; (See Figure 12).
+Next start the creation of a new ElastiCache cluster and chose the engine type "Memcached" (See Figure 12).
 
 <div id="attachment_2186" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/007-ElastiCache02.png" rel="attachment wp-att-2186"><img src="/content/uploads/2016/02/007-ElastiCache02-600x253.png" alt="Figure 12: Create an ElastiCache cluster with the engine Memcached - Step 1" width="600" height="253" class="size-large wp-image-2186" srcset="/content/uploads/2016/02/007-ElastiCache02-600x253.png 600w, /content/uploads/2016/02/007-ElastiCache02-350x148.png 350w, /content/uploads/2016/02/007-ElastiCache02-768x324.png 768w, /content/uploads/2016/02/007-ElastiCache02.png 987w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -188,7 +188,7 @@ Chose the node type depending on your performance needs and select the number of
   </p>
 </div>
 
-Select the Cache Subnet Group that you created at the beginning of this section. Use the Availability Zone policy of &#8220;Spread Nodes Across Zones&#8221;. This will ensure that in case of a Availability Zone failure, you still have one ElastiCache node left. For the VPC Security Group select the &#8220;Memcached&#8221; security group that you created (See Figure 14).
+Select the Cache Subnet Group that you created at the beginning of this section. Use the Availability Zone policy of "Spread Nodes Across Zones". This will ensure that in case of a Availability Zone failure, you still have one ElastiCache node left. For the VPC Security Group select the "Memcached" security group that you created (See Figure 14).
 
 <div id="attachment_2188" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/009-ElastiCache04.png" rel="attachment wp-att-2188"><img src="/content/uploads/2016/02/009-ElastiCache04-600x314.png" alt="Figure 14: Create an ElastiCache cluster with the engine Memcached - Step 3" width="600" height="314" class="size-large wp-image-2188" srcset="/content/uploads/2016/02/009-ElastiCache04-600x314.png 600w, /content/uploads/2016/02/009-ElastiCache04-350x183.png 350w, /content/uploads/2016/02/009-ElastiCache04-768x402.png 768w, /content/uploads/2016/02/009-ElastiCache04.png 998w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -216,7 +216,7 @@ The Elastic Load Balancer (ELB) serves the purpose of distributing incoming traf
 
 This configuration also allows to scale out the number of Railgun nodes or scale up the size of the Railgun nodes, without impacting production traffic.
 
-Create a new ELB inside the VPC that you are using for the Railgun setup. For the Listener Configuration chose TCP as the Load Balancer as well as Instance protocol. Enter &#8220;2408&#8221; as the Load Balancer and Instance port. For the subnets, select the two public subnets that you created earlier (See Figure 16).
+Create a new ELB inside the VPC that you are using for the Railgun setup. For the Listener Configuration chose TCP as the Load Balancer as well as Instance protocol. Enter "2408" as the Load Balancer and Instance port. For the subnets, select the two public subnets that you created earlier (See Figure 16).
 
 <div id="attachment_2191" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/011-ELB01.png" rel="attachment wp-att-2191"><img src="/content/uploads/2016/02/011-ELB01-600x470.png" alt="Figure 16: Define an Elastic Load Balancer - Step 1" width="600" height="470" class="size-large wp-image-2191" srcset="/content/uploads/2016/02/011-ELB01-600x470.png 600w, /content/uploads/2016/02/011-ELB01-350x274.png 350w, /content/uploads/2016/02/011-ELB01-768x602.png 768w, /content/uploads/2016/02/011-ELB01.png 1182w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -248,7 +248,7 @@ Next, configure the Health Check. This will determine how the ELB will probe the
 
 In the next step you would add the various instances to the ELB. As we have not yet created any Railgun instances, we will not add any instance here.
 
-Instead we will solely ensure that the box for &#8220;Enable Cross-Zone Load Balancing&#8221; has been ticked (See Figure 19).
+Instead we will solely ensure that the box for "Enable Cross-Zone Load Balancing" has been ticked (See Figure 19).
 
 <div id="attachment_2194" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/014-ELB04.png" rel="attachment wp-att-2194"><img src="/content/uploads/2016/02/014-ELB04-600x258.png" alt="Figure 19: Define an Elastic Load Balancer - Step 5" width="600" height="258" class="size-large wp-image-2194" srcset="/content/uploads/2016/02/014-ELB04-600x258.png 600w, /content/uploads/2016/02/014-ELB04-350x150.png 350w, /content/uploads/2016/02/014-ELB04-768x330.png 768w, /content/uploads/2016/02/014-ELB04.png 1183w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -335,7 +335,7 @@ Give your Launch Configuration a name and paste the above script into User Data 
   </p>
 </div>
 
-Within the Security Group configuration step, select the existing security group &#8220;Railgun&#8221; (See Figure 25). You have configured this security group in a previous step.
+Within the Security Group configuration step, select the existing security group "Railgun" (See Figure 25). You have configured this security group in a previous step.
 
 <div id="attachment_2200" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/020-EC2_03.png" rel="attachment wp-att-2200"><img src="/content/uploads/2016/02/020-EC2_03-600x246.png" alt="Figure 25: Create a Launch Configuration - Step 5" width="600" height="246" class="size-large wp-image-2200" srcset="/content/uploads/2016/02/020-EC2_03-600x246.png 600w, /content/uploads/2016/02/020-EC2_03-350x144.png 350w, /content/uploads/2016/02/020-EC2_03-768x315.png 768w, /content/uploads/2016/02/020-EC2_03.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -359,7 +359,7 @@ Select the ELB that you configured under Load Balancing and pick ELB as the Heal
   </p>
 </div>
 
-As we are solely using the Auto Scaling capability to replace failed Railgun nodes, pick &#8220;Keep this group at its initial size&#8221; for the scaling policy (See Figure 27).
+As we are solely using the Auto Scaling capability to replace failed Railgun nodes, pick "Keep this group at its initial size" for the scaling policy (See Figure 27).
 
 <div id="attachment_2202" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/022-EC2_05.png" rel="attachment wp-att-2202"><img src="/content/uploads/2016/02/022-EC2_05-600x106.png" alt="Figure 27: Create an Auto Scaling Group - Step 2" width="600" height="106" class="size-large wp-image-2202" srcset="/content/uploads/2016/02/022-EC2_05-600x106.png 600w, /content/uploads/2016/02/022-EC2_05-350x62.png 350w, /content/uploads/2016/02/022-EC2_05-768x136.png 768w, /content/uploads/2016/02/022-EC2_05.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -369,7 +369,7 @@ As we are solely using the Auto Scaling capability to replace failed Railgun nod
   </p>
 </div>
 
-Next provide what tags you want to apply to all EC2 instances that are created as part of the Auto Scaling group. It is highly recommended to at least define the tag &#8220;Name&#8221; (See Figure 28).
+Next provide what tags you want to apply to all EC2 instances that are created as part of the Auto Scaling group. It is highly recommended to at least define the tag "Name" (See Figure 28).
 
 <div id="attachment_2203" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/023-EC2_06.png" rel="attachment wp-att-2203"><img src="/content/uploads/2016/02/023-EC2_06-600x121.png" alt="Figure 28: Create an Auto Scaling Group - Step 4" width="600" height="121" class="size-large wp-image-2203" srcset="/content/uploads/2016/02/023-EC2_06-600x121.png 600w, /content/uploads/2016/02/023-EC2_06-350x71.png 350w, /content/uploads/2016/02/023-EC2_06-768x155.png 768w, /content/uploads/2016/02/023-EC2_06.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -383,7 +383,7 @@ This not only concludes the configuration of the Auto Scaling setup, but of your
 
 ### Testing the setup
 
-Now, with the setup in place it&#8217;s time to wait for the Railgun nodes to boot up and configure correctly. You can head over to the ELB setup and look at the instances under the configured load balancer. While the nodes are still initializing you should see the status &#8220;OutOfService&#8221; displayed (See Figure 29).
+Now, with the setup in place it's time to wait for the Railgun nodes to boot up and configure correctly. You can head over to the ELB setup and look at the instances under the configured load balancer. While the nodes are still initializing you should see the status "OutOfService" displayed (See Figure 29).
 
 <div id="attachment_2205" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/024-STAT01.png" rel="attachment wp-att-2205"><img src="/content/uploads/2016/02/024-STAT01-600x337.png" alt="Figure 29: Monitor the Load Balancer Instances" width="600" height="337" class="size-large wp-image-2205" srcset="/content/uploads/2016/02/024-STAT01-600x337.png 600w, /content/uploads/2016/02/024-STAT01-350x197.png 350w, /content/uploads/2016/02/024-STAT01-768x432.png 768w, /content/uploads/2016/02/024-STAT01.png 1234w" sizes="(max-width: 600px) 100vw, 600px" /></a>
@@ -393,17 +393,17 @@ Now, with the setup in place it&#8217;s time to wait for the Railgun nodes to bo
   </p>
 </div>
 
-After a few minutes the status of the instances should change to &#8220;InService&#8221;, indicating that the Railgun Listener nodes are up and running and accept traffic over port TCP/2408 (See Figure 30).
+After a few minutes the status of the instances should change to "InService", indicating that the Railgun Listener nodes are up and running and accept traffic over port TCP/2408 (See Figure 30).
 
 <div id="attachment_2206" style="width: 610px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/024-STAT01-.png" rel="attachment wp-att-2206"><img src="/content/uploads/2016/02/024-STAT01--600x82.png" alt="Figure 30: ELB instances in status &quot;InService&quot;" width="600" height="82" class="size-large wp-image-2206" srcset="/content/uploads/2016/02/024-STAT01--600x82.png 600w, /content/uploads/2016/02/024-STAT01--350x48.png 350w, /content/uploads/2016/02/024-STAT01--768x105.png 768w, /content/uploads/2016/02/024-STAT01-.png 909w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
   <p class="wp-caption-text">
-    Figure 30: ELB instances in status &#8220;InService&#8221;
+    Figure 30: ELB instances in status "InService"
   </p>
 </div>
 
-Now you can login to the CloudFlare Dashboard and test the Railgun setup. If everything is working you should see a &#8220;compression\_ratio&#8221;, as well as &#8220;origin\_response_time&#8221; displayed (See Figure 31).
+Now you can login to the CloudFlare Dashboard and test the Railgun setup. If everything is working you should see a "compression\_ratio", as well as "origin\_response_time" displayed (See Figure 31).
 
 <div id="attachment_2204" style="width: 403px" class="wp-caption aligncenter">
   <a href="/content/uploads/2016/02/023-RG01.png" rel="attachment wp-att-2204"><img src="/content/uploads/2016/02/023-RG01-393x600.png" alt="Figure 31: Validate the functionality of Railgun" width="393" height="600" class="size-large wp-image-2204" srcset="/content/uploads/2016/02/023-RG01-393x600.png 393w, /content/uploads/2016/02/023-RG01-229x350.png 229w, /content/uploads/2016/02/023-RG01.png 602w" sizes="(max-width: 393px) 100vw, 393px" /></a>

@@ -24,7 +24,7 @@ In the [previous post](https://www.edge-cloud.net/2014/01/08/openstack-vsphere-n
 
 ### Initial Login to OpenStack
 
-Let&#8217;s start with the initial login into OpenStack via VOVA. Point your preferred browser to the IP address or associated DNS name that you gave VOVA and login with the standard credentials. The username is _admin_ and the password is _vmware_ (See Figure 1).
+Let's start with the initial login into OpenStack via VOVA. Point your preferred browser to the IP address or associated DNS name that you gave VOVA and login with the standard credentials. The username is _admin_ and the password is _vmware_ (See Figure 1).
 
 <div id="attachment_949" style="width: 435px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA01-e1390006518852.png" alt="Figure 1: Login to OpenStack Horizon" width="425" height="600" class="size-full wp-image-949" />
@@ -44,7 +44,7 @@ After successful login as the user admin you will end up in the admin view of th
   </p>
 </div>
 
-Let&#8217;s change over to the project view and see what a tenant would see. While the admin account allows you to see both, a regular tenant would only see the project view and not the admin view (See Figure 3).
+Let's change over to the project view and see what a tenant would see. While the admin account allows you to see both, a regular tenant would only see the project view and not the admin view (See Figure 3).
 
 <div id="attachment_1045" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA03--e1390585949340.png" alt="Figure 3: OpenStack Horizon - Project View" width="600" height="329" class="size-full wp-image-1045" />
@@ -54,7 +54,7 @@ Let&#8217;s change over to the project view and see what a tenant would see. Whi
   </p>
 </div>
 
-Next, let&#8217;s have a look at the initial virtual network topology available to us. Click on the _Network Topology_ tab within the Project area (See Figure 4).
+Next, let's have a look at the initial virtual network topology available to us. Click on the _Network Topology_ tab within the Project area (See Figure 4).
 
 <div id="attachment_1040" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA-03-e1390585350706.png" alt="Figure 4: Tenant View - Initially empty network topology" width="600" height="330" class="size-full wp-image-1040" />
@@ -64,10 +64,10 @@ Next, let&#8217;s have a look at the initial virtual network topology available 
   </p>
 </div>
 
-Initially the Network Topology is empty. This means that we do not have any network available to connect Virtual Machines to. As this situation is not very useful to us, let&#8217;s start by creating some networks. Here&#8217;s what we need at a base level (See Figure 5):
+Initially the Network Topology is empty. This means that we do not have any network available to connect Virtual Machines to. As this situation is not very useful to us, let's start by creating some networks. Here's what we need at a base level (See Figure 5):
 
   1. An external (sometimes also called public) network that corresponds to the physical network segment providing us external connectivity.
-  2. An internal network per tenant to which we can attach VMs. These per tenant VM can use this internal network to communicate with each other. But also we don&#8217;t necessarily want to connect every VM to the outside world.
+  2. An internal network per tenant to which we can attach VMs. These per tenant VM can use this internal network to communicate with each other. But also we don't necessarily want to connect every VM to the outside world.
   3. In order for the VMs, connected to the internal network, to reach the outside world (e.g. Internet) we also need a router providing Source NAT (SNAT) capability between internal and external network.
 
 <div id="attachment_1047" style="width: 265px" class="wp-caption aligncenter">
@@ -78,7 +78,7 @@ Initially the Network Topology is empty. This means that we do not have any netw
   </p>
 </div>
 
-The first component will need to be provided by the cloud operator, while component 2 and 3 are created by the individual tenant. Let&#8217;s therefore consciously split these two jobs into their own sections.
+The first component will need to be provided by the cloud operator, while component 2 and 3 are created by the individual tenant. Let's therefore consciously split these two jobs into their own sections.
 
 ### Creating an external network in OpenStack
 
@@ -94,7 +94,7 @@ Return to the _Admin_ view, choose the _Networks_ tab and click on _Create Netwo
   </p>
 </div>
 
-Give the new network a useful name such as _External_ and tick the _External Network_ box to designate it as an external network. You need to specify a project when you create a new network. Yet, an external network will be visible from all projects. It therefore doesn&#8217;t really matter which project you assign this network to. A good project to pick is the _service_ project, as it is a core part of OpenStack and therefore won&#8217;t go away. Finalize the creation by clicking on _Create Network_ (See Figure 7).
+Give the new network a useful name such as _External_ and tick the _External Network_ box to designate it as an external network. You need to specify a project when you create a new network. Yet, an external network will be visible from all projects. It therefore doesn't really matter which project you assign this network to. A good project to pick is the _service_ project, as it is a core part of OpenStack and therefore won't go away. Finalize the creation by clicking on _Create Network_ (See Figure 7).
 
 <div id="attachment_1016" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA-06-e1390509043369.png" alt="Figure 7: Create External Network" width="600" height="364" class="size-full wp-image-1016" />
@@ -138,7 +138,7 @@ Click on _Subnet Detail_ to continue.
   </p>
 </div>
 
-Unselect the _Enable DHCP_ checkbox as this is an external network which either already has an existing DHCP service available, or on which you don&#8217;t want OpenStack to supply DHCP capabilities. Specify the _Allocation pools_ specific to your environment with an IP range that is not already in use within the selected subnet. Specify the _DNS Name Servers_ and click _Create_ to finalize the creation of the subnet (See Figure 11).
+Unselect the _Enable DHCP_ checkbox as this is an external network which either already has an existing DHCP service available, or on which you don't want OpenStack to supply DHCP capabilities. Specify the _Allocation pools_ specific to your environment with an IP range that is not already in use within the selected subnet. Specify the _DNS Name Servers_ and click _Create_ to finalize the creation of the subnet (See Figure 11).
 
 <div id="attachment_1020" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA-10-e1390509266921.png" alt="Figure 11: Create Subnet - Step 2" width="600" height="428" class="size-full wp-image-1020" />
@@ -158,9 +158,9 @@ Verify that the external network has been successfully created and is in the _UP
   </p>
 </div>
 
-### A tenant&#8217;s view of creating networks
+### A tenant's view of creating networks
 
-Let&#8217;s return to the tenant&#8217;s view and see how the previously created external network will look like. Choose the _Project_ view, then click on the _Network Topology_ tab. You can see the external network available to the tenant (See Figure 13).
+Let's return to the tenant's view and see how the previously created external network will look like. Choose the _Project_ view, then click on the _Network Topology_ tab. You can see the external network available to the tenant (See Figure 13).
 
 <div id="attachment_1013" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA-12-e1390507372328.png" alt="Figure 13: Tenant View - Create internal network" width="600" height="329" class="size-full wp-image-1013" />
@@ -226,7 +226,7 @@ Give the Router a useful _Router Name_ and finish the creation of the router wit
   </p>
 </div>
 
-Next we need to create the router&#8217;s interfaces on the two networks. Click on the router and choose _view router details_ to get started (See Figure 19).
+Next we need to create the router's interfaces on the two networks. Click on the router and choose _view router details_ to get started (See Figure 19).
 
 <div id="attachment_968" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA20-e1390006109227.png" alt="Figure 19: Network Topology with unconnected router" width="600" height="487" class="size-full wp-image-968" />
@@ -246,7 +246,7 @@ Now click on _Add Interface_ to add the internal interface first (See Figure 20)
   </p>
 </div>
 
-As the Subnet choose the internal network that you created in an earlier step (See Figure 21). In case you are tempted to think that it doesn&#8217;t matter which interface we add first: The interface to the external network is an uplink for this router and is therefore added differently. Click on _Add interface_ to finish your selection.
+As the Subnet choose the internal network that you created in an earlier step (See Figure 21). In case you are tempted to think that it doesn't matter which interface we add first: The interface to the external network is an uplink for this router and is therefore added differently. Click on _Add interface_ to finish your selection.
 
 <div id="attachment_970" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA22-e1390006054933.png" alt="Figure 21: Add interface to router" width="600" height="350" class="size-full wp-image-970" />
@@ -328,7 +328,7 @@ This connect the internal network that we previously created to the first NIC of
   </p>
 </div>
 
-Wait for the new VM instance to be created and powered up. Once the Status indicates Active and the Power State shows running, you&#8217;re all set (See Figure 28). The first deployment of a VM instance can take up to a few minutes, as vSphere needs to import the above selected Debian image from VOVA into its local storage. Subsequent deploys will just use a clone of this imported image and are therefore much faster. Click on the name of the VM to see the _Instance Detail_.
+Wait for the new VM instance to be created and powered up. Once the Status indicates Active and the Power State shows running, you're all set (See Figure 28). The first deployment of a VM instance can take up to a few minutes, as vSphere needs to import the above selected Debian image from VOVA into its local storage. Subsequent deploys will just use a clone of this imported image and are therefore much faster. Click on the name of the VM to see the _Instance Detail_.
 
 <div id="attachment_979" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/01/VOVA31-e1389917538230.png" alt="Figure 28: Successful Launch of Instance" width="600" height="198" class="size-full wp-image-979" />
@@ -360,4 +360,4 @@ Via the _Console_ you can access your VM instance. Login with the standard usern
 
 Congratulations! You have gotten your feet wet using your OpenStack cloud, implementing your first virtual network and attaching a new VM instance to it. All this while leveraging VMware vSphere as the underlying Hypervisor as well as network virtualization provided via VMware NSX as a Neutron plugin.
 
-Next in the [series](https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/ "OpenStack with vSphere and NSX") on OpenStack with vSphere and NSX is [Part 6](https://www.edge-cloud.net/2014/02/08/openstack-vsphere-nsx-part-6/ "OpenStack with vSphere and NSX – Part 6: Install the VMware vCenter Plugin for Openstack and look behind the scenes") where we will look behind the scenes into VMware vSphere to see what&#8217;s happening during the operation of OpenStack on vSphere. We will also install the VMware vCenter Plugin for Openstack to gain more insight into OpenStack from vSphere, as well as use some of the well-known enterprise-class benefits of vSphere &#8211; such as VMotion – along with OpenStack. Furthermore we will see how to use OpenStack&#8217;s legendary APIs to automate the deployment of a VM.
+Next in the [series](https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/ "OpenStack with vSphere and NSX") on OpenStack with vSphere and NSX is [Part 6](https://www.edge-cloud.net/2014/02/08/openstack-vsphere-nsx-part-6/ "OpenStack with vSphere and NSX – Part 6: Install the VMware vCenter Plugin for Openstack and look behind the scenes") where we will look behind the scenes into VMware vSphere to see what's happening during the operation of OpenStack on vSphere. We will also install the VMware vCenter Plugin for Openstack to gain more insight into OpenStack from vSphere, as well as use some of the well-known enterprise-class benefits of vSphere &#8211; such as VMotion – along with OpenStack. Furthermore we will see how to use OpenStack's legendary APIs to automate the deployment of a VM.

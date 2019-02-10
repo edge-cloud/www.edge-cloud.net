@@ -37,19 +37,19 @@ ThousandEyes leverages so-called agents that probe a target via various tests wh
   </p>
 </div>
 
-While it&#8217;s great to see that ThousandEyes supports IPv6 at all, there are some limitations. On an IPv4/IPv6 dualstack host you unfortunately have to choose between running the agent either against an IPv4 or IPv6 address. Right now it is not possible to chose both at the same time. It would make more sense if this was possible along with specifying via the test which protocol to use. This way ThousandEyes doesn&#8217;t provide the capability to easily compare IPv4 vs. IPv6 traffic out of the box.
+While it's great to see that ThousandEyes supports IPv6 at all, there are some limitations. On an IPv4/IPv6 dualstack host you unfortunately have to choose between running the agent either against an IPv4 or IPv6 address. Right now it is not possible to chose both at the same time. It would make more sense if this was possible along with specifying via the test which protocol to use. This way ThousandEyes doesn't provide the capability to easily compare IPv4 vs. IPv6 traffic out of the box.
 
 Instead I had to simulate such a setup by using two agents, one for IPv4 and one for IPv6. Adding more agents would break this model and makes things hard to read and understand.
 
 Also it is currently not possible to install more than one agent on a Linux host requiring separate hosts for the IPv4 and IPv6 agents. But thanks to <a href="https://www.docker.com/" target="_blank">Docker</a> I was able to deploy one agent against the IPv6 address and one agent inside a Docker container against an IPv4 address on the same host. The two agents that you therefore see in Figure 2 are actually both running on the same host. With this I could go on with my initially intended use case.
 
-I&#8217;m confident that these minor shortcomings will be fixed over time as more and more Enterprise and SaaS provider customers adopt this tool.
+I'm confident that these minor shortcomings will be fixed over time as more and more Enterprise and SaaS provider customers adopt this tool.
 
 ### Defining Tests
 
-You can define four kinds of tests within ThousandEyes. Depending on which test you select, sub-tests are either automatically created or can be created on demand. The example in Figure 3 shows a &#8220;HTTP Server Only&#8221; test which probes the URL of this blog site with a given interval. This test will provide you with web site specific metrics around Availability, Response Time and Fetch Time. More advanced Web tests are possible, but I will not cover them here.
+You can define four kinds of tests within ThousandEyes. Depending on which test you select, sub-tests are either automatically created or can be created on demand. The example in Figure 3 shows a "HTTP Server Only" test which probes the URL of this blog site with a given interval. This test will provide you with web site specific metrics around Availability, Response Time and Fetch Time. More advanced Web tests are possible, but I will not cover them here.
 
-With the tick box &#8220;Enable network measurements&#8221; you activate a so-called network test against the same hostname and port that gives insight into end-to-end metrics like Latency, Packet Loss or Jitter. Also tests for providing information around Bandwidth and MTU &#8211; important for discovering problematic tunnels &#8211; can be added. A network test can also be configured manually.
+With the tick box "Enable network measurements" you activate a so-called network test against the same hostname and port that gives insight into end-to-end metrics like Latency, Packet Loss or Jitter. Also tests for providing information around Bandwidth and MTU &#8211; important for discovering problematic tunnels &#8211; can be added. A network test can also be configured manually.
 
 A network test will also automatically create a BGP test against the IPv4 and/or IPv6 prefix that the hostname resolves to. More about this later on.
 
@@ -65,7 +65,7 @@ Unfortunately, it is currently not very intuitive which tests are created and wh
 
 ### Dashboard
 
-Once you&#8217;ve setup the agents and tests, you can move to the Dashboard and wait for some initial data to come in. The Dashboard provides you key metric information about the tests you defined. In the case of a &#8220;HTTP Server Only&#8221; test you will see the average Availability and Response time across all agents (See Figure 4). Clicking on one of the tests will then provide you additional deeper information.
+Once you've setup the agents and tests, you can move to the Dashboard and wait for some initial data to come in. The Dashboard provides you key metric information about the tests you defined. In the case of a "HTTP Server Only" test you will see the average Availability and Response time across all agents (See Figure 4). Clicking on one of the tests will then provide you additional deeper information.
 
 The Dashboard will also show you alarms and the status of your agents.
 
@@ -91,9 +91,9 @@ In this example we notice that the Connect Time for the same URL differs quite d
   </p>
 </div>
 
-Let&#8217;s try to use ThousandEyes and figure out why our users will get a worse experience of our sample website via IPv6 than they would get over IPv4.
+Let's try to use ThousandEyes and figure out why our users will get a worse experience of our sample website via IPv6 than they would get over IPv4.
 
-For this we drill down into the next layer of information, into the End-to-End metrics via the &#8220;Jump to&#8230;&#8221; function (See Figure 6).
+For this we drill down into the next layer of information, into the End-to-End metrics via the "Jump to&#8230;" function (See Figure 6).
 
 
 
@@ -101,13 +101,13 @@ For this we drill down into the next layer of information, into the End-to-End m
   <img src="/content/uploads/2014/05/Hetzner1a.png" alt="Figure 6: Drill down via &quot;Jump to...&quot;" width="384" height="244" class="size-full wp-image-1274" srcset="/content/uploads/2014/05/Hetzner1a.png 384w, /content/uploads/2014/05/Hetzner1a-360x228.png 360w" sizes="(max-width: 384px) 100vw, 384px" />
 
   <p class="wp-caption-text">
-    Figure 6: Drill down via &#8220;Jump to&#8230;&#8221;
+    Figure 6: Drill down via "Jump to&#8230;"
   </p>
 </div>
 
 ### Network End-to-End Metrics
 
-Within the Network End-to-End Metrics we will find information about Loss, Latency, Jitter and Bandwidth of the connection. Again, these are nicely visible across a select-able time axis as well as across the different select-able agents. With this we can quickly determine that our IPv4 agent has a lower latency towards the destination then the IPv6 agent. As both agents are basically the same machine, this should not be the case (See Figure 7). Let&#8217;s drill down even more into the next layer of information.
+Within the Network End-to-End Metrics we will find information about Loss, Latency, Jitter and Bandwidth of the connection. Again, these are nicely visible across a select-able time axis as well as across the different select-able agents. With this we can quickly determine that our IPv4 agent has a lower latency towards the destination then the IPv6 agent. As both agents are basically the same machine, this should not be the case (See Figure 7). Let's drill down even more into the next layer of information.
 
 <div id="attachment_1266" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/05/Hetzner2.png" alt="Figure 7: Cause: Latency higher over IPv6 than IPv4" width="600" height="476" class="size-full wp-image-1266" srcset="/content/uploads/2014/05/Hetzner2.png 600w, /content/uploads/2014/05/Hetzner2-360x285.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -149,19 +149,19 @@ This discrepancy in path chosen for IPv4 and IPv6 traffic as well as the distanc
 
 I need to point out that the URL in this example is served by <a href="https://www.cloudflare.com/" target="_blank">CloudFlare</a>, a content delivery network and distributed domain name server service which uses <a href="https://en.wikipedia.org/wiki/Anycast" target="_blank">Anycast</a> for improving website performance and speed, and to protect websites from online threats. As CloudFlare has <a href="https://www.cloudflare.com/network/" target="_blank">Points-of-Presence (POPs)</a> in both Vienna and Frankfurt, traffic can be served by either of these locations, both in IPv4 and IPv6.
 
-The problem in this case appears to be on the side of the provider in Nuremberg as they prefer a path towards Frankfurt for connecting to AS13335 (CloudFlare) via IPv4 while preferring a path towards Vienna for the same AS via IPv6. Here another nice feature of ThousandEyes comes into play: Share This Screen. This allows me to share the current screen with either live data or &#8220;canned&#8221; data around the time I have currently selected with someone who is not a customer of ThousandEyes. I can therefore easily share what I just discovered with the Service Provider in Nuremberg, allowing them to reproduce and better understand the issue. A great feature that saves a lot of time (See Figure 10).
+The problem in this case appears to be on the side of the provider in Nuremberg as they prefer a path towards Frankfurt for connecting to AS13335 (CloudFlare) via IPv4 while preferring a path towards Vienna for the same AS via IPv6. Here another nice feature of ThousandEyes comes into play: Share This Screen. This allows me to share the current screen with either live data or "canned" data around the time I have currently selected with someone who is not a customer of ThousandEyes. I can therefore easily share what I just discovered with the Service Provider in Nuremberg, allowing them to reproduce and better understand the issue. A great feature that saves a lot of time (See Figure 10).
 
 <div id="attachment_1297" style="width: 481px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/05/Hetzner4_.png" alt="Figure 10: The &quot;Share This Screen&quot; feature allows others to see what I see" width="471" height="544" class="size-full wp-image-1297" srcset="/content/uploads/2014/05/Hetzner4_.png 471w, /content/uploads/2014/05/Hetzner4_-311x360.png 311w" sizes="(max-width: 471px) 100vw, 471px" />
 
   <p class="wp-caption-text">
-    Figure 10: The &#8220;Share This Screen&#8221; feature allows others to see what I see
+    Figure 10: The "Share This Screen" feature allows others to see what I see
   </p>
 </div>
 
 ### Network &#8211; BGP Route Visualization &#8211; IPv6
 
-Let&#8217;s drill down even further into the BGP Route Visualization. We will start with IPv6. Here we see the BGP connectivity between ThousandEyes public agents and the target AS. Unfortunately the number of IPv6 capable public agents is very limited. Nevertheless we can see CloudFlare (AS13335) connecting to large transit providers such as Telia Sonera (AS1299) (See Figure 11).
+Let's drill down even further into the BGP Route Visualization. We will start with IPv6. Here we see the BGP connectivity between ThousandEyes public agents and the target AS. Unfortunately the number of IPv6 capable public agents is very limited. Nevertheless we can see CloudFlare (AS13335) connecting to large transit providers such as Telia Sonera (AS1299) (See Figure 11).
 
 
 
@@ -187,7 +187,7 @@ Next we will look at the BGP routes for IPv4. Before we can do so, we will notic
 
 An interesting feature of ThousandEyes is the ability to discover and show path changes for the case that a BGP peer was lost. Such path changes often result in brief moments of lost reachability while the path change propagates upstream. Or even worse it might cause route flapping, which can cause excessive activity in all the other directly connected routers.
 
-Let&#8217;s look at the /21 prefix first. With a much larger number of IPv4 public agents we get a pretty nice picture of CloudFlares route graph (See Figure 13). We can see direct connections to Transit providers such as nLayer (aka GTT; AS4436) or Telia Sonera (AS1299), but also to smaller peering partners such as SoftLayer (AS36351).
+Let's look at the /21 prefix first. With a much larger number of IPv4 public agents we get a pretty nice picture of CloudFlares route graph (See Figure 13). We can see direct connections to Transit providers such as nLayer (aka GTT; AS4436) or Telia Sonera (AS1299), but also to smaller peering partners such as SoftLayer (AS36351).
 
 <div id="attachment_1255" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/05/Hetzner7.png" alt="Figure 13: IPv4 Peering of CloudFlare (AS13335)" width="600" height="435" class="size-full wp-image-1255" srcset="/content/uploads/2014/05/Hetzner7.png 600w, /content/uploads/2014/05/Hetzner7-360x261.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -197,7 +197,7 @@ Let&#8217;s look at the /21 prefix first. With a much larger number of IPv4 publ
   </p>
 </div>
 
-Now let&#8217;s see what happens when we look at one of the more specific /24 prefixes. Well, we are seeing a surprise (See Figure 14). The more specific /24 prefix is actually not visible from the majority of other Autonomous Systems. It appears to be only visible via especially smaller providers that peer directly with CloudFlare.
+Now let's see what happens when we look at one of the more specific /24 prefixes. Well, we are seeing a surprise (See Figure 14). The more specific /24 prefix is actually not visible from the majority of other Autonomous Systems. It appears to be only visible via especially smaller providers that peer directly with CloudFlare.
 
 <div id="attachment_1256" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/05/Hetzner8.png" alt="Figure 14: More specific prefix is not visible in all peers, depicted as red border" width="600" height="504" class="size-full wp-image-1256" srcset="/content/uploads/2014/05/Hetzner8.png 600w, /content/uploads/2014/05/Hetzner8-360x302.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -215,7 +215,7 @@ ThousandEyes raises this anomaly as an alert, which you might have seen in Figur
 
 ### Discovering Issues with your ISP: IPv6 vs IPv4
 
-Let&#8217;s look at another interesting use case for ThousandEyes: IPv4 vs. IPv6 path performance. In this case we will have a look at an IPv4/IPv6 Dualstack target in the same physical location. Thus no Anycast this time.
+Let's look at another interesting use case for ThousandEyes: IPv4 vs. IPv6 path performance. In this case we will have a look at an IPv4/IPv6 Dualstack target in the same physical location. Thus no Anycast this time.
 
 One path leverages IPv6, the other one IPv4 (See Figure 15). Here we can clearly see issues with the IPv6 path &#8211; depicted in red &#8211; within the provider network that hosts the target.
 
@@ -237,7 +237,7 @@ Looking at one of the problematic links (highlighted in yellow) via the IPv6 pat
   </p>
 </div>
 
-Looking at the same link via IPv4 (again highlighted in yellow), we don&#8217;t see any loss and a reasonable delay (See Figure 17). It appears that the depicted provider has performance problems with its IPv6 traffic.
+Looking at the same link via IPv4 (again highlighted in yellow), we don't see any loss and a reasonable delay (See Figure 17). It appears that the depicted provider has performance problems with its IPv6 traffic.
 
 <div id="attachment_1263" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2014/05/AboveNet02.png" alt="Figure 17: No issues on same segment via IPv4" width="600" height="212" class="size-full wp-image-1263" srcset="/content/uploads/2014/05/AboveNet02.png 600w, /content/uploads/2014/05/AboveNet02-360x127.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -253,6 +253,6 @@ It is no secret that older network equipment provides inferior performance for p
 
 ThousandEyes is a very interesting tool for gaining insight into SaaS application performance and your overall network infrastructure. If you are an enterprise relying on SaaS applications such as <a href="https://products.office.com/en-us/" target="_blank">Microsoft Office 365</a> or <a href="https://gsuite.google.com/" target="_blank">Google Apps</a>, this is a great way to ensure that your employees get the performance they expect. It will help you identify issues and let you troubleshoot and resolve them quickly.
 
-If you are a service provider offering a SaaS application, ThousandEyes is equally valuable as you are now not only able to monitor your service from various locations worldwide, but also drill down deep into any issues in the Internet that might degrade your customer&#8217;s experience. In the end the customer cares about the end-to-end experience, where a SaaS provider has limited direct control over the delivery chain.
+If you are a service provider offering a SaaS application, ThousandEyes is equally valuable as you are now not only able to monitor your service from various locations worldwide, but also drill down deep into any issues in the Internet that might degrade your customer's experience. In the end the customer cares about the end-to-end experience, where a SaaS provider has limited direct control over the delivery chain.
 
-Let&#8217;s hope that the existing rudimentary IPv6 support gets better over time as well.
+Let's hope that the existing rudimentary IPv6 support gets better over time as well.

@@ -20,23 +20,23 @@ A Software Defined Data Center (SDDC) is a vision for a new IT infrastructure th
 
 Creating and executing a strategy to realize this vision is a journey that needs to include not only new technology, but also changed processes as well as people with new training and mindsets.
 
-In a series of articles I want to focus on the architecture and some of its design elements for a SDDC. This first article will focus on the requirements of an SDDC, before attempting to break up the problem into manageable &#8220;chunks&#8221; and address them in a divide-and-conquer fashion in subsequent posts.
+In a series of articles I want to focus on the architecture and some of its design elements for a SDDC. This first article will focus on the requirements of an SDDC, before attempting to break up the problem into manageable "chunks" and address them in a divide-and-conquer fashion in subsequent posts.
 
-Although the presented problem statement, architecture and design could apply to a wide variety of products, I will mostly focus on products from VMware and its eco-system partners. Also while the presented architecture and design might not necessarily exist in its entire form at a customer site today, individual elements presented have certainly proven it&#8217;s success as part of numerous customer projects.
+Although the presented problem statement, architecture and design could apply to a wide variety of products, I will mostly focus on products from VMware and its eco-system partners. Also while the presented architecture and design might not necessarily exist in its entire form at a customer site today, individual elements presented have certainly proven it's success as part of numerous customer projects.
 
 ### Requirements
 
-A Software Defined Data Center promises to be the new underpinning or platform for delivering today&#8217;s and tomorrow&#8217;s IT services. As such this next generation infrastructure needs to address some shortcomings of today&#8217;s infrastructure in order to be successful:
+A Software Defined Data Center promises to be the new underpinning or platform for delivering today's and tomorrow's IT services. As such this next generation infrastructure needs to address some shortcomings of today's infrastructure in order to be successful:
 
   * **Highly automated operation at Scale:** Leaner organization that scales sub-linearly with an operating model build around automation. Leverage modular web-scale designs for unhampered scalability.
   * **Hardware and Software efficiencies:** Support on-demand scaling for varying capacity needs. Improved resource pooling to drive increased utilization of resources and reduce cost.
   * **New and old business needs:** Support legacy applications with traditional business continuity and disaster recovery, besides new cloud-native applications.
 
-Throughout the architecture and design discussion I will attempt to provide traceability between the design decisions and these requirements. Therefore let&#8217;s look into each of these requirements in more detail:
+Throughout the architecture and design discussion I will attempt to provide traceability between the design decisions and these requirements. Therefore let's look into each of these requirements in more detail:
 
 ### Highly automated operation at Scale
 
-Today&#8217;s IT departments are pressed to do more with less and provide IT services at a high quality and a lower cost. Doing so, IT departments often have to compete with outside services ranging from public clouds such as <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services (AWS)</a> for Infrastructure services, all the way to <a href="https://products.office.com/en-us/business/" target="_blank">Office 365</a> for SaaS based offerings. And if IT departments are successful with their internal offerings, they need to ensure that they can scale up in a reasonable time-frame to meet the new demand.
+Today's IT departments are pressed to do more with less and provide IT services at a high quality and a lower cost. Doing so, IT departments often have to compete with outside services ranging from public clouds such as <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services (AWS)</a> for Infrastructure services, all the way to <a href="https://products.office.com/en-us/business/" target="_blank">Office 365</a> for SaaS based offerings. And if IT departments are successful with their internal offerings, they need to ensure that they can scale up in a reasonable time-frame to meet the new demand.
 
 To deliver on this requirement one will quickly discover that it is necessary to use a strong foundation of automation to provide a swift and reliable infrastructure that can easily scale up and provide offered services. Adding more headcount to accomplish this task is not an option as it would not only lead to increased cost, but also to largely unpredictable outcomes due to human errors in the scaled operations.
 
@@ -44,7 +44,7 @@ Last but not least, in order to compete with the abilities and the price of web-
 
 ### Hardware and Software efficiencies
 
-The traditional approach to data centers was often a combination of one-size fits all &#8211; for simplifying operations &#8211; as well as best-is-just-good-enough &#8211; due to the requirement of running mission critical workloads. While the requirement for reliability doesn&#8217;t go away, new and old business needs (see next section) have more differentiated requirements for business continuity and disaster recovery. This offers the possibility to shift certain capabilities around availability from hardware to software or even give up on them altogether within the infrastructure. Let the application itself deal with failures.
+The traditional approach to data centers was often a combination of one-size fits all &#8211; for simplifying operations &#8211; as well as best-is-just-good-enough &#8211; due to the requirement of running mission critical workloads. While the requirement for reliability doesn't go away, new and old business needs (see next section) have more differentiated requirements for business continuity and disaster recovery. This offers the possibility to shift certain capabilities around availability from hardware to software or even give up on them altogether within the infrastructure. Let the application itself deal with failures.
 
 One of the corner stones of a Software Defined Data Center is the introduction of virtualization for not only compute, but also networking &#8211; known as Software Defined Networking (SDN), and storage &#8211; known as Software Defined Storage (SDS). This allows the tear-down of resource silos, allow resource pooling and thereby the reduction of costs.
 
@@ -54,7 +54,7 @@ An IaaS cloud such as AWS is geared towards a cloud application model, with clou
 
 ### High-level Architecture for a Software Defined Data Center (SDDC)
 
-Next we will break up the design of a Software Defined Data Center (SDDC) into manageable &#8220;chunks&#8221; and address them in a divide-and-conquer fashion in subsequent posts. To do so, the SDDC is split into three main layers, along with capabilities spanning all three layers (See Figure 1).
+Next we will break up the design of a Software Defined Data Center (SDDC) into manageable "chunks" and address them in a divide-and-conquer fashion in subsequent posts. To do so, the SDDC is split into three main layers, along with capabilities spanning all three layers (See Figure 1).
 
 <div id="attachment_1482" style="width: 610px" class="wp-caption aligncenter">
   <img src="/content/uploads/2015/02/SDDC_Layers.png" alt="Figure 1: Architecture Overview of a Software Defined Data Center" width="600" height="187" class="size-full wp-image-1482" />
