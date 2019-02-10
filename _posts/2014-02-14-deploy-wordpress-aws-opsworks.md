@@ -408,4 +408,4 @@ Now recreate the instances as described above.
 
 ### References
 
-If you want to find out more about AWS OpsWorks, have a look at the AWS re:Invent 2013 presentation [AWS OpsWorks Documentation](http://www.slideshare.net/AmazonWebServices/zero-to-sixty-aws-opsworks-dmg202-aws-reinvent-2013" target="_blank">Zero to Sixty: AWS OpsWorks (DMG202)</a> or the excellent <a href="https://aws.amazon.com/documentation/opsworks/).
+If you want to find out more about AWS OpsWorks, have a look at the AWS re:Invent 2013 presentation [Zero to Sixty: AWS OpsWorks (DMG202)](http://www.slideshare.net/AmazonWebServices/zero-to-sixty-aws-opsworks-dmg202-aws-reinvent-2013) or the excellent [AWS OpsWorks Documentation](https://aws.amazon.com/documentation/opsworks/).
