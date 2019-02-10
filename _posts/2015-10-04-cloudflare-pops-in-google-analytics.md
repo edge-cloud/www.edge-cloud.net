@@ -125,7 +125,7 @@ One such report could be to map the location from where users connect to the Clo
   </p>
 </div>In this report we can see various users not being served by the closest Point of Presence, but one farther away. This is mostly caused by the way that the Internet works and especially by some
 
-[Tier 1 network provider](https://blog.cloudflare.com/the-relative-cost-of-bandwidth-around-the-world/" target="_blank">ISPs not peering directly</a> with content or CDN networks. Instead these ISP use <a href="https://en.wikipedia.org/wiki/Tier_1_network), which can cause these inefficiencies.
+[ISPs not peering directly](https://blog.cloudflare.com/the-relative-cost-of-bandwidth-around-the-world/) with content or CDN networks. Instead these ISP use [Tier 1 network provider](https://en.wikipedia.org/wiki/Tier_1_network), which can cause these inefficiencies.
 
 ### Summary
 
