@@ -17,8 +17,9 @@ categories:
 tags:
   - IPv6
   - Network
+toc: true
 ---
-One of the big benefits in IPv6 is the automatic configuration capability for hosts via [Stateless address autoconfiguration (SLAAC)](https://www.edge-cloud.net/2013/11/18/ipv6-address-management-hosts/#Stateless_address_autoconfiguration_.28SLAAC.29). Yet sometimes even in IPv6 one wants to solely manually configure hosts in a L2 segment. For this use case one needs to provide basic network information to the user configuring the host. This usually includes at least the IP address of the host along with the prefix length, the default gateway and the DNS resolver. Wouldn't it be great if we could tell users that the default gateway and the DNS resolver are always the same, no matter what network segment the host is in? And wouldn't it be great if these IPv6 addresses for default gateway and DNS resolver were short and easy to remember?
+One of the big benefits in IPv6 is the automatic configuration capability for hosts via [Stateless address autoconfiguration (SLAAC)](/2013/11/18/ipv6-address-management-hosts/#Stateless_address_autoconfiguration_.28SLAAC.29). Yet sometimes even in IPv6 one wants to solely manually configure hosts in a L2 segment. For this use case one needs to provide basic network information to the user configuring the host. This usually includes at least the IP address of the host along with the prefix length, the default gateway and the DNS resolver. Wouldn't it be great if we could tell users that the default gateway and the DNS resolver are always the same, no matter what network segment the host is in? And wouldn't it be great if these IPv6 addresses for default gateway and DNS resolver were short and easy to remember?
 
 ### IPv6 use case
 
@@ -46,32 +47,32 @@ Both Cisco and Brocade do not use a prefix-length as part of the configuration, 
 
 With a Cisco IOS device, the configuration would look like this:
 
-<pre>Cisco(config)# interface gigabitEthernet3/1
-Cisco(config-if)# ipv6 address fe80::1 link-local
-Cisco(config-if)# end
-Cisco# show ipv6 interface gigabitEthernet3/1
-gigabitEthernet 3/1 is up, line protocol is up
-  IPv6 is enabled, link-local address is FE80::1
-  No Virtual link-local address(es):
-  Global unicast address(es):
-    20BA:DD06:F00D:1234::1, subnet is 20BA:DD06:F00D:1234::/48
-  Joined group address(es):
-    FF02::1
-    FF02::2
-    FF02::1:FF00:2
-    FF02::1:FFD0:DEBF
-  MTU is 1500 bytes
-  ICMP error messages limited to one every 100 milliseconds
-  ICMP redirects are enabled
-  ICMP unreachables are sent
-  ND DAD is enabled, number of DAD attempts: 1
-  ND reachable time is 30000 milliseconds (using 30000)
-  ND advertised reachable time is 0 (unspecified)
-  ND advertised retransmit interval is 0 (unspecified)
-  ND router advertisements are sent every 200 seconds
-  ND router advertisements live for 1800 seconds
-  ND advertised default router preference is Medium
-  Hosts use stateless autoconfig for addresses.</pre>
+    Cisco(config)# interface gigabitEthernet3/1
+    Cisco(config-if)# ipv6 address fe80::1 link-local
+    Cisco(config-if)# end
+    Cisco# show ipv6 interface gigabitEthernet3/1
+    gigabitEthernet 3/1 is up, line protocol is up
+      IPv6 is enabled, link-local address is FE80::1
+      No Virtual link-local address(es):
+      Global unicast address(es):
+        20BA:DD06:F00D:1234::1, subnet is 20BA:DD06:F00D:1234::/48
+      Joined group address(es):
+        FF02::1
+        FF02::2
+        FF02::1:FF00:2
+        FF02::1:FFD0:DEBF
+      MTU is 1500 bytes
+      ICMP error messages limited to one every 100 milliseconds
+      ICMP redirects are enabled
+      ICMP unreachables are sent
+      ND DAD is enabled, number of DAD attempts: 1
+      ND reachable time is 30000 milliseconds (using 30000)
+      ND advertised reachable time is 0 (unspecified)
+      ND advertised retransmit interval is 0 (unspecified)
+      ND router advertisements are sent every 200 seconds
+      ND router advertisements live for 1800 seconds
+      ND advertised default router preference is Medium
+      Hosts use stateless autoconfig for addresses.
 
 We can clearly see that the IPv6 link-local address for the interface was successfully modified to fe80::1, while the global unicast address remains in place.
 
@@ -79,13 +80,7 @@ We can clearly see that the IPv6 link-local address for the interface was succes
 
 For end-users this approach simplifies manual configuration of hosts for IPv6 - as e.g. necessary for servers - dramatically. They can use the same set of easy to remember and especially quick to type values for the default gateway and the primary and secondary nameserver. Figure 1 shows how this could look like in Windows 2008R2.
 
-<div id="attachment_1006" style="width: 555px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2013/08/LinkLocalDefault.png" alt="Figure 1: Using Link-Local IPv6 address as default gateway." width="545" height="448" class="size-full wp-image-1006" srcset="/content/uploads/2013/08/LinkLocalDefault.png 545w, /content/uploads/2013/08/LinkLocalDefault-360x295.png 360w" sizes="(max-width: 545px) 100vw, 545px" />
-
-  <p class="wp-caption-text">
-    Figure 1: Using Link-Local IPv6 address as default gateway.
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2013/08/LinkLocalDefault.png" caption="Figure 1: Using Link-Local IPv6 address as default gateway." %}
 
 ### Troubleshooting
 
@@ -95,13 +90,13 @@ As an example: In order to ping the above interface, we need to specify the [zon
 
 This would look like this:
 
-<pre>Cisco# ping fe80::1%gigabitEthernet3/1
-Type escape sequence to abort.
-Sending 5, 100-byte ICMP Echos to FE80::1, timeout is 2 seconds:
-Packet sent with a source address of FE80::1%gigabitEthernet3/1
-!!!!!
-Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
-Cisco#</pre>
+    Cisco# ping fe80::1%gigabitEthernet3/1
+    Type escape sequence to abort.
+    Sending 5, 100-byte ICMP Echos to FE80::1, timeout is 2 seconds:
+    Packet sent with a source address of FE80::1%gigabitEthernet3/1
+    !!!!!
+    Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+    Cisco#
 
 Be careful as Cisco IOS requires the interface name to be case sensitive. Also you cannot abbreviate it. This is definitely an annoyance that someone should file as a bug.
 
@@ -113,9 +108,9 @@ As mentioned earlier, Anycast - both in IPv4 and IPv6 - already gives us the pos
 
 Here [RFC 1918](https://en.wikipedia.org/wiki/Unique_local_address" target="_blank">unique local addresses (ULA)</a> come to the rescue. In most cases ULA can be treated like <a href="https://tools.ietf.org/html/rfc1918) addresses in IPv4. Prefixes in the fd00::/8 range have similar properties as those of the IPv4 private address ranges:
 
-  * They are not allocated by an address registry and may be used in networks by anyone without outside involvement.
-  * They are not guaranteed to be globally unique.
-  * Reverse Domain Name System (DNS) entries (under ip6.arpa) for fd00::/8 ULAs cannot be delegated in the global DNS.
+* They are not allocated by an address registry and may be used in networks by anyone without outside involvement.
+* They are not guaranteed to be globally unique.
+* Reverse Domain Name System (DNS) entries (under ip6.arpa) for fd00::/8 ULAs cannot be delegated in the global DNS.
 
 It's a good idea to keep DNS resolvers to be accessible from within an organization only, which is another good reason to use ULA for this use case. Also not everyone has the luxury to own an easy to remember IP address such as Google with 8.8.8.8 for their public resolver.
 
@@ -127,9 +122,9 @@ With Anycast it's actually not necessary to have two different IP addresses for 
 
 ### Where is it used in the wild?
 
-Two examples of service providers that use the IPv6 default gateway of fe80::1 and document it accordingly for their end-users are the German hosting provider [University of Wisconsin-Madison](https://www.hetzner.de/en/hosting/produktmatrix/rootserver" target="_blank">Hetzner</a> as well as the <a href="https://kb.wisc.edu/ns/page.php?id=14099). Other examples exist, but without readily available documentation.
+Two examples of service providers that use the IPv6 default gateway of fe80::1 and document it accordingly for their end-users are the German hosting provider [Hetzner](https://www.hetzner.de/en/hosting/produktmatrix/rootserver) as well as the [University of Wisconsin-Madison](https://kb.wisc.edu/ns/page.php?id=14099). Other examples exist, but without readily available documentation.
 
-The German ISP [Speedport](https://www.telekom.de/" target="_blank">Deutsche Telekom</a> uses their own line of branded home DSL routers called <a href="https://de.wikipedia.org/wiki/Speedport). Turns out that the routers within this line that are IPv6 capable use fe80::1 as the default gateway, both for static use as well as via SLAAC. These devices then also offer DNS resolver capabilities via the same IPv6 address.
+The German ISP [Deutsche Telekom](https://www.telekom.de/) uses their own line of branded home DSL routers called [Speedport](https://de.wikipedia.org/wiki/Speedport). Turns out that the routers within this line that are IPv6 capable use fe80::1 as the default gateway, both for static use as well as via SLAAC. These devices then also offer DNS resolver capabilities via the same IPv6 address.
 
 So far I have not seen anyone using ULA for internal DNS resolver.
 
@@ -139,20 +134,12 @@ Unfortunately there are various vendors out there, crippling their product's IPv
 
 Examples for this are VMware ESXi, which dropped support for link-local addresses as default gateways in version 5.0 of the hypervisor. Even the Cisco documentation ["Deploying IPv6 in the Internet Edge"](http://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Borderless_Networks/Internet_Edge/InternetEdgeIPv6.html#wp390490) picked up on this shortcoming.
 
-
-
-<div id="attachment_559" style="width: 574px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2013/08/ESX_LinkLocal_DefGW.png" alt="Figure 2: ESXi refuses to use a link local IPv6 address as a default gateway during static configuration" width="564" height="163" class="size-full wp-image-559" srcset="/content/uploads/2013/08/ESX_LinkLocal_DefGW.png 564w, /content/uploads/2013/08/ESX_LinkLocal_DefGW-500x144.png 500w" sizes="(max-width: 564px) 100vw, 564px" />
-
-  <p class="wp-caption-text">
-    Figure 2: ESXi refuses to use a link local IPv6 address as a default gateway during static configuration
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2013/08/ESX_LinkLocal_DefGW.png" caption="Figure 2: ESXi refuses to use a link local IPv6 address as a default gateway during static configuration" %}
 
 Another example is Arista, which doesn't support manually configuring link-local addresses yet:
 
-<pre>Arista(s2)(config-if-Vl51)#ipv6 address fe80::1/64
-% Configuring Link local addresses not yet supported</pre>
+    Arista(s2)(config-if-Vl51)#ipv6 address fe80::1/64
+    % Configuring Link local addresses not yet supported
 
 But at least Arista was quick to react when pointing out this shortcoming and created a request for enhancement (RFE).
 
