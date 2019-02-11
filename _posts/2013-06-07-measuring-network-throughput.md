@@ -28,13 +28,13 @@ Most user utilize software based on the [Transmission Control Protocol (TCP)](ht
 
 {% include figure image_path="/content/uploads/2013/06/SlidingWindow.png" caption="Figure 1: Sliding Window Protocol" %}
 
-In order to guarantee reliable in-order delivery of packets, only a "window" of packets may be send without the receiver acknowledging them (See Figure 1). The size of this "window" is governed by the receiver and is referred to as the _TCP Window Size_. This way the receiver ensures that it can actually process the incoming data without "choking" on it.
+In order to guarantee reliable in-order delivery of packets, only a "window" of packets may be send without the receiver acknowledging them (See Figure 1). The size of this "window" is governed by the receiver and is referred to as the *TCP Window Size*. This way the receiver ensures that it can actually process the incoming data without "choking" on it.
 
 {% include figure image_path="/content/uploads/2013/06/SlidingWindowIncrease.png" caption="Figure 2: Sliding Window Protocol with increased t<sub>prop</sub>" %}
 
 Looking at Figure 1 it should become clear that while increasing the value of the signal propagation time t<sub>prop</sub>, the amount of data that can be transferred in the same time period is reduced. This is caused by the sender spending more time waiting for acknowledgements, before it will send further packages. (See Figure 2)
 
-The propagation time t<sub>prop</sub> for a TCP packet can be determined by measuring the round-trip-time (RTT) of a packet. Here the round-trip-time is twice the propagation time for synchronous links. This can e.g. be done via the well known tool _ping_. The TCP window size is determined by the operating system. During a connection the receiver can also adapt the TCP Window Size - in both directions - if the situation changes due to packet loss or buffer fill levels.
+The propagation time t<sub>prop</sub> for a TCP packet can be determined by measuring the round-trip-time (RTT) of a packet. Here the round-trip-time is twice the propagation time for synchronous links. This can e.g. be done via the well known tool *ping*. The TCP window size is determined by the operating system. During a connection the receiver can also adapt the TCP Window Size - in both directions - if the situation changes due to packet loss or buffer fill levels.
 
 ### Bandwidth-delay Product and buffer size
 
@@ -42,33 +42,29 @@ Now that we have identified the two most important variables for the performance
 
 An important formula is the one for the [Bandwidth-delay product (BDP)](https://en.wikipedia.org/wiki/Bandwidth-delay_product), which is the product of a data link's capacity (in bits per second) and its end-to-end delay (in seconds). The result, an amount of data measured in bits (or bytes), is equivalent to the maximum amount of data on the network circuit at any given time, e.g. data that has been transmitted but not yet acknowledged.
 
-<img src="//s0.wp.com/latex.php?latex=Buffer+%28Mbit%29+%3D+bandwidth+%28Mbit%2Fs%29+%5Ctimes+delay+%28s%29&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="Buffer (Mbit) = bandwidth (Mbit/s) / times delay (s)" title="Buffer (Mbit) = bandwidth (Mbit/s) / times delay (s)" class="latex" />
+{% include figure image_path="/content/uploads/2013/06/latex1.png" alt="Buffer (Mbit) = bandwidth (Mbit/s) X delay (s)" %}
 
 The result of the BDP can also be interpreted as the required receiver TCP window size to maximize the performance on the data link.
 
 Let's use an example:
 
 Round-Trip-Time between the US west coast (Las Vegas) and Europe (Germany): 173 ms
-
 Available bandwidth between the two sites: 100 Mbit/s
 
-<img src="//s0.wp.com/latex.php?latex=173+ms+%5Ctimes+100+Mbit%2Fs+%3D+0.173s+%5Ctimes+%28+100+%5Ctimes+1024+%5Ctimes+1024+bit%2Fs%29%3D+18140365+bit+%3D+2.1625+MByte&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="173 ms / times 100 Mbit/s = 0.173s / times ( 100 / times 1024 / times 1024 bit/s)= 18140365 bit = 2.1625 MByte" title="173 ms / times 100 Mbit/s = 0.173s / times ( 100 / times 1024 / times 1024 bit/s)= 18140365 bit = 2.1625 MByte" class="latex" />
+{% include figure image_path="/content/uploads/2013/06/latex2.png" alt="173 ms X 100 Mbit/s = 0.173s X ( 100 X 1024 X 1024 bit/s) = 18140365 bit = 2.1625 MByte" %}
 
 This means that we would need a TCP Window Size of at least 2.1625 MByte to fully utilize the 100 Mbit/s link.
 
 We have seen, that in reality both the delay between sender and receiver as well as the TCP window size within the receiver are given. As we cannot change the laws of physics, the only value we can change is the TCP window size. Let's shuffle the formula, to calculate the maxim bandwidth that can be achieved with a given RTT and TCP window size instead:
 
-<img src="//s0.wp.com/latex.php?latex=bandwidth+%28Mbit%2Fs%29+%3D+%5Cfrac%7BBuffer+%28Mbit%29%7D%7Bdelay+%28s%29%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="bandwidth (Mbit/s) = / frac{Buffer (Mbit)}{delay (s)}" title="bandwidth (Mbit/s) = / frac{Buffer (Mbit)}{delay (s)}" class="latex" />
+{% include figure image_path="/content/uploads/2013/06/latex3.png" alt="bandwidth (Mbit/s) = Buffer (Mbit) / delay (s)"%}
 
 Let's use another example:
 
 Round-Trip-Time between the US west coast (Las Vegas) and Europe (Germany): 173 ms
-
 Standard TCP windows size on a Linux (Ubuntu) host: 64 KByte
 
-$latex \frac{64 KByte}{173 ms} = \frac{(64 \times 1024 \times 8 bit)}{0.173 s}
-
-= \frac{524288 bit}{0.173s} = 3030566.47 bit/s = 2.89 Mbit/s$
+{% include figure image_path="/content/uploads/2013/06/latex4.png" alt="64 KByte / 173 ms = (64 X 1024 X 8 bit) / 0.173 s = 524288 bit / 0.173s = 3030566.47 bit/s = 2.89 Mbit/s"%}
 
 Irrelevant of the actual link speed between the two sites above we will not be able to transfer more than 2.89 Mbit/s with a single TCP stream. Keep in mind that this is the theoretical maximum. In reality the value will be even lower due to packet loss and packet header overhead.
 
@@ -108,12 +104,10 @@ From the sender side we start the test:
 The result is what we would expect from the theory and math in the previous section. It also shows nicely that the result is well below the 100 Mbit/s of the Internet links.
 
 Let's try to increase the TCP Window size on the receiver and run the test again.
-
 As Iperf is a user process it cannot actually increase the TCP Window size beyond what's set in the Kernel. We therefore have to make these changes directly in the Kernel.
-
 As a first step it's advisable to have a look at the current TCP Window settings on the receiver and make note of them, so that they can be restored.
 
-The way the TCP Window works is that sender and receiver negotiate an optimal window size based on various factors. Therefore Linux has two values for the TCP Window. The _default_ value, which is the starting window size and the _max_ value, which is the upper bound of it:
+The way the TCP Window works is that sender and receiver negotiate an optimal window size based on various factors. Therefore Linux has two values for the TCP Window. The *default* value, which is the starting window size and the *max* value, which is the upper bound of it:
 
 The maximum TCP windows size (receiving) in bit from the TCP autotuning settings:
 
@@ -122,7 +116,7 @@ The maximum TCP windows size (receiving) in bit from the TCP autotuning settings
 
 The first value tells the kernel the minimum receive buffer for each TCP connection, and this buffer is always allocated to a TCP socket, even under high pressure on the system.
 
-The second value specified tells the kernel the default receive buffer allocated for each TCP socket. This value overrides the /proc/sys/net/core/rmem_default value used by other protocols.
+The second value specified tells the kernel the default receive buffer allocated for each TCP socket. This value overrides the */proc/sys/net/core/rmem_default* value used by other protocols.
 
 The third and last value specified in this variable specifies the maximum receive buffer that can be allocated for a TCP socket. We want to manipulate this third value on the receiver side.
 
@@ -164,9 +158,9 @@ Again, the result is what we would expect from the theory and math in the previo
 
 Be advised that there is a limit to this approach: If you keep doubling the TCP window size, you will at one point reach the buffer limits of your OS and therefore not experience any additional performance gains anymore.
 
-### Real "bandwidth" tests
+#### Real "bandwidth" tests
 
-Warning! You should perform "bandwidth" tests of your links only when they are not in use. Otherwise your results will not be meaningful. Also, while I show you how to use UDP to determine the bandwidth of a link, this protocol does not bring any form of congestion control. While this is a good thing for measuring the bandwidth on an un-utilized link, you will starve out other traffic on a utilized link. You will basically cause a denial of service attack on the link. Therefore proceed with uttermost care!
+**Warning!** You should perform "bandwidth" tests of your links only when they are not in use. Otherwise your results will not be meaningful. Also, while I show you how to use UDP to determine the bandwidth of a link, this protocol does not bring any form of congestion control. While this is a good thing for measuring the bandwidth on an un-utilized link, you will starve out other traffic on a utilized link. You will basically cause a denial of service attack on the link. Therefore proceed with uttermost care!
 {: .notice--danger}
 
 So far we have learned that the throughput of a single TCP is limited by the TCP window size and the RTT. But what happens if I use multiple TCP streams in parallel? Looking at how TCP works, each of these TCP streams should be able to create an individual maximum throughput as determined in the previous section. Furthermore they should share the available bandwidth fairly with each other until nothing is left.
@@ -219,7 +213,7 @@ Let's change our so far strategy and switch over to a protocol that does not suf
 
 On the receiver host we again start Iperf as a server. But this time we start it in UDP mode:
 
-user@receiver:~$ iperf -s -u
+    user@receiver:~$ iperf -s -u
 
 On the sender side we also start Iperf in UDP mode and ask it to attempt to sent 110 Mbit/s of traffic. We will attempt to send a bit more than the expected maximum bandwidth, to understand when the links max out:
 
@@ -252,7 +246,7 @@ Don't forget to kill these processes once you are done!
 
 On the sender side we will start two tests at exactly the same time. One test with Iperf in TCP mode. And another test with Iperf in UDP mode, again asking it to attempt to sent 110 Mbit/s of traffic. To showcase better the effect of UDP traffic flooding a link we will ask Iperf to run 10 UDP test in parallel. Make sure to start both tests at the same time:
 
-UDP Test
+###### UDP Test
 
     user@sender:~$ iperf -c receiver.edge-cloud.net -u -b 110m -P 10
     ------------------------------------------------------------
@@ -324,7 +318,7 @@ UDP Test
 
 Adding together the throughput of the 10 UDP connections we get a total throughput of 76.331 Mbit/s.
 
-TCP Test
+###### TCP Test
 
     user@sender:~$ iperf -c las-mgmt-ubu01.vmwcs.com
     ------------------------------------------------------------
