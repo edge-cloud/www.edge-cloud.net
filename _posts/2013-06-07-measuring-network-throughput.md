@@ -55,7 +55,7 @@ Available bandwidth between the two sites: 100 Mbit/s
 
 This means that we would need a TCP Window Size of at least 2.1625 MByte to fully utilize the 100 Mbit/s link.
 
-We have seen, that in reality both the delay between sender and receiver as well as the TCP window size within the receiver are given. As we cannot change the laws of physics, the only value we can change is the TCP window size. Let's shuffle the formula, to calculate the maxim bandwidth that can be achieved with a given RTT and TCP window size instead:
+We have seen, that in reality both the delay between sender and receiver as well as the TCP window size within the receiver are given. As we cannot change the laws of physics, the only value we can change is the TCP window size. Let's shuffle the formula, to calculate the maximum bandwidth that can be achieved with a given RTT and TCP window size instead:
 
 {% include figure image_path="/content/uploads/2013/06/latex3.png" alt="bandwidth (Mbit/s) = Buffer (Mbit) / delay (s)"%}
 
@@ -345,7 +345,7 @@ Instead network architects usually deploy a pair of specialized devices - called
 
 {% include figure image_path="/content/uploads/2013/06/WOC.png" caption="Figure 4: WAN Optimization Controllers" %}
 
-One vendor offering such devices is Silver Peak, which offers An interesting tool with its[Throughput Calculator](https://www.silver-peak.com/calculator/throughput-calculator) from Silver Peak. Similar to the tool from Switch.ch, it will show you the maximum transfer speed that is possible with a given RTT and packet loss rate, while assuming a default TCP window size of 64K. in addition it will also show you the throughput that would be possible over the same link using a Silver Peak WOC pair.
+One vendor offering such devices is Silver Peak, which offers An interesting tool with its [Throughput Calculator](https://www.silver-peak.com/calculator/throughput-calculator) from Silver Peak. Similar to the tool from Switch.ch, it will show you the maximum transfer speed that is possible with a given RTT and packet loss rate, while assuming a default TCP window size of 64K. in addition it will also show you the throughput that would be possible over the same link using a Silver Peak WOC pair.
 
 #### Content Distribution Networks (CDN)
 
