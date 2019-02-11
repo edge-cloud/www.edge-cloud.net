@@ -23,9 +23,9 @@ While IPv4 knew the address management mechanism of None, Manual and DHCP, IPv6 
   * 2. Manual
   * 3. Stateless Address Auto Configuration (SLAAC) ([RFC 4862](https://tools.ietf.org/search/rfc4862))
       * 3.1 Nameserver configured manually
-      * 3.2 Nameserver via RDNSS ([RFC 6106](https://tools.ietf.org/html/rfc6106)
-      * 3.3 Nameserver via DHCPv6 ([RFC 3736](https://tools.ietf.org/html/rfc3736)
-  * 4. Statefull with DHCPv6 ([RFC 3315](https://tools.ietf.org/html/rfc3315)
+      * 3.2 Nameserver via RDNSS ([RFC 6106](https://tools.ietf.org/html/rfc6106))
+      * 3.3 Nameserver via DHCPv6 ([RFC 3736](https://tools.ietf.org/html/rfc3736))
+  * 4. Statefull with DHCPv6 ([RFC 3315](https://tools.ietf.org/html/rfc3315))
 
 ### 1. None
 
