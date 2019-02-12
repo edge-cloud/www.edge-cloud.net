@@ -45,6 +45,7 @@ deploy:
     on:
       branch: master
   - provider: pages
+    local-dir: _site
     repo: edge-cloud/edge-cloud.github.io
     target-branch: master
     skip-cleanup: true
