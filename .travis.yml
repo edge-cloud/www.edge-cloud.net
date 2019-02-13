@@ -4,6 +4,11 @@ rvm:
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+    - BUNDLE_ARCHIVE="edge-cloud-bundle"
+    - AWS_S3_REGION="us-east-1"
+    - AWS_S3_BUCKET="build.edge-cloud.net"
+    - AWS_S3_KEY=$AWS_ACCESS_KEY_ID
+    - AWS_S3_SECRET=$AWS_SECRET_ACCESS_KEY
 notifications:
   email: false
 addons:
@@ -17,7 +22,10 @@ install:
   - gem install mdl
   - gem install html-proofer
   - gem install rdiscount
+  - gem install travis_bundle_cache
   - bundle install
+before_script:
+  - "travis_bundle_cache > ~/travis_bundle_cache.log &"
 script:
   - if [[ $TRAVIS_BRANCH == "master" ]];
     then JEKYLL_ENV=production bundle exec jekyll build --config _config.yml;
@@ -25,6 +33,8 @@ script:
     fi
 #  - mdl -r ~MD002,~MD013,~MD033 ./_posts
 #  - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external
+after_script:
+  - wait && cat ~/travis_bundle_cache.log
 deploy:
   - provider: s3
     region: us-west-2
