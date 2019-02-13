@@ -46,7 +46,36 @@ Now that we know that IPv6 is broken and when it broke, let's try to figure out 
 To do so we create a One-off measurement from solely the affected Probe to one of the IPv6 addresses of [Google Public DNS](https://developers.google.com/speed/public-dns/docs/using) resolvers at 2001:4860:4860::8888. We could also use any other host that is known to respond to IPv6 pings.
 Using the [RIPE Atlas API](https://atlas.ripe.net/docs/api/v2/manual/), this test can quickly be created via:
 
-    curl --dump-header - -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"definitions":[{"target":"2001:4860:4860::8888","af":6,"timeout":4000,"description":"Traceroute measurement to 2001:4860:4860::8888","protocol":"ICMP","resolve_on_probe":false,"packets":3,"size":48,"first_hop":1,"max_hops":32,"paris":16,"destination_option_size":0,"hop_by_hop_option_size":0,"dont_fragment":false,"skip_dns_check":false,"type":"traceroute"}],"probes":[{"value":"12345","type":"probes","requested":1}],"is_oneoff":true,"bill_to":"mymail@edge-cloud.net"}' https://atlas.ripe.net/api/v2/measurements//?key=YOUR_KEY_HERE
+    curl --dump-header - -H "Content-Type: application/json" -H "Accept:
+    application/json" -X POST -d '{
+      "definitions":[
+      {
+        "target":"2001:4860:4860::8888",
+        "af":6,
+        "timeout":4000,
+        "description":"Traceroute measurement to 2001:4860:4860::8888",
+        "protocol":"ICMP",
+        "resolve_on_probe":false,
+        "packets":3,
+        "size":48,
+        "first_hop":1,
+        "max_hops":32,
+        "paris":16,
+        "destination_option_size":0,
+        "hop_by_hop_option_size":0,
+        "dont_fragment":false,
+        "skip_dns_check":false,
+        "type":"traceroute"
+      }],
+      "probes":[
+      {
+        "value":"12345",
+        "type":"probes",
+        "requested":1
+      }],
+      "is_oneoff":true,
+      "bill_to":"mymail@edge-cloud.net"
+      }' https://atlas.ripe.net/api/v2/measurements//?key=YOUR_KEY_HERE
 
 The result shows the Traceroute timing out after the 3rd IPv6 hop inside the AT&T network (See Figure 4).
 
@@ -76,4 +105,4 @@ At least for IPv4 things look a little better since my upgrade to [GPON](https:/
 
 RIPE Atlas provides an awesome tool to keep an eye on the performance and availability of your own Internet connection, but also helps troubleshooting. Keep in mind that for none of the steps shown above I had to be actually at home. You can use RIPE Atlas from anywhere.
 
-At this point I have no hope whatsoever that AT&T will fix this issue anytime soon. Getting in contact with a human at AT&T is already a daunting task and finding someone with knowledge of IPv6 who can actually fix this issue seems impossible. Therefore it seems like I'll be forced to disable IPv6 on my home internet connection for the time being. 
+At this point I have no hope whatsoever that AT&T will fix this issue anytime soon. Getting in contact with a human at AT&T is already a daunting task and finding someone with knowledge of IPv6 who can actually fix this issue seems impossible. Therefore it seems like I'll be forced to disable IPv6 on my home internet connection for the time being.
