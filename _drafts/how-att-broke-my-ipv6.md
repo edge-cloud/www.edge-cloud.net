@@ -3,7 +3,6 @@ title: How AT&T broke my IPv6 Internet connection
 author: Christian Elsen
 excerpt: Using RIPE Atlas to show how AT&T broke IPv6 on my home Internet connection.
 layout: single
-permalink: /2019/02/15/how-att-broke-my-ipv6/
 categories:
   - EdgeCloud
 tags:
@@ -81,7 +80,7 @@ The result shows the Traceroute timing out after the 3rd IPv6 hop inside the AT&
 
 {% include figure image_path="/content/uploads/2019/02/ATT_Broken.png" caption="Figure 4: Traceroute to Google's Public DNS on broken AT&T connection" %}
 
-To have another data point and to understand how a successful IPv6 Traceroute to Google Public DNS resolvers should look like, let's run the same measurement from a RIPE Atlas probe that is also connected to AT&T - indicated by the same [ASN](https://en.wikipedia.org/wiki/Autonomous_system_(Internet). The RIPE Atlas website allows you to find probes based on various characteristics, such as IPv6 working state, ASN but also location. With this it was easy to find a probe that is connected to AT&T with a working IPv6 connection.
+To have another data point and to understand how a successful IPv6 Traceroute to Google Public DNS resolvers should look like, let's run the same measurement from a RIPE Atlas probe that is also connected to AT&T - indicated by the same [ASN](https://en.wikipedia.org/wiki/Autonomous_system_(Internet)). The RIPE Atlas website allows you to find probes based on various characteristics, such as IPv6 working state, ASN but also location. With this it was easy to find a probe that is connected to AT&T with a working IPv6 connection.
 
 As expected, the traceroute to the Google Public DNS Resolver at 2001:4860:4860::8888 successfully completes after 9 hops (See Figure 5).
 
@@ -91,7 +90,7 @@ This indicates that the issue is not just on the direct link between my AT&T hom
 
 ### Overall quality of AT&T's Internet offering
 
-Before closing out, let's have a look at the overall quality of the AT&T Internet connection at my home. For this we can compare the availability of the "A" root name server over IPv6 and IPv4 over the last 3 years.
+Before finishing up, let's have a look at the overall quality of the AT&T Internet connection at my home. For this we can compare the availability of the "A" root name server over IPv6 and IPv4 over the last 3 years.
 
 First looking at IPv6, we can see frequent packet loss and even full outages (late 2017) for multiple days (See Figure 6). I would definitely not call this is a stellar performance for an ISP.
 
