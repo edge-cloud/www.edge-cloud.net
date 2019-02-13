@@ -38,7 +38,7 @@ Next, let's have a look at the question when things broke. Drilling down on the 
 
 {% include figure image_path="/content/uploads/2019/02/ATT_RIPE_RootServers_Drilldown.png" caption="Figure 3: Pin-pointing the date and time of the failure" %}
 
-For the other root name servers the last IPv6 contact was also at the same time, indicating a general IPv6 connectivity issue on this AT&T connection. 
+For the other root name servers the last IPv6 contact was also at the same time, indicating a general IPv6 connectivity issue on this AT&T connection.
 
 ### Where is the fault?
 
@@ -106,6 +106,6 @@ At least for IPv4 things look a little better since my upgrade to [GPON](https:/
 
 RIPE Atlas provides an awesome tool to keep an eye on the performance and availability of your own Internet connection, but also helps troubleshooting. Keep in mind that for none of the steps shown above I had to be actually at home. You can use RIPE Atlas from anywhere.
 
-I highly recommend you to consider [hosting a RIPE Atlas probe](https://atlas.ripe.net/get-involved/become-a-host/) yourself. Not only will you benefit from the data that it collects, but it will also benefit the overall Internet community. 
+I highly recommend you to consider [hosting a RIPE Atlas probe](https://atlas.ripe.net/get-involved/become-a-host/) yourself. Not only will you benefit from the data that it collects, but it will also benefit the overall Internet community.
 
 At this point I have no hope whatsoever that AT&T will fix this issue anytime soon. Getting in contact with a human at AT&T is already a daunting task and finding someone with knowledge of IPv6 who can actually fix this issue seems impossible. As AT&T also blocks 6in4 tunnels, I'll be forced to disable IPv6 on my home internet connection for the time being.
