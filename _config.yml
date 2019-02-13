@@ -273,6 +273,7 @@ defaults:
       type: posts
     values:
       layout: single
+      permalink: /:year/:month/:day/:title/
       author_profile: true
       read_time: false
       comments: # true
