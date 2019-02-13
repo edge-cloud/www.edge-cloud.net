@@ -34,13 +34,15 @@ This shows that the actual Internet connection is up and at least working as exp
 
 ### When did things break?
 
-Next, let's have a look at the question when things broke. Drilling down on the measurements for the Ping test over IPv6 to the "A" root server, allows us to look at the moment when the RIPE Atlas probe was last able to successfully ping this name server. Here we can see that the last successful IPv6 contact to the "A" root server happened on February 6th, 2019 at 8:53 UTC (See Figure 3).
+Next, let's have a look at the question when things broke. Drilling down on the measurements for the Ping test over IPv6 to the "A" root server, allows us to look at the moment when the RIPE Atlas probe was last able to successfully ping this name server. Here we can see that the last successful IPv6 contact to the "A" root name server happened on February 6th, 2019 at 8:53 UTC (See Figure 3).
 
 {% include figure image_path="/content/uploads/2019/02/ATT_RIPE_RootServers_Drilldown.png" caption="Figure 3: Pin-pointing the date and time of the failure" %}
 
+For the other root name servers the last IPv6 contact was also at the same time, indicating a general IPv6 connectivity issue on this AT&T connection. 
+
 ### Where is the fault?
 
-Now that we know that IPv6 is broken and when it broke, let's try to figure out where things are broken. Is the link between the AT&T home gateway and the next hop upstream router broken or is the culprit further down in the AT&T network? RIPE Atlas can also help answering this question.
+Now that we know that IPv6 is broken and when it broke, let's try to figure out where things are broken. Is the link between the AT&T home gateway and the next hop upstream router broken or is the culprit further down in the AT&T network? RIPE Atlas can also help answer this question.
 
 To do so we create a One-off measurement from solely the affected Probe to one of the IPv6 addresses of [Google Public DNS](https://developers.google.com/speed/public-dns/docs/using) resolvers at 2001:4860:4860::8888. We could also use any other host that is known to respond to IPv6 pings.
 Using the [RIPE Atlas API](https://atlas.ripe.net/docs/api/v2/manual/), this test can quickly be created via:
@@ -104,4 +106,6 @@ At least for IPv4 things look a little better since my upgrade to [GPON](https:/
 
 RIPE Atlas provides an awesome tool to keep an eye on the performance and availability of your own Internet connection, but also helps troubleshooting. Keep in mind that for none of the steps shown above I had to be actually at home. You can use RIPE Atlas from anywhere.
 
-At this point I have no hope whatsoever that AT&T will fix this issue anytime soon. Getting in contact with a human at AT&T is already a daunting task and finding someone with knowledge of IPv6 who can actually fix this issue seems impossible. Therefore it seems like I'll be forced to disable IPv6 on my home internet connection for the time being.
+I highly recommend you to consider [hosting a RIPE Atlas probe](https://atlas.ripe.net/get-involved/become-a-host/) yourself. Not only will you benefit from the data that it collects, but it will also benefit the overall Internet community. 
+
+At this point I have no hope whatsoever that AT&T will fix this issue anytime soon. Getting in contact with a human at AT&T is already a daunting task and finding someone with knowledge of IPv6 who can actually fix this issue seems impossible. As AT&T also blocks 6in4 tunnels, I'll be forced to disable IPv6 on my home internet connection for the time being.
