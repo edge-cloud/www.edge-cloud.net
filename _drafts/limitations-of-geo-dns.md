@@ -18,6 +18,16 @@ Describe what GeoDNS is for
 
 {% include figure image_path="/content/uploads/2019/02/DNS-Resolver.png" caption="Figure 1: DNS Resolver and authoritative name server" %}
 
+#### EDNS0-Client-Subnet extension
+
+Route 53 calculates latency based on:
+ * The source IP of the recursive DNS resolver sending the query to the Route 53 authoritative name server.
+ * The source IP of the client making the recursive query, if the DNS resolver supports the extension [EDNS0-Client-Subnet](https://tools.ietf.org/html/rfc7871).
+
+AWS Support article ["How do I troubleshoot issues with latency-based resource records and Route 53?"](https://aws.amazon.com/premiumsupport/knowledge-center/troubleshoot-latency-based-records/)
+
+    dig +nocl TXT o-o.myaddr.l.google.com @<DNS Resolver>
+
 ### RIPE Atlas
 [RIPE Atlas](https://atlas.ripe.net/) is a global network of hardware devices, called probes and anchors, that actively measure Internet connectivity. Anyone can access this data via Internet traffic maps, streaming data visualisations, and an API. RIPE Atlas users can also perform customised measurements to gain valuable data about their own networks.
 
@@ -26,7 +36,6 @@ I highly recommend you to consider [hosting a RIPE Atlas probe](https://atlas.ri
 Here we will be using RIPE Atlas customized measurements to investigate the performance of DNS-based geolocation routing. 
 
 ### Test Setup
-Describe the Text Setup
 
 For this article the test setup will consist of two origins where we want to steer traffic to. The test will focus on the US with one origin in the US East coast and one origin in the US West coast. 
 
@@ -35,7 +44,7 @@ In the past Maxmind placed these IP addresses into the backyard of a Kansas fami
 
 We will model this setup with AWS Route 53 [Geoproximity routing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-geoproximity), where the AWS regions US-East-2 (Ohio) - as the US East coast location - and US-West-2 (Oregon) - as the US West coast location - receive neutral bias of 0. The origin at Cheney Reservoir receives a large negative bias, to create a small circle around this area. 
 
-The result will look like depicted in Figure 2.
+The expected geoproximity routing should look like depicted in Figure 2.
 
 {% include figure image_path="/content/uploads/2019/02/R53_Setup.png" caption="Figure 2: Desired Geoproximity Routing" %}
 
