@@ -6,24 +6,17 @@ author: Christian Elsen
 excerpt: "Cloudflare is an ideal and free addition for anyone running a website. And while Typo3 doesn't work smoothly with Cloudflare out of the box, it is trivial to change this with a few small changes."
 layout: single
 permalink: /2015/07/20/typo3-with-cloudflare/
-redirect_from: 
+redirect_from:
   - /2015/07/20/typo3-with-cloudflare/amp/
 categories:
   - EdgeCloud
 tags:
   - Cloudflare
+toc: true
 ---
 [Cloudflare](https://www.cloudflare.com/) provides a content delivery network and distributed domain name server services to help secure and accelerate websites. This cloud-based service sits between the visitor and the CloudFlare user's hosting provider, acting as a reverse proxy for the website. While the majority of web content management systems have no problem with such an approach out of the box, TYPO3 is different. There are some minor settings that need to be changed for this combination to work. This article will show you how to accomplish this.
 
-
-
-<div id="attachment_1658" style="width: 530px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2015/07/Speed-Up-and-Protect-Your-website-with-CloudFlare-02-520x294.jpg" alt="Figure 1: Speed-up and protect your website with CloudFlare" width="520" height="294" class="size-full wp-image-1658" srcset="/content/uploads/2015/07/Speed-Up-and-Protect-Your-website-with-CloudFlare-02-520x294.jpg 520w, /content/uploads/2015/07/Speed-Up-and-Protect-Your-website-with-CloudFlare-02-520x294-360x204.jpg 360w" sizes="(max-width: 520px) 100vw, 520px" />
-
-  <p class="wp-caption-text">
-    Figure 1: Speed-up and protect your website with CloudFlare
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2015/07/Speed-Up-and-Protect-Your-website-with-CloudFlare.jpg" caption="Figure 1: Speed-up and protect your website with CloudFlare" %}
 
 [TYPO3](https://typo3.org/) is a free and open source web content management system written in PHP, which is more widespread in Europe than in other regions. The biggest market share can be found in German-speaking countries.
 
@@ -41,13 +34,13 @@ It is very easy and straight forward to change this behavior though. Doing so wi
 
 Use the following Typoscript with Condition inside your main template.
 
-> config.baseURL = http://www.example.com/
+    > config.baseURL = http://www.example.com/
 
-> [globalString = ENV:HTTP\_X\_FORWARDED_PROTO=https, ENV:HTTPS=on]
+    > [globalString = ENV:HTTP\_X\_FORWARDED_PROTO=https, ENV:HTTPS=on]
 
-> config.baseURL = https://www.example.com/
+    > config.baseURL = https://www.example.com/
 
-> [global]
+    > [global]
 
 Don't forget to change the sample URL www.example.com with your actual domain.
 
@@ -65,13 +58,13 @@ But there is also an easy fix for this behavior. TYPO3 allows the configuration 
 
 Just add the following entries to your _typo3conf/localconf.php_ file.
 
-> $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxyIP'] = '*';
+    > $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxyIP'] = '*';
 
-> $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxyHeaderMultiValue'] = 'first';
+    > $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxyHeaderMultiValue'] = 'first';
 
-> $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxySSL'] = '*';
+    > $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxySSL'] = '*';
 
-> $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['trustedHostsPattern'] = '(www.)?example.com';
+    > $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['trustedHostsPattern'] = '(www.)?example.com';
 
 Don't forget to change the sample URL www.example.com with your actual domain.
 

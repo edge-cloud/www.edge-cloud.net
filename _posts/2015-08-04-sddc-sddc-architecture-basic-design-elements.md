@@ -15,7 +15,7 @@ tags:
   - Cloud
   - SDDC
 ---
-This article is part of a [series of articles](https://www.edge-cloud.net/2015/02/20/sddc-architecture-introduction/ "Software Defined Data Center (SDDC) Architecture – Introduction"), focusing on the architecture of an SDDC as well as some of its design elements.
+This article is part of a [series of articles](/2015/02/20/sddc-architecture-introduction/), focusing on the architecture of an SDDC as well as some of its design elements.
 
 ### Requirements
 
@@ -29,27 +29,15 @@ A Software Defined Data Center promises to be the new underpinning or platform f
 
 The SDDC architecture is based on five basic design elements, which we will cover in this post in more detail (See Figure 1).
 
-<div id="attachment_1688" style="width: 544px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2015/07/DesignElements.png" alt="Figure 1: Basic SDDC Design Elements" width="534" height="349" class="size-full wp-image-1688" srcset="/content/uploads/2015/07/DesignElements.png 534w, /content/uploads/2015/07/DesignElements-360x235.png 360w" sizes="(max-width: 534px) 100vw, 534px" />
-
-  <p class="wp-caption-text">
-    Figure 1: Basic SDDC Design Elements
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2015/07/DesignElements.png" caption="Figure 1: Basic SDDC Design Elements" %}
 
 These design elements allow us achieve the previously stated design goals for an SDDC and are crucial to its success. They allow us to create a simple, yet powerful design.
 
 ### Layered logical model
 
-Basing the SDDC on a [layered logical model](https://www.edge-cloud.net/2015/02/20/sddc-architecture-introduction/) enables a very high level of modularity (See Figure 2).
+Basing the SDDC on a [layered logical model](/2015/02/20/sddc-architecture-introduction/) enables a very high level of modularity (See Figure 2).
 
-<div id="attachment_1497" style="width: 610px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2015/02/SDDC_Layers.png" alt="Figure 2: Layered Architecture of a Software Defined Data Center" width="600" height="202" class="size-full wp-image-1497" srcset="/content/uploads/2015/02/SDDC_Layers.png 600w, /content/uploads/2015/02/SDDC_Layers-360x121.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
-
-  <p class="wp-caption-text">
-    Figure 2: Layered Architecture of a Software Defined Data Center
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2015/02/SDDC_Layers.png" caption="Figure 2: Layered Architecture of a Software Defined Data Center" %}
 
 With this approach it is possible to replace the Cloud Management System (CMS) or even to run multiple CMS at the same time, on top of the same Virtual Infrastructure.
 
@@ -67,13 +55,7 @@ This approach of scaling out in concrete chunks matches the incremental demand o
 
 Further splitting PODs by functional capability into Storage POD, Management POD, Compute POD and Network Edge POD, you also gain the ability to easily scale your SDDC capacity and capability based on demand, leading to even higher flexibility (See Figure 3).
 
-<div id="attachment_1708" style="width: 610px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2015/08/VMWare_Pod_Design1.png" alt="Figure 3: POD / Core concept with L3 Spine / Leaf network" width="600" height="335" class="size-full wp-image-1708" srcset="/content/uploads/2015/08/VMWare_Pod_Design1.png 600w, /content/uploads/2015/08/VMWare_Pod_Design1-360x201.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
-
-  <p class="wp-caption-text">
-    Figure 3: POD / Core concept with L3 Spine / Leaf network
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2015/08/VMWare_Pod_Design1.png" caption="Figure 3: POD / Core concept with L3 Spine / Leaf network" %}
 
 ### L3 Spine / Leaf network
 
@@ -91,13 +73,7 @@ With the network containers for management applications we place each management
 
 These network container then connect to a "business network" on which end-user facing services - such as the vRealize Automation Web interface - are presented, as well as a "management network" via which infrastructure admins connect. Nevertheless components within each network container are protected against these two networks, which present two different trust zones, besides the network container as a third trust zone.
 
-<div id="attachment_1704" style="width: 370px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2015/08/Object_oriented_design_object-360x263.jpg" alt="Figure 4: Object-oriented design: Object" width="360" height="263" class="size-medium wp-image-1704" srcset="/content/uploads/2015/08/Object_oriented_design_object-360x263.jpg 360w, /content/uploads/2015/08/Object_oriented_design_object.jpg 510w" sizes="(max-width: 360px) 100vw, 360px" />
-
-  <p class="wp-caption-text">
-    Figure 4: Object-oriented design: Object
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2015/08/Object_oriented_design_object.jpg" caption="Figure 4: Object-oriented design: Object" %}
 
 To draw an analogy of what this means: Let’s look at the Object Oriented (OO) design approach, well known from software engineering (See Figure 4).
 

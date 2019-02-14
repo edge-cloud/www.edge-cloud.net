@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: How to use AWS Lambda and API Gateway to push visitor IP version, HTTP version and edge location information into Google Analytics.
 layout: single
 permalink: /2016/10/24/cloudfront-metadata-google-analytics/
-redirect_from: 
+redirect_from:
   - /2016/10/24/cloudfront-metadata-google-analytics/amp/
 image: /wp-content/uploads/2016/10/Analytics_07.png
 categories:
@@ -37,7 +37,7 @@ In this case we will need to create three custom dimensions. Each will store dif
   * **HTTP-Version:** This dimension will store the values "2.0", "1.1", or "1.0".
   * **Edge-Location:** This dimension will store the three letter [IATA airport code](https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code) of the CloudFront edge location, e.g. "SFO" for San Francisco.
 
-### Setup 
+### Setup
 
 #### Create custom dimensions in Google Analytics
 
@@ -47,9 +47,9 @@ First, set up the custom dimensions in Google Analytics:
   2. Select the **Admin** tab and navigate to the **property to which you want to add custom dimensions**.
   3. In the **Property** column, click **Custom Definitions**, then click **Custom Dimensions**.
   4. Click **New Custom Dimension**.
-  5. Add a **Name**. 
+  5. Add a **Name**.
   This can be any string, but use something unique so it’s not confused with any other dimension or metric in your reports. Only you will see this name in the Google Analytics page.
-  6. Select the **Scope**. 
+  6. Select the **Scope**.
   Choose to track at the Hit, Session, User, or Product level. For this scenario I recommend to choose Hit or rather Session.
   7. Check the **Active** box to start collecting data and see the dimension in your reports right away. To create the dimension but have it remain inactive, uncheck the box.
   8. Click **Create**.
@@ -143,7 +143,7 @@ You could look at the top CloudFront edge locations serving your side (See Figur
 
 While having a look at which cities your IPv6 enabled visitors are coming from, you will notice that AWS CloudFront has not yet completed the turn up of all ASNs (See Figure 10).
 
-{% include figure image_path="/content/uploads/2016/10/Analytics_10-1.png" alt="Figure 10: Location of IPv6 visitors" caption="Figure 10: Location of IPv6 visitors" %}
+{% include figure image_path="/content/uploads/2016/10/Analytics_10.png" alt="Figure 10: Location of IPv6 visitors" caption="Figure 10: Location of IPv6 visitors" %}
 
 ### Summary
 

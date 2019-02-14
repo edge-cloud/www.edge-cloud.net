@@ -103,7 +103,7 @@ The below JavaScript code will read the values from */cdn-cgi/trace*, extract th
 
     function processData(x) {
       var y = {};
-      for (var i = 0; i &lt; x.length-1; i++) {
+      for (var i = 0; i < x.length-1; i++) {
         var split = x[i].split('=');
         y[split[0].trim()] = split[1].trim();
       }
@@ -115,7 +115,7 @@ The below JavaScript code will read the values from */cdn-cgi/trace*, extract th
     }
 
     function isIPv6() {
-      ipv6 = (objData('ip').indexOf(":") &gt; -1);
+      ipv6 = (objData('ip').indexOf(":") > -1);
       switch (ipv6){
         case true:
           return "IPv6";

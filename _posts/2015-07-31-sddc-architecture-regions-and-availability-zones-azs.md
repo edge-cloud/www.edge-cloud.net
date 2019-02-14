@@ -5,7 +5,7 @@ date: 2015-07-31T16:10:32+00:00
 author: Christian Elsen
 layout: single
 permalink: /2015/07/31/sddc-architecture-regions-and-availability-zones-azs/
-redirect_from: 
+redirect_from:
   - /2015/07/31/sddc-architecture-regions-and-availability-zones-azs/amp/
 categories:
   - EdgeCloud
@@ -14,15 +14,9 @@ tags:
   - Cloud
   - SDDC
 ---
-This article is part of a [series of articles](https://www.edge-cloud.net/2015/02/20/sddc-architecture-introduction/ "Software Defined Data Center (SDDC) Architecture – Introduction"), focusing on the architecture of an SDDC as well as some of its design elements. In this post we want to look at the physical layer of our SDDC architecture (See Figure 1).
+This article is part of a [series of articles](/2015/02/20/sddc-architecture-introduction/ "Software Defined Data Center (SDDC) Architecture – Introduction"), focusing on the architecture of an SDDC as well as some of its design elements. In this post we want to look at the physical layer of our SDDC architecture (See Figure 1).
 
-<div id="attachment_1502" style="width: 610px" class="wp-caption aligncenter">
-  <img class="size-full wp-image-1502" src="/content/uploads/2015/02/SDDC_Layers1.png" alt="Figure 1: Physical Layer in the SDDC Architecture" width="600" height="192" srcset="/content/uploads/2015/02/SDDC_Layers1.png 600w, /content/uploads/2015/02/SDDC_Layers1-360x115.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
-
-  <p class="wp-caption-text">
-    Figure 1: Physical Layer in the SDDC Architecture
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2015/02/SDDC_Layers1.png" caption="Figure 1: Physical Layer in the SDDC Architecture" %}
 
 ### Requirements
 
@@ -50,13 +44,7 @@ The differentiation between Availability Zones and Regions is very much driven b
 
 Once the distance between two sites becomes too large, these site can no longer function as two Availability Zones within the same Region and instead need to be treated as separate Regions (See Figure 2).
 
-<div id="attachment_1503" style="width: 610px" class="wp-caption aligncenter">
-  <img class="size-full wp-image-1503" src="/content/uploads/2015/02/VMWare_Availability_Zone_Map.png" alt="Figure 2: SDDC Availability Zone concept" width="600" height="457" srcset="/content/uploads/2015/02/VMWare_Availability_Zone_Map.png 600w, /content/uploads/2015/02/VMWare_Availability_Zone_Map-360x274.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
-
-  <p class="wp-caption-text">
-    Figure 2: SDDC Availability Zone concept
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2015/02/VMWare_Availability_Zone_Map.png" caption="Figure 2: SDDC Availability Zone concept" %}
 
 ### Availability Zones
 
@@ -64,13 +52,7 @@ Each availability zone (AZ) runs on its own physically distinct, independent inf
 
 Multiple Availability Zones (usually two) belong to a single Region, where the physical distance between Availability Zones is below 50 km or 30 mi, therefore offering low single digit latency between Availability Zones, along with large bandwidth - e.g. via dark fiber - between the Zones. This allows the SDDC equipment across the Availability to operate in an active/active manner as a single "Virtual Data Center" or region (See Figure 3).
 
-<div id="attachment_1617" style="width: 610px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2015/03/VMWare_Availability_Zone.png" alt="Figure 3: SDDC Availability Zone design" width="600" height="405" class="size-full wp-image-1617" srcset="/content/uploads/2015/03/VMWare_Availability_Zone.png 600w, /content/uploads/2015/03/VMWare_Availability_Zone-360x243.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
-
-  <p class="wp-caption-text">
-    Figure 3: SDDC Availability Zone design
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2015/03/VMWare_Availability_Zone.png" caption="Figure 3: SDDC Availability Zone design" %}
 
 ### Regions
 
