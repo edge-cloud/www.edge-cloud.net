@@ -33,7 +33,7 @@ In the IPv4 world it is very common to use the first address within an IPv4 subn
 
 In IPv6 Link-Local addresses are mandatory addresses according to [RFC 4291](https://tools.ietf.org/html/rfc4291). This means that all interfaces are required to have at least one Link-Local unicast address from the address block fe80::/10, which has been reserved for link-local unicast addressing. The actual link-local addresses are though assigned with the prefix fe80::/64.
 
-Combining what many of us are used to from the IPv4 world with this new feature particular to IPv6, the link-local address fe80::1 appears to be the perfect candidate for a generic default gateway within a data center or campus network. This address is for sure easier to remember and especially type in as e.g. 20ba:dd0g:f00d:1234::1.
+Combining what many of us are used to from the IPv4 world with this new feature particular to IPv6, the link-local address fe80::1 appears to be the perfect candidate for a generic default gateway within a data center or campus network. This address is for sure easier to remember and especially type in as e.g. `20ba:dd0g:f00d:1234::1`.
 
 As each IPv6-enabled router interface will already have a link-local address generated based on the [modified EUI-64](https://en.wikipedia.org/wiki/IPv6_address#Modified_EUI-64) scheme, the address fe80::1 will either replace or augment this automatically generated address. At the same time an existing global unicast address on the interface will not be affected.
 
