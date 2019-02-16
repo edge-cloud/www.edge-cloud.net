@@ -48,12 +48,7 @@
 
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener("click", function handleOutboundLinkClicks(event) {
-        gtag("send", "event", {
-          eventCategory: "Social Share",
-          eventAction: "click",
-          eventLabel: event.target.href,
-          transport: "beacon"
-        });
+        gtag('event', 'share', { method: event.target.href });
       });
     }
     
