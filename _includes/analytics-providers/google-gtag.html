@@ -6,4 +6,11 @@
   gtag('js', new Date());
 
   gtag('config', '{{ site.analytics.google.tracking_id }}', { 'anonymize_ip': {{ site.analytics.google.anonymize_ip | default: false }}});
+  
+  var buttons = document.getElementsByClassName("share-button");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function handleOutboundLinkClicks(event) {
+      gtag('event', 'share', { method: event.target.href });
+    });
+  }
 </script>
