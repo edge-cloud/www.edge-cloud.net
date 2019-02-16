@@ -16,20 +16,15 @@ addons:
     - libcurl4-openssl-dev
 install:
   - pip install --user awscli
-#  - gem install jekyll
   - gem install bundler
-  - npm install -g sass-lint htmllint-cli markdownlint-cli
 #  - gem install html-proofer
-#  - gem install rdiscount
   - bundle install
 script:
   - if [[ $TRAVIS_BRANCH == "master" ]];
     then JEKYLL_ENV=production bundle exec jekyll build --config _config.yml;
     else bundle exec jekyll build --config _config.yml --future --drafts;
     fi
-  - markdownlint _posts _drafts _pages README.md
-  - sass-lint --verbose --no-exit
-  - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
+#  - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
 #  - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external --url-ignore "/#.*/"
 deploy:
   - provider: s3
