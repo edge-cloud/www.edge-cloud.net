@@ -48,6 +48,6 @@ deploy:
     on:
       branch: dev
 after_deploy:
-  - if [[ $TRAVIS_BRANCH == "master" ]]; then s3cmd --access_key=$AWS_ACCESS_KEY_ID --secret_key=$AWS_SECRET_ACCESS_KEY --add-header='Cache-Control: public, max-age=31536000' --acl-public --recursive --exclude '*' --rinclude '.*\.(?:jpg|gif|png|webp|css|js)' modify s3://www.edge-cloud.net; fi
+  - if [[ $TRAVIS_BRANCH == "master" ]]; then s3cmd --access_key=$AWS_ACCESS_KEY_ID --secret_key=$AWS_SECRET_ACCESS_KEY --add-header="Cache-Control: public, max-age=31536000" --acl-public --recursive --exclude "*" --rinclude ".*\.(?:jpg|gif|png|webp|css|js)" modify s3://www.edge-cloud.net; fi
   - if [[ $TRAVIS_BRANCH == "master" ]]; then aws configure set preview.cloudfront true; fi
   - if [[ $TRAVIS_BRANCH == "master" ]]; then aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"; fi
