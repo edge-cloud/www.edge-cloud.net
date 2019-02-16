@@ -12,12 +12,13 @@ addons:
     packages:
     - libcurl4-openssl-dev
 install:
-  - sudo pip install awscli
-  - gem install jekyll
+#  - sudo pip install awscli
+  - pip install --user awscli
+#  - gem install jekyll
   - gem install bundler
-  - gem install mdl
-  - gem install html-proofer
-  - gem install rdiscount
+#  - gem install mdl
+#  - gem install html-proofer
+#  - gem install rdiscount
   - bundle install
 script:
   - if [[ $TRAVIS_BRANCH == "master" ]];
