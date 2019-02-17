@@ -27,6 +27,9 @@ script:
 #  - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
 deploy:
   - provider: s3
+    edge:
+      source: chriselsen/dpl
+      branch: patch-2
     region: us-west-2
     acl: public_read
     bucket: www.edge-cloud.net
