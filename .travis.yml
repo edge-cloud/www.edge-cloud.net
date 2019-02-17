@@ -2,7 +2,6 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-#  - 2.3.1
   - 2.5.3
 bundler_args: --without development
 env:
@@ -26,7 +25,6 @@ script:
     else bundle exec jekyll build --config _config.yml --future --drafts;
     fi
 #  - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
-#  - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external --url-ignore "/#.*/"
 deploy:
   - provider: s3
     region: us-west-2
