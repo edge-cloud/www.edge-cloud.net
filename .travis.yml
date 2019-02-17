@@ -28,6 +28,7 @@ script:
 deploy:
   - provider: script
     script: dpl --version
+    skip_cleanup: true
     on:
       branch: master
   - provider: s3
