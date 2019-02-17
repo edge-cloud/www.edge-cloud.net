@@ -29,7 +29,7 @@ deploy:
   - provider: s3
     edge:
       source: chriselsen/dpl
-      branch: debug
+      branch: patch-2
     region: us-west-2
     acl: public_read
     bucket: www.edge-cloud.net
