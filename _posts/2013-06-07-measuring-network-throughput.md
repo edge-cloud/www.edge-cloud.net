@@ -9,6 +9,7 @@ excerpt: |
 layout: single
 permalink: /2013/06/07/measuring-network-throughput/
 redirect_from:
+  - /2013/06/measuring-network-throughput/
   - /2013/06/07/measuring-network-throughput/amp/
 image: /wp-content/uploads/2013/06/SlidingWindow.png
 categories:
