@@ -26,6 +26,10 @@ script:
     fi
 #  - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
 deploy:
+  - provider: script
+    script: dpl --version
+    on:
+      branch: master
   - provider: s3
     region: us-west-2
     acl: public_read
