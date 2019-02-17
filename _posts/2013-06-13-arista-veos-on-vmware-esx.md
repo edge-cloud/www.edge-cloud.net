@@ -7,6 +7,7 @@ excerpt: EOS is released as a single image that supports all of their hardware p
 layout: single
 permalink: /2013/06/13/arista-veos-on-vmware-esx/
 redirect_from:
+  - /2013/06/arista-veos-on-vmware-esx/
   - /2013/06/13/arista-veos-on-vmware-esx/amp/
 categories:
   - EdgeCloud

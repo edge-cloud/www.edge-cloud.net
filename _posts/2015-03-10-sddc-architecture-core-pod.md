@@ -6,6 +6,7 @@ author: Christian Elsen
 layout: single
 permalink: /2015/03/10/sddc-architecture-core-pod/
 redirect_from:
+  - /2015/03/sddc-architecture-core-pod/
   - /2015/03/10/sddc-architecture-core-pod/amp/
 categories:
   - EdgeCloud
