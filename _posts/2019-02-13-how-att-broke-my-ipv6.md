@@ -88,7 +88,12 @@ As expected, the traceroute to the Google Public DNS Resolver at 2001:4860:4860:
 
 {% include figure image_path="/content/uploads/2019/02/ATT_Working.png" caption="Figure 5: Traceroute to Google's Public DNS on working AT&T connection" %}
 
-This indicates that the issue is not just on the direct link between my AT&T home gateway and the next hop upstream, but deeper inside the AT&T network. Therefore this problem most likely affects other users within my neighborhood. And of course I was able to find other reports of this issue on the [AT&T Forum](https://forums.att.com/). Unfortunately the troubleshooting attempts from AT&T staff on this forum were pretty useless.
+This indicates that the issue is not just on the direct link between my AT&T home gateway and the next hop upstream, but deeper inside the AT&T network. Therefore this problem most likely affects other users within my neighborhood. And of course I was able to find other reports of this issue on the [AT&T Forum](https://forums.att.com/), [DSLReports](https://www.dslreports.com) and [Reddit](https://www.reddit.com/). Here is a small selection:
+* AT&T Forum: [ipv6 broken?](https://forums.att.com/t5/AT-T-Fiber-Installation/ipv6-broken/m-p/5805237#M5197)
+* DSLReports: [Replacement BGW210 and can't route IPV6](http://www.dslreports.com/forum/r31897147-Replacement-BGW210-and-can-t-route-IPV6)
+* Reddit: [IPv6 Broken on AT&T U-verse Gigapower (Fiber) (Northeast Austin)](https://www.reddit.com/r/Austin/comments/7etbro/ipv6_broken_on_att_uverse_gigapower_fiber/)
+
+Unfortunately the reported troubleshooting attempts from AT&T staff on these posts were pretty useless.
 
 ### Overall quality of AT&T's Internet offering
 
