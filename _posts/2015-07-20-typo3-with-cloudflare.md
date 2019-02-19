@@ -34,13 +34,10 @@ It is very easy and straight forward to change this behavior though. Doing so wi
 
 Use the following Typoscript with Condition inside your main template.
 
-    > config.baseURL = http://www.example.com/
-
-    > [globalString = ENV:HTTP\_X\_FORWARDED_PROTO=https, ENV:HTTPS=on]
-
-    > config.baseURL = https://www.example.com/
-
-    > [global]
+    config.baseURL = http://www.example.com/
+    [globalString = ENV:HTTP_X_FORWARDED_PROTO=https, ENV:HTTPS=on]
+    config.baseURL = https://www.example.com/
+    [global]
 
 Don't forget to change the sample URL www.example.com with your actual domain.
 
@@ -58,13 +55,10 @@ But there is also an easy fix for this behavior. TYPO3 allows the configuration 
 
 Just add the following entries to your _typo3conf/localconf.php_ file.
 
-    > $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxyIP'] = '*';
-
-    > $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxyHeaderMultiValue'] = 'first';
-
-    > $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['reverseProxySSL'] = '*';
-
-    > $GLOBALS\['TYPO3\_CONF\_VARS'\]\['SYS'\]['trustedHostsPattern'] = '(www.)?example.com';
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['reverseProxyIP'] = '*';
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['reverseProxyHeaderMultiValue'] = 'first';
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['reverseProxySSL'] = '*';
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['trustedHostsPattern'] = '(www.)?example.com';
 
 Don't forget to change the sample URL www.example.com with your actual domain.
 

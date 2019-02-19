@@ -52,7 +52,7 @@ Next we copy the files to another host - here a NOC jumpbox - to open it in Wire
     RSA key fingerprint is df:6c:9d:dd:8f:45:f8:61:96:0f:e4:54:c9:2d:d3:94.
     Are you sure you want to continue connecting (yes/no)? yes
     Warning: Permanently added 'noc01.edge-cloud.net,2a01:4f8:d12:11c4::2' (RSA) to the list of known hosts.
-    Yubikey for `root':
+    Yubikey for 'root':
     int-vlan51.pcap                               100%  910     0.9KB/s   00:00
     [user@ams-core01a ~]$
 
@@ -84,7 +84,7 @@ It can later be undone via:
 Also keep in mind, that this command will not survive a reboot of the switch.
 Next you have the option to run iperf either in server or client mode.
 
-### iperf Server mode:
+#### iperf Server mode
 
 Press Ctrl + C to exit the server mode.
 
@@ -96,9 +96,9 @@ Press Ctrl + C to exit the server mode.
     [  4] local 172.31.3.4 port 5001 connected with 172.31.1.2 port 44589
     [ ID] Interval       Transfer     Bandwidth
     [  4]  0.0-10.3 sec  89.6 MBytes  72.9 Mbits/sec
-    ^C[celsen@las-core01a ~]$
+    ^C[user@las-core01a ~]$
 
-### iperf Client Mode
+#### iperf Client Mode
 
     [user@ams-core01a ~]$ iperf -c las-core01a.edge-cloud.net
     ------------------------------------------------------------

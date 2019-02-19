@@ -247,7 +247,7 @@ Don't forget to kill these processes once you are done!
 
 On the sender side we will start two tests at exactly the same time. One test with Iperf in TCP mode. And another test with Iperf in UDP mode, again asking it to attempt to sent 110 Mbit/s of traffic. To showcase better the effect of UDP traffic flooding a link we will ask Iperf to run 10 UDP test in parallel. Make sure to start both tests at the same time:
 
-###### UDP Test
+#### UDP Test
 
     user@sender:~$ iperf -c receiver.edge-cloud.net -u -b 110m -P 10
     ------------------------------------------------------------
@@ -319,7 +319,7 @@ On the sender side we will start two tests at exactly the same time. One test wi
 
 Adding together the throughput of the 10 UDP connections we get a total throughput of 76.331 Mbit/s.
 
-###### TCP Test
+#### TCP Test
 
     user@sender:~$ iperf -c las-mgmt-ubu01.vmwcs.com
     ------------------------------------------------------------

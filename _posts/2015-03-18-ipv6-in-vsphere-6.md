@@ -14,6 +14,7 @@ categories:
 tags:
   - IPv6
   - VMware
+toc: true
 ---
 **Note:** Last updated on May 1st, 2015
 
@@ -25,12 +26,13 @@ This IPv6-enabled virtual infrastructure in return can be the foundation for Hor
 
 The overview will be grouped by use case, product and then by function. The two use cases for IPv6 are:
 
-  * Tenant Use Case. Ultimate Goal: Provide IPv4/IPv6 connectivity to tenant workloads
-  * Management Use Case. Ultimate Goal: Manage entire vCloud backend via IPv6-only
+  * **Tenant Use Case:** Ultimate Goal: Provide IPv4/IPv6 connectivity to tenant workloads
+  * **Management Use Case:** Ultimate Goal: Manage entire vCloud backend via IPv6-only
 
 For each use case this article lists what capabilities and features supported IPv6 in vSphere 5.1, vSphere 5.5, vSphere 6.0, vCNS 5.5, NSX-v 6.0 and NSX-v 6.1.
 
-_Note:_ Only NSX-v 6.1.3, [supports](http://www.vmware.com/resources/compatibility/sim/interop_matrix.php) vSphere 6.0.
+**Note:** Only NSX-v 6.1.3, [supports](http://www.vmware.com/resources/compatibility/sim/interop_matrix.php) vSphere 6.0.
+{: .notice}
 
 Let's have a look at these two use cases in more detail:
 
@@ -38,464 +40,52 @@ Let's have a look at these two use cases in more detail:
 
 Ultimate Goal: Provide IPv4/IPv6 connectivity to tenant workloads (See Figure 1).
 
-<div id="attachment_1567" style="width: 610px" class="wp-caption aligncenter">
-  <img class="size-full wp-image-1567" src="/content/uploads/2015/03/IPv6-Use-Cases-Tenant.png" alt="Figure 1: IPv6 Tenant Use Case" width="600" height="277" srcset="/content/uploads/2015/03/IPv6-Use-Cases-Tenant.png 600w, /content/uploads/2015/03/IPv6-Use-Cases-Tenant-360x166.png 360w" sizes="(max-width: 600px) 100vw, 600px" />
-
-  <p class="wp-caption-text">
-    Figure 1: IPv6 Tenant Use Case
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2015/03/IPv6-Use-Cases-Tenant.png" caption="Figure 1: IPv6 Tenant Use Case" %}
 
 The tenant use case is geared towards providing full IPv4/IPv6 network connectivity to workloads running on top of a virtual infrastructure. This includes the tenant path of network infrastructure elements, but does not include the management of non-end-user exposed component.
 
 This use case includes the following requirements:
 
-  * Support for Workloads
-      * Guest customization (Configure IP settings from outside VM)
-      * Virtual Network Access (vNIC): IPv6 Offload, App Firewall
-  * Support for Workload Management/Configuration
-      * “Awareness” of IPv6: Ability to manage IPv6-capable configuration items (interfaces, pools, route tables, ACLs, …)
-      * Support for network devices (switch, router, security device, load balancer). Applies to vSS, vDS and vShield/NSX Edge (Multiple profiles).
-
-### vSphere
-
-<div class="table-responsive">
-  <table  style="width:100%; "  class="easy-table easy-table-default " border="0">
-    <tr>
-      <th >
-        Product/Function
-      </th>
-
-      <th >
-        vSphere 5.1
-      </th>
-
-      <th >
-        vSphere 5.5
-      </th>
-
-      <th >
-        vSphere 6.0
-      </th>
-
-      <th >
-        Notes
-      </th>
-    </tr>
-
-    <tr>
-      <td >
-        <strong>Guest OS</strong>
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        General Operation
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        Functionality has to be provided by Guest OS
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        TCP Segmentation Offload (TSO) over IPv6
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        Only supported by [VMXNET3 vNIC](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1001805). Not supported by [E1000 vNIC](http://kb.vmware.com/kb/1009548).
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        Guest Customization (Sysprep)
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        No support to join Active Directory via IPv6 in vSphere 6.0. [Certain limitations](http://kb.vmware.com/kb/2105648) apply.
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        <strong>Virtual Switch (vSS/vDS)</strong>
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        Multicast support
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        [Snooping modes supported](http://pubs.vmware.com/vsphere-60/topic/com.vmware.vsphere.networking.doc/GUID-97724211-5167-428F-A217-871963A7DFF7.html): IGMPv1, IGMPv2, IGMPv3 for IPv4, MLDv1 and MLDv2 for IPv6 supported.
-      </td>
-    </tr>
-  </table>
-</div>
-
-### vCNS / NSX-v
-
-<div class="table-responsive">
-  <table  style="width:100%; "  class="easy-table easy-table-default " border="0">
-    <tr>
-      <th >
-        Product/Function
-      </th>
-
-      <th >
-        vCNS 5.5
-      </th>
-
-      <th >
-        NSX-v 6.0/6.1
-      </th>
-
-      <th >
-        Notes
-      </th>
-    </tr>
-
-    <tr>
-      <td >
-        Guest VM Addressing
-      </td>
-
-      <td >
-        Yes
-      </td>
-
-      <td >
-        Yes
-      </td>
-
-      <td >
-        VXLAN encap packets (VXLAN Encapsulated Inner Header) are capable of carrying IPv6 payload. If IP hashing is configured, ESXi can base decisions on IPv4 or IPv6 packets.
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        <strong>vCNS / NSX Edge</strong>
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        Edge Interface IP Address
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        Partially
-      </td>
-
-      <td >
-        Only support for static IPv6. No support for DHCPv6 or SLAAC.
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        DNS Resolver
-      </td>
-
-      <td >
-      </td>
-
-      <td >
-        Yes
-      </td>
-
-      <td >
-        IPv4 and IPv6 Listener. Supports AAAA records.
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        Router Announcements (RA) for SLAAC
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        DHCP server / relay
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        Supports IPv4 only
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        Static Routing
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        Dynamic Routing (OSPF, ISIS, BGP)
-      </td>
-
-      <td >
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        No dynamic routing with IPv6
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        Firewall
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        Load Balancer
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        IPv4 and IPv6 VIP.<br />Transparent Mode: IPv4 VIP with IPv4 Pool, IPv4 VIP with IPv6 Pool.<br />Proxy Mode: IPv4 VIP with IPv4 Pool, IPv6 VIP with IPv6 Pool, IPv6 VIP with IPv4 Pool (L7 only), IPv4 VIP with IPv6 Pool (L7 only)
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        NAT
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        No support for NAT64 or NAT66
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        IPSec
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        <em>Yes</em>
-      </td>
-
-      <td >
-        IPv4, IPv6 and Hybrid. IPv6 Peers with IPv6 Internal Subnet. IPv6 Peers with IPv4 internal Subnet.
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        SSL VPN
-      </td>
-
-      <td >
-      </td>
-
-      <td >
-        Partially
-      </td>
-
-      <td >
-        IPv4, IPv6 Listener. IPv6 Listener Address. IPv6 Listener with IPv4 private subnet.
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        L2 VPN
-      </td>
-
-      <td >
-      </td>
-
-      <td >
-        Partially
-      </td>
-
-      <td >
-        IPv4, IPv6 Listener. Outer packet can be IPv4 and IPv6. Inner packet can only be IPv4.
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        <strong>NSX Virtual Distributed Router (VDR)</strong>
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        Static Routing
-      </td>
-
-      <td >
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        Dynamic Routing (OSPF, ISIS, BGP)
-      </td>
-
-      <td >
-      </td>
-
-      <td >
-        No
-      </td>
-
-      <td >
-        No dynamic routing with IPv6
-      </td>
-    </tr>
-
-    <tr>
-      <td >
-        Distributed Firewall
-      </td>
-
-      <td >
-      </td>
-
-      <td >
-        Yes
-      </td>
-
-      <td >
-      </td>
-    </tr>
-  </table>
-</div>
+* Support for Workloads
+  * Guest customization (Configure IP settings from outside VM)
+  * Virtual Network Access (vNIC): IPv6 Offload, App Firewall
+* Support for Workload Management/Configuration
+  * “Awareness” of IPv6: Ability to manage IPv6-capable configuration items (interfaces, pools, route tables, ACLs, …)
+  * Support for network devices (switch, router, security device, load balancer). Applies to vSS, vDS and vShield/NSX Edge (Multiple profiles).
+
+#### vSphere
+
+|Product/Function|vSphere 5.1|vSphere 5.5|vSphere 6.0|Notes|
+|---|---|---|---|---|
+|General Operation|*Yes*|*Yes*|*Yes*|Functionality has to be provided by Guest OS|
+|**Guest OS**|   |   |   |   |
+|TCP Segmentation Offload (TSO) over IPv6|*Yes*|*Yes*|*Yes*|Only supported by [VMXNET3 vNIC](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1001805). Not supported by [E1000 vNIC](http://kb.vmware.com/kb/1009548).|
+|Guest Customization (Sysprep)|No|No|*Yes*|No support to join Active Directory via IPv6 in vSphere 6.0. [Certain limitations](http://kb.vmware.com/kb/2105648) apply.|
+|**Virtual Switch (vSS/vDS)**|   |   |   |   |
+|Multicast support|*Yes*|*Yes*|*Yes*|[Snooping modes supported](http://pubs.vmware.com/vsphere-60/topic/com.vmware.vsphere.networking.doc/GUID-97724211-5167-428F-A217-871963A7DFF7.html): IGMPv1, IGMPv2, IGMPv3 for IPv4, MLDv1 and MLDv2 for IPv6 supported.|
+
+#### vCNS / NSX-v
+
+|Product/Function|vCNS 5.5|NSX-v 6.0/6.1|Notes|
+|---|---|---|---|
+|Guest VM Addressing|*Yes*|*Yes*|VXLAN encap packets (VXLAN Encapsulated Inner Header) are capable of carrying IPv6 payload. If IP hashing is configured, ESXi can base decisions on IPv4 or IPv6 packets.|
+|**vCNS / NSX Edge**|   |   |   |
+|Edge Interface IP Address|No|Partially|Only support for static IPv6. No support for DHCPv6 or SLAAC.|
+|DNS Resolver| |Yes|IPv4 and IPv6 Listener. Supports AAAA records.|
+|Router Announcements (RA) for SLAAC|No|No| |
+|DHCP server / relay|No|No|Supports IPv4 only|
+|Static Routing|No|*Yes*| |
+|Dynamic Routing (OSPF, ISIS, BGP)| |No|No dynamic routing with IPv6|
+|Firewall|No|Yes| |
+|Load Balancer|No|*Yes*|IPv4 and IPv6 VIP. Transparent Mode: IPv4 VIP with IPv4 Pool, IPv4 VIP with IPv6 Pool.Proxy Mode: IPv4 VIP with IPv4 Pool, IPv6 VIP with IPv6 Pool, IPv6 VIP with IPv4 Pool (L7 only), IPv4 VIP with IPv6 Pool (L7 only)|
+|NAT|No|No|No support for NAT64 or NAT66|
+|IPSec|No|*Yes*|IPv4, IPv6 and Hybrid. IPv6 Peers with IPv6 Internal Subnet. IPv6 Peers with IPv4 internal Subnet.|
+|SSL VPN| |Partially|IPv4, IPv6 Listener. IPv6 Listener Address. IPv6 Listener with IPv4 private subnet.|
+|L2 VPN| |Partially|IPv4, IPv6 Listener. Outer packet can be IPv4 and IPv6. Inner packet can only be IPv4.|
+|**NSX Virtual Distributed Router (VDR)**|   |   |   |
+|Static Routing| |No|
+|Dynamic Routing (OSPF, ISIS, BGP)| |No|No dynamic routing with IPv6.|
+|Distributed Firewall| |*Yes*|
 
 ### Managemenet Use Case
 
@@ -519,7 +109,7 @@ The management use case assumes that the operator of the virtual infrastructure 
       * Network parameters in local or remote server settings, need to support configuration of IPv6 parameters
       * All features offered over IPv4 must be available over IPv6 without any noticeable difference (usability, performance), unless providing explicit benefit to the user.
 
-### vSphere
+#### vSphere
 
 <div class="table-responsive">
   <table  style="width:100%; "  class="easy-table easy-table-default " border="0">
@@ -1467,7 +1057,7 @@ The management use case assumes that the operator of the virtual infrastructure 
   </table>
 </div>
 
-### vCNS / NSX-v
+#### vCNS / NSX-v
 
 <div class="table-responsive">
   <table  style="width:100%; "  class="easy-table easy-table-default " border="0">
@@ -1567,7 +1157,7 @@ The management use case assumes that the operator of the virtual infrastructure 
 
 The only other VMware product line that supports IPv6 is Horizon View with [version 6.1](https://www.vmware.com/support/horizon-view/doc/horizon-61-view-release-notes.html).
 
-### Horizon View
+#### Horizon View
 
 With Horizon View the machine/OS can be configured for IPv4-only, IPv6-only or for IPv4/IPv6 dual stack. But Horizon components will not dynamically select IPv4 or IPv6 connections depending on the availability of those protocols on the entities that are involved in making the connection.
 
