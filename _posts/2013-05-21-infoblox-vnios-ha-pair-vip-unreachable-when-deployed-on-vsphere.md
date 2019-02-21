@@ -30,7 +30,7 @@ The default settings of a vDS or vSwitch in vSphere only allow a single MAC addr
 
 As a result frames from the above mentioned floating MAC address are discarded by the vDS or vSwitch, which causes the associated IP address to be unreachable.
 
-{% include figure image_path="/content/uploads/2013/05/PortGroupSecurity.png" caption="Figure 2: Allow "MAC address changes" and "Forged Transmits" on a vDS" %}
+{% include figure image_path="/content/uploads/2013/05/PortGroupSecurity.png" caption="Figure 2: Allow *MAC address changes* and *Forged Transmits* on a vDS" %}
 
 # Fix
 
