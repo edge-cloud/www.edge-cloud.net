@@ -20,7 +20,7 @@ toc: true
 
 [TYPO3](https://typo3.org/) is a free and open source web content management system written in PHP, which is more widespread in Europe than in other regions. The biggest market share can be found in German-speaking countries.
 
-## Support for HTTPS
+# Support for HTTPS
 
 Out of the box Cloudflare provides free SSL support for every website, allowing user to provide HTTPS for their website. This offering is called [UniversalSSL](https://blog.cloudflare.com/introducing-universal-ssl/) and it can be used without the origin web server even supporting SSL.
 
@@ -34,10 +34,12 @@ It is very easy and straight forward to change this behavior though. Doing so wi
 
 Use the following Typoscript with Condition inside your main template.
 
+```
     config.baseURL = http://www.example.com/
     [globalString = ENV:HTTP_X_FORWARDED_PROTO=https, ENV:HTTPS=on]
     config.baseURL = https://www.example.com/
     [global]
+```
 
 Don't forget to change the sample URL www.example.com with your actual domain.
 
@@ -47,7 +49,7 @@ Ideally you should configure your origin web server with an SSL certificate to e
 
 Also after enabling TYPO3 for UniversalSSL, you can [force usage of HTTPS](https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-) on all your pages.
 
-## Support for the TYPO3 backend
+# Support for the TYPO3 backend
 
 The TYPO3 backend is another troublemaker in combination with a reverse proxy such as Cloudflare. In older versions the backend would only display a blank page after successful login. While this error has been corrected in recent versions, another challenge arises when using the backend via HTTPS. As mentioned earlier, with Cloudflare you can access your backend via HTTPS over Cloudflare as a reverse proxy, without requiring your origin server to support HTTPS. Unfortunately in this case TYPO3 will always attempt to switch back to HTTP as the backend was contacted by Cloudflare via HTTP.
 
@@ -55,17 +57,19 @@ But there is also an easy fix for this behavior. TYPO3 allows the configuration 
 
 Just add the following entries to your _typo3conf/localconf.php_ file.
 
+```
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['reverseProxyIP'] = '*';
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['reverseProxyHeaderMultiValue'] = 'first';
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['reverseProxySSL'] = '*';
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['trustedHostsPattern'] = '(www.)?example.com';
+```
 
 Don't forget to change the sample URL www.example.com with your actual domain.
 
-## CloudFlare extension for TYPO3
+# CloudFlare extension for TYPO3
 
 While not mandatory to operate CloudFlare with a TYPO3 based website, it is highly recommended to use the [CloudFlare extension](https://typo3.org/extensions/repository/view/cloudflare) for TYPO3. This excellent extension allows you to flush the CloudFlare cache, restores the origin IP address of the end-user towards TYPO3 and takes care of the above mentioned SSL setup transparently.
 
-## Summary
+# Summary
 
 Cloudflare is an ideal and free addition for anyone running a website. And while especially older TYPO3 installs might not work smoothly with Cloudflare out of the box, it is trivial to change this with a few small changes.

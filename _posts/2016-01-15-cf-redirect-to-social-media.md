@@ -18,7 +18,7 @@ It happens to the best: Sometimes a web server just goes down. Ideally you would
 
 Nevertheless you do not want to display just nothing or a nondescript error page to your website users, when the hopefully rare moment hits and your web server does go down. One interesting approach is [Dyn's Social Failover](https://help.dyn.com/understanding-social-failover/) capability, which reroutes your web traffic to your Twitter feed, Facebook page, or another URL of your choice, in case your web server goes down.
 
-### Using CloudFlare
+# Using CloudFlare
 
 In this post I want to show you how you can accomplish the same with any of the paid [CloudFlare plan levels](https://www.cloudflare.com/plans/). For these plan types CloudFlare offers the capability to [customize error messages](https://support.cloudflare.com/hc/en-us/articles/200172706-How-do-I-customize-CloudFlare-error-pages-) with your own HTML code. One of these error messages would be displayed in the case where CloudFlare cannot contact your web server, e.g. because it is down.
 
@@ -26,11 +26,11 @@ We can make use of this capability and instead of displaying a custom error page
 
 {% include figure image_path="/content/uploads/2016/01/CF-Social-Redirect.png" caption="Figure 1: Redirect to Social Media Page on Origin Failure" %}
 
-### CloudFlare custom error pages as redirect
+# CloudFlare custom error pages as redirect
 
 Forwarding a web browser to another website via an HTML page is quite simple and straight forward. It basically requires a single line of HTML code. For a custom error page, CloudFlare requires certain content to be show within the page for troubleshooting. In our case we don't really care about this information as we will anyways redirect the user. Nevertheless the special CloudFlare Error box has to be included, otherwise you are not able to later utilize the HTML page. A small trick is to change the background color of our redirect page to use a black background. This way end-users won't be confused by any error message being displayed briefly.
 
-### Preparing the custom error page
+# Preparing the custom error page
 
 Let's start by creating the custom error page. You can create and host this page on any place that is accessible from the Internet. This can be a temporary spot and can even be on the site that you want to use the redirect with. This page is only used briefly while CloudFlare downloads the custom error page. It will not be used during an actual outage.
 
@@ -50,7 +50,7 @@ You can see in the third row the actual redirect, which in this case points to m
 
 You can also see the CloudFlare error box ::CLOUDFLARE\_ERROR\_500S_BOX::, which must be included. More on this later.
 
-### Uploading the custom error page
+# Uploading the custom error page
 
 Within your CloudFlare account navigate to the [Customize](https://www.cloudflare.com/a/customization) app (See Figure 2).
 
@@ -68,6 +68,6 @@ Notice the warning that the CloudFlare error box ::CLOUDFLARE\_ERROR\_500S_BOX::
 
 Now you can click on the "Preview" button: A new tab will open in which you will briefly see a black page. Within a few moments this black page should redirect you to the site you selected. Once everything is working for you, click on the "Publish" button within the CloudFlare window. That's it. You are all set.
 
-### Summary
+# Summary
 
 In this article I have outlined how you can use any CloudFlare paid plan to redirect your website to your Social Networking page or any other page in case your origin server fails.

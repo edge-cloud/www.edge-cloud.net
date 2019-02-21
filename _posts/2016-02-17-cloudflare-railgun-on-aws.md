@@ -21,7 +21,7 @@ This tutorial will show you how to configure [CloudFlare Railgun](https://www.cl
 
 This setup should especially be appealing to CloudFlare customers, operating their origin servers in one or more Amazon Web Services (AWS) regions, and who want to leverage the power of AWS to compensate automatically against failures of the CloudFlare Railgun Listener application.
 
-### About CloudFlare Railgun
+# About CloudFlare Railgun
 
 [CloudFlare Railgun](https://www.cloudflare.com/website-optimization/railgun/) accelerates the connection between each CloudFlare point-of-presence (PoP) and a customer origin server so that requests that cannot be served from the CloudFlare cache are nevertheless served very fast. By leveraging techniques similar to those used in the compression of high-quality video, Railgun compresses previously uncacheable web objects up to 99.6%.
 
@@ -33,7 +33,7 @@ Ideally, the Listener would be placed on a server with fast access to the Intern
 
 Railgun is available for customers with a CloudFlare [Business](https://www.cloudflare.com/plans/) or [Enterprise](https://www.cloudflare.com/plans/enterprise/) plan or customers hosted with an [Optimized Hosting Partner](https://www.cloudflare.com/partners/view-partners/).
 
-### Setup Overview
+# Setup Overview
 
 As outlined in Figure 1, the setup will consist of the following elements:
 
@@ -45,7 +45,7 @@ As outlined in Figure 1, the setup will consist of the following elements:
 
 The following sections walk you step-by-step through the setup. In this example we will use a Memcached cluster with 2 nodes, spread across two [AWS Availability Zones](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html), as well as 2 Railgun nodes, spread across two AWS Availability Zones. While this setup will provide ideal redundancy, it might not suit your direct business needs. Therefore please adapt the setup accordingly.
 
-#### VPC Setup
+## VPC Setup
 
 We will use [Amazon Virtual Private Cloud (VPC)](https://aws.amazon.com/vpc/) to provide network isolation. The Railgun nodes will be placed on two public network segments, so that they are reachable from the public Internet and therefore from the CloudFlare PoPs. Two private network segments will be used for traffic between the Railgun nodes and the ElastiCache based Memcached instances.
 
@@ -93,7 +93,7 @@ For the newly created Railgun security group, add an Inbound Rule. Select "Custo
 
 This completes the setup steps for the VPC and the Security Groups.
 
-#### ElastiCache Setup
+## ElastiCache Setup
 
 One of the pre-requisites for running CloudFlare Railgun is access to Memcached. ElastiCache provides us a managed Memcached cluster. While a Memcached cluster does not provide full protection against the failure of a cluster node, the impact of such a failure would at least be compensated. In case of a two node cluster, only approximately half of the keys would be lost in case one node fails.
 
@@ -121,7 +121,7 @@ Wait for the ElastiCache cluster to be created and note down the configuration e
 
 This completes the setup steps for the ElastiCache Memcached cluster.
 
-#### Elastic Load Balancer (ELB) Setup
+## Elastic Load Balancer (ELB) Setup
 
 The Elastic Load Balancer (ELB) serves the purpose of distributing incoming traffic from the CloudFlare PoPs among the active Railgun nodes. As the ELB and its hostname serve as the termination point for CloudFlare Railgun traffic, it is very simple to replace a failed Railgun node behind the ELB, without making any configuration changes to the Railgun setup.
 
@@ -159,7 +159,7 @@ Once the ELB has been created successfully, lookup the DNS name and note it down
 
 This completes the setup steps for the Elastic Load Balancer (ELB).
 
-#### Auto Scaling Setup
+## Auto Scaling Setup
 
 In this setup we will use Auto Scaling primarily to automatically replace failed Railgun instances. To do so, we configure an auto scaling group with a minimum of 2 instances.
 
@@ -213,7 +213,7 @@ Next provide what tags you want to apply to all EC2 instances that are created a
 
 This not only concludes the configuration of the Auto Scaling setup, but of your entire setup. AWS should now automatically spin up EC2 images, automatically install and configure CloudFlare Railgun inside of them and add them to the ELB load balancer. Have a look at the next section for learning how to test your setup.
 
-### Testing the setup
+# Testing the setup
 
 Now, with the setup in place it's time to wait for the Railgun nodes to boot up and configure correctly. You can head over to the ELB setup and look at the instances under the configured load balancer. While the nodes are still initializing you should see the status "OutOfService" displayed (See Figure 29).
 
@@ -227,6 +227,6 @@ Now you can login to the CloudFlare Dashboard and test the Railgun setup. If eve
 
 {% include figure image_path="/content/uploads/2016/02/023-RG01.png" caption="Figure 31: Validate the functionality of Railgun" %}
 
-### Summary
+# Summary
 
 This tutorial showed you how to use Amazon Web Services (AWS), with the services [Amazon ElastiCache](https://aws.amazon.com/elasticache/) together with [AWS Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/), [AWS Auto Scaling](https://aws.amazon.com/autoscaling/) and [Amazon EC2](https://aws.amazon.com/ec2/) to quickly and easily setup a highly available CloudFlare Railgun Listener setup.

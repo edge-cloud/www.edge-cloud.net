@@ -17,7 +17,7 @@ tags:
 ---
 This article is part of a [series of articles](/2015/02/20/sddc-architecture-introduction/), focusing on the architecture of an SDDC as well as some of its design elements.
 
-### Requirements
+# Requirements
 
 A Software Defined Data Center promises to be the new underpinning or platform for delivering today’s and tomorrow’s IT services. As such this next generation infrastructure needs to address some shortcomings of today’s infrastructure in order to be successful:
 
@@ -25,7 +25,7 @@ A Software Defined Data Center promises to be the new underpinning or platform f
   * **Hardware and Software efficiencies:** Support on-demand scaling for varying capacity needs. Improved resource pooling to drive increased utilization of resources and reduce cost.
   * **New and old business needs:** Support legacy applications with traditional business continuity and disaster recovery, besides new cloud-native applications.
 
-### Introduction
+# Introduction
 
 The SDDC architecture is based on five basic design elements, which we will cover in this post in more detail (See Figure 1).
 
@@ -33,7 +33,7 @@ The SDDC architecture is based on five basic design elements, which we will cove
 
 These design elements allow us achieve the previously stated design goals for an SDDC and are crucial to its success. They allow us to create a simple, yet powerful design.
 
-### Layered logical model
+# Layered logical model
 
 Basing the SDDC on a [layered logical model](/2015/02/20/sddc-architecture-introduction/) enables a very high level of modularity (See Figure 2).
 
@@ -47,7 +47,7 @@ Or in another scenario it would be possible to run both VMware vCloud Director (
 
 It's important to point out that in this case workloads would be exclusively managed by one of the two CMS.
 
-### POD / Core concept
+# POD / Core concept
 
 The POD and core concept leverages individually designed [point-of-delivery (POD)](https://en.wikipedia.org/wiki/Point_of_delivery_(networking)), which connect to a common routed core layer. The routed core spans multiple PODs of different type and generation, treating them as an atomic building block and providing fast and simple interconnect.
 
@@ -57,7 +57,7 @@ Further splitting PODs by functional capability into Storage POD, Management POD
 
 {% include figure image_path="/content/uploads/2015/08/VMWare_Pod_Design1.png" caption="Figure 3: POD / Core concept with L3 Spine / Leaf network" %}
 
-### L3 Spine / Leaf network
+# L3 Spine / Leaf network
 
 For many years the predominant data center network design was the [three-tier approach](http://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Data_Center/DC_Infra2_5/DCInfra_2.html) of a Core (Layer 3), Aggregation (Layer 2 / Layer 3), Access (Layer 2) tiers. This design approach has been very successful over the last 20 years, allowing network architects to design highly reliable and scalable networks, recent industry developments are breaking the underlying assumptions:
 
@@ -67,7 +67,7 @@ At the same time the traditional three-tier design fails to address innovation i
 
 Consequently the time has come for a new approach to data center network design, based on [hyper- or webscale data center center design](https://code.facebook.com/posts/360346274145943/introducing-data-center-fabric-the-next-generation-facebook-data-center-network/). Despite their massive scale, hyper- or webscale data centers leverage a network design that starts small and innovates quickly. As such the key differentiator is that a Spine / Leaf network supports you to grow organically in incremental blocks of capacity, starting small each time, while at the same time allowing you to scale almost beyond imagination. Such an approach works very well hand-in-hand with the above mentioned POD / Core concept.
 
-### Management Applications Network Container
+# Management Applications Network Container
 
 With the network containers for management applications we place each management application in a dedicated network container with an NSX Edge acting as firewall, load balancer, and gateway of that container. With the previously presented management applications this means that we have one container for VMware vRealize Automation, another one for vRealize Operations and a third one for vRealize LogInsight.
 
@@ -90,7 +90,7 @@ As a result network container provide us with a few benefits:
     In other words: Keep it simple. No dynamic routing towards the corporate network is necessary. As a result we have less components and less configuration.
   * **BC/DR:** Simplifies the Business Continuity/Disaster Recovery story with VMware Site Recovery Manager.
 
-### Service Level tiers
+# Service Level tiers
 
 Especially with the ambition to address new and old business needs via the support of legacy applications with traditional business continuity and disaster recovery needs, in addition to new cloud-native applications, a one-size fits all approach doesn't work anymore. Such an approach would either become prohibitively expensive by providing all workloads with the same level of high end treatment or would fall short on the provided business value through capabilities.
 
@@ -100,7 +100,7 @@ The solution here is to use a small set of distinct service level tiers. Each se
 
 Another example would be the ability to offer three levels of backup capabilities: The lowest tier, usually called bronze, would offer no backup whatsoever. The next tier, usually called silver, would offer backups within the same region. The most advanced tier, usually called gold, would offer backups within and across regions.
 
-### Summary
+# Summary
 
 The ultimate goal of the SDDC is to provide business value through a simple, stable and understandable architecture.
 

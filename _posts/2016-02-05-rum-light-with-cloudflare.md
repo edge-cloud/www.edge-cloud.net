@@ -23,7 +23,7 @@ Using Google Analytics, CloudFlare and some JavaScript magic we can easily get a
 
 In a [previous post](https://www.edge-cloud.net/2015/10/04/cloudflare-pops-in-google-analytics/) I've already shown how we can track the usage of CloudFlare data centers for the delivery of our website in Google Analytics. In this blog post I want to show you how to refine this method even further and also include information about other interesting metrics, such as IPv6 and HTTP/2 usage .
 
-### Possible custom dimensions
+# Possible custom dimensions
 
 In the [previous post](https://www.edge-cloud.net/2015/10/04/cloudflare-pops-in-google-analytics/) I used response header information, presented by the CloudFlare edge servers to extract information about the served traffic.
 
@@ -50,7 +50,7 @@ Let's have a closer look at the fields that are interesting to us and what they 
 It would make more sense to have the field "http" available with "http=h2" for HTTP/2, "http=spdy/3.1" for SPDY/3.1, and "http=http/1.x" for HTTP/1.x. But for now the "spdy" field is good enough.
 * **loc:** The country that CloudFlare located the visitor in. This information is already available in Google Analytics, we therefore do not need to extract it here.
 
-### How does Real User Monitoring fit into the picture?
+# How does Real User Monitoring fit into the picture?
 
 Now that we know about all this great data at */cdn-cgi/trace* for our website, how can we make this accessible in Google Analytics? Especially while keeping in mind, that this data is only available for the current connection and differs from user to user.
 
@@ -70,7 +70,7 @@ The workflow that will be execute on every page load is as follows (See Figure 1
 
 The additional request of the browser to */cdn-cgi/trace* is similar to the browser loading stylesheets or images for rendering a page. This added round-trip to the closest CloudFlare edge for one more element does not impact the performance of the site.
 
-### Create custom dimensiosn in Google Analytics
+# Create custom dimensiosn in Google Analytics
 
 For each value from */cdn-cgi/trace* that we want to track, we need to create a custom dimension in Google Analytics. Here is an example mapping for the values that we want to track in this blog post:
 
@@ -93,14 +93,14 @@ First, set up the custom dimensions in Google Analytics:
 
 {% include figure image_path="/content/uploads/2016/02/RUM_01.png" caption="Figure 2: Create a Google Analytics Custom Dimension" %}
 
-### Embed the Google Analytics Tracking Code
+# Embed the Google Analytics Tracking Code
 
 Next we need to embed the Google Analytics tracking code within the website, in order to fill the newly created custom dimensions with data. This tracking code has to be placed between the code for creating the Google Analytics tracker, which looks like this: `__gaTracker('create','UA-12345678-1','auto');`, and the code to submit the tracker, which looks like this `__gaTracker('send','pageview');`.
 
 If you are using WordPress the easiest way to include the custom tracking code is by using the "[Google Analytics by Yoast](https://wordpress.org/plugins/google-analytics-for-wordpress/)" plugin. This plugin allows you under *Advanced > Custom Code* to embed the below code right away and without any coding requirements.
 
 The below JavaScript code will read the values from */cdn-cgi/trace*, extract the information we are interested it and push it into the Google Analytics custom dimension variables. Ensure that the numeric IDs of these custom dimension variables matches what you have created in above steps.
-
+```
     function processData(x) {
       var y = {};
       for (var i = 0; i < x.length-1; i++) {
@@ -143,7 +143,7 @@ The below JavaScript code will read the values from */cdn-cgi/trace*, extract th
     __gaTracker('set','dimension1',objData('colo'));
     __gaTracker('set','dimension2',isIPv6());
     __gaTracker('set','dimension3',objData('spdy'));
-
+```
 Embedded in your website along with the standard Google Analytics tracking code, this custom JavaScript code will be executed by a visitor, collect metrics data from */cdn-cgi/trace* and push it into Google Analytics.
 
 A few hours after embedding the code you should see your first custom dimension data in Google Analytics.
@@ -171,7 +171,7 @@ You can generate similar graphs for the other custom dimensions. E.g. in order t
 
 By combining data from the custom dimension with data collected by Google Analytcis natively you can answer many interesting questions for your website, such as: Is IPv6 traffic really mostly driven by mobile traffic? Where are all these users with HTTP/2 capable browsers located?
 
-### Summary
+# Summary
 
 This article has shown you, that you can easily built your own Real User Monitoring system with Google Analytics Custom dimension and some JavaScript code. It allows you to extract many interesting metrics out of your CloudFlare usage and make it available in Google Analytics for further data analysis.
 

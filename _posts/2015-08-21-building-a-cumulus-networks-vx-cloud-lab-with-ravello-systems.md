@@ -21,13 +21,13 @@ toc: true
 ---
 ![Ravello with Cumulus](/content/uploads/2015/08/Ravello_with_Cumulus.png){: .align-left} In a [previous post](/2013/06/13/arista-veos-on-vmware-esx/) I've already shown how to build a virtual network lab with Arista vEOS and VMware ESX. In this post we want to take this concept even further to the next level. Instead of Arista vEOS we will use the newly released [Cumulus Networks](https://cumulusnetworks.com/) Virtual Experience (VX) edition. And instead of VMware ESX we will use [Ravello Systems](https://www.ravellosystems.com/), allowing us to use [AWS](https://aws.amazon.com/) or [Google Compute Engine](https://cloud.google.com/compute/).
 
-### Elements used
+# Elements used
 
 Cumulus Networks provides a standard [Linux based operating system for data center switches](https://cumulusnetworks.com/what-we-do/), thus simplifying dramatically the data center operations. If you are familiar with running and operating Linux on a regular server, managing a Cumulus Network based switch shouldn't be a big challenge for you. Also you can now finally leverage the hundreds of existing management, automation and monitoring tools that you know and love for Linux. [Cumulus Networks Virtual Experience (VX)](https://cumulusnetworks.com/cumulus-vx/) is a community-supported virtual appliance that enables cloud admins and network engineers to preview and test Cumulus Networks technology at zero cost inside a virtual machine or standard X86 server.
 
 Ravello Systems provides a [Smart Labs](https://www.ravellosystems.com/solutions/virtual-networking-labs) solution on top of AWS and Google Compute Engine (GCE) based on [nested virtualization](https://www.ravellosystems.com/technology/nested-virtualization). This allows you to run self-contained lab "capsules" with almost any kind of VMware or KVM based virtual machine in them. This approach - proven for years with the VMWorld labs - now allows you to use modern public clouds for test, training and demo purposes at a minimal cost. Specific for networking lab cases Ravello Systems provides [virtual L2 networking](https://www.ravellosystems.com/technology/software-defined-network) on top of both AWS and GCE, allowing you to simulate very complex network scenarios.
 
-### Architecture
+# Architecture
 
 For this exercise we want to build a very simple two-leaf/two-spine virtual network architecture (See Figure 1).
 
@@ -35,7 +35,7 @@ For this exercise we want to build a very simple two-leaf/two-spine virtual netw
 
 The architecture will include two spine switches (spine1 and spine2) as well as two leaf switches (leaf1 and leaf2), cross connected in a typical [CLOS network architecture](https://en.wikipedia.org/wiki/Clos_network). For the four point-to-point connections between the devices we will use the depicted RFC1918 IP ranges, while making the management interface of the switches available over the internet (not depicted).
 
-### Getting Started
+# Getting Started
 
 Before you can get started you need an account for Ravello Systems. You can conveniently [sign-up](https://www.ravellosystems.com/ravello-free-signup/) for a free trial account. This account will allow you to use Ravello for free for 14 days. You do not need a credit card or any existing cloud credentials with AWS or GCE.
 
@@ -44,7 +44,7 @@ Next we need to download the Cumulus Networks VX images in [QCOW2 format](https:
 If you want to save time you can also use my pre-built [Ravello Systems blueprint for Cumulus Networks VX](https://www.ravellosystems.com/repo/blueprints/62095782). See further down for details.
 
 
-#### Uploading the Cumulus Networks VX image into Ravello Systems
+## Uploading the Cumulus Networks VX image into Ravello Systems
 
 Once you have received your login credentials for your Ravello Systems account, you can start your cloud lab experience by uploading the Cumulus Networks VX images - in QCOW2 format - into Ravello Systems (See Figure 2).
 
@@ -52,7 +52,7 @@ Once you have received your login credentials for your Ravello Systems account, 
 
 You can leave most of the settings as default, when importing the VM. Please note that you will need to add two network interfaces, resulting in a total of three network interfaces. It is recommended to call the first interface "eth0", the second interface "swp1", and the third interface "swp2".
 
-#### Creating an application
+## Creating an application
 
 Next create an "application" within Ravello Systems that maps to your desired network architecture. Place four instance of the previously imported Cumulus Networks VX image into this application (See Figure 3). It is recommend to position them in a similar fashion to the network diagram in Figure 1. This will provide you a better overview and simplify the configuration.
 
@@ -86,7 +86,7 @@ You should see the four point-to-point network segments with two connections per
 
 The fifth network segment, connecting to all devices provides external connectivity via the router symbol depicted at the bottom. This network segment connects to the management port "eth0" on the Cumulus Networks VX device.
 
-#### Providing access via SSH
+## Providing access via SSH
 
 If you select a single Cumulus Networks VX instance within your Ravello Systems application, you can see that by default this VM only has outbound network connectivity via the eth0 interface (See Figure 8).
 
@@ -102,7 +102,7 @@ Returning to the Canvas view within Ravello Systems, you will see the four Cumul
 
 {% include figure image_path="/content/uploads/2015/08/Capture10.png" caption="Figure 10: Application with four Cumulus Networks VX devices" %}
 
-### Deploy the network testbed
+# Deploy the network testbed
 
 Next we want to deploy - called "Publish" in Ravello Systems terms - the network testbed to either AWS or GCE, so that we can use it. To do so, just hit "Publish" and confirm the default settings to publish the testbed in the most cost effective location (See Figure 11).
 
@@ -110,7 +110,7 @@ Next we want to deploy - called "Publish" in Ravello Systems terms - the network
 
 By default the tesbed will only be deployed for 2 hours. After this it will be shut down automatically. If you need your testbed longer, adapt the time accordingly.
 
-#### Accessing the network testbed
+## Accessing the network testbed
 
 After a few minutes your testbed should be published to either AWS or GCE and each VM should be up and running. At this point you can connect via SSH to each of the Cumulus Networks VX nodes.
 
@@ -120,7 +120,7 @@ Use the hostname or IP address shown for each VM within the Ravello Systems Cons
 
 Keep in mind, that the Cumulus Network VX nodes are still unconfigured at this point. The IPv4 address configuration for the VMs in Ravello Systems was only for generating the different networks segments within Ravello Systems and does not apply to the network configuration within the Cumulus Networks VX node.
 
-#### Basic network testbed configuration
+## Basic network testbed configuration
 
 In this step we want to perform basic network configuration and at least enable the Cumulus Networks VX nodes to communicate with each other. For this we will configure all "swp" interfaces on all devices as a routed port with the IPv4 address depicted in Figure 1.
 
@@ -145,7 +145,7 @@ Next restart the Cumulus Networks VX networking for the configuration to be appl
 
 Repeat the above steps for the other three devices. Remember to adapt the IPv4 addresses in the file "/etc/network/interfaces" for the interfaces "swp1" and "swp2" according to the network diagram in Figure 1.
 
-### Testing your network setup
+# Testing your network setup
 
 Test the functionality of your basic network lab. First look at the available interfaces and their IP addresses via standard Linux commands:
 
@@ -210,11 +210,11 @@ Next verify if you can ping the adjacent interface of another connected switch. 
 
 The pings should succeed.
 
-### Save time, use a Ravello Systems Blueprint
+# Save time, use a Ravello Systems Blueprint
 
 Instead of going through the above steps you can also use my pre-built [Ravello Systems blueprint for Cumulus Networks VX](https://www.ravellosystems.com/repo/blueprints/62095782). Just add this public accessible blueprint to your own Ravello Systems library and deploy the above described network lab in a few minutes.
 
-### More capabilities
+# More capabilities
 
 Cumulus Networks VX provides a lot more capabilities than what I was able to showcase in this blog post. With the above described simple testbed you are now empowered to explore these capabilities.
 

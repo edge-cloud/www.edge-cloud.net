@@ -21,7 +21,7 @@ This article will help you visualize the global presence of your website, when u
 
 [Signing up](https://www.cloudflare.com/a/sign-up) with CloudFlare is easy and free and usually only takes 5 minutes.
 
-### About CloudFlare's Points-of-Presence
+# About CloudFlare's Points-of-Presence
 
 CloudFlare currently uses 63 data centers worldwide as points-of-presence to deliver fast and secure website traffic (See Figure 1).
 
@@ -31,9 +31,9 @@ This means that as a CloudFlare customer your website is delivered to your audie
 
 Wouldn't it be great to get insight into how much these worldwide locations help you with your website? In this post you will learn how to get started by gaining insight into which CloudFlare location delivers your website traffic.
 
-### Setup
+# Setup
 
-#### Create a custom dimension in Google Analytics
+## Create a custom dimension in Google Analytics
 
 First, set up a custom dimensions for the location of the CloudFlare PoP that serves a request in Google Analytics:
 
@@ -51,7 +51,7 @@ First, set up a custom dimensions for the location of the CloudFlare PoP that se
 
 {% include figure image_path="/content/uploads/2015/10/Create-Custom-Dimension.png" caption="Figure 2: Create a Google Analytics Custom Dimension" %}
 
-#### Embed the Google Analytics Tracking Code
+## Embed the Google Analytics Tracking Code
 
 Next we need to embed the Google Analytics tracking code within the website, in order to fill the newly created custom dimension with data. This tracking code has to be placed between the code for creating the Google Analytics tracker, which looks like this: `__gaTracker('create','UA-12345678-1','auto');`, and the code to submit the tracker, which looks like this `__gaTracker('send','pageview');`.
 
@@ -60,22 +60,22 @@ If you are using WordPress the easiest way to include the custom tracking code i
 But first we have to actually determine the CloudFlare PoP location that serves a request. For this we can use the HTTP response header "cf-ray", which is added by CLoudFlare for troubleshooting purposes. It includes a numeric value, as well as the [location code](https://www.cloudflarestatus.com/) of the CloudFlare PoP.
 
 The below JavaScript code will read the "cf-ray" response header, extract the location ID and push it into the Google Analytics custom dimension variable. Ensure that the numeric ID of this custom dimension variable matches what you have created in above steps.
-
-    function loc(){
-      var req = new XMLHttpRequest();
-      req.open('HEAD', document.location, false);
-      req.send(null);
-      return (req.getResponseHeader("cf-ray").split("-"))[1];
-    }
-    __gaTracker('set','dimension1',loc());</pre>
-
+```
+function loc(){
+  var req = new XMLHttpRequest();
+  req.open('HEAD', document.location, false);
+  req.send(null);
+  return (req.getResponseHeader("cf-ray").split("-"))[1];
+}
+__gaTracker('set','dimension1',loc());</pre>
+```
 Embedded in your website along with the standard Google Analytics tracking code, this custom JavaScript code will determine the CloudFlare PoP over which the corresponding site was served and push it into Google Analytics.
 
 A few hours after embedding the code you should see your first custom dimension data in Google Analytics.
 
-### Usage
+# Usage
 
-#### Create a custom report in Google Analytics
+## Create a custom report in Google Analytics
 
 You can now create custom reports with the custom dimension in Google Analytics. A simple example would be to determine which CloudFlare PoP serves how many of your audience's session.
 
@@ -92,7 +92,7 @@ The resulting Custom Report will show you how many session - in total numbers, b
 
 {% include figure image_path="/content/uploads/2015/10/CloudFlare-PoP-Utilization.png" caption="Figure 4: Your CloudFlare PoP utilization" %}
 
-#### Combining the new custom dimension with Google Analytics Data
+## Combining the new custom dimension with Google Analytics Data
 
 Now that we have the CloudFlare Point-of-Presence that served a web site in Google Analytics, we can leverage this data for many more interesting reports.
 
@@ -104,6 +104,6 @@ In this report we can see various users not being served by the closest Point of
 
 [ISPs not peering directly](https://blog.cloudflare.com/the-relative-cost-of-bandwidth-around-the-world/) with content or CDN networks. Instead these ISP use [Tier 1 network provider](https://en.wikipedia.org/wiki/Tier_1_network), which can cause these inefficiencies.
 
-### Summary
+# Summary
 
 Google Analytics Custom dimension provide a simple way to visualize the great benefits of the global presence of your website, thanks to CloudFlare. Leverage it to see the benefits to your website, while using CloudFlare.

@@ -17,7 +17,7 @@ toc: true
 ---
 This article is part of a [series of articles](/2015/02/20/sddc-architecture-introduction/), focusing on the architecture of an SDDC via VMware Validated Designs.
 
-### Requirements
+# Requirements
 
 A Software Defined Data Center promises to be the new underpinning or platform for delivering today’s and tomorrow’s IT services. As such this next generation infrastructure needs to address some shortcomings of today’s infrastructure in order to be successful:
 
@@ -25,13 +25,13 @@ A Software Defined Data Center promises to be the new underpinning or platform f
   * **Hardware and Software efficiencies:** Support on-demand scaling for varying capacity needs. Improved resource pooling to drive increased utilization of resources and reduce cost.
   * **New and old business needs:** Support legacy applications with traditional business continuity and disaster recovery, besides new cloud-native applications.
 
-### Logical Space
+# Logical Space
 
 In this post we will map the [physical space](/2015/03/10/sddc-architecture-core-pod/) of the SDDC architecture to the logical space (See Figure 1).
 
 {% include figure image_path="/content/uploads/2015/08/VMWare_Pod_Design_VM_Assignment.png" caption="Figure 1: Mapping of logical to physical components within the SDDC" %}
 
-#### vSphere Clusters
+## vSphere Clusters
 
 For this we will start with the [physical space](/2015/03/10/sddc-architecture-core-pod/) that includes a Management POD, an Edge POD, and one or more Compute PODs. Each of these PODs maps to one cluster.
 
@@ -39,7 +39,7 @@ As a result we will end up with a single Management Cluster, one Edge cluster, a
 
 Here it is important to point out, that one Compute POD could house more than one Compute Cluster. This purely depends on the use case for this specific SDDC instance. In order to keep things simple and uniform it is recommended that in this case, the cluster size should be 1/4, 1/2, or 1/1 of the total available server count within a POD. This allows you to create multiple clusters in a uniform manner, without any waste. It is also important to point out, that a compute cluster cannot span more than one compute POD, as L2 host network traffic is not carried across PODs.
 
-#### vSphere vCenter domains
+## vSphere vCenter domains
 
 The vSphere cluster above are distributed across two or more vCenters, which we will call stack. Each stack is therefore managed by one or more different vCenter and includes one or more vSphere cluster.
 
@@ -54,7 +54,7 @@ The Management Stack includes:
       * **Virtual Infrastructure Management components:** vSphere vCenter server, Platform Services Controller, NSX Managers, NSX Controller and NSX Edges for the Management stack. These components are part of the Virtual Infrastructure itself and are necessary in each SDDC Region.
       * **Cloud Management and Service Management applications:** vRealize Automation, vRealize Operations, vRealize Log Insight. These components are encapsulated within [Virtual PODs](/2015/08/31/sddc-architecture-vpods-for-management-applications/).
 
-##### Rationale
+### Rationale
 
 The rationale behind using two or more vCenters is based on the following items:
 
@@ -64,7 +64,7 @@ The rationale behind using two or more vCenters is based on the following items:
 
 With this an SDDC will usually have a single vCenter Server for the Management Stack and one or more vCenter Server for the Compute Stack within a region.
 
-#### Virtual Distributed Switches
+## Virtual Distributed Switches
 
 This design uses three Virtual Distributed Switches (vDS), one for each type of POD. The rationale behind this is that each type of POD has a different kind of network connectivity and therefore needs a separate vDS.
 
@@ -74,11 +74,11 @@ In detail these vDS are:
   * **Edge vDS:** This vDS stretches across the Edge POD and therefore all Edge clusters.
   * **Management vDS:** This vDS stretches across the Management POD and includes the Management cluster.
 
-#### NSX Transport Zones
+## NSX Transport Zones
 
 Each stack would use a dedicated NSX Transport Zone. The reason for this is that today a 1:1 mapping between NSX Manager and vCenter Server exist. Therefore having 2 separate vCenter Server domains, means that you also end up with two NSX Manager domains. Within each of these domains it is then sufficient to create a single NSX Transport Zone.
 
-#### vCenter Server to Platform Service Controller Mapping
+## vCenter Server to Platform Service Controller Mapping
 
 In this design we use vSphere 6.0, which introduces the [Platform Services Controller (PSC)](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2113115). The PSC provides a set of common infrastructure services encompassing Single Sign-On (SSO), Licensing, and Certificate Authority. As a result an administrator could log in to any one of the vCenter Servers attached to PSC within a single SSO domain and manage all resources within these attached vCenters. The result is a single pane of glass from a management perspective.
 

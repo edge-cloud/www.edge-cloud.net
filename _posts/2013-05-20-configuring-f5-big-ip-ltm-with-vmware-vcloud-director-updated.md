@@ -8,7 +8,7 @@ excerpt: >-
   configuration of an F5 Big-IP LTM with VMware vCloud Director (vCD).
 layout: single
 permalink: /2013/05/20/configuring-f5-big-ip-with-vcd/
-redirect_from: 
+redirect_from:
   - /2013/05/20/configuring-f5-big-ip-with-vcd/amp/
   - /2013/05/configuring-f5-big-ip-with-vcd/
 categories:
@@ -186,8 +186,6 @@ As a last step the DNS names mapped to the IP addresses of the virtual servers a
 {% include figure image_path="/content/uploads/2013/05/vCD_public_address.png" caption="Figure 18: Configuring Public Addresses in vCD" %}
 
 # 4 Additional Comments
-
-A few closing remarks:
 
 ## 4.1 Session persistence
 

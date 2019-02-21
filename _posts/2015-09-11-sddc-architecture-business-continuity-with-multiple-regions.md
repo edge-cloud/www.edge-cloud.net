@@ -16,7 +16,7 @@ toc: true
 ---
 This article is part of a [series of articles](/2015/02/20/sddc-architecture-introduction/), focusing on the architecture of an SDDC via VMware Validated Designs.
 
-### Requirements
+# Requirements
 
 A Software Defined Data Center promises to be the new underpinning or platform for delivering today’s and tomorrow’s IT services. As such this next generation infrastructure needs to address some shortcomings of today’s infrastructure in order to be successful:
 
@@ -24,7 +24,7 @@ A Software Defined Data Center promises to be the new underpinning or platform f
   * **Hardware and Software efficiencies:** Support on-demand scaling for varying capacity needs. Improved resource pooling to drive increased utilization of resources and reduce cost.
   * **New and old business needs:** Support legacy applications with traditional business continuity and disaster recovery, besides new cloud-native applications.
 
-### Conceptual Design
+# Conceptual Design
 
 This solution assumes that two [regions](/2015/07/31/sddc-architecture-regions-and-availability-zones-azs/) exist. Under normal circumstances each region consists of an Software Defined Data Center (SDDC) installation, where components of the [virtual infrastructure layer](/2015/02/20/sddc-architecture-introduction/) exist independently in both regions for the [Management and Compute stack](/2015/09/09/sddc-architecture-mapping-of-logical-components-to-physical-location/).
 
@@ -40,13 +40,13 @@ After a failure of either region, the overall SDDC management capabilities are s
 
 We will look at BC/DR capabilities for the workloads of the SDDC separately.
 
-### Disaster Recovery Design Example
+# Disaster Recovery Design Example
 
 Within this example, the SDDC includes two locations: A protected "Region A" in San Francisco, CA and a "Region B" for recovery purposes in Los Angeles. VMware's Site Recovery Manager (SRM) provides a solution for automating the creation and execution of a disaster recovery plan or workflows between these two regions for the above described management applications.
 
 Region A initially hosts the management application virtual machine workloads, that are being protected. As such this region is referred to as the "protected region".
 
-### Logical Design
+# Logical Design
 
 Dedicated network connectivity must exist between Region A and Region B, so that data from Region A can be replicated to Region B using VMware vSphere Replication, but also so that VMware Site Recovery Manager can coordinate the failover.
 
@@ -59,7 +59,7 @@ The vCenter Server design includes a total of two virtual vCenter Server systems
 
 {% include figure image_path="/content/uploads/2015/09/BCDR05.png" caption="Figure 2: Site Recovery Manager Logical Design" %}
 
-### Network Design
+# Network Design
 
 Physically moving a service from one region to another represents a networking challenge. Additional complexities can be introduced if applications have hard-coded IP addresses. Network addressing space and IP address assignment design considerations require that you choose to use either the same IP address or different IP address within the recovery region.
 
@@ -81,6 +81,6 @@ It is assumed that Active Directory and DNS services are running at both the pri
 
 Furthermore it is recommended to use the NSX DNS server functionality within a vPOD to provide DNS server capabilities to the nodes within the vPOD. This way each node leverages the NSX Edge of the vPOD as DNS resolver. This NSX Edge in return leverages a local DNS server as resolver.
 
-### Summary
+# Summary
 
 Using the here described BC/DR strategy for the Software Defined Data Center (SDDC), not only simplifies the setup of the resource protection itself, but also simplifies the [operation of the actual failover](/2015/08/31/sddc-architecture-vpods-for-management-applications/). Especially the concept of the previously introduced [network container](/2015/08/31/sddc-architecture-vpods-for-management-applications/) helps a lot in this scenario.
