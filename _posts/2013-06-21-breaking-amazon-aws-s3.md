@@ -32,7 +32,7 @@ This behavior makes sense as the above bucket name would become reachable under 
 
 For S3 buckets created in the AWS region "US Standard", things look a bit different. As Figure 2 shows, it is very well possible to create two buckets with the same name, that only differentiate in case.
 
-{% include figure image_path="/content/uploads/2013/06/Capture02.png" caption="Figure 2: The "US Standard" region differentiates case in S3 bucket names" %}
+{% include figure image_path="/content/uploads/2013/06/Capture02.png" caption="Figure 2: The *US Standard* region differentiates case in S3 bucket names" %}
 
 On a first glimpse that isn't that bad, as in contrary to other regions, buckets in the "US Standard" region are mapped to the URL http://s3.amazonaws.com/<Bucket Name>/. And here there is indeed a difference between the URL _"http://s3.amazonaws.com/DifferentiateBetweenUPPERcaseANDlowerCASE"_ and the folder _"http://s3.amazonaws.com/DifferentiateBetweenupperCASEANDLOWERCASE"_.
 
@@ -40,7 +40,7 @@ On a first glimpse that isn't that bad, as in contrary to other regions, buckets
 
 One problem starts when you want to use that bucket in the "US Standard" region for static website hosting. As Figure 3 shows, attempting to enable website hosting for an S3 bucket in the "US Standard" region that uses upper case letters will fail. Unfortunately the error message is quite useless. Here Amazon AWS should provide better feedback through a useful error message.
 
-{% include figure image_path="/content/uploads/2013/06/Capture08_SMall.png" caption="Figure 3: Website hosting for an S3 bucket in the region "US Standard" fails" %}
+{% include figure image_path="/content/uploads/2013/06/Capture08_SMall.png" caption="Figure 3: Website hosting for an S3 bucket in the region *US Standard* fails" %}
 
 Yet again, this also makes sense: The above S3 bucket would be hosted under the URL *http://DifferentiateBetweenUPPERcaseANDlowerCASE.s3-website-us-east-1.amazonaws.com* which according to RFC1035 doesn't differ from *http://DifferentiateBetweenupperCASEANDLOWERCASE.s3-website-us-east-1.amazonaws.com* which the other bucket - that we previously created - would receive. Thus two buckets would receive the same URL. That clearly shouldn't happen.
 

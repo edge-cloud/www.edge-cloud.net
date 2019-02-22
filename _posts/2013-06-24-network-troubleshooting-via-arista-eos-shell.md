@@ -22,7 +22,7 @@ Arista EOS is based on a Linux kernel and provides full and open access to a Lin
 
 In this short post I want to show you two use cases where this capability comes in extremely handy in the daily network management work: Network Troubleshooting.
 
-### TCPDump to PCAP
+# TCPDump to PCAP
 
 Quite frequently it happens that network devices aren't behaving the way they should be. Let's take the example of a virtual router that doesn't want to form OSPFv3 adjacency with the core switch. What usually helps quite a bit are packet captures of the traffic between the involved network devices. In the past it could be quite challenging acquiring these packet captures, requiring the setup of a [Switched Port Analyzer (SPAN)](https://en.wikipedia.org/wiki/Port_mirroring) Remote Switched Port Analyzer (RSPAN) or even [Encapsulated Remote Switched Port Analyzer (ERSPAN)](http://packetpushers.net/erspan-new-favorite-packet-capturing-trick/).
 
