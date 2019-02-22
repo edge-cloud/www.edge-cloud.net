@@ -25,7 +25,7 @@ In a series of articles I want to focus on the architecture and some of its desi
 
 Although the presented problem statement, architecture and design could apply to a wide variety of products, I will mostly focus on products from VMware and its eco-system partners. Also while the presented architecture and design might not necessarily exist in its entire form at a customer site today, individual elements presented have certainly proven it's success as part of numerous customer projects.
 
-### Requirements
+# Requirements
 
 A Software Defined Data Center promises to be the new underpinning or platform for delivering today's and tomorrow's IT services. As such this next generation infrastructure needs to address some shortcomings of today's infrastructure in order to be successful:
 
@@ -35,7 +35,7 @@ A Software Defined Data Center promises to be the new underpinning or platform f
 
 Throughout the architecture and design discussion I will attempt to provide traceability between the design decisions and these requirements. Therefore let's look into each of these requirements in more detail:
 
-#### Highly automated operation at Scale
+## Highly automated operation at Scale
 
 Today's IT departments are pressed to do more with less and provide IT services at a high quality and a lower cost. Doing so, IT departments often have to compete with outside services ranging from public clouds such as [Amazon Web Services (AWS)](https://aws.amazon.com/) for Infrastructure services, all the way to [Office 365](https://products.office.com/en-us/business/) for SaaS based offerings. And if IT departments are successful with their internal offerings, they need to ensure that they can scale up in a reasonable time-frame to meet the new demand.
 
@@ -43,17 +43,17 @@ To deliver on this requirement one will quickly discover that it is necessary to
 
 Last but not least, in order to compete with the abilities and the price of web-scale services such as AWS, IT departments need to leverage some of their design elements to achieve similar unhampered scale at a reasonable price point.
 
-#### Hardware and Software efficiencies
+## Hardware and Software efficiencies
 
 The traditional approach to data centers was often a combination of one-size fits all - for simplifying operations - as well as best-is-just-good-enough - due to the requirement of running mission critical workloads. While the requirement for reliability doesn't go away, new and old business needs (see next section) have more differentiated requirements for business continuity and disaster recovery. This offers the possibility to shift certain capabilities around availability from hardware to software or even give up on them altogether within the infrastructure. Let the application itself deal with failures.
 
 One of the corner stones of a Software Defined Data Center is the introduction of virtualization for not only compute, but also networking - known as Software Defined Networking (SDN), and storage - known as Software Defined Storage (SDS). This allows the tear-down of resource silos, allow resource pooling and thereby the reduction of costs.
 
-#### New and old business needs
+## New and old business needs
 
 An IaaS cloud such as AWS is geared towards a cloud application model, with cloud native applications. These applications implement mechanism to cope with environment-induced failures within the application itself instead of leveraging hardware or platform redundancy. While we want to also support these cloud native applications in an SDDC, the vast majority of enterprise applications are still traditional applications that are not optimized for such a cloud model. The SDDC shall therefore especially provide a home for these legacy applications, while at the same time offering some of the benefits of cloud computing, such as automation and self-service.
 
-### High-level Architecture for a Software Defined Data Center (SDDC)
+# High-level Architecture for a Software Defined Data Center (SDDC)
 
 Next we will break up the design of a Software Defined Data Center (SDDC) into manageable "chunks" and address them in a divide-and-conquer fashion in subsequent posts. To do so, the SDDC is split into three main layers, along with capabilities spanning all three layers (See Figure 1).
 
@@ -73,13 +73,13 @@ Additional capabilities that span across these main layers are:
 
 We will need to address these capabilities in each of the layers.
 
-### Summary
+# Summary
 
 This article is the foundation for a series of further articles in which we will together embark the journey to let the vision of a software defined data center come true through an architecture with specific design elements. After outlining the requirements to be fulfilled by this architecture, the above outlined high-level SDDC architecture also provides an outline for future articles.
 
 By reducing the complexity of the SDDC, we can also reduce the risk of the entire project and thereby increase the likelihood of achieving the desired return on investment.
 
-### Posts in this series
+# Posts in this series
 
 Within the Physical Layer we want to look at these design artifacts:
 

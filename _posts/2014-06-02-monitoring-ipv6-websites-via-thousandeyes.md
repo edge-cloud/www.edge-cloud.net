@@ -20,7 +20,7 @@ Recently I stumbled over a small startup in San Francisco called [ThousandEyes](
 
 {% include figure image_path="/content/uploads/2014/05/TE2.png" caption="Figure 1: End-to-end visibility of cloud applications and infrastructure telling you where and why services are breaking" %}
 
-### Deploying Agents
+# Deploying Agents
 
 ThousandEyes leverages so-called agents that probe a target via various tests which can be individually defined. These agents can either be deployed at the network edge or even better deep inside the network, close to the actual end-user of the monitored service. Agents are offered as either a virtual appliance or as a Linux package for various distributions (See Figure 2).
 
@@ -34,7 +34,7 @@ Also it is currently not possible to install more than one agent on a Linux host
 
 I'm confident that these minor shortcomings will be fixed over time as more and more Enterprise and SaaS provider customers adopt this tool.
 
-### Defining Tests
+# Defining Tests
 
 You can define four kinds of tests within ThousandEyes. Depending on which test you select, sub-tests are either automatically created or can be created on demand. The example in Figure 3 shows a "HTTP Server Only" test which probes the URL of this blog site with a given interval. This test will provide you with web site specific metrics around Availability, Response Time and Fetch Time. More advanced Web tests are possible, but I will not cover them here.
 
@@ -46,7 +46,7 @@ Unfortunately, it is currently not very intuitive which tests are created and wh
 
 {% include figure image_path="/content/uploads/2014/05/Intro2.png" caption="Figure 3: Setting up tests against applications and websites" %}
 
-### Dashboard
+# Dashboard
 
 Once you've setup the agents and tests, you can move to the Dashboard and wait for some initial data to come in. The Dashboard provides you key metric information about the tests you defined. In the case of a "HTTP Server Only" test you will see the average Availability and Response time across all agents (See Figure 4). Clicking on one of the tests will then provide you additional deeper information.
 
@@ -54,7 +54,7 @@ The Dashboard will also show you alarms and the status of your agents.
 
 {% include figure image_path="/content/uploads/2014/05/Intro3.png" caption="Figure 4: Keeping an eye on important metrics" %}
 
-### Web-HTTP Server Test
+# Web-HTTP Server Test
 
 At the Web-HTTP Server level for a test we can see additional information around Availability, Response Time and Fetch time for the configured URL. These are nicely visible across a select-able time axis as well as across the different select-able agents.
 
@@ -68,13 +68,13 @@ For this we drill down into the next layer of information, into the End-to-End m
 
 {% include figure image_path="/content/uploads/2014/05/Hetzner1a.png" caption="Figure 6: Drill down via *Jump to...*" %}
 
-### Network End-to-End Metrics
+# Network End-to-End Metrics
 
 Within the Network End-to-End Metrics we will find information about Loss, Latency, Jitter and Bandwidth of the connection. Again, these are nicely visible across a select-able time axis as well as across the different select-able agents. With this we can quickly determine that our IPv4 agent has a lower latency towards the destination then the IPv6 agent. As both agents are basically the same machine, this should not be the case (See Figure 7). Let's drill down even more into the next layer of information.
 
 {% include figure image_path="/content/uploads/2014/05/Hetzner2.png" caption="Figure 7: Cause: Latency higher over IPv6 than IPv4" %}
 
-### Network Path Visualization
+# Network Path Visualization
 
 The Network Path Visualization is a graphical Traceroute on steroids. Using TCP instead of ICMP - which might be filtered or take a different path - it shows all detected path between an agent and target along with valuable information. Hovering the mouse over the hops of the IPv6 connection will show information about each of the hops. The same applies for the link between two hops (See Figure 8).
 
@@ -94,13 +94,13 @@ The problem in this case appears to be on the side of the provider in Nuremberg 
 
 {% include figure image_path="/content/uploads/2014/05/Hetzner4_.png" caption="Figure 10: The *Share This Screen* feature allows others to see what I see" %}
 
-### Network - BGP Route Visualization - IPv6
+# Network - BGP Route Visualization - IPv6
 
 Let's drill down even further into the BGP Route Visualization. We will start with IPv6. Here we see the BGP connectivity between ThousandEyes public agents and the target AS. Unfortunately the number of IPv6 capable public agents is very limited. Nevertheless we can see CloudFlare (AS13335) connecting to large transit providers such as Telia Sonera (AS1299) (See Figure 11).
 
 {% include figure image_path="/content/uploads/2014/05/Hetzner5.png" caption="Figure 11: IPv6 Peering of CloudFlare (AS13335; blue-green circle) observed from agents (green circle)" %}
 
-### Network - BGP Route Visualization - IPv4
+# Network - BGP Route Visualization - IPv4
 
 Next we will look at the BGP routes for IPv4. Before we can do so, we will notice something interesting. ThousandEyes has discovered three applicable prefixes for the URL that was provided. There is a /21 and two more specific /24 prefixes (See Figure 12). Note that the URLs hostname actually resolves via DNS to two IPv4 addresses, one in each of the /24 prefixes.
 
@@ -122,7 +122,7 @@ I wonder if CloudFlare has a tool as nice as ThousandEyes available to monitor a
 
 ThousandEyes raises this anomaly as an alert, which you might have seen in Figure 4, even though it is not actually an issue but a desired behavior. Unfortunately there is no way to specify this as the desired behavior and disable the alarm for this.
 
-### Discovering Issues with your ISP: IPv6 vs IPv4
+# Discovering Issues with your ISP: IPv6 vs IPv4
 
 Let's look at another interesting use case for ThousandEyes: IPv4 vs. IPv6 path performance. In this case we will have a look at an IPv4/IPv6 Dualstack target in the same physical location. Thus no Anycast this time.
 
@@ -140,7 +140,7 @@ Looking at the same link via IPv4 (again highlighted in yellow), we don't see an
 
 It is no secret that older network equipment provides inferior performance for processing IPv6 traffic over IPv4 traffic. In extreme cases this can even mean that processing for IPv6 is done in software using the supervisor, while processing IPv4 is done in ASIC. Such an outdated network will obviously create massive issues as IPv6 vs. IPv4 traffic ratios pick up.
 
-### Summary
+# Summary
 
 ThousandEyes is a very interesting tool for gaining insight into SaaS application performance and your overall network infrastructure. If you are an enterprise relying on SaaS applications such as [Microsoft Office 365](https://products.office.com/en-us/) or [Google Apps](https://gsuite.google.com/), this is a great way to ensure that your employees get the performance they expect. It will help you identify issues and let you troubleshoot and resolve them quickly.
 

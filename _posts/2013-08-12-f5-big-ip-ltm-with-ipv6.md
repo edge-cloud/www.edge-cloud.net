@@ -14,10 +14,11 @@ categories:
 tags:
   - F5
   - IPv6
+toc: true
 ---
 A very simple way to enable legacy IPv4-based web applications to be reachable via IPv6 is to use an IPv4/IPv6-enabled load balancer to frontend the application. This is e.g. the [approach that Netflix took](http://techblog.netflix.com/2012/07/enabling-support-for-ipv6.html) in mid 2012 to enable their service for IPv6 via the AWS Elastic Load Balancers (ELBs).
 
-### Architecture
+# Architecture
 
 In this post we will use the [F5 Big-IP Local Traffic Manager (LTM)](https://f5.com/products/big-ip/local-traffic-manager-ltm) load balancer to provide this capability. You can either use a physical device or even better the [Virtual Edition](https://f5.com/products/deployment-methods/virtual-editions).
 
@@ -25,17 +26,9 @@ Figure 1 shows how this approach would work: The End-User will connect to the lo
 
 If you are already using a load balancer to frontend your application for IPv4, this same load balancer can also terminate your IPv6 traffic. But you're also free to use a separate "IPv6-only" load balancer, if your operational need dictates this.
 
+{% include figure image_path="/content/uploads/2013/08/Overview.png" caption="Figure 1: F5 Big-IP LTM brokering IPv6 traffic to legacy IPv4 Web App" %}
 
-
-<div id="attachment_486" style="width: 717px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2013/08/Overview.png" alt="Figure 1: F5 Big-IP LTM brokering IPv6 traffic to legacy IPv4 Web App" width="707" height="283" class="size-full wp-image-486" srcset="/content/uploads/2013/08/Overview.png 707w, /content/uploads/2013/08/Overview-500x200.png 500w" sizes="(max-width: 707px) 100vw, 707px" />
-
-  <p class="wp-caption-text">
-    Figure 1: F5 Big-IP LTM brokering IPv6 traffic to legacy IPv4 Web App
-  </p>
-</div>
-
-### F5 Big-IP and IPv6
+# F5 Big-IP and IPv6
 
 On a first look at the GUI it doesn't appear that the F5 Big-IP supports IPv6 addresses on its interfaces or for nodes. In the corresponding dialogues there are only fields for "IP Address" and "Netmask". For IPv6 we would expect a field for a subnet prefix length instead of the netmask. It turns out that these dialogues gladly accept IPv6 addresses in the typical notation of eight groups of four hexadecimal digits separated by colons along with the subnet prefix length translated into a subnet mask following the same notation.
 
@@ -45,89 +38,46 @@ Using the [mechanism known from IPv4](https://en.wikipedia.org/wiki/Subnetwork),
 
 IPv6 addresses are 128 bit long. If we want to mask out a subnet with the length of 64 bit, this would require us to mask out half of the bits. With the previously mentioned notation of eight groups of four hexadecimal digits separated by colons, this translates into the four first groups being FFFF in hex, which translates to all 1s in binary. And the remaining four groups being all zeros.
 
-_Note:_ In older versions of Big-IP, F5 has a bug that doesn't allow you to use address shortening via double-colons ("::") through the GUI or tmsh. Instead all IPv6 addresses need to be written out. Thus the address 20BA:DD06:F00D:1234::11 would need to become 20BA:DD06:F00D:1234:0:0:0:11.
+**Note:** In older versions of Big-IP, F5 has a bug that doesn't allow you to use address shortening via double-colons ("::") through the GUI or tmsh. Instead all IPv6 addresses need to be written out. Thus the address 20BA:DD06:F00D:1234::11 would need to become 20BA:DD06:F00D:1234:0:0:0:11.
+{: .notice}
 
-### Configure the external interface for IPv6
+# Configuration
+
+## Configure the external interface for IPv6
 
 In a first step we need to assign an IPv6 address to the external interface of the F5 Big-IP load balancer. In this example we will use the two IPv6 addresses 20BA:DD06:F00D:1234::11/64 and 20BA:DD06:F00D:1234::12/64 for the actual nodes and 20BA:DD06:F00D:1234::10/64 as the floating address.
 
-Let's start by creating a new Self-IP under the _Network -> Self IPs_ tab.
+Let's start by creating a new Self-IP under the **Network -> Self IPs** tab.
 
-
-
-<div id="attachment_495" style="width: 262px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2013/08/Self-IPs1_HL.png" alt="Figure 2: Create new Self-IP" width="252" height="653" class="size-full wp-image-495" />
-
-  <p class="wp-caption-text">
-    Figure 2: Create new Self-IP
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2013/08/Self-IPs1_HL.png" caption="Figure 2: Create new Self-IP" %}
 
 Next enter the IPv6 address for the individual node as the IP address, along with the Netmask of FFFF:FFFF:FFFF:FFFF::. Repeat the same for the second node in an HA setup.
 
-
-
-<div id="attachment_502" style="width: 561px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2013/08/Self-IPs2.png" alt="Figure 3: Use an IPv4-style subnet mask for the  IPv6 address instead of the typical prefix length" width="551" height="354" class="size-full wp-image-502" srcset="/content/uploads/2013/08/Self-IPs2.png 551w, /content/uploads/2013/08/Self-IPs2-500x321.png 500w" sizes="(max-width: 551px) 100vw, 551px" />
-
-  <p class="wp-caption-text">
-    Figure 3: Use an IPv4-style subnet mask for the IPv6 address instead of the typical prefix length
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2013/08/Self-IPs2.png" caption="Figure 3: Use an IPv4-style subnet mask for the IPv6 address instead of the typical prefix length" %}
 
 Now we need to configure the floating IPv6 address in a similar way:
 
+{% include figure image_path="/content/uploads/2013/08/Self-IPs3.png" caption="Figure 4: Create a floating IPv6 address in a similar fashion" %}
 
+## Configure an IPv6 Default Route
 
-<div id="attachment_503" style="width: 580px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2013/08/Self-IPs3.png" alt="Figure 4: Create a floating IPv6 address in a similar fashion" width="570" height="369" class="size-full wp-image-503" srcset="/content/uploads/2013/08/Self-IPs3.png 570w, /content/uploads/2013/08/Self-IPs3-500x323.png 500w" sizes="(max-width: 570px) 100vw, 570px" />
+At this point we should be able to ping the previously created IPv6 interfaces from the same IPv6 network. Obviously we want more than this local-only connectivity and therefore need to configure an IPv6 default route on the F5 Big-IP devices. Do so by creating a new route under the **Network -> Routes** tab.
 
-  <p class="wp-caption-text">
-    Figure 4: Create a floating IPv6 address in a similar fashion
-  </p>
-</div>
-
-### Configure an IPv6 Default Route
-
-At this point we should be able to ping the previously created IPv6 interfaces from the same IPv6 network. Obviously we want more than this local-only connectivity and therefore need to configure an IPv6 default route on the F5 Big-IP devices. Do so by creating a new route under the _Network -> Routes_ tab.
-
-
-
-<div id="attachment_496" style="width: 263px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2013/08/Route1_HL.png" alt="Figure 5: Create a new route for the IPv6 default route" width="253" height="389" class="size-full wp-image-496" />
-
-  <p class="wp-caption-text">
-    Figure 5: Create a new route for the IPv6 default route
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2013/08/Route1_HL.png" caption="Figure 5: Create a new route for the IPv6 default route" %}
 
 While a default route in IPv4 can be written as 0.0.0.0/0, the IPv6 equivalent is even simpler with ::/0. Thus not only the actual IPv6 address is just ::, but so is also the Netmask. Remember to specify the correct IPv6 address for the gateway as shown in Figure 6.
 
-<div id="attachment_510" style="width: 625px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2013/08/Route2.png" alt="Figure 6: Specify the destination address for the IPv6 default route" width="615" height="308" class="size-full wp-image-510" srcset="/content/uploads/2013/08/Route2.png 615w, /content/uploads/2013/08/Route2-500x250.png 500w" sizes="(max-width: 615px) 100vw, 615px" />
+{% include figure image_path="/content/uploads/2013/08/Route2.png" caption="Figure 6: Specify the destination address for the IPv6 default route" %}
 
-  <p class="wp-caption-text">
-    Figure 6: Specify the destination address for the IPv6 default route
-  </p>
-</div>
-
-### Creating Virtual Servers
+## Creating Virtual Servers
 
 The creation of a virtual server for our legacy IPv4 web application differs only slightly in IPv6 from what you might have already configured for the IPv4 equivalent. Only the IP Address has to be specified as an IPv6 address on the previously configured IPv6 subnet. As Figure 7 shows, all other capabilities can be used the same way.
 
+{% include figure image_path="/content/uploads/2013/08/VirtualServer2.png" caption="Figure 7: Create the virtual servers similar to their IPv4 correspondent, but with an IPv6 address" %}
 
+# VMware vCloud Director via IPv6?
 
-<div id="attachment_493" style="width: 494px" class="wp-caption aligncenter">
-  <img src="/content/uploads/2013/08/VirtualServer2.png" alt="Figure 7: Create the virtual servers similar to their IPv4 correspondent, but with an IPv6 address" width="484" height="567" class="size-full wp-image-493" srcset="/content/uploads/2013/08/VirtualServer2.png 484w, /content/uploads/2013/08/VirtualServer2-426x500.png 426w" sizes="(max-width: 484px) 100vw, 484px" />
-
-  <p class="wp-caption-text">
-    Figure 7: Create the virtual servers similar to their IPv4 correspondent, but with an IPv6 address
-  </p>
-</div>
-
-### VMware vCloud Director via IPv6?
-
-In a [previous post](https://www.edge-cloud.net/2013/05/20/configuring-f5-big-ip-with-vcd/) I have shown how to configure the F5 Big-IP LTM with VMware vCloud Director (vCD) in an IPv4 setup. These two posts combined raise the question whether one could use an F5 Big-IP load balancer to quickly and easily enable VMware vCloud director to be accessible via IPv6 without having to change anything within vCD itself.
+In a [previous post](/2013/05/20/configuring-f5-big-ip-with-vcd/) I have shown how to configure the F5 Big-IP LTM with VMware vCloud Director (vCD) in an IPv4 setup. These two posts combined raise the question whether one could use an F5 Big-IP load balancer to quickly and easily enable VMware vCloud director to be accessible via IPv6 without having to change anything within vCD itself.
 
 It is straight forward and easy to apply the above to the mentioned post and indeed make the HTTP Redirect, the HTTPS traffic and even the Console Proxy available under an IPv6 address via the F5 Big-IP. The HTTP Redirect as well as the HTTPS traffic will work without a flaw, making the web interface of vCD available via IPv6.
 

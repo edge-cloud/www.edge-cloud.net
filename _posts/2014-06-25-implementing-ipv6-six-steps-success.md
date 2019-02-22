@@ -23,13 +23,13 @@ Implementing IPv6 in your network does not require tearing down your aging IPv4 
 
 The following article introduces a six step process for successfully implementing IPv6. It has served me well in past deployments and will hopefully give you some ideas and guidance.
 
-### Goal
+# Goal
 
 Dual-stack as defined in [RFC 4213](https://tools.ietf.org/html/rfc4213) refers to side-by-side implementation of IPv4 and IPv6. In this case both protocols run on the same network infrastructure, and there's no need to encapsulate IPv6 inside IPv4 (using tunneling) or vice-versa. This approach has to be considered the most desirable IPv6 transition mechanisms until IPv6 completely supplants IPv4. While it avoids many complexities and pitfalls of tunneling, it is not always possible to implement, since outdated network equipment may not support IPv6 at all.
 
 The goal of the highlighted implementation steps in this article will focus on implementing dual-stack in an existing network. Such a network could be a data center network, a campus network, a Wide Area Network, or even wireless network. You should still have a look at [other transition mechanism](https://en.wikipedia.org/wiki/IPv6#Transition_mechanisms) and decide what best suits your requirements.
 
-### Overview
+# Overview
 
 After having determined the goal, let's have a first look at the mentioned six steps for implementing IPv6, before going into details (See Figure 1).
 
@@ -46,7 +46,7 @@ The proposed steps include:
 
 Let's look at each of these steps in more detail.
 
-#### Step 1: Training and Education
+## Step 1: Training and Education
 
 While IPv6 is very similar to IPv4, it is still different enough to stumble at times. An example for this is the functionality of [automatic address assignment](/ipv6-address-management-hosts/) via DHCPv6, which is quite different from DHCP in the IPv4 world.
 
@@ -54,7 +54,7 @@ Therefore it is very important to train and educate the involved technical stake
 
 A good start for IPv6 related training is the [6deploy IPv6 e-learning package](http://www.6deploy.eu/e-learning/english/). Other valuable resources are the [ARIN IPv6 wiki](https://getipv6.info/display/IPv6/Educating+Yourself+about+IPv6), the [RIPE IPv6 Act Now](https://www.ripe.net/publications/ipv6-info-centre/) page or [APNIC's Training](https://training.apnic.net/home) page.
 
-#### Step 2: Network Audit
+## Step 2: Network Audit
 
 Next you need to find out not only what equipment you have in your network, but also if it will support IPv6. The ugly truth is that products from almost all vendors have issues and bugs when it comes to IPv6. In many cases even though IPv6 functionality is available according to product specifications, these capabilities are either not tested at all or not to the breadth and depth of IPv4. Even if equipment meets requirements of the [NIST USGv6](https://www-x.antd.nist.gov/usgv6/index.html) or the [IPv6 Ready logo](https://www.ipv6ready.org/) program, it doesn't mean that it's usable in your network for your use case.
 
@@ -64,7 +64,7 @@ For missing or broken IPv6 functionality, you will then have to work with the pr
 
 As the outcome of this step, you should have information on what equipment you use, what can be made to support IPv6 via software changes, what needs a hardware swap and especially within which time frame you can realistically expect all these upgrades and swaps to happen.
 
-#### Step 3: Network Optimization
+## Step 3: Network Optimization
 
 The IPv6 implementation in a network is often a quite large endeavor. But it is also your perfect chance to clean up your existing network - which some might even call a "mess". Most enterprise networks have organically grown over time into what they are today and include numerous artifacts from different implementation phases.
 
@@ -78,7 +78,7 @@ While optimizing your network, you should use the following guidelines:
 
 Keep in mind: If you can get rid of a component altogether, there is no need to upgrade it to IPv6.
 
-#### Step 4: Managing IPv6 address space
+## Step 4: Managing IPv6 address space
 
 Nowadays it is very easy to acquire IPv6 address space as well as transit for it. If you already own IPv4 address space with your own Autonomous System (AS) you can request IPv6 address space from your [Regional Internet registry (RIR)](https://en.wikipedia.org/wiki/Regional_Internet_registry). For transit of this IPv6 address space contact your existing  IPv4 peering partners who can usually provide you with IPv6 peering as well. In case they do not offer IPv6 peering it's a good idea to look for another ISP, one that can.
 
@@ -96,7 +96,7 @@ Last but not least: At this point often the question comes up whether to use ULA
 
 From my experience of using both approaches, Global Address space as well as ULA with NPT, I could not find any benefit of the ULA+NPT approach. Instead it only created more hassles and work. With this approach you now have to managed twice the amount of address space. So instead be happy that NAT is (hopefully) finally dead with IPv6 and use Global Unicast addresses.
 
-#### Step 5: Deploy IPv6 in the network
+## Step 5: Deploy IPv6 in the network
 
 Once you made it up to here, it's time to put your preparation into action. Surprisingly this step will be very easy, if you've done all your homework right. Configuring IPv6 addresses on network device interfaces is usually straight forward and configuring routing protocols - such as OSPFv3 - with IPv6 is also quite simple.
 
@@ -104,7 +104,7 @@ For Cisco IOS devices you can refer to the [IPv6 Implementation Guide](http://ww
 
 For address management in IPv6 you have different options as I described in the previous article [IPv6 Address management of hosts](/2013/11/18/ipv6-address-management-hosts/). In real life you will usually either use manual assignment of IPv6 addresses to e.g. server systems, or Stateful DHCPv6, where O(ther) and M(anaged) flags are set, while the (A)utonomous flag is unset inside the Router Announcements (RA). While address assignment via Stateless Address Auto Configuration (SLAAC) is often touted as one of the benefits of IPv6, it still requires DHCPv6 to assign DNS resolver information due to the lack of RDNSS ([RFC 6106](https://tools.ietf.org/html/rfc6106)) support in modern client OSes. This makes this approach as complicated and complex as using Stateful DHCPv6 right away.
 
-#### Step 6: Enable Network Services
+## Step 6: Enable Network Services
 
 After configuring your network components, ranging from L3 switches, over firewalls and routers to load balancers or WAN accelerators, you're almost ready to connect end-users via IPv6. What's missing are network services such as [Domain Name System](https://en.wikipedia.org/wiki/Domain_Name_System) (DNS), [Network Time Protocol](https://en.wikipedia.org/wiki/Network_Time_Protocol) (NTP), [Remote Authentication Dial In User Service](https://en.wikipedia.org/wiki/RADIUS) (RADIUS) or Microsoft Active Directory.
 
@@ -112,7 +112,7 @@ While the network services available in your network might vary and differ from 
 
 Similar to the previous step, enabling IPv6 on devices or hosts for such network services is usually straight forward once you have verified that the product in its current version actually supports IPv6.
 
-### Summary
+# Summary
 
 Hopefully you've seen that implementing IPv6 in addition to IPv4 in your network isn't that hard. A successful IPv6 implementation often comes down to the right mindset of the involved stakeholders. The team needs to realize that IPv6 is not a bolt-on to IPv4. Instead it will replace IPv4, eventually. As such you should focus on designing based on this reality and ensure that IPv6 has at least the same status as IPv4. Even if you don't change any existing equipment and services, but make sure that all new equipment and services are IPv6 capable, it's just a matter of time until your network will support IPv6.
 

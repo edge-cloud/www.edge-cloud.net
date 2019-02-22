@@ -21,7 +21,7 @@ In this post I want to show you how easy it is to use AWS OpsWorks for deploying
 
 While I use a Webhoster for running Edge Cloud, I do use the described approach to test changes to WordPress before deploying them into production. And I thereby also know that I could restore Edge Cloud as part of a Disaster Recovery (DR) plan via this approach.
 
-### About Opsworks
+# About Opsworks
 
 With the availability of AWS OpsWorks Amazon Web Services now has a number of different Application Management Services that address the different needs of Administrators and Developers (See Figure 1).
 
@@ -31,7 +31,7 @@ With the availability of AWS OpsWorks Amazon Web Services now has a number of di
 * [AWS OpsWorks](https://aws.amazon.com/opsworks/) is a powerful end-to-end solution that gives you an easy way to manage applications of nearly any scale and complexity without sacrificing control. You model, customize, and automate the entire application throughout its lifecycle. OpsWorks provides integrated experiences for IT administrators and ops-minded developers who want a high degree of productivity and control over operations.
 * [AWS CloudFormation](https://aws.amazon.com/cloudformation/) is a building block service that enables customers to provision and manage almost any AWS resource via a domain specific language. You define JSON templates and use them to provision and manage AWS resources, operating systems and application code. CloudFormation focuses on providing foundational capabilities for the full breadth of AWS, without prescribing a particular model for development and operations.
 
-### Use case
+# Use case
 
 The goal for this post will be to use AWS OpsWorks to deploy a WordPress site, automating as much of the deployment as possible. We will include two distinct use cases:
 
@@ -49,7 +49,7 @@ The deployed architecture will include:
 * **Existing Backup (Optional):** A full backup of an existing WordPress site as a Zip file in a S3 bucket.
 * **WordPress source code (Optional):** The WordPress source code - available at [www.wordpress.org](https://wordpress.org/) for a fresh install of WordPress.
 
-### Getting Started with AWS OpsWorks
+# Getting Started with AWS OpsWorks
 
 Let's head over to the AWS OpsWorks console at [console.aws.amazon.com/opsworks](https://console.aws.amazon.com/opsworks) to get started. Login with your existing AWS credentials. AWS OpsWorks itself is a global service and you therefore do not need to pick a region at this point.
 
@@ -62,7 +62,7 @@ Creating a service or application in AWS OpsWorks includes 4 steps (See Figure 3
 
 {% include figure image_path="/content/uploads/2014/02/Steps.png" caption="Figure 3: AWS OpsWorks Deployment Steps" %}
 
-### Add a stack
+## Add a stack
 
 First we will deploy a new stack, which will correspond to the WordPress application. AWS Opsworks also lets you clone an existing stack, which provides capabilities for additional interesting use cases.
 
@@ -127,7 +127,7 @@ Paste above Chef JSON code into the *Custom Chef JSON* field. Then click on **Ad
 
 This completes the creation of the stack.
 
-### Add Layers
+## Add Layers
 
 Next is the creation of the application stack layers. One for the PHP App Server layer and one for the MySQL database layer. Let's start with the PHP App Server layer.
 
@@ -190,7 +190,7 @@ Notice that each layer now has one EC2 instance associated. At this point both i
 
 {% include figure image_path="/content/uploads/2014/02/Opsworks17.png" caption="Figure 20: Successfully created instances" %}
 
-### Add an App
+## Add an App
 
 Next we need to tell AWS OpsWorks which application to run on our stack. This is done by pointing to a source code repository or file bundle. Supported repositories include Github and Subversion. The bundles can be a simple Zip file via a HTTP or HTTPS URL or a ZIP file in a S3 bucket.
 
@@ -206,7 +206,7 @@ In case you want to restore a backup from the WordPress Backup Plugin BackWPup, 
 
 This completes the configuration of the app, but also the layers and stack itself. Your new WordPress application is now ready for deployment.
 
-### Deploy your stack
+## Deploy your stack
 
 So far we have not created any EC2 instance yet, but only defined Meta data in AWS OpsWorks. In order to actually use the WordPress application, we need to deploy it by starting the layer instances.
 
@@ -226,7 +226,7 @@ In case of a fresh blank install you start with the basic configuration of the s
 
 This completes this guide on using AWS OpsWorks to deploy a fresh blank WordPress install or to recover as WordPress site as part of a Dev/Test or Disaster Recovery (DR) use case.
 
-### Shutdown and Redeploy
+# Shutdown and Redeploy
 
 You can shutdown instances and restart them if you want to take a break in your work and keep working where you left off.
 
@@ -242,6 +242,6 @@ Next delete the MySQL instance. Here select **Delete instance's EBS volumes** to
 
 Now recreate the instances as described above.
 
-### References
+# References
 
 If you want to find out more about AWS OpsWorks, have a look at the AWS re:Invent 2013 presentation [Zero to Sixty: AWS OpsWorks (DMG202)](http://www.slideshare.net/AmazonWebServices/zero-to-sixty-aws-opsworks-dmg202-aws-reinvent-2013) or the excellent [AWS OpsWorks Documentation](https://aws.amazon.com/documentation/opsworks/).

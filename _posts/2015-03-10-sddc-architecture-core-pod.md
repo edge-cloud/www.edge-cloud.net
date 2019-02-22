@@ -20,7 +20,7 @@ This article is part of a [series of articles](/2015/02/20/sddc-architecture-int
 
 {% include figure image_path="/content/uploads/2015/02/SDDC_Layers1.png" caption="Figure 1: Physical Layer in the SDDC Architecture" %}
 
-### Requirements
+# Requirements
 
 A Software Defined Data Center promises to be the new underpinning or platform for delivering today’s and tomorrow’s IT services. As such this next generation infrastructure needs to address some shortcomings of today’s infrastructure in order to be successful:
 
@@ -28,13 +28,13 @@ A Software Defined Data Center promises to be the new underpinning or platform f
   * **Hardware and Software efficiencies:** Support on-demand scaling for varying capacity needs. Improved resource pooling to drive increased utilization of resources and reduce cost.
   * **New and old business needs:** Support legacy applications with traditional business continuity and disaster recovery, besides new cloud-native applications.
 
-### Physical Layer Design Artifacts
+# Physical Layer Design Artifacts
 
 Within the Physical Layer we want to look at these design artifacts:
 
   * **POD and Core Design:** POD (Point-of-Delivery) as an atomic building block of Data Center resources, connected to a CLOS network for increased scale, agility, flexibility and resilience.
 
-#### POD and Core Design
+## POD and Core Design
 
 More and more enterprises are looking at this concept known from web-scale companies in order to streamline functions and cost, but especially to support future growth. For this they leverage a design concept called "POD and core", where data centers are build out with small chunks of equipment dedicated to different types of workloads and different capabilities. This approach, which we will here discuss further is very well suited for deployments that start small, but then grow to large-scale over time, while sticking to the same overall architecture. As a SDDC is a journey with multiple implementation phases to address maturing requirements, capabilities and demand, this approach is very suited here and therefore growing in popularity.
 
@@ -52,7 +52,7 @@ A very elegant answer to these physical network requirements is a L3 based CLOS 
 
 One of the guiding principle for such deployments is that the network virtualization solution via Overlay Networks allows to do away with any spanning of VLANs beyond a single POD. Although this appears to be a simple change, it has widespread impact on how a physical network infrastructure can be built and on how it scales. We can now use proven L3 capability - e.g. via Internet-scale proven BGP - between PODs, while restricting the L2 domain to the POD itself. This greatly reduces the size of the failure domain.
 
-### POD types
+# POD types
 
 For the SDDC we will use four kinds of pods (See Figure 4):
 
@@ -74,7 +74,7 @@ In large deployment it is advisable to split Management and Edge POD. This allow
 
 {% include figure image_path="/content/uploads/2015/03/VMWare_Pod_Design_Large1.png" caption="Figure 5 : SDDC Pod Concept for a large setup" %}
 
-### PODs and Service Levels
+# PODs and Service Levels
 
 As already mentioned it is possible to have different pods of the same type, providing different characteristics for varying requirements. As such one compute pod could e.g. be architected using full hardware redundancy for every single component (redundant power supplies through ECC memory chips) for increased availability, while at the same time, another compute pod in the same SDDC could use low-cost hardware without any hardware redundancy. With these kind of possible variations an architect is better suited to cater to the different requirements for the SDDC to cater to new and old business needs.
 
@@ -88,7 +88,7 @@ The options in detail are:
 * **Dual Attach via Port-channel:** In this case the server is connected via two (usually 10 GigE) network connections to a pair of switches. These switches must support [Multi-Chassis Link Aggregation Group (MLAG)](https://en.wikipedia.org/wiki/MC-LAG) capabilities to provide a port-channel (ideally via LACP) towards the servers. Various vendors offer data center switches that support this capability, e.g. by allowing to stack the Top-of-Rack (ToR) switches.
 * **Dual Attach via separate subnets:** The other option for Dual attaching servers is to use [multi-homing](https://en.wikipedia.org/wiki/Multihoming). Here each server is also connected via two (usually 10 GigE) network connections to two upstream switches. But in this case, the upstream leaf switches are truly separate and each offer a separate subnet towards the server. As a result the server would e.g. have two separate subnet for management capabilities available.
 
-### Summary
+# Summary
 
 This article highlighted the concept of the POD and Core design. It especially outlined how this concept fulfills our SDDC requirements:
 

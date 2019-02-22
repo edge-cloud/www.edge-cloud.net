@@ -21,7 +21,7 @@ How can your users be sure that your HTTPS protected web-site is really what it 
 
 This is where DNS-based Authentication of Named Entities (DANE) comes into the picture, adding another layer of security by tying the X.509 certificate of a website to the Domain Name System (DNS). This way you are adding a second independent channel which provides information about your X.509 certificate that a user can use to verify the rightfulness of this certificate.
 
-### Background
+# Background
 
 DNS-based Authentication of Named Entities (DANE, [RFC6698](https://tools.ietf.org/html/rfc6698)) allow [X.509 certificates](https://en.wikipedia.org/wiki/X.509), commonly used for [Transport Layer Security (TLS)](https://en.wikipedia.org/wiki/Transport_Layer_Security), to be bound to DNS names using [Domain Name System Security Extensions](https://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions) (DNSSEC). DNSSEC assures users that the information you obtain from DNS - in this case the fingerprint of the X.509 certificate came from the correct source, was complete and its integrity was not compromised during the transfer. All answers from DNSSEC protected zones are digitally signed. By checking the digital signature, a DNS resolver is able to check if the information is identical (i.e. unmodified and complete) to the information published by the zone owner and served on an authoritative DNS server (See Figure 1). Refer to [How DNSSEC works](http://www.nic.cz/page/444/how-dnssec-works/) from NIC.CZ for more information.
 
@@ -31,7 +31,7 @@ Today TLS encryption is based on certificates signed by certificate authorities 
 
 DANE enables the administrator of a domain name to certify the certificates of the domain's TLS servers by storing their fingerprint in the Domain Name System (DNS). In order to provide end-to-end security, DANE needs DNS records to be signed with DNSSEC to prevent DNS cache poisoning attacks. TLS servers that can be certified include e.g. HTTPS servers for secure web traffic but also SMTPS servers for secure mail exchange. Postfix e.g. introduced [DANE support](http://www.postfix.org/TLS_README.html#client_tls_dane), allowing to further secure an SMTP connection.
 
-### Hands-On
+# Hands-On
 
 In the rest of the article, I will show you how you can setup DANE for your own website and protect your users from Man-in-the-Middle attacks. For this the following items are needed as a pre-requisite:
 
@@ -41,7 +41,7 @@ In the rest of the article, I will show you how you can setup DANE for your own 
 
 With the above elements in place let's get started.
 
-### Registering a domain in Rage4
+# Registering a domain in Rage4
 
 We will first start by registering a new domain in Rage4. Sign in or Register with Rage4 at [https://secure.rage4.com](https://secure.rage4.com). Create a new regular domain and fill out at least the **Domain name** and **Administrator's email**. Confirm with a click on **Save** (See Figure 2).
 
@@ -49,7 +49,7 @@ We will first start by registering a new domain in Rage4. Sign in or Register wi
 
 Enter the Rage4 nameserver as the nameserver for your domain. You will have to do this with your registrar. In the case of GoDaddy you will find a row called **Nameserver** under the **Domain Settings** section of your domain. It will take between a few minutes and hours until the changes become visible in DNS.
 
-### Enabling DNSSEC
+# Enabling DNSSEC
 
 Next we will enable DNSSEC for this domain. Rage4 not only provides [hosted authoritative name services](https://rage4.com/) with a global footprint and based on Anycast, but also hosted DNSSEC capabilities, taking care of the entire lifecycle for the digital certificates utilized in the hosted zone. You only have to manually place the DS record into the parent zone. For this we will later use GoDaddy. This makes dealing with DNSSEC super simple.
 
@@ -89,7 +89,7 @@ It can take several minutes until the DS record has been updated in the *.com* z
 
 See how easy it was to setup DNSSEC with Rage4?! With that one would hope that more domains were leveraging DNSSEC.
 
-### Create records for the HTTPS server
+# Create records for the HTTPS server
 
 Now that DNSSEC is successfully working for the domain, it is time to create one or more A records for the HTTPS server, resolving e.g. https://www.examples.com and https://examples.com to an IPv4 address. If your HTTPS server supports IPv6, you can also create AAAA records.
 
@@ -101,7 +101,7 @@ Enter the *Record name* and the *Record value* (IP address) for your HTTPS webse
 
 {% include figure image_path="/content/uploads/2014/06/DNS12.png" caption="Figure 12: Create a new A record - Step 2" %}
 
-### Generate and save TLSA record
+# Generate and save TLSA record
 
 DANE uses a so-called TLSA record, which includes the fingerprint of the X.509 certificate that protects a host. First we will need to generate this TLSA record based on our webserver's public certificate. Then this TLSA record will need to be added to our DNS zone.
 
@@ -149,7 +149,7 @@ Verify the success of your API call by querying the DNS system for the created e
 
 Congratulations! Your HTTPS web server is now protected via DANE. Don't forgot to update the TLSA record in DNS in case you replace the X.509 certificate of your website.
 
-### Validating DANE protected sites
+# Validating DANE protected sites
 
 Protecting a HTTPS web site via DANE will be pointless unless the user verifies the data presented by the TLS connection with the data present in DNS. In the previous step you have already seen how to look up the certificate fingerprint stored in DNS via dig. In the above example the fingerprint is *3A7D64AD0D61F7EC2236261307744CCB7FE8A01AFE59377ADB04C8DE3DE3040A*.
 
@@ -172,7 +172,7 @@ With the TSLA validator plugin installed you will now be able to identify whethe
 
 In this example the green closed lock symbol indicates that the X.509 certificate has been successfully validated via DANE.
 
-### Securing this blog with DANE
+# Securing this blog with DANE
 
 I would love to secure this blog with DANE in order to make the web a more secure place. Unfortunately I'm not able to do so as I use [CloudFlare](https://www.cloudflare.com/) to deliver this blog. Doing so I'm forced to use CloudFlare as DNS service, which unfortunately [neither supports DNSSEC](https://support.cloudflare.com/hc/en-us/articles/201440054-Does-CloudFlare-support-DNSSEC-) nor TSLA records.
 

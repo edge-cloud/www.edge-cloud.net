@@ -21,17 +21,17 @@ In this post I will present an architecture design recommendation for using VMwa
 
 Afterwards we will shed some light on whether it is currently possible to implement such design with VMware vSphere 5.x, or not and what could be interim steps.
 
-### Motivation
+# Motivation
 
 I have come across various cases where customers want to use IPv6 with VMware vSphere. Unfortunately the question about the desired use case for IPv6, or the question about what components or features of vSphere should be used with IPv6 is often answered with: "All of it!". Such an approach is unrealistic at this point and will most likely not lead to any success in using IPv6 with vSphere. As sad as it is, but IPv6 is not yet en par with IPv4 when it comes to product support. Most vendors - and [VMware is one of them](/2013/08/07/ipv6-link-local-addresses-as-default-gateway/) - lag behind IPv4 with their IPv6 support today. Instead let's shed some light on the reasons of why one would want to use VMware vSphere with IPv6 and how to design - potentially in a phased approach - an architecture design to fulfill the use case needs.
 
-### Use Cases
+# Use Cases
 
 Before we dive into the use cases for IPv6 with VMware vSphere, let's ensure we understand that VMware vSphere as a platform has a very well defined purpose: Provide the ability to host virtual machines (VMs) - servers and desktops - and offer them necessary resources (compute, storage and network) from a shared pool.
 
 With this we will quickly arrive at our first and most important use case:
 
-#### Use Case 1: Providing IPv6 access to guest VMs / tenants
+## Use Case 1: Providing IPv6 access to guest VMs / tenants
 
 Virtual machines running on a VMware vSphere environment are typically "owned" by an internal or external stakeholder and serve a well defined purpose. This can reach from hosting an application on one or multiple server to providing a remote desktop. These VMs also typically require some kind of network access as part of their duty. Here the requirement for IPv6 is driven by the owner of the VM - potentially a customer of our virtualization platform - who wants to or needs to leverage IPv6 for the specific use case of the application. It is also possible that despite any current demand, we need to proactively provide IPv6 connectivity for VMs, so that application owners can plan ahead and incorporate IPv6 capabilities into their offerings.
 
@@ -39,11 +39,11 @@ The second use case is derived from the fact the actual platform to host virtual
 
 With this we arrive at our second use case:
 
-#### Use Case 2: Using IPv6 for management to save IPv4 addresses for production usage
+## Use Case 2: Using IPv6 for management to save IPv4 addresses for production usage
 
 The idea here is that IPv4 addresses - whether public or private ([RFC1918](https://tools.ietf.org/html/rfc1918)) - are treated as a precious commodity, thus reserving it for where it is really badly needed. One such place could be the customer or tenant networks that host (public facing) applications. All other non essential networks with only a support function - such as internal management - should be freed up from the precious commodity and use IPv6 instead. Such an approach might eventually led to the concept of a [IPv6-only data center](https://ripe64.ripe.net/presentations/67-20120417-RIPE64-The_Case_for_IPv6_Only_Data_Centres.pdf).
 
-### vSphere Cluster
+# vSphere Cluster
 
 Before we dive into the individual design components let's recall how a vSphere Cluster is typically designed when it comes to a network-centric perspective. Such a cluster usually includes up to 5 groups of network types - some internal only to the cluster, some leaving the cluster (See Figure 1):
 
@@ -55,11 +55,11 @@ Before we dive into the individual design components let's recall how a vSphere 
 * **Storage Network:** In the case that a network based storage solution - such as NFS or iSCSI - is used, this network carries the storage traffic between a central storage array and the ESXi servers within a vSphere cluster. All major network vendors recommend that this network doesn't extend beyond a L2 boundary and is therefore not routed. The storage network often remains local to the vSphere cluster only, with the storage array assigned to the specific cluster. Also there might be multiple storage networks per cluster, depending on how many storage arrays are used.
 * **VMotion / FT Network:** This network is used for VMotion and/or Fault Tolerance (FT) traffic between the ESXi hosts. It is highly recommended that this network also doesn't extend beyond a L2 boundary and is therefore not routed. Instead it is local to a vSphere cluster only.
 
-### Design Components
+# Design Components
 
 Now we will have a closer look at our use cases again with the above typical vSphere Cluster setup in mind.
 
-#### Phase 1
+## Phase 1
 
 Let's start with the use case of providing IPv6 access to guest VMs / tenants, being the more crucial one and therefore the one to tackle first.
 
@@ -79,7 +79,7 @@ A slight modification of the above setup comes into play when overlay networks -
 
 {% include figure image_path="/content/uploads/2014/03/Tenant_IPv6_Advanced.png" caption="Figure 3: Advanced network connectivity for VMs" %}
 
-#### Phase 2
+## Phase 2
 
 Next we will look at the use case of using IPv6 for management to save IPv4 addresses for production usage. In this case all management traffic leaving the vSphere cluster needs to be IPv6, while all traffic remaining within the cluster can remain IPv4. The reason for not having to move everything to IPv6 is that traffic such as VMotion will not only stay within the vSphere cluster but is anyways not routed beyond the cluster boundaries. It is therefore no problem to re-use the same IP address range for e.g. VMotion in all clusters or even re-use the same IP range outside of the VMware vSphere setup for completely different purposes.
 
@@ -96,7 +96,7 @@ The VXLAN Transport Network usually not only needs to span an overlay network wi
 
 {% include figure image_path="/content/uploads/2014/03/VXLAN_VTEP.png" caption="Figure 4: VXLAN transport traffic between vSphere cluster" %}
 
-### Final Architecture
+# Final Architecture
 
 The final proposed architecture would cover both presented use cases - potentially in a phased approach - and look as follows (See Figure 5):
 
@@ -116,7 +116,7 @@ Other:
 
 {% include figure image_path="/content/uploads/2014/02/ArchitectureDesignVsphereWithIpv6AddressTypeMapping.png" caption="Figure 5 : Architecture Design for vSphere 5.x with IPv6 - Protocol mapping" %}
 
-### Reality
+# Reality
 
 Now that we have a solid design for a vSphere setup with IPv6, let's have a look if this can actually be implemented today:
 
@@ -134,6 +134,6 @@ Other:
 * **Storage Network:** While we stated that this traffic can remain IPv4-only, it is possible to use both iSCSI (at least via the software initiator) as well as NFS via IPv6. Unfortunately doing so is considered experimental or not even supported [depending on your vSphere version](http://kb.vmware.com/kb/1021769). Unfortunately this also highlights the dilemma that some features might appear to "work" with IPv6, but their full breadth hasn't been tested by VMware's engineering organization, which in return means that the feature is not officially supported by [VMware GSS](https://www.vmware.com/support/services.html)
 * **VMotion / FT Network:** Here we also stated that this traffic can remain IPv4-only. But also here it is possible to use at least VMotion over a IPv6-only network and it even appears to be supported.
 
-### Summary
+# Summary
 
 Today it is unfortunately not possible to implement the full IPv6 for vSphere architecture design above. Only parts of it can be implemented with a greatly reduced functionality set. If IPv6 with vSphere is for you greatly depends on your use case and what functionality you are willing to give up.
