@@ -21,7 +21,7 @@ In this case the status page for my RIPE Atlas probe showed me in plain English 
 
 {% include figure image_path="/content/uploads/2019/02/ATT_RIPE_Warning.png" caption="Figure 1: RIPE Atlas showing that IPv6 isn't working properly" %}
 
-# Stable and cooperating targets
+# Measurement targets
 
 The RIPE Atlas error message talks about "stable and cooperating targets (i.e. targets known to respond to pings)". Looking at the built-in measurements, we can see that these targets include some of the [root name server](https://www.iana.org/domains/root/servers). The root name servers are a authoritative name server for the root zone (".") of the Domain Name System (DNS) of the Internet. Due to the important role of these name servers to the overall DNS architecture, these servers are implemented in a highly reliable way, using e.g. [Anycast](https://en.wikipedia.org/wiki/Anycast), making them stable anchor points throughout different international locations.
 

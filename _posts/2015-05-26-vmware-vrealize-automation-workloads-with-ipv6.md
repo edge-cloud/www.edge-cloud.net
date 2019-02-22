@@ -111,7 +111,7 @@ If desired it is possible to run additional services (e.g. load balancer, firewa
 
 **Pro:** Regain advanced possibilities for network design within a blueprint / architecture, while allowing address assignment to all VMs via DHCPv6 and/or SLAAC. Leverage SP-proven network concepts to treat applications like customer networks.
 
-**Con:** Need to engineer and maintain a 3rd party virtual router based on a standard Linux distribution </li>
+**Con:** Need to engineer and maintain a 3rd party virtual router based on a standard Linux distribution.
 
 ## Route profile with vRA workflow based address assignment
 
@@ -121,7 +121,7 @@ On the other hand, this approach would allow to use all of the NSX Edge based ne
 
 **Pro:** Ability to use the NSX based Edge device as router and for network services
 
-**Con:** Requirement to manage IPv6 addresses statically and maintain IPv6 prefix pools manually. Need to custom develop missing software capabilities via custom workflows in vRA. </ul>
+**Con:** Requirement to manage IPv6 addresses statically and maintain IPv6 prefix pools manually. Need to custom develop missing software capabilities via custom workflows in vRA.
 
 One important thing to keep in mind: Any of the L2 network transport capabilities (vDS, vSS, VXLAN) in vSphere will transport IPv6 traffic. This is different from e.g. AWS, where network segments that look like L2 (e.g. VPC subnet) are not actually L2 and will filter out any kind of IPv6 traffic. The focus of the workaround is therefore almost exclusively on the L3 element.
 {: .notice}

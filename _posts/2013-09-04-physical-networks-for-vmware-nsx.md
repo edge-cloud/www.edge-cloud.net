@@ -33,15 +33,15 @@ Today's network architects have to face the following challenges while designing
 
 ## Fault containment
 
-[Spanning Tree](https://en.wikipedia.org/wiki/Spanning_Tree_Protocol) is widely considered a risky technology and for many network engineers it's hard to master it within their data center network and maintain a stable network. IP routing on the other side, while also not trivial to implement, at least provides much better fault isolation in the case that something does go wrong. Simplified speaking: Using IP routing (L3) over switching (L2) increases the chance of not blowing away the entire data center network if something goes wrong. </li>
+[Spanning Tree](https://en.wikipedia.org/wiki/Spanning_Tree_Protocol) is widely considered a risky technology and for many network engineers it's hard to master it within their data center network and maintain a stable network. IP routing on the other side, while also not trivial to implement, at least provides much better fault isolation in the case that something does go wrong. Simplified speaking: Using IP routing (L3) over switching (L2) increases the chance of not blowing away the entire data center network if something goes wrong.
 
 ## Traffic isolation and multi-tenant security
 
-Modern data centers - especially in the cloud age - cater to multiple tenants at the same time. Not only does this require separation of network traffic between various tenants, but also separation of tenant traffic from management or storage traffic. The last a data center operator wants, are customers digging into data of other customers. With tenants and workloads changing regularly, it should be able to change this traffic isolation within minutes or second and not days or hours.</li>
+Modern data centers - especially in the cloud age - cater to multiple tenants at the same time. Not only does this require separation of network traffic between various tenants, but also separation of tenant traffic from management or storage traffic. The last a data center operator wants, are customers digging into data of other customers. With tenants and workloads changing regularly, it should be able to change this traffic isolation within minutes or second and not days or hours.
 
 ## Redundancy and efficiency
 
-Last but not least an enterprise class data center network needs to support mission critical workloads. Therefore it needs to have redundancy built-in to support high availability, while at the same time this build-in redundancy shouldn't be wasted but instead be used in normal operations. Reducing the throughput in a hardware failure scenario is usually a more efficient approach than keeping excess connections in place that only become available during a failure. Here spanning tree by design disables redundant links while routing supports [Equal-cost multi-path routing (ECMP)](https://en.wikipedia.org/wiki/Equal-cost_multi-path_routing), where packet forwarding to a single destination can occur over multiple "best paths".</li> </ul>
+Last but not least an enterprise class data center network needs to support mission critical workloads. Therefore it needs to have redundancy built-in to support high availability, while at the same time this build-in redundancy shouldn't be wasted but instead be used in normal operations. Reducing the throughput in a hardware failure scenario is usually a more efficient approach than keeping excess connections in place that only become available during a failure. Here spanning tree by design disables redundant links while routing supports [Equal-cost multi-path routing (ECMP)](https://en.wikipedia.org/wiki/Equal-cost_multi-path_routing), where packet forwarding to a single destination can occur over multiple "best paths".
 
 # NSX to the rescue?
 

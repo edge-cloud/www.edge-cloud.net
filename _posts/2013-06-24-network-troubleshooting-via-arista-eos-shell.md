@@ -60,7 +60,7 @@ The capture PCAP file can be opened directly in Wireshark as shown in Figure 1:
 
 {% include figure image_path="/content/uploads/2013/06/Capture03.png" caption="Figure 1: PCAP file captured via Arista EOS shell in Wireshark" %}
 
-### Throughput testing with iperf
+# Throughput testing with iperf
 
 In the previous blog post [<em>Measuring Network Throughput</em>](https://www.edge-cloud.net/2013/06/07/measuring-network-throughput/), I already showcased how to use iperf to measure the TCP throughput between two hosts. The good news: Arista EOS has iperf pre-installed. You can therefore use an Arista device to perform network throughput tests for TCP and UDP.
 
@@ -84,7 +84,7 @@ It can later be undone via:
 Also keep in mind, that this command will not survive a reboot of the switch.
 Next you have the option to run iperf either in server or client mode.
 
-#### iperf Server mode
+## iperf Server mode
 
 Press Ctrl + C to exit the server mode.
 
@@ -98,7 +98,7 @@ Press Ctrl + C to exit the server mode.
     [  4]  0.0-10.3 sec  89.6 MBytes  72.9 Mbits/sec
     ^C[user@las-core01a ~]$
 
-#### iperf Client Mode
+## iperf Client Mode
 
     [user@ams-core01a ~]$ iperf -c las-core01a.edge-cloud.net
     ------------------------------------------------------------
@@ -120,6 +120,6 @@ In the above example we didn't specify the TCP window size, but used the standar
 
 That should be more than sufficient for most TCP performance test, even across WANs.
 
-### Outlook
+# Outlook
 
 This was just a simple example on how to use the Arista EOS shell in daily network operations. In the end the Linux powered EOS shell gives almost endless opportunities for usage. What would you use it for?

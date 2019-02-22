@@ -41,7 +41,7 @@ In the rest of the article, I will show you how you can setup DANE for your own 
 
 With the above elements in place let's get started.
 
-# Registering a domain in Rage4
+## Registering a domain in Rage4
 
 We will first start by registering a new domain in Rage4. Sign in or Register with Rage4 at [https://secure.rage4.com](https://secure.rage4.com). Create a new regular domain and fill out at least the **Domain name** and **Administrator's email**. Confirm with a click on **Save** (See Figure 2).
 
@@ -49,7 +49,7 @@ We will first start by registering a new domain in Rage4. Sign in or Register wi
 
 Enter the Rage4 nameserver as the nameserver for your domain. You will have to do this with your registrar. In the case of GoDaddy you will find a row called **Nameserver** under the **Domain Settings** section of your domain. It will take between a few minutes and hours until the changes become visible in DNS.
 
-# Enabling DNSSEC
+## Enabling DNSSEC
 
 Next we will enable DNSSEC for this domain. Rage4 not only provides [hosted authoritative name services](https://rage4.com/) with a global footprint and based on Anycast, but also hosted DNSSEC capabilities, taking care of the entire lifecycle for the digital certificates utilized in the hosted zone. You only have to manually place the DS record into the parent zone. For this we will later use GoDaddy. This makes dealing with DNSSEC super simple.
 
@@ -89,7 +89,7 @@ It can take several minutes until the DS record has been updated in the *.com* z
 
 See how easy it was to setup DNSSEC with Rage4?! With that one would hope that more domains were leveraging DNSSEC.
 
-# Create records for the HTTPS server
+## Create records for the HTTPS server
 
 Now that DNSSEC is successfully working for the domain, it is time to create one or more A records for the HTTPS server, resolving e.g. https://www.examples.com and https://examples.com to an IPv4 address. If your HTTPS server supports IPv6, you can also create AAAA records.
 
@@ -101,7 +101,7 @@ Enter the *Record name* and the *Record value* (IP address) for your HTTPS webse
 
 {% include figure image_path="/content/uploads/2014/06/DNS12.png" caption="Figure 12: Create a new A record - Step 2" %}
 
-# Generate and save TLSA record
+## Generate and save TLSA record
 
 DANE uses a so-called TLSA record, which includes the fingerprint of the X.509 certificate that protects a host. First we will need to generate this TLSA record based on our webserver's public certificate. Then this TLSA record will need to be added to our DNS zone.
 
@@ -115,7 +115,7 @@ The generated TLSA record could be used directly with a modern version of ISC BI
 
 {% include figure image_path="/content/uploads/2014/06/DNS14.png" caption="Figure 14: Retrieve the generated TLSA record" %}
 
-Unfortunately Rage4 doesn't support adding TLSA records to a domain via the Web GUI yet. TLSA records are an experimental feature and are only supported via the API. We therefore need to use a REST client against [Rage4's API](https://gbshouse.uservoice.com/knowledgebase/articles/109834-rage4-dns-developers-api) to complete this step. I will show you how to do this via the [Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?hl=en-US) for Chrome. But any other REST client should work as well in a similar way.
+Unfortnately Rage4 doesn't support adding TLSA records to a domain via the Web GUI yet. TLSA records are an experimental feature and are only supported via the API. We therefore need to use a REST client against [Rage4's API](https://gbshouse.uservoice.com/knowledgebase/articles/109834-rage4-dns-developers-api) to complete this step. I will show you how to do this via the [Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?hl=en-US) for Chrome. But any other REST client should work as well in a similar way.
 
 **Note:** In the meantime Rage4 has added support for TSLA records via their Web GUI. Instead of using the API you can therefore now create the entry via the Web GUI.
 {: .notice}
