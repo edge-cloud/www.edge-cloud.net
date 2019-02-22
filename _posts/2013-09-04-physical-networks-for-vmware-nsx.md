@@ -15,6 +15,7 @@ tags:
   - Network
   - NSX
   - VMware
+toc: true
 ---
 During [VMWorld 2013](https://www.vmworld.com/community/sessions/2013) the network virtualization platform [VMware NSX](http://www.vmware.com/products/nsx.html) was announced by VMware. While there is a plethora of information available on how NSX works or what benefits it brings to the table, the answer on how NSX affects the physical infrastructure remains mostly untouched. Even during various VMWorld presentations this design piece was only covered under the term "Enterprise-class data center network". Let's have a look at how the physical underpinning should look like, beyond of what the VMware Network Virtualization Design Guide already states.
 
