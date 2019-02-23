@@ -48,7 +48,7 @@ Let's look at each of these steps in more detail.
 
 ## Step 1: Training and Education
 
-While IPv6 is very similar to IPv4, it is still different enough to stumble at times. An example for this is the functionality of [automatic address assignment](/ipv6-address-management-hosts/) via DHCPv6, which is quite different from DHCP in the IPv4 world.
+While IPv6 is very similar to IPv4, it is still different enough to stumble at times. An example for this is the functionality of [automatic address assignment](/2013/11/18/ipv6-address-management-hosts/) via DHCPv6, which is quite different from DHCP in the IPv4 world.
 
 Therefore it is very important to train and educate the involved technical stakeholders in an IPv6 implementation project. Ensuring that network architects, engineers and support staff not only know the theory of IPv6, but at least had some hands-on experience in a lab setup, is crucial to the overall success.
 
