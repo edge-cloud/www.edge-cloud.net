@@ -34,24 +34,24 @@ On a first look at the GUI it doesn't appear that the F5 Big-IP supports IPv6 ad
 
 Although this appears to be a bit awkward at first sight, it will turn out to be much less of a hassle quite quickly: [RFC 5375 (IPv6 Unicast Address Assignment Considerations)](https://tools.ietf.org/html/rfc5375) strongly recommends that in IPv6 the subnet prefix length should always be /64. With that we only need to convert this subnet prefix length of /64 into the legacy style netmask notation.
 
-Using the [mechanism known from IPv4](https://en.wikipedia.org/wiki/Subnetwork), the IPv6 subnet mask for a /64 network would therefore be FFFF:FFFF:FFFF:FFFF:0000:0000:0000:0000 or in short FFFF:FFFF:FFFF:FFFF::. Especially the first notation lets us quickly verify that this netmask is correct:
+Using the [mechanism known from IPv4](https://en.wikipedia.org/wiki/Subnetwork), the IPv6 subnet mask for a /64 network would therefore be `FFFF:FFFF:FFFF:FFFF:0000:0000:0000:0000` or in short `FFFF:FFFF:FFFF:FFFF::`. Especially the first notation lets us quickly verify that this netmask is correct:
 
 IPv6 addresses are 128 bit long. If we want to mask out a subnet with the length of 64 bit, this would require us to mask out half of the bits. With the previously mentioned notation of eight groups of four hexadecimal digits separated by colons, this translates into the four first groups being FFFF in hex, which translates to all 1s in binary. And the remaining four groups being all zeros.
 
-**Note:** In older versions of Big-IP, F5 has a bug that doesn't allow you to use address shortening via double-colons ("::") through the GUI or tmsh. Instead all IPv6 addresses need to be written out. Thus the address 20BA:DD06:F00D:1234::11 would need to become 20BA:DD06:F00D:1234:0:0:0:11.
+**Note:** In older versions of Big-IP, F5 has a bug that doesn't allow you to use address shortening via double-colons ("::") through the GUI or tmsh. Instead all IPv6 addresses need to be written out. Thus the address `20BA:DD06:F00D:1234::11` would need to become `20BA:DD06:F00D:1234:0:0:0:11`.
 {: .notice}
 
 # Configuration
 
 ## Configure the external interface for IPv6
 
-In a first step we need to assign an IPv6 address to the external interface of the F5 Big-IP load balancer. In this example we will use the two IPv6 addresses 20BA:DD06:F00D:1234::11/64 and 20BA:DD06:F00D:1234::12/64 for the actual nodes and 20BA:DD06:F00D:1234::10/64 as the floating address.
+In a first step we need to assign an IPv6 address to the external interface of the F5 Big-IP load balancer. In this example we will use the two IPv6 addresses `20BA:DD06:F00D:1234::11/64` and `20BA:DD06:F00D:1234::12/64` for the actual nodes and `20BA:DD06:F00D:1234::10/64` as the floating address.
 
 Let's start by creating a new Self-IP under the **Network -> Self IPs** tab.
 
 {% include figure image_path="/content/uploads/2013/08/Self-IPs1_HL.png" caption="Figure 2: Create new Self-IP" %}
 
-Next enter the IPv6 address for the individual node as the IP address, along with the Netmask of FFFF:FFFF:FFFF:FFFF::. Repeat the same for the second node in an HA setup.
+Next enter the IPv6 address for the individual node as the IP address, along with the Netmask of `FFFF:FFFF:FFFF:FFFF::`. Repeat the same for the second node in an HA setup.
 
 {% include figure image_path="/content/uploads/2013/08/Self-IPs2.png" caption="Figure 3: Use an IPv4-style subnet mask for the IPv6 address instead of the typical prefix length" %}
 

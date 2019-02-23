@@ -52,7 +52,7 @@ While IPv6 is very similar to IPv4, it is still different enough to stumble at t
 
 Therefore it is very important to train and educate the involved technical stakeholders in an IPv6 implementation project. Ensuring that network architects, engineers and support staff not only know the theory of IPv6, but at least had some hands-on experience in a lab setup, is crucial to the overall success.
 
-A good start for IPv6 related training is the [6deploy IPv6 e-learning package](http://www.6deploy.eu/e-learning/english/). Other valuable resources are the [ARIN IPv6 wiki](https://getipv6.info/display/IPv6/Educating+Yourself+about+IPv6), the [RIPE IPv6 Act Now](https://www.ripe.net/publications/ipv6-info-centre/) page or [APNIC's Training](https://training.apnic.net/home) page.
+A good start for IPv6 related training is the [6deploy IPv6 e-learning package](http://www.6deploy.eu/e-learning/english/). Other valuable resources are the [ARIN IPv6 wiki](https://getipv6.info/display/IPv6/Educating+Yourself+about+IPv6), the [RIPE IPv6 Act Now](https://www.ripe.net/publications/ipv6-info-centre/) page or [APNIC's Training](https://training.apnic.net/) page.
 
 ## Step 2: Network Audit
 

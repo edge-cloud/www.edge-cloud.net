@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: Install the VMware NSX plugin into the vSphere OpenStack Virtual Appliance (VOVA) for a setup including VMware vSphere, VMware NSX and OpenStack.
 layout: single
 permalink: /2014/02/08/openstack-vsphere-nsx-part-6/
-redirect_from: 
+redirect_from:
   - /2014/02/08/openstack-vsphere-nsx-part-6/amp/
 image: /wp-content/uploads/2014/01/VC_Plugin_05.png
 categories:
@@ -292,6 +292,6 @@ You can run this script directly from VOVA. As VOVA is based on [Ubuntu](https:/
 
 Congratulation! We successfully looked behind the scenes into VMware vSphere to see what’s happening during the operation of OpenStack on vSphere. We also installed the VMware vCenter Plugin for Openstack to gain more insight into OpenStack from vSphere, as well as used some of the well-known enterprise-class benefits of vSphere – such as VMotion – along with OpenStack. Furthermore we took a glimpse at how to use OpenStack’s legendary APIs to automate the deployment of a VM. This completes the [series](https://www.edge-cloud.net/2013/12/12/openstack-vsphere-nsx/ "OpenStack with vSphere and NSX") on OpenStack with vSphere and NSX.
 
-If you are at [VMware Partner Exchange (PEX)](https://www.vmworld.com/en/us/programs/partner-exchange.html) from February 10-13 2014, head over to the Hands-On Labs and check out the lab "HOL-SDC-1320 - OpenStack on VMware vSphere" in order to get hands-on experience with the setup described in this setup. After PEX this lab will also become available for general usage within the [VMware Hands-On labs](http://labs.hol.vmware.com/). Check it out!
+If you are at [VMware Partner Exchange (PEX)](https://www.vmworld.com/en/us/programs/partner-exchange.html) from February 10-13 2014, head over to the Hands-On Labs and check out the lab "HOL-SDC-1320 - OpenStack on VMware vSphere" in order to get hands-on experience with the setup described in this setup. After PEX this lab will also become available for general usage within the VMware Hands-On labs.
 
 Also if you want to learn more about using OpenStack with VMware vSphere, have a look at the VMware whitepaper "[Getting Started with OpenStack and VMware vSphere](http://blogs.vmware.com/vsphere/2014/01/getting-started-with-openstack-and-vmware-vsphere-white-paper.html)".
