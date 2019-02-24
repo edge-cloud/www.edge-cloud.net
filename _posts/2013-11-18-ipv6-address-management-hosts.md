@@ -22,7 +22,7 @@ While IPv4 knew the address management mechanism of None, Manual and DHCP, IPv6 
 
   * 1. None
   * 2. Manual
-  * 3. Stateless Address Auto Configuration (SLAAC) ([RFC 4862](https://tools.ietf.org/search/rfc4862))
+  * 3. Stateless Address Auto Configuration (SLAAC) ([RFC 4862](https://tools.ietf.org/html/rfc4862))
       * 3.1 Nameserver configured manually
       * 3.2 Nameserver via RDNSS ([RFC 6106](https://tools.ietf.org/html/rfc6106))
       * 3.3 Nameserver via DHCPv6 ([RFC 3736](https://tools.ietf.org/html/rfc3736))
@@ -76,7 +76,7 @@ Configuration of a manual IPv6 address is done in Ubuntu 13.10 via the file `/et
 
 ## 3. Stateless Address Auto Configuration (SLAAC)
 
-The next mechanism is completely unknown in IPv4 and therefore new to IPv6. Stateless Address Auto Configuration (SLLAC) is a mechanism described in [RFC 4862](https://tools.ietf.org/search/rfc4862), which uses ICMPv6 packets to let routers in a network regularly announce the configured IPv6 prefix. Upon receiving of such an ICMPv6 packet - called Router Advertisement (RA), hosts will automatically generate an IPv6 address based on their own MAC address and this prefix. The mechanism is called "Stateless" as it doesn't require any state to be kept within the router to avoid IPv6 address collision. Prevention of collisions is solely achieved by utilizing a modified [EUI-64 mechanism](https://en.wikipedia.org/wiki/MAC_address).
+The next mechanism is completely unknown in IPv4 and therefore new to IPv6. Stateless Address Auto Configuration (SLLAC) is a mechanism described in [RFC 4862](https://tools.ietf.org/html/rfc4862), which uses ICMPv6 packets to let routers in a network regularly announce the configured IPv6 prefix. Upon receiving of such an ICMPv6 packet - called Router Advertisement (RA), hosts will automatically generate an IPv6 address based on their own MAC address and this prefix. The mechanism is called "Stateless" as it doesn't require any state to be kept within the router to avoid IPv6 address collision. Prevention of collisions is solely achieved by utilizing a modified [EUI-64 mechanism](https://en.wikipedia.org/wiki/MAC_address).
 
 Figure shows how such a Router Advertisement packet looks like in Wireshark. We can clearly see the advertised prefix as well as the prefix length.
 
