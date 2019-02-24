@@ -25,7 +25,7 @@ script:
     then JEKYLL_ENV=production bundle exec jekyll build --config _config.yml;
     else bundle exec jekyll build --config _config.yml --future --drafts;
     fi
-  - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
+  - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999"
 deploy:
   - provider: s3
     edge:

@@ -25,7 +25,7 @@ toc: true
 
 Cumulus Networks provides a standard [Linux based operating system for data center switches](https://cumulusnetworks.com/what-we-do/), thus simplifying dramatically the data center operations. If you are familiar with running and operating Linux on a regular server, managing a Cumulus Network based switch shouldn't be a big challenge for you. Also you can now finally leverage the hundreds of existing management, automation and monitoring tools that you know and love for Linux. [Cumulus Networks Virtual Experience (VX)](https://cumulusnetworks.com/cumulus-vx/) is a community-supported virtual appliance that enables cloud admins and network engineers to preview and test Cumulus Networks technology at zero cost inside a virtual machine or standard X86 server.
 
-Ravello Systems provides a [Smart Labs](https://www.ravellosystems.com/solutions/virtual-networking-labs) solution on top of AWS and Google Compute Engine (GCE) based on [nested virtualization](https://www.ravellosystems.com/technology/nested-virtualization). This allows you to run self-contained lab "capsules" with almost any kind of VMware or KVM based virtual machine in them. This approach - proven for years with the VMWorld labs - now allows you to use modern public clouds for test, training and demo purposes at a minimal cost. Specific for networking lab cases Ravello Systems provides [virtual L2 networking](https://www.ravellosystems.com/technology/software-defined-network) on top of both AWS and GCE, allowing you to simulate very complex network scenarios.
+Ravello Systems provides a [Smart Labs](https://www.ravellosystems.com/solutions/virtual-networking-labs) solution on top of AWS and Google Compute Engine (GCE) based on [nested virtualization](https://cloud.oracle.com/ravello/technology/virtualization). This allows you to run self-contained lab "capsules" with almost any kind of VMware or KVM based virtual machine in them. This approach - proven for years with the VMWorld labs - now allows you to use modern public clouds for test, training and demo purposes at a minimal cost. Specific for networking lab cases Ravello Systems provides [virtual L2 networking](https://cloud.oracle.com/en_US/ravello/technology/overlay-network) on top of both AWS and GCE, allowing you to simulate very complex network scenarios.
 
 # Architecture
 
@@ -37,7 +37,7 @@ The architecture will include two spine switches (spine1 and spine2) as well as 
 
 # Getting Started
 
-Before you can get started you need an account for Ravello Systems. You can conveniently [sign-up](https://www.ravellosystems.com/ravello-free-signup/) for a free trial account. This account will allow you to use Ravello for free for 14 days. You do not need a credit card or any existing cloud credentials with AWS or GCE.
+Before you can get started you need an account for Ravello Systems. You can conveniently [sign-up](https://www.ravellosystems.com/) for a free trial account. This account will allow you to use Ravello for free for 14 days. You do not need a credit card or any existing cloud credentials with AWS or GCE.
 
 Next we need to download the Cumulus Networks VX images in [QCOW2 format](https://cumulusnetworks.com/cumulus-vx/download/thanks/kvm/). This image will later be imported into Ravello Systems.
 

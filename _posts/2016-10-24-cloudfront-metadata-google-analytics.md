@@ -101,13 +101,13 @@ Within your existing CloudFront distribution create an additional origin with th
 
 {% include figure image_path="/content/uploads/2016/10/Analytics_05.png" alt="Figure 5: Additional CloudFront origin" caption="Figure 5: Additional CloudFront origin" %}
 
-Under "Behavior" of the distribution create a path pattern for a path that your are not using, e.g. "/cdn-cgi/edge-info", while specifying the API Gateway origin.
+Under "Behavior" of the distribution create a path pattern for a path that your are not using, e.g. `/cdn-cgi/edge-info`, while specifying the API Gateway origin.
 
 Disable caching on this path by setting Minimum TTL, Maximum TTL, and Default TTL to 0 (See Figure 6).
 
 {% include figure image_path="/content/uploads/2016/10/Analytics_06.png" alt="Figure 6: CloudFront behavior for custom path pattern" caption="Figure 6: CloudFront behavior for custom path pattern" %}
 
-After the update to the CloudFront distribution has been completed you should find the following text information under the ["/cdn-cgi/edge-info"](https://www.edge-cloud.net/cdn-cgi/edge-info) URL:
+After the update to the CloudFront distribution has been completed you should find the following text information under the `/cdn-cgi/edge-info` URL:
 
     ipver=IPv6
     httpver=2.0

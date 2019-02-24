@@ -63,7 +63,7 @@ This use case includes the following requirements:
 |TCP Segmentation Offload (TSO) over IPv6|*Yes*|*Yes*|*Yes*|Only supported by [VMXNET3 vNIC](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1001805). Not supported by [E1000 vNIC](http://kb.vmware.com/kb/1009548).|
 |Guest Customization (Sysprep)|No|No|*Yes*|No support to join Active Directory via IPv6 in vSphere 6.0. [Certain limitations](http://kb.vmware.com/kb/2105648) apply.|
 |**Virtual Switch (vSS/vDS)**|   |   |   |   |
-|Multicast support|*Yes*|*Yes*|*Yes*|[Snooping modes supported](http://pubs.vmware.com/vsphere-60/topic/com.vmware.vsphere.networking.doc/GUID-97724211-5167-428F-A217-871963A7DFF7.html): IGMPv1, IGMPv2, IGMPv3 for IPv4, MLDv1 and MLDv2 for IPv6 supported.|
+|Multicast support|*Yes*|*Yes*|*Yes*|[Snooping modes supported](https://docs.vmware.com/en/VMware-vSphere/6.0/com.vmware.vsphere.networking.doc/GUID-97724211-5167-428F-A217-871963A7DFF7.html): IGMPv1, IGMPv2, IGMPv3 for IPv4, MLDv1 and MLDv2 for IPv6 supported.|
 
 ### vCNS / NSX-v
 
@@ -152,7 +152,7 @@ The management use case assumes that the operator of the virtual infrastructure 
 |vStorage APIs for Array Integration (VAAI)|No support, but may work|No support, but may work|**Yes**|Could work in vSphere 5.1 and 5.5, if the vendor provides an IPv6-capable VAAI plugin. NetApp provides an [IPv6 capable VAAI plugin](https://library.netapp.com/ecmdocs/ECMP1368924/html/GUID-33CA873C-D4FC-4D96-AFFA-6DFD95337032.html). This combination would not be supported by VMware in vSphere 5.1 or vSphere 5.5. It is supported in vSphere 6.0 for both NFS and iSCSI.|
 |APIs for Storage Awareness (VASA) / Virtual Volumes (VVols)|No|No|No| |
 |**Virtual Storage Area Network (vSAN)**| | | | |
-|Transport between storage nodes|No|No|No|Virtual SAN does not support [IPv6 as transport mechanism](http://pubs.vmware.com/vsphere-55/index.jsp?topic=%2Fcom.vmware.vsphere.storage.doc%2FGUID-8408319D-CA53-4241-A3E4-70057F70030F.html) between nodes.|
+|Transport between storage nodes|No|No|No|Virtual SAN does not support [IPv6 as transport mechanism](https://docs.vmware.com/en/VMware-vSphere/5.5/com.vmware.vsphere.storage.doc/GUID-8408319D-CA53-4241-A3E4-70057F70030F.html) between nodes.|
 |**Availability**| | | | |
 |Fault Tolerance (FT)|No|No|**Yes**| |
 |High Availability (HA)|**Yes**|**Yes**|**Yes**|vSphere HA supports both IPv4 and IPv6. A cluster that mixes the use of both of these protocol versions, however, is more likely to [result in a network partition](http://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.avail.doc_50%2FGUID-BA85FEC4-A37C-45BA-938D-37B309010D93.html).|
