@@ -16,7 +16,7 @@ toc: true
 ---
 It happens to the best: Sometimes a web server just goes down. Ideally you would have redundancy in place for this case, with a second (or even more) web server(s) mirroring your page. But redundancy doesn't come for free: It's costly and might end up being complicated. Therefore you sometimes have no other choice, but to rely on a single origin web server for your web site. Especially when using a web hosting company you rely on whatever redundancy you are provide or more than often not provided with.
 
-Nevertheless you do not want to display just nothing or a nondescript error page to your website users, when the hopefully rare moment hits and your web server does go down. One interesting approach is [Dyn's Social Failover](https://help.dyn.com/) capability, which reroutes your web traffic to your Twitter feed, Facebook page, or another URL of your choice, in case your web server goes down.
+Nevertheless you do not want to display just nothing or a nondescript error page to your website users, when the hopefully rare moment hits and your web server does go down. One interesting approach is [Dyn's Social Failover](https://help.dyn.com/understanding-social-failover/) capability, which reroutes your web traffic to your Twitter feed, Facebook page, or another URL of your choice, in case your web server goes down.
 
 # Using CloudFlare
 
