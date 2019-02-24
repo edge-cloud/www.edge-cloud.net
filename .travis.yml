@@ -46,6 +46,7 @@ deploy:
   - provider: firebase
     token: $FIREBASE_TOKEN
     project: www-edge-cloud-net
+    skip_cleanup: true
     on:
       branch: master
   - provider: pages
