@@ -64,15 +64,15 @@ reCaptcha:
 atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : true # true, false (default)
-search_full_content      : # true, false (default)
-search_provider          : # lunr (default), algolia, google
+search_full_content      : true # true, false (default)
+search_provider          : algolia # lunr (default), algolia, google
 algolia:
-  application_id         : # YOUR_APPLICATION_ID
-  index_name             : # YOUR_INDEX_NAME
-  search_only_api_key    : # YOUR_SEARCH_ONLY_API_KEY
+  application_id         : 5XVQIGEDJ8 # YOUR_APPLICATION_ID
+  index_name             : edge-cloud-net # YOUR_INDEX_NAME
+  search_only_api_key    : 4e0733cbaacd194a6cf59b61024f966f # YOUR_SEARCH_ONLY_API_KEY
   powered_by             : # true (default), false
 google:
-  search_engine_id       : 016218765712503179891:mmrgpsj8qr # YOUR_SEARCH_ENGINE_ID
+  search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
 # SEO Related
 google_site_verification : ZPKuOb9ie7OuRgxLoRK2REKxFW6bC0_7VaNFcTNQQxM
@@ -87,7 +87,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : "/assets/images/edgecloud.png" # Open Graph/Twitter default site image
+og_image                 : "/assets/images/og-image.jpg" # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -99,7 +99,7 @@ social:
 
 # Analytics
 analytics:
-  provider               : "custom" # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "google-gtag" # false (default), "google", "google-universal", "google-gtag", "custom"
   google:
     tracking_id          : "UA-39076327-2"
     anonymize_ip         : # true, false (default)
@@ -217,6 +217,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+  - jekyll-redirect-from
   - jekyll-target-blank
 
 # mimic GitHub Pages with --safe
@@ -273,6 +274,7 @@ defaults:
       type: posts
     values:
       layout: single
+      permalink: /:year/:month/:day/:title/
       author_profile: true
       read_time: false
       comments: # true

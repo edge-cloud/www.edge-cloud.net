@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: An Amazon Alexa Skill for San Francisco Muni, that can be used with the Amazon Echo or FireTV
 layout: single
 permalink: /2016/10/10/amazon-alexa-skill-san-francisco-muni/
-redirect_from: 
+redirect_from:
   - /2016/10/10/amazon-alexa-skill-san-francisco-muni/amp/
 categories:
   - EdgeCloud
@@ -25,7 +25,7 @@ You will be able to use this Alexa skill from a standard [Amazon Echo](http://am
 
 Once everything is up and running you will be able to ask your Echo device "Alexa, ask Muni for the next train" for which it will then e.g. reply with "The next metros are N in 6 minutes, KT in 9 minutes, and N in 16 minutes."
 
-## Pre-Requisites
+# Pre-Requisites
 
 Before you get started, here is what you need:
 
@@ -35,7 +35,7 @@ Before you get started, here is what you need:
 
 It is also highly recommended that you have used Amazon AWS before and that you have basic coding skills.
 
-## Source code and customization
+# Source code and customization
 
 You can find all necessary source code for this custom skill on [GitHub](https://github.com/chriselsen/Alexa_NextMuni).
 
@@ -104,7 +104,7 @@ You can lookup the SF Muni stop IDs via the NextBus API, e.g. for the [K/T line]
 
 Also, you will also need to update the custom slot types for [TRANSIT_LINE](https://github.com/chriselsen/Alexa_NextMuni/blob/master/speechAssets/customSlotTypes/TRANSIT_LINE) in the *"speechAssets"* directory with your Muni lines.
 
-## Creating the AWS Lambda Function for a Custom Skill
+# Creating the AWS Lambda Function for a Custom Skill
 
 First you need to create the AWS Lambda Function for your custom skill in Amazon AWS. Refer to the Alexa documentation [Creating an AWS Lambda Function for a Custom Skill](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/developing-an-alexa-skill-as-a-lambda-function) for a detailed walk through of this process.
 
@@ -153,7 +153,7 @@ After the Lambda function has been created successfully, note down the ARN, whic
 
 This complete the creation of the AWS Lambda function.
 
-## Setting up the custom Alexa Skill
+# Setting up the custom Alexa Skill
 
 Next we will need to setup a custom Alexa Skill that interacts with the AWS Lambda function above. For this login to your [Amazon Developer Account](https://developer.amazon.com/edw/home.html#/skills/list) and navigate to the Alexa Skills Kit section.
 
@@ -194,7 +194,7 @@ Don't fill out the sections *Publishing Information* and *Privacy & Compliance*,
 
 You are now able to start using the skill on your device! You can also go to your Echo companion webpage [http://echo.amazon.com/#skills](http://echo.amazon.com/#skills) and see the skill enabled.
 
-## Using the Alexa Skill
+# Using the Alexa Skill
 
 There are two main capabilities that this Alexa Skill will provide you:
 
@@ -219,7 +219,7 @@ Q: "Alexa, ask Muni if there is a problem with the 45 bus."
 A: "There is currently no service message for the outbound 45 buses."
 {: .notice}
 
-## Limitations
+# Limitations
 
 Please keep in mind that the prediction data for the next buses and metros, but also the service messages come from [NextBus](https://www.nextbus.com) via their [API](https://www.nextbus.com/xmlFeedDocs/NextBusXMLFeed.pdf). The service messages are provided by [SF Muni](https://www.sfmta.com/) to NextBus.
 
@@ -229,6 +229,6 @@ Unfortunately providing these service messages to NextBus is a manual step for M
 
 Also predictions for buses and metros at the beginning of a line - which is the case of the N, 30 and 45 in my case - are rather less reliable.
 
-## Summary
+# Summary
 
 This post showed you how to create your own custom Amazon Alexa Skill to get next bus and next metro information for San Francisco's Muni. You can use this custom Alexa Skill with an Amazon Echo or Fire TV device.

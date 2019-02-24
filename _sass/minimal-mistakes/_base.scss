@@ -271,6 +271,8 @@ figcaption {
   font-family: $caption-font-family;
   font-size: $type-size-6;
 
+  padding-right: 25%;
+
   a {
     -webkit-transition: $global-transition;
     transition: $global-transition;
