@@ -26,7 +26,7 @@ In this example incoming text messages are forwarded via E-Mail to a configurabl
 
 # Flowroute text message API documentation
 
-You can find more details on the Flowroute API documentation for receiving inbound text messages at [https://developer.flowroute.com/docs/inbound-messages](https://developer.flowroute.com/docs/inbound-messages).
+You can find more details on the Flowroute API documentation for receiving inbound text messages at [https://developer.flowroute.com/](https://developer.flowroute.com/).
 
 Note that you need:
 * A Flowroute phone number added to the Direct Inward Dialing page, which will receive the text message.
@@ -178,7 +178,7 @@ Remove the current data in the *Input test event* window and replace it with thi
       "httpMethod": "POST"
     }
 
-This test event data is derived from the [Flowroute Messaging API documentation](https://developer.flowroute.com/docs/inbound-messages) and is an example for what Lambda will receive from AWS API Gateway.
+This test event data is derived from the [Flowroute Messaging API documentation](https://developer.flowroute.com/) and is an example for what Lambda will receive from AWS API Gateway.
 
 Execute the test by selecting **Save and test** (See Figure 13).
 
