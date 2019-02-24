@@ -20,6 +20,7 @@ install:
   - gem install html-proofer
   - bundle install
 script:
+  - ALGOLIA_API_KEY=$ALGOLIA_KEY bundle exec jekyll algolia
   - if [[ $TRAVIS_BRANCH == "master" ]];
     then JEKYLL_ENV=production bundle exec jekyll build --config _config.yml;
     else bundle exec jekyll build --config _config.yml --future --drafts;
