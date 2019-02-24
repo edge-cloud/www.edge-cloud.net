@@ -1,6 +1,9 @@
+sudo: false
 language: ruby
+cache: bundler
 rvm:
-  - 2.3.1
+  - 2.5.3
+bundler_args: --without development
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
@@ -11,36 +14,39 @@ addons:
     packages:
     - libcurl4-openssl-dev
 install:
-  - sudo pip install awscli
-  - gem install jekyll
+  - pip install --user awscli
+  - pip install --user s3cmd
   - gem install bundler
-  - gem install mdl
   - gem install html-proofer
-  - gem install rdiscount
   - bundle install
 script:
+  - ALGOLIA_API_KEY=$ALGOLIA_KEY bundle exec jekyll algolia
   - if [[ $TRAVIS_BRANCH == "master" ]];
     then JEKYLL_ENV=production bundle exec jekyll build --config _config.yml;
     else bundle exec jekyll build --config _config.yml --future --drafts;
     fi
-#  - mdl -r ~MD002,~MD013,~MD033 ./_posts
-#  - htmlproofer ./_site --url-ignore "/www.edge-cloud.net/,/www.linkedin.com/" --disable-external
+  - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
 deploy:
   - provider: s3
+    edge:
+      source: chriselsen/dpl
+      branch: edge-cloud
     region: us-west-2
     acl: public_read
+    max_threads: 25
     bucket: www.edge-cloud.net
     local_dir: _site
-    cache_control:
-      - "max-age=2592000":
-        - "*.css"
-        - ".js"
-        - "*.png"
-        - ".jpg"
-      - "no-cache"
-    # expires: "2030-12-31 00:00:00 -0000"
+    cache_control: "\"public, max-age=31536000\": *.jpg, *.gif, *.png, *.webp, *.css, *.js, *.ico"
+    #expires: "\"2030-12-31 00:00:00 -0000\": *.jpg, *.gif, *.png, *.webp, *.css, *.js, *.ico"
+    expires: "\"`date -u +\"%Y-%m-%d %H:%M:%S -0000\" --date \"next Year\"`\": *.jpg, *.gif, *.png, *.webp, *.css, *.js, *.ico"
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
+    skip_cleanup: true
+    on:
+      branch: master
+  - provider: firebase
+    token: $FIREBASE_TOKEN
+    project: www-edge-cloud-net
     skip_cleanup: true
     on:
       branch: master
@@ -53,5 +59,6 @@ deploy:
     on:
       branch: dev
 after_deploy:
+ # - "if [[ $TRAVIS_BRANCH == \"master\" ]]; then s3cmd --access_key=$AWS_ACCESS_KEY_ID --secret_key=$AWS_SECRET_ACCESS_KEY --add-header=\"Cache-Control: public, max-age=31536000\" --add-header=\"Expires:`date -u +\"%a, %d %b %Y %H:%M:%S GMT\" --date \"next Year\"`\" --acl-public --recursive --exclude \"*\" --rinclude \".*\\.(?:jpg|gif|png|webp|css|js|ico)\" modify s3://www.edge-cloud.net; fi"
   - if [[ $TRAVIS_BRANCH == "master" ]]; then aws configure set preview.cloudfront true; fi
   - if [[ $TRAVIS_BRANCH == "master" ]]; then aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"; fi

@@ -6,7 +6,7 @@ author: Christian Elsen
 excerpt: How to use AWS Lambda and API Gateway to push visitor IP version, HTTP version and edge location information into Google Analytics.
 layout: single
 permalink: /2016/10/24/cloudfront-metadata-google-analytics/
-redirect_from: 
+redirect_from:
   - /2016/10/24/cloudfront-metadata-google-analytics/amp/
 image: /wp-content/uploads/2016/10/Analytics_07.png
 categories:
@@ -27,7 +27,7 @@ All necessary code can be found on [GitHub](https://github.com/chriselsen/AWSLam
 
 In a [previous post](https://www.edge-cloud.net/2016/02/05/rum-light-with-cloudflare/) I've already shown how to achieve a similar outcome while using [CloudFlare](https://www.cloudflare.com).
 
-### Google Analytics Custom Dimensions
+# Google Analytics Custom Dimensions
 
 In Google Analytics [custom dimensions](https://support.google.com/analytics/answer/2709828) are like the default [dimensions](https://support.google.com/analytics/answer/1033861), except that you have to fill them with data.
 
@@ -37,9 +37,9 @@ In this case we will need to create three custom dimensions. Each will store dif
   * **HTTP-Version:** This dimension will store the values "2.0", "1.1", or "1.0".
   * **Edge-Location:** This dimension will store the three letter [IATA airport code](https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code) of the CloudFront edge location, e.g. "SFO" for San Francisco.
 
-### Setup 
+# Setup
 
-#### Create custom dimensions in Google Analytics
+## Create custom dimensions in Google Analytics
 
 First, set up the custom dimensions in Google Analytics:
 
@@ -47,9 +47,9 @@ First, set up the custom dimensions in Google Analytics:
   2. Select the **Admin** tab and navigate to the **property to which you want to add custom dimensions**.
   3. In the **Property** column, click **Custom Definitions**, then click **Custom Dimensions**.
   4. Click **New Custom Dimension**.
-  5. Add a **Name**. 
+  5. Add a **Name**.
   This can be any string, but use something unique so it’s not confused with any other dimension or metric in your reports. Only you will see this name in the Google Analytics page.
-  6. Select the **Scope**. 
+  6. Select the **Scope**.
   Choose to track at the Hit, Session, User, or Product level. For this scenario I recommend to choose Hit or rather Session.
   7. Check the **Active** box to start collecting data and see the dimension in your reports right away. To create the dimension but have it remain inactive, uncheck the box.
   8. Click **Create**.
@@ -57,7 +57,7 @@ First, set up the custom dimensions in Google Analytics:
 
 {% include figure image_path="/content/uploads/2016/10/Analytics_01.png" alt="Figure 1: Create Google Analytics Custom Dimensions" caption="Figure 1: Create Google Analytics Custom Dimensions" %}
 
-#### AWS Lambda Setup
+## AWS Lambda Setup
 
 We will use a small [AWS Lambda](https://aws.amazon.com/lambda/) script to extract the information about CloudFront edge location, IP version, and HTTP version from incoming requests.
 
@@ -73,7 +73,7 @@ The HTTP-Version information can be extracted from the ["Via"](https://www.w3.or
 
 The edge location can be determined with a reverse DNS lookup, based on the source IP address that Amazon API Gateway sees from CloudFront.
 
-#### API Gateway Setup
+## API Gateway Setup
 
 Next we need to make the above AWS Lambda function accessible via a URL. This can easily be done using [Amazon API Gateway](https://aws.amazon.com/api-gateway/). To simplify the setup you can use a prepared [swagger formatted](http://swagger.io/) file, which can be found on [GitHub](https://github.com/chriselsen/AWSLambda_CloudFrontMetaData/blob/master/CloudWatchMetaData-swagger.json).
 
@@ -89,7 +89,7 @@ Deploy the newly created API into the "Prod" stage and lookup the "Invoke URL" (
 
 {% include figure image_path="/content/uploads/2016/10/Analytics_04.png" alt="Figure 4: Invoke URL of the deployed API" caption="Figure 4: Invoke URL of the deployed API" %}
 
-#### Cloudfront Setup
+## Cloudfront Setup
 
 Next you need to place CloudFront in front of the API Gateway URL as the API Gateway neither supports HTTP/2 nor IPv6 at this point. Therefore we need to rely on CloudFront for this task.
 
@@ -113,7 +113,7 @@ After the update to the CloudFront distribution has been completed you should fi
     httpver=2.0
     edgeloc=sfo
 
-#### Embed the Google Analytics Tracking Code
+## Embed the Google Analytics Tracking Code
 
 Next we need to update the Google Analytics tracking code within the website, in order to fill the newly created custom dimensions with data. This tracking code has to be placed between the code for creating the Google Analytics tracker, which looks like this: `gaTracker('create','UA-12345678-1','auto');`, and the code to submit the tracker, which looks like this `gaTracker('send','pageview');`.
 
@@ -125,7 +125,7 @@ Embedded the code from [here](https://github.com/chriselsen/AWSLambda_CloudFront
 
 A few hours after embedding the code you should see your first custom dimension data in Google Analytics.
 
-### Use the custom dimension in Google Analytics
+# Use the custom dimension in Google Analytics
 
 Now you can use the newly created custom in Google Analytics to find out interesting information about your visitors:
 
@@ -143,8 +143,8 @@ You could look at the top CloudFront edge locations serving your side (See Figur
 
 While having a look at which cities your IPv6 enabled visitors are coming from, you will notice that AWS CloudFront has not yet completed the turn up of all ASNs (See Figure 10).
 
-{% include figure image_path="/content/uploads/2016/10/Analytics_10-1.png" alt="Figure 10: Location of IPv6 visitors" caption="Figure 10: Location of IPv6 visitors" %}
+{% include figure image_path="/content/uploads/2016/10/Analytics_10.png" alt="Figure 10: Location of IPv6 visitors" caption="Figure 10: Location of IPv6 visitors" %}
 
-### Summary
+# Summary
 
 This article has shown you, that you can easily built your own Real User Monitoring system with Google Analytics Custom dimensions, some simple JavaScript code and AWS Lambda. It allows you to extract many interesting metrics out of your CloudFront usage and make it available in Google Analytics for further data analysis.

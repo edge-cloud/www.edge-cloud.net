@@ -44,6 +44,14 @@
     gtag('event', 'ipver', {'ipver': objData('ipver')});
     gtag('event', 'httpver', {'httpver': objData('httpver')});
     
+    var buttons = document.getElementsByClassName("share-button");
+
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", function handleOutboundLinkClicks(event) {
+        gtag('event', 'share', { method: event.target.href });
+      });
+    }
+    
   </script>
 
 <!-- end custom analytics snippet -->

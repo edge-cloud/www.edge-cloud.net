@@ -12,10 +12,11 @@ categories:
 tags:
   - Architecture
   - SDDC
+toc: true
 ---
-This article is part of a [series of articles](https://www.edge-cloud.net/2015/02/20/sddc-architecture-introduction/), focusing on the architecture of an SDDC via VMware Validated Designs.
+This article is part of a [series of articles](/2015/02/20/sddc-architecture-introduction/), focusing on the architecture of an SDDC via VMware Validated Designs.
 
-### Requirements
+# Requirements
 
 A Software Defined Data Center promises to be the new underpinning or platform for delivering today’s and tomorrow’s IT services. As such this next generation infrastructure needs to address some shortcomings of today’s infrastructure in order to be successful:
 
@@ -23,21 +24,15 @@ A Software Defined Data Center promises to be the new underpinning or platform f
   * **Hardware and Software efficiencies:** Support on-demand scaling for varying capacity needs. Improved resource pooling to drive increased utilization of resources and reduce cost.
   * **New and old business needs:** Support legacy applications with traditional business continuity and disaster recovery, besides new cloud-native applications.
 
-### Conceptual Design
+# Conceptual Design
 
-This solution assumes that two [regions](https://www.edge-cloud.net/2015/07/31/sddc-architecture-regions-and-availability-zones-azs/) exist. Under normal circumstances each region consists of an Software Defined Data Center (SDDC) installation, where components of the [virtual infrastructure layer](https://www.edge-cloud.net/2015/02/20/sddc-architecture-introduction/) exist independently in both regions for the [Management and Compute stack](https://www.edge-cloud.net/2015/09/09/sddc-architecture-mapping-of-logical-components-to-physical-location/).
+This solution assumes that two [regions](/2015/07/31/sddc-architecture-regions-and-availability-zones-azs/) exist. Under normal circumstances each region consists of an Software Defined Data Center (SDDC) installation, where components of the [virtual infrastructure layer](/2015/02/20/sddc-architecture-introduction/) exist independently in both regions for the [Management and Compute stack](/2015/09/09/sddc-architecture-mapping-of-logical-components-to-physical-location/).
 
 The management applications VMware vRealize Automation together with VMware vRealize Orchestrator and VMware vRealize Operations only exist in the primary region, while they manage and monitor resources in both regions. In a case of a failure these applications will be failed over to the secondary location, using VMware Site Recovery Manager (SRM).
 
 For all other management applications a dedicated instance needs to exist per region. This includes vRealize Log Insight, of which a dedicated instance exists in both regions (See Figure 1).
 
-<div id="attachment_1860" style="width: 610px" class="wp-caption aligncenter">
-  <a href="/content/uploads/2015/09/BCDR03.png"><img src="/content/uploads/2015/09/BCDR03-600x171.png" alt="Figure 1: Disaster Recovery Conceptual Design" width="600" height="171" class="size-large wp-image-1860" srcset="/content/uploads/2015/09/BCDR03-600x171.png 600w, /content/uploads/2015/09/BCDR03-350x100.png 350w, /content/uploads/2015/09/BCDR03.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
-
-  <p class="wp-caption-text">
-    Figure 1: Disaster Recovery Conceptual Design
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2015/09/BCDR03.png" caption="Figure 1: Disaster Recovery Conceptual Design" %}
 
 This underlying design limits the management components that need to be moved between the failed primary region and the secondary region in case of a failure of the primary region. At the same time it ensures that under normal circumstance both regions can provide sufficient services in an active/active manner. The design also ensure that the excess capacity that needs to be available for accepting a failed-over workload is kept to a minimum.
 
@@ -45,13 +40,13 @@ After a failure of either region, the overall SDDC management capabilities are s
 
 We will look at BC/DR capabilities for the workloads of the SDDC separately.
 
-### Disaster Recovery Design Example
+# Disaster Recovery Design Example
 
 Within this example, the SDDC includes two locations: A protected "Region A" in San Francisco, CA and a "Region B" for recovery purposes in Los Angeles. VMware's Site Recovery Manager (SRM) provides a solution for automating the creation and execution of a disaster recovery plan or workflows between these two regions for the above described management applications.
 
 Region A initially hosts the management application virtual machine workloads, that are being protected. As such this region is referred to as the "protected region".
 
-### Logical Design
+# Logical Design
 
 Dedicated network connectivity must exist between Region A and Region B, so that data from Region A can be replicated to Region B using VMware vSphere Replication, but also so that VMware Site Recovery Manager can coordinate the failover.
 
@@ -62,29 +57,17 @@ The vCenter Server design includes a total of two virtual vCenter Server systems
   * VMware vCenter Server Management / Region A: Located within the Region A data center to provide management of the primary management cluster and integration with Site Recovery Manager.
   * VMware vCenter Server Management / Region B: Located within the Region B data center to provide management of the recovery management cluster and integration with Site Recovery Manager.
 
-<div id="attachment_1857" style="width: 610px" class="wp-caption aligncenter">
-  <a href="/content/uploads/2015/09/BCDR05.png"><img src="/content/uploads/2015/09/BCDR05-600x274.png" alt="Figure 2: Site Recovery Manager Logical Design" width="600" height="274" class="size-large wp-image-1857" srcset="/content/uploads/2015/09/BCDR05-600x274.png 600w, /content/uploads/2015/09/BCDR05-350x160.png 350w, /content/uploads/2015/09/BCDR05.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
+{% include figure image_path="/content/uploads/2015/09/BCDR05.png" caption="Figure 2: Site Recovery Manager Logical Design" %}
 
-  <p class="wp-caption-text">
-    Figure 2: Site Recovery Manager Logical Design
-  </p>
-</div>
-
-### Network Design
+# Network Design
 
 Physically moving a service from one region to another represents a networking challenge. Additional complexities can be introduced if applications have hard-coded IP addresses. Network addressing space and IP address assignment design considerations require that you choose to use either the same IP address or different IP address within the recovery region.
 
-While protecting typical 3 tier web applications, this problem [can be simplified](https://www.edge-cloud.net/2015/08/31/sddc-architecture-vpods-for-management-applications/) by leveraging a load balancer to separate between a public reachable network segment, and a private network segment. On the public network segment, the web application is accessible via one or more virtual IP (VIP) addresses, while the inner working of the application are "hidden" on the isolated private network segment. Following this approach it is possible to treat the internal private network segment as a VLAN or VXLAN island without the requirement to change the IPv4 subnet between regions during a failover. Solely the external IPv4 address of the load balancer VIP changes between regions.
+While protecting typical 3 tier web applications, this problem [can be simplified](/2015/08/31/sddc-architecture-vpods-for-management-applications/) by leveraging a load balancer to separate between a public reachable network segment, and a private network segment. On the public network segment, the web application is accessible via one or more virtual IP (VIP) addresses, while the inner working of the application are "hidden" on the isolated private network segment. Following this approach it is possible to treat the internal private network segment as a VLAN or VXLAN island without the requirement to change the IPv4 subnet between regions during a failover. Solely the external IPv4 address of the load balancer VIP changes between regions.
 
 After a failover the recovered service is available under a different IPv4 address (VIP), which requires DNS entries to be changed. This can easily be accomplished in an automated manner (See Figure 3).
 
-<div id="attachment_1858" style="width: 610px" class="wp-caption aligncenter">
-  <a href="/content/uploads/2015/09/BCDR07.png"><img src="/content/uploads/2015/09/BCDR07-600x327.png" alt="Figure 3: Logical SDDC Network Design for cross region deployment with Management application network container" width="600" height="327" class="size-large wp-image-1858" srcset="/content/uploads/2015/09/BCDR07-600x327.png 600w, /content/uploads/2015/09/BCDR07-350x191.png 350w, /content/uploads/2015/09/BCDR07.png 1400w" sizes="(max-width: 600px) 100vw, 600px" /></a>
-
-  <p class="wp-caption-text">
-    Figure 3: Logical SDDC Network Design for cross region deployment with Management application network container
-  </p>
-</div>
+{% include figure image_path="/content/uploads/2015/09/BCDR07.png" caption="Figure 3: Logical SDDC Network Design for cross region deployment with Management application network container" %}
 
 The vSphere Management networks (Figure 3, grey network) between SDDC regions have to be interconnected via VPN or MPLS. Various options exist for accomplishing such a cross-connect, ranging from VMware NSX Edge devices with IPSec VPN to various hardware based network products.
 
@@ -98,6 +81,6 @@ It is assumed that Active Directory and DNS services are running at both the pri
 
 Furthermore it is recommended to use the NSX DNS server functionality within a vPOD to provide DNS server capabilities to the nodes within the vPOD. This way each node leverages the NSX Edge of the vPOD as DNS resolver. This NSX Edge in return leverages a local DNS server as resolver.
 
-### Summary
+# Summary
 
 Using the here described BC/DR strategy for the Software Defined Data Center (SDDC), not only simplifies the setup of the resource protection itself, but also simplifies the [operation of the actual failover](/2015/08/31/sddc-architecture-vpods-for-management-applications/). Especially the concept of the previously introduced [network container](/2015/08/31/sddc-architecture-vpods-for-management-applications/) helps a lot in this scenario.

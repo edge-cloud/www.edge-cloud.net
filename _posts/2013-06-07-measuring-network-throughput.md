@@ -9,6 +9,7 @@ excerpt: |
 layout: single
 permalink: /2013/06/07/measuring-network-throughput/
 redirect_from:
+  - /2013/06/measuring-network-throughput/
   - /2013/06/07/measuring-network-throughput/amp/
 image: /wp-content/uploads/2013/06/SlidingWindow.png
 categories:
@@ -22,7 +23,7 @@ The topic of measuring network throughput between network devices comes up quite
 
 Let's have a look behind the scenes of network throughput measurement and understand why users are often actually measuring something completely different, but also how to get more "performance" out of these connections.
 
-### Sliding window protocols
+# Sliding window protocols
 
 Most user utilize software based on the [Transmission Control Protocol (TCP)](https://en.wikipedia.org/wiki/Transmission_Control_Protocol) for measuring the network throughput. It is very important to keep in mind that TCP is a [sliding window protocol](https://en.wikipedia.org/wiki/Sliding_window_protocol).
 
@@ -36,7 +37,7 @@ Looking at Figure 1 it should become clear that while increasing the value of th
 
 The propagation time t<sub>prop</sub> for a TCP packet can be determined by measuring the round-trip-time (RTT) of a packet. Here the round-trip-time is twice the propagation time for synchronous links. This can e.g. be done via the well known tool *ping*. The TCP window size is determined by the operating system. During a connection the receiver can also adapt the TCP Window Size - in both directions - if the situation changes due to packet loss or buffer fill levels.
 
-### Bandwidth-delay Product and buffer size
+# Bandwidth-delay Product and buffer size
 
 Now that we have identified the two most important variables for the performance of TCP based data transfers, let's look at the math behind the sliding window concept:
 
@@ -70,7 +71,7 @@ Irrelevant of the actual link speed between the two sites above we will not be a
 
 If you get tired of performing the math manually, have a look at the [TCP throughput calculator](https://www.switch.ch/network/tools/tcp_throughput/) from switch.ch.
 
-### Limit of TCP Windows field in the protocol header
+# Limit of TCP Windows field in the protocol header
 
 The TCP window size field within the TCP header is 16 bit and therefore cannot be expanded beyond 64K. How is it then possible to specify a TCP window size higher than 64K? That's where [RFC 1323](https://www.ietf.org/rfc/rfc1323.txt) defines a scaling factor, which allows scaling up to larger window sizes and thereby enables TCP tuning. This method increases the maximum window size from 65,535 bytes to 1 gigabyte.
 
@@ -80,7 +81,7 @@ Here is a problem: Some routers and packet firewalls rewrite the window scaling 
 
 {% include figure image_path="/content/uploads/2013/06/WiresharkWindowScale.png" caption="Figure 3: TCP Window scale in Wireshark" %}
 
-### Hands-On Tests
+# Hands-On Tests
 
 Now it's time to verify above's theory in practice: For this we will use the tool [Iperf](https://iperf.fr/), which is widely available on Linux. On Ubuntu you can e.g. install Iperf with `sudo apt-get install iperf`.
 
@@ -158,7 +159,7 @@ Again, the result is what we would expect from the theory and math in the previo
 
 Be advised that there is a limit to this approach: If you keep doubling the TCP window size, you will at one point reach the buffer limits of your OS and therefore not experience any additional performance gains anymore.
 
-#### Real "bandwidth" tests
+## Real "bandwidth" tests
 
 **Warning!** You should perform "bandwidth" tests of your links only when they are not in use. Otherwise your results will not be meaningful. Also, while I show you how to use UDP to determine the bandwidth of a link, this protocol does not bring any form of congestion control. While this is a good thing for measuring the bandwidth on an un-utilized link, you will starve out other traffic on a utilized link. You will basically cause a denial of service attack on the link. Therefore proceed with uttermost care!
 {: .notice--danger}
@@ -205,7 +206,7 @@ We now see that the throughput result of 47.8 Mbit/s is almost 10x of the throug
 
 Again, be advised that there is a limit to this approach: While you can keep increasing the number of parallel tests, there is a limit on how many parallel TCP streams your host can handle. At one point you will therefore not see a performance improvement anymore.
 
-### Time to bring out the big guns: UDP
+# Time to bring out the big guns: UDP
 
 So far we have only been able to verify that we can transfer with rates of about 47.8 Mbit/s between sender and receiver in our example. While this is already a huge increase to the 2.77 Mbit/s that we measured originally, it still falls short of the 100 Mbit/s that we should be getting.
 
@@ -246,7 +247,7 @@ Don't forget to kill these processes once you are done!
 
 On the sender side we will start two tests at exactly the same time. One test with Iperf in TCP mode. And another test with Iperf in UDP mode, again asking it to attempt to sent 110 Mbit/s of traffic. To showcase better the effect of UDP traffic flooding a link we will ask Iperf to run 10 UDP test in parallel. Make sure to start both tests at the same time:
 
-###### UDP Test
+## UDP Test
 
     user@sender:~$ iperf -c receiver.edge-cloud.net -u -b 110m -P 10
     ------------------------------------------------------------
@@ -318,7 +319,7 @@ On the sender side we will start two tests at exactly the same time. One test wi
 
 Adding together the throughput of the 10 UDP connections we get a total throughput of 76.331 Mbit/s.
 
-###### TCP Test
+## TCP Test
 
     user@sender:~$ iperf -c las-mgmt-ubu01.vmwcs.com
     ------------------------------------------------------------
@@ -335,11 +336,11 @@ Finally we have been able to confirm that our available bandwidth between sender
 
 It should also become clear that using a pure UDP based data transfer protocol on a shared link is a really bad idea.
 
-### Solutions to improve throughput
+# Solutions to improve throughput
 
 We have seen that increasing the TCP Window Size on the receiver side helps increasing the throughput that is possible with a single TCP stream. Unfortunately it is not possible to tweak this TCP Window Size on all Receivers for the encountered latency for all downloads. That is especially the case as increasing the TCP Window Size also brings drawbacks.
 
-#### WAN Optimization Controller
+## WAN Optimization Controller
 
 Instead network architects usually deploy a pair of specialized devices - called WAN Optimization Controller (WOC) within the network stream. Placed as close as possible to server and client of the stream they act like a proxy in front of the actual server. While these WOC devices also utilize other improvement capabilities, one of their main capabilities is using an optimized transport mechanism with an increased TCP Window size between the.
 
@@ -347,7 +348,7 @@ Instead network architects usually deploy a pair of specialized devices - called
 
 One vendor offering such devices is Silver Peak, which offers An interesting tool with its [Throughput Calculator](https://www.silver-peak.com/calculator/throughput-calculator) from Silver Peak. Similar to the tool from Switch.ch, it will show you the maximum transfer speed that is possible with a given RTT and packet loss rate, while assuming a default TCP window size of 64K. in addition it will also show you the throughput that would be possible over the same link using a Silver Peak WOC pair.
 
-#### Content Distribution Networks (CDN)
+## Content Distribution Networks (CDN)
 
 While we can indeed not change the laws of physics to decrease the RTT in our equation, one could use other methods to decrease the RTT. One such method would be the usage of Content Distribution Network (CDN) to place the server from which a user wants to download a file closer to this user, thus reducing the RTT.
 
@@ -355,6 +356,6 @@ While we can indeed not change the laws of physics to decrease the RTT in our eq
 
 Instead of requesting a file from e.g Los Angeles while being in Munich, Germany, the file could be requested from a CDN node in Frankfurt, Germany. This would reduce the RTT from e.g. ~170 ms to ~4 ms. This is often used by companies and organizations to deliver large software downloads. One such example is [VMware's software download site using Akamai's CDN](https://my.vmware.com/web/vmware/downloads).
 
-#### UDP-based file transfer
+## UDP-based file transfer
 
 Last but not least I would like to point out that there are in fact UDP based file transfer solutions out there, such as the one from [Asperasoft](http://asperasoft.com). They overcome the "dangers" of UDP with smartly using a TCP channel for congestion control. Yet at the same time the transfer limit of this pure protocol is bound by the actual link bandwidth. WOC on the other hand usually utilize additional optimization techniques beside TCP window adjustment, giving you effective throughput higher than the maximum link bandwidth. See the previously mentioned Silver Peak calculator for examples.
