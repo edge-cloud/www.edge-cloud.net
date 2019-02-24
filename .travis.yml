@@ -17,14 +17,14 @@ install:
   - pip install --user awscli
   - pip install --user s3cmd
   - gem install bundler
-#  - gem install html-proofer
+  - gem install html-proofer
   - bundle install
 script:
   - if [[ $TRAVIS_BRANCH == "master" ]];
     then JEKYLL_ENV=production bundle exec jekyll build --config _config.yml;
     else bundle exec jekyll build --config _config.yml --future --drafts;
     fi
-#  - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
+  - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
 deploy:
   - provider: s3
     edge:
