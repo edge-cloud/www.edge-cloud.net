@@ -43,6 +43,11 @@ deploy:
     skip_cleanup: true
     on:
       branch: master
+  - provider: firebase
+    token: $FIREBASE_TOKEN
+    project: www-edge-cloud-net
+    on:
+      branch: master
   - provider: pages
     local-dir: _site
     repo: edge-cloud/edge-cloud.github.io
