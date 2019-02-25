@@ -34,7 +34,7 @@ deploy:
       branch: debug-orig
     region: us-west-2
     acl: public_read
-    max_threads: 25
+#    max_threads: 25
     bucket: www.edge-cloud.net
     local_dir: _site
     cache_control:
