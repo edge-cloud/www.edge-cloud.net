@@ -4,7 +4,7 @@
 find $1 -type f -and \( -iname "*.jpg" -o -iname "*.jpeg" \) \
 -exec bash -c '
 webp_path=$(sed 's/\.[^.]*$/.webp/' <<< "$0");
-echo "Converting Webp: $webp_path"
+echo "Converting Webp: $webp_path";
 if [ ! -f "$webp_path" ]; then
   cwebp -quiet -q 90 "$0" -o "$webp_path";
 fi;' {} \;
@@ -13,7 +13,7 @@ fi;' {} \;
  find $1 -type f -and -iname "*.png" \
  -exec bash -c '
  webp_path=$(sed 's/\.[^.]*$/.webp/' <<< "$0");
- echo "Converting Webp: $webp_path"
+ echo "Converting Webp: $webp_path";
  if [ ! -f "$webp_path" ]; then
    cwebp -quiet -lossless "$0" -o "$webp_path";
  fi;' {} \;
