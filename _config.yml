@@ -219,6 +219,7 @@ plugins:
   - jekyll-include-cache
   - jekyll-redirect-from
   - jekyll-target-blank
+  - jekyll-responsive-image
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -258,6 +259,62 @@ tag_archive:
 #     category: /categories/:name/
 #     tag: /tags/:name/
 
+# Responsive images
+responsive_image:
+  # [Required]
+  # Path to the image template.
+  template: _includes/responsive-image.html
+
+  # [Optional, Default: 85]
+  # Quality to use when resizing images.
+  default_quality: 90
+
+  # [Optional, Default: []]
+  # An array of resize configuration objects. Each object must contain at least
+  # a `width` value.
+  sizes:
+    - width: 20 # lq
+      quality: 10
+    - width: 512  # [Required] How wide the resized image will be.
+    - width: 614
+      progressive: true
+    - width: 820
+      progressive: true
+    - width: 1092
+      progressive: true
+
+  # [Optional, Default: false]
+  # Rotate resized images depending on their EXIF rotation attribute. Useful for
+  # working with JPGs directly from digital cameras and smartphones
+  auto_rotate: false
+
+  # [Optional, Default: assets]
+  # The base directory where assets are stored. This is used to determine the
+  # `dirname` value in `output_path_format` below.
+  base_path: assets/images
+
+  # [Optional, Default: assets/resized/%{filename}-%{width}x%{height}.%{extension}]
+  # The template used when generating filenames for resized images. Must be a
+  # relative path.
+  #
+  # Parameters available are:
+  #   %{dirname}     Directory of the file relative to `base_path` (assets/sub/dir/some-file.jpg => sub/dir)
+  #   %{basename}    Basename of the file (assets/some-file.jpg => some-file.jpg)
+  #   %{filename}    Basename without the extension (assets/some-file.jpg => some-file)
+  #   %{extension}   Extension of the file (assets/some-file.jpg => jpg)
+  #   %{width}       Width of the resized image
+  #   %{height}      Height of the resized image
+  #
+  output_path_format: assets/images/resized/%{dirname}/%{filename}-%{width}.%{extension}
+
+  # [Optional, Default: true]
+  # Whether or not to save the generated assets into the source folder.
+  save_to_source: false
+
+  # [Optional, Default: false]
+  # Cache the result of {% responsive_image %} and {% responsive_image_block %}
+  # tags. See the "Caching" section of the README for more information.
+  cache: false
 
 # HTML Compression
 # - http://jch.penibelst.de/
