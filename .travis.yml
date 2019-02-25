@@ -13,6 +13,7 @@ addons:
   apt:
     packages:
     - libcurl4-openssl-dev
+    - webp
 install:
   - pip install --user awscli
   - pip install --user s3cmd
