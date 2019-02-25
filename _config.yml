@@ -273,14 +273,14 @@ responsive_image:
   # An array of resize configuration objects. Each object must contain at least
   # a `width` value.
   sizes:
-    - width: 20 # lq
-      quality: 10
-    - width: 512  # [Required] How wide the resized image will be.
-    - width: 614
+    - width: 320
+    - width: 384
+    - width: 512
+    - width: 683
       progressive: true
-    - width: 820
+    - width: 800
       progressive: true
-    - width: 1092
+    - width: 960
       progressive: true
 
   # [Optional, Default: false]
@@ -291,7 +291,7 @@ responsive_image:
   # [Optional, Default: assets]
   # The base directory where assets are stored. This is used to determine the
   # `dirname` value in `output_path_format` below.
-  base_path: assets/images
+  base_path: content/uploads
 
   # [Optional, Default: assets/resized/%{filename}-%{width}x%{height}.%{extension}]
   # The template used when generating filenames for resized images. Must be a
@@ -305,7 +305,7 @@ responsive_image:
   #   %{width}       Width of the resized image
   #   %{height}      Height of the resized image
   #
-  output_path_format: assets/images/resized/%{dirname}/%{filename}-%{width}.%{extension}
+  output_path_format: content/resized/%{dirname}/%{filename}-%{width}.%{extension}
 
   # [Optional, Default: true]
   # Whether or not to save the generated assets into the source folder.
