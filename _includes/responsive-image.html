@@ -1,0 +1,14 @@
+{% capture srcset %}
+{% for i in resized %}
+    {% if i.width <= 1250 %}/{{ i.path }} {{ i.width }}w|{% endif %}
+{% endfor %}
+{% endcapture %}
+
+{% assign smallest = resized | sort: 'width' | first %}
+
+<img
+  alt="{{ alt }}"
+  src="/{{ path }}"
+  {% if original.width <= 1250 %}width="{{ original.width }}"{% endif %}
+  data-srcset="{{ srcset | split: '|' | join: ', ' }}{% if original.width <= 1250 %}, /{{ path }} {{ original.width }}w{% endif %}"
+  class="blur-up lazyautosizes lazyload">
