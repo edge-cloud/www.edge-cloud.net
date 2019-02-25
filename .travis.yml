@@ -13,6 +13,7 @@ addons:
   apt:
     packages:
     - libcurl4-openssl-dev
+    - webp
 install:
   - pip install --user awscli
   - pip install --user s3cmd
@@ -21,10 +22,12 @@ install:
   - bundle install
 script:
   - ALGOLIA_API_KEY=$ALGOLIA_KEY bundle exec jekyll algolia
+  - aws s3 sync s3://www.edge-cloud.net/content ./_site/content
   - if [[ $TRAVIS_BRANCH == "master" ]];
     then JEKYLL_ENV=production bundle exec jekyll build --config _config.yml;
     else bundle exec jekyll build --config _config.yml --future --drafts;
     fi
+  - _build/webp-convert.sh _site/content
   - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
 deploy:
   - provider: s3

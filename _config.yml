@@ -13,6 +13,7 @@
 # theme                    : "minimal-mistakes-jekyll"
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
+############################################################
 # Site Settings
 locale                   : "en-US"
 title                    : "Edge Cloud"
@@ -74,12 +75,15 @@ algolia:
 google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
+
+############################################################
 # SEO Related
 google_site_verification : ZPKuOb9ie7OuRgxLoRK2REKxFW6bC0_7VaNFcTNQQxM
 bing_site_verification   :
 yandex_site_verification :
 naver_site_verification  :
 
+############################################################
 # Social Sharing
 twitter:
   username               : ChristianElsen
@@ -97,6 +101,7 @@ social:
     - "https://twitter.com/ChristianElsen"
     - "https://www.linkedin.com/in/christianelsen/"
 
+############################################################
 # Analytics
 analytics:
   provider               : "google-gtag" # false (default), "google", "google-universal", "google-gtag", "custom"
@@ -104,7 +109,7 @@ analytics:
     tracking_id          : "UA-39076327-2"
     anonymize_ip         : # true, false (default)
 
-
+############################################################
 # Site Author
 author:
   name             : "Christian Elsen"
@@ -126,6 +131,7 @@ author:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/chriselsen/"
 
+############################################################
 # Site Footer
 footer:
   links:
@@ -139,6 +145,7 @@ footer:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/chriselsen/"
 
+############################################################
 # Reading Files
 include:
   - .htaccess
@@ -175,7 +182,7 @@ keep_files:
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
-
+############################################################
 # Conversion
 markdown: kramdown
 highlighter: rouge
@@ -183,7 +190,7 @@ lsi: false
 excerpt_separator: "\n\n"
 incremental: false
 
-
+############################################################
 # Markdown Processing
 kramdown:
   input: GFM
@@ -195,20 +202,20 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
-
+############################################################
 # Sass/SCSS
 sass:
   sass_dir: _sass
   style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
-
+############################################################
 # Outputting
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 timezone: America/Los_Angeles # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
-
+############################################################
 # Plugins (previously gems:)
 plugins:
   - jekyll-paginate
@@ -230,7 +237,7 @@ whitelist:
   - jemoji
   - jekyll-include-cache
 
-
+############################################################
 # Archives
 #  Type
 #  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
@@ -259,6 +266,7 @@ tag_archive:
 #     category: /categories/:name/
 #     tag: /tags/:name/
 
+############################################################
 # Responsive images
 responsive_image:
   # [Required]
@@ -316,6 +324,7 @@ responsive_image:
   # tags. See the "Caching" section of the README for more information.
   cache: false
 
+############################################################
 # HTML Compression
 # - http://jch.penibelst.de/
 compress_html:
@@ -323,6 +332,7 @@ compress_html:
   ignore:
     envs: development
 
+############################################################
 # Defaults
 defaults:
   # _posts
