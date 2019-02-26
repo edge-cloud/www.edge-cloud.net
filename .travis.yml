@@ -51,13 +51,13 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     skip_cleanup: true
     on:
-      branch: dev
+      branch: master
   - provider: firebase
     token: $FIREBASE_TOKEN
     project: www-edge-cloud-net
     skip_cleanup: true
     on:
-      branch: master
+      branch: dev
   - provider: pages
     local-dir: _site
     repo: edge-cloud/edge-cloud.github.io
@@ -66,7 +66,7 @@ deploy:
     skip-cleanup: true
     github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
     on:
-      branch: none
+      branch: dev
 after_deploy:
-  - if [[ $TRAVIS_BRANCH == "dev" ]]; then aws configure set preview.cloudfront true; fi
-  - if [[ $TRAVIS_BRANCH == "dev" ]]; then aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"; fi
+  - if [[ $TRAVIS_BRANCH == "master" ]]; then aws configure set preview.cloudfront true; fi
+  - if [[ $TRAVIS_BRANCH == "master" ]]; then aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"; fi
