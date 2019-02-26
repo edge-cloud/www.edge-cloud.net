@@ -25,7 +25,6 @@ before_script:
   - tar -xzf content.tgz
 script:
   - ALGOLIA_API_KEY=$ALGOLIA_KEY bundle exec jekyll algolia
-  - aws s3 sync s3://www.edge-cloud.net/content ./_site/content
   - if [[ $TRAVIS_BRANCH == "master" ]];
     then JEKYLL_ENV=production bundle exec jekyll build --config _config.yml;
     else bundle exec jekyll build --config _config.yml --future --drafts;
