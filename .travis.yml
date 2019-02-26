@@ -21,7 +21,9 @@ install:
   - gem install html-proofer
   - bundle install
 before_script:
-  - aws s3 sync s3://www.edge-cloud.net/content/content.tgz . && tar xzf content.tgz
+  - aws s3 sync s3://www.edge-cloud.net/content/content.tgz .
+  - ls -la
+  - tar -xzvf content.tgz
 script:
   - ALGOLIA_API_KEY=$ALGOLIA_KEY bundle exec jekyll algolia
   - if [[ $TRAVIS_BRANCH == "master" ]];
@@ -31,7 +33,7 @@ script:
   - ./_build/webp-convert.sh ./_site/content
   - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
 after_success:
-  - if [[ $TRAVIS_BRANCH == "dev" ]]; then tar czf content.tgz _site/content && aws s3 sync content.tgz s3://www.edge-cloud.net/content/content.tgz; fi
+  - if [[ $TRAVIS_BRANCH == "dev" ]]; then tar -czvf content.tgz _site/content && aws s3 sync content.tgz s3://www.edge-cloud.net/content/content.tgz; fi
 deploy:
   - provider: s3
     edge:
