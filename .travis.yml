@@ -46,7 +46,6 @@ deploy:
     bucket: www.edge-cloud.net
     local_dir: _site
     cache_control: "\"public, max-age=31536000\": *.jpg, *.gif, *.png, *.webp, *.css, *.js, *.ico"
-    #expires: "\"2030-12-31 00:00:00 -0000\": *.jpg, *.gif, *.png, *.webp, *.css, *.js, *.ico"
     expires: "\"`date -u +\"%Y-%m-%d %H:%M:%S -0000\" --date \"next Year\"`\": *.jpg, *.gif, *.png, *.webp, *.css, *.js, *.ico"
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
@@ -69,6 +68,5 @@ deploy:
     on:
       branch: dev
 after_deploy:
- # - "if [[ $TRAVIS_BRANCH == \"master\" ]]; then s3cmd --access_key=$AWS_ACCESS_KEY_ID --secret_key=$AWS_SECRET_ACCESS_KEY --add-header=\"Cache-Control: public, max-age=31536000\" --add-header=\"Expires:`date -u +\"%a, %d %b %Y %H:%M:%S GMT\" --date \"next Year\"`\" --acl-public --recursive --exclude \"*\" --rinclude \".*\\.(?:jpg|gif|png|webp|css|js|ico)\" modify s3://www.edge-cloud.net; fi"
   - if [[ $TRAVIS_BRANCH == "master" ]]; then aws configure set preview.cloudfront true; fi
   - if [[ $TRAVIS_BRANCH == "master" ]]; then aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"; fi
