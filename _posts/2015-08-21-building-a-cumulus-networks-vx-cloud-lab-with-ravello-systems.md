@@ -10,6 +10,7 @@ permalink: /2015/08/21/building-a-cumulus-networks-vx-cloud-lab-with-ravello-sys
 redirect_from:
   - /2015/08/21/building-a-cumulus-networks-vx-cloud-lab-with-ravello-systems/amp/
   - /2015/08/building-a-cumulus-networks-vx-cloud-lab-with-ravello-systems/
+image: /wp-content/uploads/2015/08/Ravello_with_Cumulus2.png
 categories:
   - EdgeCloud
 tags:
