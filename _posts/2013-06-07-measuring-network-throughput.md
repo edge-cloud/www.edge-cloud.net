@@ -18,6 +18,7 @@ tags:
   - Network
   - Performance
 toc: true
+use_math: true
 ---
 The topic of measuring network throughput between network devices comes up quite frequently: It ranges from users claiming (and sometimes almost blaming) that the 100 Mbps Internet uplink in reality is only 10 Mbps to being surprised why they can't transfer that multi-gigabyte file via FTP faster between data center locations.
 
@@ -43,7 +44,10 @@ Now that we have identified the two most important variables for the performance
 
 An important formula is the one for the [Bandwidth-delay product (BDP)](https://en.wikipedia.org/wiki/Bandwidth-delay_product), which is the product of a data link's capacity (in bits per second) and its end-to-end delay (in seconds). The result, an amount of data measured in bits (or bytes), is equivalent to the maximum amount of data on the network circuit at any given time, e.g. data that has been transmitted but not yet acknowledged.
 
-{% include figure image_path="/content/uploads/2013/06/latex1.png" alt="Buffer (Mbit) = bandwidth (Mbit/s) X delay (s)" %}
+$$
+   Buffer (Mbit) = bandwidth (Mbit/s) × delay (s)
+$$
+
 
 The result of the BDP can also be interpreted as the required receiver TCP window size to maximize the performance on the data link.
 
@@ -52,20 +56,29 @@ Let's use an example:
 Round-Trip-Time between the US west coast (Las Vegas) and Europe (Germany): 173 ms
 Available bandwidth between the two sites: 100 Mbit/s
 
-{% include figure image_path="/content/uploads/2013/06/latex2.png" alt="173 ms X 100 Mbit/s = 0.173s X ( 100 X 1024 X 1024 bit/s) = 18140365 bit = 2.1625 MByte" %}
+$$
+   173 ms × 100 Mbit/s = 0.173s × ( 100 × 1024 × 1024 bit/s) \\ = 18140365 bit = 2.1625 MByte
+$$
+
 
 This means that we would need a TCP Window Size of at least 2.1625 MByte to fully utilize the 100 Mbit/s link.
 
 We have seen, that in reality both the delay between sender and receiver as well as the TCP window size within the receiver are given. As we cannot change the laws of physics, the only value we can change is the TCP window size. Let's shuffle the formula, to calculate the maximum bandwidth that can be achieved with a given RTT and TCP window size instead:
 
-{% include figure image_path="/content/uploads/2013/06/latex3.png" alt="bandwidth (Mbit/s) = Buffer (Mbit) / delay (s)"%}
+$$
+   bandwidth (Mbit/s) = { Buffer (Mbit) \over delay (s) }
+$$
+
 
 Let's use another example:
 
 Round-Trip-Time between the US west coast (Las Vegas) and Europe (Germany): 173 ms
 Standard TCP windows size on a Linux (Ubuntu) host: 64 KByte
 
-{% include figure image_path="/content/uploads/2013/06/latex4.png" alt="64 KByte / 173 ms = (64 X 1024 X 8 bit) / 0.173 s = 524288 bit / 0.173s = 3030566.47 bit/s = 2.89 Mbit/s"%}
+$$
+   { 64 KByte \over 173 ms } = { (64 × 1024 × 8 bit) \over 0.173 s } = { 524288 bit \over 0.173s } \\ = 3030566.47 bit/s = 2.89 Mbit/s
+$$
+
 
 Irrelevant of the actual link speed between the two sites above we will not be able to transfer more than 2.89 Mbit/s with a single TCP stream. Keep in mind that this is the theoretical maximum. In reality the value will be even lower due to packet loss and packet header overhead.
 
