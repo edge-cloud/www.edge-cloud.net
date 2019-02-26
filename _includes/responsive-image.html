@@ -6,19 +6,19 @@
 
 {% capture webpsrcset %}
 {% for i in resized %}
-    {% assign path_noext = i.path | split: "." %}
-    {% if i.width <= 1250 %}/{{ path_noext.first }}.webp {{ i.width }}w|{% endif %}
+    {% assign path_webp = i.path | replace: '.png', '.webp' | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' %}
+    {% if i.width <= 1250 %}/{{ path_webp }} {{ i.width }}w|{% endif %}
 {% endfor %}
 {% endcapture %}
 
 {% assign smallest = resized | sort: 'width' | first %}
-{% assign path_noext = path | split: "." %}
+{% assign path_webp = path | replace: '.png', '.webp' | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' %}
 
 <picture>
   <source
     {% if original.width <= 1250 %}width="{{ original.width }}"{% endif %}
     type="image/webp"
-    data-srcset="{{ webpsrcset | split: '|' | join: ', ' }}{% if original.width <= 1250 %} /{{ path_noext.first }}.webp {{ original.width }}w{% endif %}">
+    data-srcset="{{ webpsrcset | split: '|' | join: ', ' }}{% if original.width <= 1250 %} /{{ path_webp }} {{ original.width }}w{% endif %}">
   <source
     {% if original.width <= 1250 %}width="{{ original.width }}"{% endif %}
     data-srcset="{{ srcset | split: '|' | join: ', ' }}{% if original.width <= 1250 %} /{{ path }} {{ original.width }}w{% endif %}">
