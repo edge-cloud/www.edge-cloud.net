@@ -12,10 +12,7 @@
 </script>
 
 <!-- For all browsers -->
-{% capture styles %}
-  {% include css/main.css %}
-{% endcapture %}
-<style>{{ styles | scssify | strip }}</style>
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
 <!--[if IE ]>
   <style>
