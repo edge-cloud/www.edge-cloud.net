@@ -18,7 +18,9 @@ tags:
   - Ravello-Systems
 toc: true
 ---
-![Ravello with Cumulus](/content/uploads/2015/08/Ravello_with_Cumulus.png){: .align-left} In a [previous post](/2013/06/13/arista-veos-on-vmware-esx/) I've already shown how to build a virtual network lab with Arista vEOS and VMware ESX. In this post we want to take this concept even further to the next level. Instead of Arista vEOS we will use the newly released [Cumulus Networks](https://cumulusnetworks.com/) Virtual Experience (VX) edition. And instead of VMware ESX we will use [Ravello Systems](https://www.ravellosystems.com/), allowing us to use [AWS](https://aws.amazon.com/) or [Google Compute Engine](https://cloud.google.com/compute/).
+In a [previous post](/2013/06/13/arista-veos-on-vmware-esx/) I've already shown how to build a virtual network lab with Arista vEOS and VMware ESX. In this post we want to take this concept even further to the next level. Instead of Arista vEOS we will use the newly released [Cumulus Networks](https://cumulusnetworks.com/) Virtual Experience (VX) edition. And instead of VMware ESX we will use [Ravello Systems](https://www.ravellosystems.com/), allowing us to use [AWS](https://aws.amazon.com/) or [Google Compute Engine](https://cloud.google.com/compute/).
+
+{% include figure image_path="/content/uploads/2015/08/Ravello_with_Cumulus.png" alt="Ravello with Cumulus" %}
 
 # Elements used
 
