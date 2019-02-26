@@ -14,8 +14,13 @@
 <!-- For all browsers -->
 <!-- <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" rel="preload"> -->
 
-<link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}"></noscript>
+<!-- <link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}"></noscript> -->
+
+{% capture styles %}
+  {% include css/main.css %}
+{% endcapture %}
+<style>{{ styles | scssify | strip }}</style>
 
 <!--[if IE ]>
   <style>
