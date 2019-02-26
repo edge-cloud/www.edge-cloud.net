@@ -32,7 +32,9 @@ script:
   - ./_build/webp-convert.sh ./_site/content
   - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
 after_success:
-  - if [[ $TRAVIS_BRANCH == "dev" ]]; then tar -czf content.tgz _site/content && aws s3 cp content.tgz s3://www.edge-cloud.net/content/content.tgz && rm content.tgz; fi
+  - tar -czf content.tgz _site/content
+  - aws s3 cp content.tgz s3://www.edge-cloud.net/content/content.tgz
+  - rm content.tgz
 deploy:
   - provider: s3
     edge:
