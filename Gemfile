@@ -19,6 +19,7 @@ group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.6"
   gem "jekyll-redirect-from"
   gem "jekyll-target-blank"
+  gem "jekyll-responsive-image"
   gem "jekyll-algolia"
 end
 
