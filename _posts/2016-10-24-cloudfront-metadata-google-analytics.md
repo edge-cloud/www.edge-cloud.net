@@ -117,7 +117,7 @@ After the update to the CloudFront distribution has been completed you should fi
 
 Next we need to update the Google Analytics tracking code within the website, in order to fill the newly created custom dimensions with data. This tracking code has to be placed between the code for creating the Google Analytics tracker, which looks like this: `gaTracker('create','UA-12345678-1','auto');`, and the code to submit the tracker, which looks like this `gaTracker('send','pageview');`.
 
-If you are using WordPress the easiest way to include the custom tracking code is by using the [Google Analytics by Yoast](https://wordpress.org/plugins/google-analytics-for-wordpress/] plugin. This plugin allows you under **Advanced > Custom Code** to embed the below code right away and without any coding requirements.
+If you are using WordPress the easiest way to include the custom tracking code is by using the [Google Analytics by Yoast](https://wordpress.org/plugins/google-analytics-for-wordpress/) plugin. This plugin allows you under **Advanced > Custom Code** to embed the below code right away and without any coding requirements.
 
 The below JavaScript code will read the values from `/cdn-cgi/edge-info`, extract the information we are interested it and push it into the Google Analytics custom dimension variables. Ensure that the numeric IDs of these custom dimension variables matches what you have created in above steps.
 
