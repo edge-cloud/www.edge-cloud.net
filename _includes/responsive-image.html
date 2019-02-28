@@ -18,10 +18,10 @@
   <source
     {% if original.width <= 1250 %}width="{{ original.width }}"{% endif %}
     type="image/webp"
-    data-srcset="{{ webpsrcset | split: '|' | join: ', ' }}{% if original.width <= 1250 %} /{{ path_webp }} {{ original.width }}w{% endif %}">
+    data-srcset="{{ webpsrcset | split: '|' | join: ', ' }}{% if original.width <= 1250 %} /{{ path_webp }} {{ original.width }}w{% endif %}" sizes="{{ original.width }}px">
   <source
     {% if original.width <= 1250 %}width="{{ original.width }}"{% endif %}
-    data-srcset="{{ srcset | split: '|' | join: ', ' }}{% if original.width <= 1250 %} /{{ path }} {{ original.width }}w{% endif %}">
+    data-srcset="{{ srcset | split: '|' | join: ', ' }}{% if original.width <= 1250 %} /{{ path }} {{ original.width }}w{% endif %}" sizes="{{ original.width }}px">
   <img
     src="//:0"
     data-src="/{{ path }}"
