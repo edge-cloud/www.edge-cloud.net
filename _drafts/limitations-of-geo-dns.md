@@ -6,6 +6,7 @@ layout: single
 categories:
   - EdgeCloud
 tags:
+  - DNS
   - AWS
   - Network
 toc: true
