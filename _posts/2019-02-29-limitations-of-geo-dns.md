@@ -1,7 +1,7 @@
 ---
 title: Limitations of DNS-based geographic routing
 author: Christian Elsen
-excerpt: Exploring the limitations of DNS-based geographic routing. Geographic routing lets you choose the resources that serve your traffic based on the geographic location of your users, meaning the location that DNS queries originate from.
+excerpt: Exploring the limitations of DNS-based geographic routing using AWS Route 53 and RIPE Atlas, through visualizing the real life results.
 layout: single
 categories:
   - EdgeCloud
@@ -153,4 +153,4 @@ With DNS geographic routing based CDNs - like AWS CloudFront - the end-user expe
 
 ### Summary
 
-This article provided a closer look at how DNS geographic routing - such as provided by AWS Route 53, but also leveraged by numerous CDNs - works. Using AWS Route 53 and RIPE Atals we were able to visualize the real life results of a geographic routing DNS setup and dive deeper into some of the wanted and unwanted effects. A question that will need to remain to be explored in an upcoming post, is how these results compare to an [Anycast](https://en.wikipedia.org/wiki/Anycast) based routing approach for the same set of Origins, leveraging e.g. the [AWS Global Accelerator](https://aws.amazon.com/blogs/aws/new-aws-global-accelerator-for-availability-and-performance/).
+This article provided a closer look at how DNS geographic routing - such as provided by AWS Route 53, but also leveraged by numerous CDNs - works. Using AWS Route 53 and RIPE Atlas we were able to visualize the real life results of a geographic routing DNS setup and dive deeper into some of the wanted and unwanted effects. A question that will need to remain to be explored in an upcoming post, is how these results compare to an [Anycast](https://en.wikipedia.org/wiki/Anycast) based routing approach for the same set of Origins, leveraging e.g. the [AWS Global Accelerator](https://aws.amazon.com/blogs/aws/new-aws-global-accelerator-for-availability-and-performance/).
