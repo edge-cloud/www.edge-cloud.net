@@ -27,12 +27,12 @@ before_script:
       rm content.tgz;
     fi
 script:
-  - ALGOLIA_API_KEY=$ALGOLIA_KEY bundle exec jekyll algolia
   - if [[ $TRAVIS_BRANCH == "master" ]]; then
       JEKYLL_ENV=production bundle exec jekyll build --config _config.yml;
     else
       bundle exec jekyll build --config _config.yml --future --drafts;
     fi
+  - ALGOLIA_API_KEY=$ALGOLIA_KEY bundle exec jekyll algolia  
   - ./_build/webp-convert.sh ./_site/content
   - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
 after_success:
