@@ -12,6 +12,7 @@ categories:
 tags:
   - Infoblox
   - VMware
+  - DNS
 toc: true
 ---
 Yesterday I stumbled over an interesting networking problem while deploying an [Infoblox](https://www.infoblox.com/) vNIOS IPAM HA pair on a fresh installation of VMware vSphere: After setting up the vNIOS appliances to act as an HA pair, it's floating virtual IP address was not reachable from the rest of the network. Yet, at the same time the individual IP addresses of the LAN interface were reachable.

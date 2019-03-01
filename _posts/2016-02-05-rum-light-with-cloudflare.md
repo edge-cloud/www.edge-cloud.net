@@ -13,7 +13,7 @@ categories:
 tags:
   - Cloudflare
   - Google-Analytics
-  - HTTP2
+  - HTTP/2
   - IPv6
 toc: true
 ---
