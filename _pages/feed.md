@@ -1,6 +1,6 @@
 ---
 sitemap: false
-layout: null
+layout: none
 permalink: /feed.xml
 ---
 
