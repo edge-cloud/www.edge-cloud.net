@@ -1,5 +1,4 @@
 ---
-id: 648
 title: 'OpenStack with vSphere and NSX - Part 1: Install and configure the VMware NSX appliances'
 date: 2013-12-17T09:10:57+00:00
 author: Christian Elsen

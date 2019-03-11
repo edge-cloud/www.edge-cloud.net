@@ -1,5 +1,4 @@
 ---
-id: 1674
 title: SDDC Architecture – Basic Design Elements
 date: 2015-08-04T14:59:10+00:00
 author: Christian Elsen

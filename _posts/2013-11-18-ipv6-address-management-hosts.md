@@ -1,5 +1,4 @@
 ---
-id: 587
 title: IPv6 Address management of hosts
 date: 2013-11-18T08:04:50+00:00
 author: Christian Elsen

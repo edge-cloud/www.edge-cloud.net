@@ -1,5 +1,4 @@
 ---
-id: 2288
 title: Amazon Alexa Skill for San Francisco Muni
 date: 2016-10-10T08:01:51+00:00
 author: Christian Elsen

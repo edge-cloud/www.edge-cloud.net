@@ -1,5 +1,4 @@
 ---
-id: 1105
 title: Deploy WordPress with AWS OpsWorks
 date: 2014-02-14T08:20:48+00:00
 author: Christian Elsen

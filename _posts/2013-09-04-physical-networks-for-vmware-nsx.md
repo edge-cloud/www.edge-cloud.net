@@ -1,5 +1,4 @@
 ---
-id: 536
 title: Physical networks for VMware NSX
 date: 2013-09-04T15:50:52+00:00
 author: Christian Elsen

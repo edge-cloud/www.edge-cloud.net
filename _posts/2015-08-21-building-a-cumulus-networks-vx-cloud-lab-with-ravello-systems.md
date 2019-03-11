@@ -1,5 +1,4 @@
 ---
-id: 1729
 title: Building a Cumulus Networks VX cloud lab with Ravello Systems
 date: 2015-08-21T20:51:38+00:00
 author: Christian Elsen

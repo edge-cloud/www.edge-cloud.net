@@ -1,5 +1,4 @@
 ---
-id: 564
 title: Jumbo Frames with VMware ESXi
 date: 2013-11-11T11:11:09+00:00
 author: Christian Elsen

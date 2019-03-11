@@ -1,5 +1,4 @@
 ---
-id: 659
 title: 'OpenStack with vSphere and NSX - Part 6: Install the VMware vCenter Plugin for Openstack and look behind the scenes'
 date: 2014-02-08T10:44:46+00:00
 author: Christian Elsen

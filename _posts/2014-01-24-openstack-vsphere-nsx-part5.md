@@ -1,5 +1,4 @@
 ---
-id: 661
 title: 'OpenStack with vSphere and NSX - Part 5: Create virtual networks and launch a VM instance in OpenStack'
 date: 2014-01-24T10:26:16+00:00
 author: Christian Elsen

@@ -1,5 +1,4 @@
 ---
-id: 120
 title: Infoblox vNIOS HA pair VIP unreachable when deployed on vSphere
 date: 2013-05-21T22:04:08+00:00
 author: Christian Elsen

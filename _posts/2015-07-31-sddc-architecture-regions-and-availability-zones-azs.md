@@ -1,5 +1,4 @@
 ---
-id: 1676
 title: SDDC Architecture – Regions and Availability Zones (AZs)
 date: 2015-07-31T16:10:32+00:00
 author: Christian Elsen

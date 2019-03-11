@@ -1,5 +1,4 @@
 ---
-id: 1854
 title: 'SDDC Architecture - Business Continuity with multiple regions'
 date: 2015-09-11T14:34:07+00:00
 author: Christian Elsen

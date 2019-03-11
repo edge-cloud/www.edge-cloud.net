@@ -1,5 +1,4 @@
 ---
-id: 651
 title: 'OpenStack with vSphere and NSX - Part 2: Create and configure the VMware NSX cluster'
 date: 2013-12-27T08:30:17+00:00
 author: Christian Elsen

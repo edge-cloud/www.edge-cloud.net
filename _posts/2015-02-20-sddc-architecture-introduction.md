@@ -1,5 +1,4 @@
 ---
-id: 1481
 title: 'Software Defined Data Center (SDDC) Architecture - Introduction'
 date: 2015-02-20T17:05:15+00:00
 author: Christian Elsen

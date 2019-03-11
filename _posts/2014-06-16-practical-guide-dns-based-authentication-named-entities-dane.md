@@ -1,5 +1,4 @@
 ---
-id: 1316
 title: Protecting your website with DNS-Based Authentication of Named Entities (DANE)
 date: 2014-06-16T13:57:45+00:00
 author: Christian Elsen

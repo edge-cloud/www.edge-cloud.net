@@ -3,6 +3,7 @@ title: Limitations of DNS-based geographic routing
 author: Christian Elsen
 excerpt: Exploring the limitations of DNS-based geographic routing using AWS Route 53 and RIPE Atlas, through visualizing the real life results.
 layout: single
+permalink: /2019/03/01/limitations-of-geo-dns/
 categories:
   - EdgeCloud
 tags:

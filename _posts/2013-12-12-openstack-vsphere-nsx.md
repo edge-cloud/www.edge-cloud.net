@@ -1,5 +1,4 @@
 ---
-id: 631
 title: OpenStack with vSphere and NSX
 date: 2013-12-12T16:12:27+00:00
 author: Christian Elsen

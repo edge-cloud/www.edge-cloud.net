@@ -1,5 +1,4 @@
 ---
-id: 1380
 title: 'Implementing IPv6: Six steps to success'
 date: 2014-06-25T10:00:08+00:00
 author: Christian Elsen

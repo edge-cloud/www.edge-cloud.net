@@ -1,5 +1,4 @@
 ---
-id: 2175
 title: CloudFlare Railgun on AWS
 date: 2016-02-17T08:00:51+00:00
 author: Christian Elsen

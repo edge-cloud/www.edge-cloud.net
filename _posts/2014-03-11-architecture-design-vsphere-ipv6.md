@@ -1,5 +1,4 @@
 ---
-id: 1165
 title: 'Architecture Design: vSphere with IPv6'
 date: 2014-03-11T08:00:42+00:00
 author: Christian Elsen

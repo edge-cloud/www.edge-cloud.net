@@ -1,5 +1,4 @@
 ---
-id: 399
 title: Terminating a 6in4 tunnel on an Arista switch
 date: 2013-07-18T15:36:14+00:00
 author: Christian Elsen

@@ -1,5 +1,4 @@
 ---
-id: 461
 title: 'IPv6 deployment: Using IPv6 link-local addresses as default gateway'
 date: 2013-08-07T16:24:26+00:00
 author: Christian Elsen

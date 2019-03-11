@@ -1,5 +1,4 @@
 ---
-id: 483
 title: Using F5 Big-IP LTM with IPv6
 date: 2013-08-12T08:00:22+00:00
 author: Christian Elsen

@@ -3,6 +3,7 @@ title: How AT&T broke my IPv6 Internet connection
 author: Christian Elsen
 excerpt: Using RIPE Atlas to show how AT&T broke IPv6 on my home Internet connection.
 layout: single
+permalink: /2019/02/13/how-att-broke-my-ipv6/
 categories:
   - EdgeCloud
 tags:

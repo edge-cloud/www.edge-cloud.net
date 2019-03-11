@@ -1,5 +1,4 @@
 ---
-id: 657
 title: 'OpenStack with vSphere and NSX - Part 4: Import and configure the VMware vSphere OpenStack Virtual Appliance (VOVA)'
 date: 2014-01-08T08:29:08+00:00
 author: Christian Elsen

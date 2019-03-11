@@ -1,5 +1,4 @@
 ---
-id: 165
 title: Network device configuration management with Rancid and Trac on Ubuntu 12.04 LTS
 date: 2013-05-31T16:29:57+00:00
 author: Christian Elsen

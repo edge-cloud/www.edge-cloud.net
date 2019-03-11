@@ -1,5 +1,4 @@
 ---
-id: 1878
 title: Track your CloudFlare PoPs usage in Google Analytics
 date: 2015-10-04T20:50:53+00:00
 author: Christian Elsen

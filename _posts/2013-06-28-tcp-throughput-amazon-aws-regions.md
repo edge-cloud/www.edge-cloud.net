@@ -1,5 +1,4 @@
 ---
-id: 415
 title: TCP Throughput tests between Amazon AWS regions
 date: 2013-06-28T12:00:20+00:00
 author: Christian Elsen

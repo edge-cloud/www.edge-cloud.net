@@ -1,5 +1,4 @@
 ---
-id: 1490
 title: SDDC Architecture – Core and POD design
 date: 2015-03-10T15:34:20+00:00
 author: Christian Elsen

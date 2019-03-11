@@ -1,5 +1,4 @@
 ---
-id: 1599
 title: VMware vRealize Automation workloads with IPv6
 date: 2015-05-26T09:00:38+00:00
 author: Christian Elsen

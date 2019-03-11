@@ -1,5 +1,4 @@
 ---
-id: 389
 title: Network troubleshooting via Arista EOS shell
 date: 2013-06-24T22:03:02+00:00
 author: Christian Elsen

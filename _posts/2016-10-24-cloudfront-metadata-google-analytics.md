@@ -1,5 +1,4 @@
 ---
-id: 2555
 title: AWS CloudFront meta data in Google Analytics
 date: 2016-10-24T08:26:37+00:00
 author: Christian Elsen

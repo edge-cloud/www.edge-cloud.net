@@ -1,5 +1,4 @@
 ---
-id: 2103
 title: 'CloudFlare: Redirect to Social Media on origin failure'
 date: 2016-01-15T08:00:41+00:00
 author: Christian Elsen

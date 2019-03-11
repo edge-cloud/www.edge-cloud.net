@@ -1,5 +1,4 @@
 ---
-id: 1714
 title: 'SDDC Architecture - What is a VMware validated design?'
 date: 2015-08-27T12:23:22+00:00
 author: Christian Elsen

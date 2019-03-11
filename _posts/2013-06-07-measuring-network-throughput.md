@@ -1,5 +1,4 @@
 ---
-id: 246
 title: Measuring Network Throughput
 date: 2013-06-07T09:45:03+00:00
 author: Christian Elsen

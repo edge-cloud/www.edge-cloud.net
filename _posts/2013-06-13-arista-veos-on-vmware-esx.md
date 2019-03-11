@@ -1,5 +1,4 @@
 ---
-id: 319
 title: Arista vEOS on VMware ESX
 date: 2013-06-13T12:40:43+00:00
 author: Christian Elsen

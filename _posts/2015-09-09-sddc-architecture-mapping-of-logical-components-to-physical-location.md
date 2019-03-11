@@ -1,5 +1,4 @@
 ---
-id: 1692
 title: 'SDDC Architecture - Mapping of Logical Components to Physical Location'
 date: 2015-09-09T09:30:55+00:00
 author: Christian Elsen

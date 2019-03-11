@@ -1,5 +1,4 @@
 ---
-id: 2140
 title: 'RUM "Light" with CloudFlare and Google Analytics'
 date: 2016-02-05T08:00:31+00:00
 author: Christian Elsen

@@ -1,5 +1,4 @@
 ---
-id: 1527
 title: IPv6 in vSphere 6
 date: 2015-03-18T17:13:53+00:00
 author: Christian Elsen

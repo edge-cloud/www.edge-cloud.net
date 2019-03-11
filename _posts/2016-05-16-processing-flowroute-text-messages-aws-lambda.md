@@ -1,5 +1,4 @@
 ---
-id: 2232
 title: Processing Flowroute text messages with AWS Lambda
 date: 2016-05-16T11:23:00+00:00
 author: Christian Elsen

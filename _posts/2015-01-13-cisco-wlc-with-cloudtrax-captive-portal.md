@@ -1,5 +1,4 @@
 ---
-id: 1448
 title: Use a Cisco WLC based Wifi with the CloudTrax captive portal
 date: 2015-01-13T12:49:21+00:00
 author: Christian Elsen

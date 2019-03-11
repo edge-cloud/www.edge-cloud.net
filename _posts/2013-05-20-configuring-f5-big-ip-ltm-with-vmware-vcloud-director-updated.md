@@ -1,5 +1,4 @@
 ---
-id: 48
 title: 'Configuring F5 Big-IP LTM with VMware vCloud Director [Updated]'
 date: 2013-05-20 13:30:00 -0700
 author: Christian Elsen

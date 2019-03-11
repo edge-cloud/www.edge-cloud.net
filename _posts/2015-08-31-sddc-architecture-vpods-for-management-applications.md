@@ -1,5 +1,4 @@
 ---
-id: 1695
 title: 'SDDC Architecture - Virtual PODs for Management applications'
 date: 2015-08-31T13:00:48+00:00
 author: Christian Elsen

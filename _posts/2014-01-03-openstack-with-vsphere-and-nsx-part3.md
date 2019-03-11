@@ -1,5 +1,4 @@
 ---
-id: 653
 title: 'OpenStack with vSphere and NSX - Part 3: Install and configure the Open vSwitch inside the ESXi hosts'
 date: 2014-01-03T08:32:41+00:00
 author: Christian Elsen
