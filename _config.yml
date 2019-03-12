@@ -46,7 +46,7 @@ staticman:
   allowedFields          : ['name', 'email', 'url', 'message'] # ['name', 'email', 'url', 'message']
   branch                 : "master" # "master"
   commitMessage          : "New comment by {fields.name}" # "New comment by {fields.name}"
-  filename               : "comment-{@timestamp}" # comment-{@timestamp}
+  filename               : comment-{@timestamp} # comment-{@timestamp}
   format                 : "yml" # "yml"
   moderation             : true # true
   path                   : "/_data/comments/{options.slug}" # "/_data/comments/{options.slug}" (default)
@@ -58,10 +58,10 @@ staticman:
       type               : "date" # "date"
       options:
         format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
-  endpoint               : "https://dev.staticman.net/v3/entry/github/" # URL of your own deployment with trailing slash, will fallback to the public instance
+  endpoint               : https://dev.staticman.net/v3/entry/github/ # URL of your own deployment with trailing slash, will fallback to the public instance
 reCaptcha:
-  siteKey                : # 6Lc7AZcUAAAAAHT8_2CrB212rehB-T5dF8N6T4-w 
-  secret                 : # FqQbcOo7yGiRtPmysDZjkWZocn+gib26HtUj/tAkQVzWgT0jZXlsTAf37tgTqOahlhhkPZpXHVqXpNleJJ9GtGI6pqV8lLK9GgYXAKlue1h13Z4dAGh27L1bDFPSXbTtxWvcHn7FW+9iPxVSRjhVCz0pFHDKCEVue2LIVj+iO2w=
+  siteKey                : 6Lc7AZcUAAAAAHT8_2CrB212rehB-T5dF8N6T4-w
+  secret                 : FqQbcOo7yGiRtPmysDZjkWZocn+gib26HtUj/tAkQVzWgT0jZXlsTAf37tgTqOahlhhkPZpXHVqXpNleJJ9GtGI6pqV8lLK9GgYXAKlue1h13Z4dAGh27L1bDFPSXbTtxWvcHn7FW+9iPxVSRjhVCz0pFHDKCEVue2LIVj+iO2w=
 atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : true # true, false (default)
