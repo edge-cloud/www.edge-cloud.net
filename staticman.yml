@@ -15,3 +15,7 @@ comments:
   requiredFields     : ["name", "email", "message"]
   transforms:
     email            : md5
+  reCaptcha:
+    enabled: true
+    siteKey: "6Lc7AZcUAAAAAHT8_2CrB212rehB-T5dF8N6T4-w"
+    secret: "FqQbcOo7yGiRtPmysDZjkWZocn+gib26HtUj/tAkQVzWgT0jZXlsTAf37tgTqOahlhhkPZpXHVqXpNleJJ9GtGI6pqV8lLK9GgYXAKlue1h13Z4dAGh27L1bDFPSXbTtxWvcHn7FW+9iPxVSRjhVCz0pFHDKCEVue2LIVj+iO2w="
