@@ -17,7 +17,7 @@ Various Internet services and offerings - such as [AWS CloudFront ](https://aws.
 
 This post will look at how geographic routing works, how you can validate the interaction of it with your service and what the expected limitations of the service are.
 
-### Geographic Routing
+# Geographic Routing
 To understand how geographic routing works we first need to have a look at [DNS resolution](https://en.wikipedia.org/wiki/Domain_Name_System#Address_resolution_mechanism) via [DNS Resolver](https://en.wikipedia.org/wiki/Domain_Name_System#DNS_resolvers). Figure 1 shows a simplified representation of this mechanism, where a client connects to a local DNS Resolver, which then initiates and sequences the queries that ultimately lead to a full resolution (translation) of the resource sought. While depicted in an overly simplified way, this includes querying the Authoritative Nameserver for the interested record by the DNS Resolver.
 
 {% include figure image_path="/content/uploads/2019/02/DNS-Resolver.png" caption="Figure 1: DNS Resolver and authoritative name server" %}
@@ -30,13 +30,13 @@ To do so, the Authoritative Nameserver will use the IP address information for t
 
 And while AWS does not publicly divulge information about the source of the used IP address mapping data, Amazon Route 53 uses the same principle.
 
-#### Limitations of the DNS Resolver location information
+## Limitations of the DNS Resolver location information
 
 At this point you probably already guessed that the Authoritative Nameserver making a routing decision based on the DNS Resolvers location might not be the best approach. That's because Client and Authoritative Nameserver might not actually be geographically close to each other. What if a client in San Francisco, CA is using a DNS Resolver in New York, NY? While we would want this client to be served by e.g. a CDN Edge location in the San Francisco, CA area, due to the location information attached to the DNS Resolver, that client is actually served by a CDN Edge location in New York, NY.
 
 Looking at Figure 1 again, we can see that the cause for this undesired behavior is that the Authoritative Nameserver only "sees" the DNS Resolver via its IP source address. The Authoritative Nameserver is not aware of the client and therefore has no knowledge of its location. Wouldn't it be great if the Authoritative Nameserver actually received information about the Client as part of the query request? This would allow the Authoritative Nameserver to respond based on the geolocation location information of the Client instead of the DNS Resolver. That's where ENDS0-Client-Subnet (ECS) comes into the picture.
 
-#### EDNS0-Client-Subnet extension
+## EDNS0-Client-Subnet extension
 
 [EDNS0](https://tools.ietf.org/html/rfc6891) is an extension mechanism for the DNS, which expands the size of several parameters of the DNS protocol for increasing functionality of the protocol. One such increased functionality is [EDNS0-Client-Subnet (ECS)](https://tools.ietf.org/html/rfc7871).
 The EDNS0-Client-Subnet (ECS) extension allows a recursive DNS Resolver to specify the network subnet for the host on which behalf it is making a DNS query. Therefore the Authoritative Nameserver will gain insight into the location of the client based on GeoIP information.
@@ -58,7 +58,7 @@ We can clearly see that Google's Resolver supports EDNS0-Client-Subnet (ECS).
 Similarly on the CDN side support to actually leverage the EDNS0-Client-Subnet provided information is not universal. Amazon CloudFront [added support in 2014](https://aws.amazon.com/about-aws/whats-new/2014/04/02/amazon-cloudfront-announces-support-for-edns-client-subnet/).
 Also [Amazon Route 53 supports EDNS0-Client-Subnet](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-edns0) as part of routing policies.
 
-### RIPE Atlas
+# RIPE Atlas
 
 In this post we will use RIPE Atlas to check the performance of a geographic routing enabled DNS entry.
 
@@ -68,9 +68,9 @@ I highly recommend you to consider [hosting a RIPE Atlas probe](https://atlas.ri
 
 Here we will be using RIPE Atlas customized measurements to investigate the performance of DNS-based geographic routing.
 
-### Test Setup
+# Test Setup
 
-#### Amazon Route 53 Setup
+## Amazon Route 53 Setup
 
 For this article the test setup will consist of fictional origins where we want to steer traffic to via geographic routing. The test will focus on the US with one origin in the US East coast and one origin in the US West coast.
 
@@ -91,15 +91,15 @@ The idea behind this test setup is to create a TXT DNS record which will return 
 In the test setup here the "Unknown" location for IP Geolocation data (yellow dot in Figure 2) is within the area that would be steered towards the US-East coast origin. Therefore even clients located in Portland, OR might get directed to the Ohio origin if their resolver's or EDNS0-provided client subnet cannot be correctly located.
 Breaking these clients out separately in the test setup will allow us to visualize this issue later.
 
-#### RIPE Atlas setup
+## RIPE Atlas setup
 
 Next we create a [RIPE Atlas customized measurement](https://atlas.ripe.net/about/customised-measurements/) that will leverage up to 500 randomly selected probes within the US against the DNS hostname that was setup for geographic routing with Route 53 above. We expect each probe to report back a result of either "US-West-2", "US-East-2", or "Unknown".
 
 Similar the same set of up to 500 US-based RIPE Atlas probes will be used in a second customized DNS measurement. This measurement will resolve the above introduced TXT-based record for thr special hostname of `TXT o-o.myaddr.l.google.com`. With this RIPE Atlas measurement we can find out for each probe whether EDNS0-Client-Subnet (ECS) is supported and what the provided subnet is.
 Also we can find out the IP address of the DNS Resolver for each probe as seen by the Authoritative Nameserver. This information is especially of interest for the case where the DNS Resolver does not support EDNS0-Client-Subnet (ECS).
 
-### Test Results
-#### Overview
+# Test Results
+## Overview
 With some Python code the gathered results can easily be turned into a [GeoJSON](http://geojson.org/) file (See Figure 3).
 
 {% include figure image_path="/content/uploads/2019/02/RIPE-Atlas-US-Probes.png" caption="Figure 3: Mapping of RIPE Atlas probes to Origins" %}
@@ -112,7 +112,7 @@ The location of each RIPE Atlas probe as reported by the probe's host is leverag
 
 We can see that most of the US-East coast based probes would correctly route to the US-East coast origin (depicted in blue) and most of the US-West coast probes would also correctly route to the US-West coast origin (depicted in red). But we do see a few blue pins on the US-West coast, meaning that the corresponding probe would be routed to the US-East coast instead of the closer US-West coast. Similarly we also see a few red pins on the US-East coast. This clearly shows some non-optimal routing behavior. Later on we will look in more detail into the reasons for this behavior.
 
-#### Probe Details
+## Probe Details
 The way that I've setup the GeoJSON is to also display relevant information for each of the RIPE Atlas Probes (Figure 4).
 
 {% include figure image_path="/content/uploads/2019/02/RIPE-Atlas-Probe.png" caption="Figure 4: Detail view of RIPE Atlas probe results" %}
@@ -124,7 +124,7 @@ After clicking on one of the pins you're able to see:
 * **Client Subnet:** EDNS0-Client-Subnet (ECS) provided client subnet if supported by the probe's resolver.
 * **Origin:** Result of the DNS lookup against the Amazon Route 53 test entry. This will either be "US-West-2", "US-East-2", or "Unknown" and corresponds to the color of the pin.
 
-#### Explore the GeoJSON
+## Explore the GeoJSON
 
 You can explore this GeoJSON yourself below, as it is published as a [Gist to Github](https://gist.github.com/chriselsen/ff5d0d535781e61d879ff154e785259a).
 
@@ -132,7 +132,7 @@ You can explore this GeoJSON yourself below, as it is published as a [Gist to Gi
 
 Give it a try and see what you'll discover!
 
-#### The good, bad and ugly
+## The good, bad and ugly
 
 Let's drill down on four RIPE Atlas probes to explore how geographic routing works and what the limitations are (See Figure 5).
 
@@ -152,6 +152,6 @@ With DNS geographic routing based CDNs - like AWS CloudFront - the end-user expe
 
 * **Location 4:** This last location - at the University of California, San Diego (UCSD) - *cannot be identified* by AWS Route 53 and is therefore *routed incorrectly* to the US-East-2 (Ohio) location instead of the closer US-West-2 (Oregon) location. Looking at the GeoIP information for the DNS Resolver's IPv6 address we can see that Maxmind is indeed not able to locate this IP address beyond being somewhere in the US. Furthermore we can see that this DNS Resolver also does not support EDNS0-Client-Subnet (ECS). Looking at the RIPE Atlas probe's actual IPv6 address, Maxmind is not able to locate this either. Therefore EDNS0-Client-Subnet (ECS) would not have provided any benefits here. Only the probe's IPv4 address can be located correctly by Maxmind to be in San Diego, CA.This probe is an excellent example for Route 53 placing US-based clients or DNS Resolvers at the above mentioned Cheney reservoir location. And due to Cheney reservoir falling within the area that is closer to the US-East-2 (Ohio) origin, traffic is routed there.
 
-### Summary
+# Summary
 
 This article provided a closer look at how DNS geographic routing - such as provided by AWS Route 53, but also leveraged by numerous CDNs - works. Using AWS Route 53 and RIPE Atlas we were able to visualize the real life results of a geographic routing DNS setup and dive deeper into some of the wanted and unwanted effects. A question that will need to remain to be explored in an upcoming post, is how these results compare to an [Anycast](https://en.wikipedia.org/wiki/Anycast) based routing approach for the same set of Origins, leveraging e.g. the [AWS Global Accelerator](https://aws.amazon.com/blogs/aws/new-aws-global-accelerator-for-availability-and-performance/).
