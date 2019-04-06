@@ -22,15 +22,15 @@ The network and routing methodology of [Anycast](https://en.wikipedia.org/wiki/A
 {% include figure image_path="/content/uploads/2019/03/Anycast.png" caption="Figure 1: Unicast vs. Anycast" %}
 
 Anycast networks are widely used for content delivery network (CDN) products to bring their content closer to the end user, but also large public DNS resolvers make use of this concept.
-In the case of e.g. the [Google Public DNS](https://developers.google.com/speed/public-dns/) offering, the well-known IPv4 address of 8.8.8.8 is provided via Anycast from hundreds of Google locations.
+In the case of e.g. the [Google Public DNS](https://developers.google.com/speed/public-dns/) offering, the well-known IPv4 address of 8.8.8.8 is provided via Anycast from hundreds of Google locations, thus providing low latency DNS lookups from around the world.
 
 ## AWS Global Accelerator
 
-[AWS Global Accelerator](https://aws.amazon.com/global-accelerator/) is networking service offering from Amazon Web Services that aims at improving the availability and performance of the applications that you offer to your global users. It does so by using Anycast with a set of static IPv4 addresses that act as a fixed entry point into the AWS global network (See Figure 2).
+[AWS Global Accelerator](https://aws.amazon.com/global-accelerator/) is a networking service offering from Amazon Web Services that aims at improving the availability and performance of the applications that you offer to your global users. It does so by using Anycast with a set of static IPv4 addresses that act as a fixed entry point into the AWS global network (See Figure 2).
 
 {% include figure image_path="/content/uploads/2019/03/Global-Accelerator-Concept.png" caption="Figure 2: Concept of AWS Global Accelerator" %}
 
-When you set up AWS Global Accelerator, you associate the anycasted static IP addresses to regional endpoints—such as Elastic IPv4 addresses, Network Load Balancers, and Application Load Balancers—in one or more AWS Regions. The static anycasted IPv4 addresses accept incoming traffic onto the AWS global network from the edge location that is closest to your users. From there, traffic for your application is routed to the desired AWS endpoint based on several factors, including the user’s location, the health of the endpoint, and the endpoint weights that you configure.
+When you set up AWS Global Accelerator, you associate anycasted static IP addresses to regional endpoints — such as Elastic IPv4 addresses, Network Load Balancers, and Application Load Balancers — in one or more AWS Regions. The static anycasted IPv4 addresses accept incoming traffic onto the AWS global network from the edge location that is closest to your users. From there, traffic for your application is routed to the desired AWS endpoint based on several factors, including the user’s location, the health of the endpoint, and the endpoint weights that you configure.
 
 **Note:** AWS Global Accelerator unfortunately does not support IPv6 as of today.
 {: .notice}
