@@ -12,7 +12,7 @@ tags:
 toc: true
 ---
 
-In the previous article on [Limitations of DNS-based geographic routing](/2019/03/01/limitations-of-geo-dns/) we have explored how DNS-based geographic routing works and especially what limitations you have to consider and accept while using such a solution. In this article we will have a look at using Anycast instead. We will use the same set of origin locations and RIPE Atlas test probes as with the DNS-based geographic routing setup to discover limitations of Anycast.
+In the previous article on [Limitations of DNS-based geographic routing](/2019/03/01/limitations-of-geo-dns/) we have explored how DNS-based geographic routing works and especially what limitations you have to consider and accept, while using such a solution. In this article we will have a look at using Anycast instead. We will use the same set of origin locations within AWS and [RIPE Atlas](https://atlas.ripe.net/) test probes as with the above referenced DNS-based geographic routing setup, to discover limitations of Anycast.
 
 # Anycast
 
@@ -30,7 +30,7 @@ In the case of e.g. the [Google Public DNS](https://developers.google.com/speed/
 
 {% include figure image_path="/content/uploads/2019/03/Global-Accelerator-Concept.png" caption="Figure 2: Concept of AWS Global Accelerator" %}
 
-When you set up AWS Global Accelerator, you associate anycasted static IP addresses to regional endpoints — such as Elastic IPv4 addresses, Network Load Balancers, and Application Load Balancers — in one or more AWS Regions. The static anycasted IPv4 addresses accept incoming traffic onto the AWS global network from the edge location that is closest to your users. From there, traffic for your application is routed to the desired AWS endpoint based on several factors, including the user’s location, the health of the endpoint, and the endpoint weights that you configure.
+When you set up AWS Global Accelerator, you associate anycasted static IP addresses to regional endpoints - such as Elastic IPv4 addresses, Network Load Balancers, and Application Load Balancers - in one or more AWS Regions. The static anycasted IPv4 addresses accept incoming traffic onto the AWS global network from the edge location that is closest to your users. From there, traffic for your application is routed to the desired AWS endpoint based on several factors, including the user’s location, the health of the endpoint, and the endpoint weights that you configure.
 
 **Note:** AWS Global Accelerator unfortunately does not support IPv6 as of today.
 {: .notice}
@@ -49,7 +49,7 @@ Here we will be using RIPE Atlas customized measurements to investigate the perf
 
 For this article the test setup will consist of fictional origins where we want to steer traffic to via geographic routing. The test will focus on the US with one origin in the US East coast and one origin in the US West coast.
 
-While investigating DNS-based geographic routing, we were able to leverage the RIPE Atlas [DNS test](https://atlas.ripe.net/docs/udm/#creating-a-new-measurement). Unfortunately here this test won't provide us the information that we are looking for as Anycast doesn't depend on DNS. Instead we have to leverage one of the other RIPE Atlas test mechanism. The SSL test will provide us a mapping of RIPE Atlas probe location to origin endpoint if we assign a different TLS/SSL certificate to each of the two origin locations.
+While investigating DNS-based geographic routing, we were able to leverage the RIPE Atlas [DNS test](https://atlas.ripe.net/docs/udm/#creating-a-new-measurement). Unfortunately here this test won't provide us the information that we are looking for as Anycast doesn't depend on DNS. Instead we have to leverage one of the other RIPE Atlas test mechanism. The [SSL test](https://atlas.ripe.net/docs/udm/#creating-a-new-measurement) will provide us a mapping of RIPE Atlas probe location to origin endpoint if we assign a different TLS/SSL certificate to each of the two origin locations.
 
 ## AWS Global Accelerator Setup
 
@@ -59,9 +59,9 @@ For this test we will create a single [accelerator](https://docs.aws.amazon.com/
 
 Before we can add [Endpoint Groups](https://docs.aws.amazon.com/global-accelerator/latest/dg/about-endpoint-groups.html) and [Endpoints](https://docs.aws.amazon.com/global-accelerator/latest/dg/about-endpoints.html), we have to actually create these endpoints. And as mentioned before we want to create these endpoints with a separate TLS/SSL certificate, so that we can differentiate to which origin a given RIPE Atlas probe was steered towards.
 
-The easiest approach is to create a [Network Load Balancer (NLB)](https://aws.amazon.com/elasticloadbalancing/) with TLS termination and a certificate issued by [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/). Again, keep in mind that the NLB in US-East-2 and the NLB in US-West-2 need to be issued two different certificates for our test.
+The easiest approach is to create a [Network Load Balancer (NLB)](https://aws.amazon.com/elasticloadbalancing/) with TLS termination and a certificate issued by [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/). Again, keep in mind that the NLB in US-East-2 and the NLB in US-West-2 need to be issued individual certificates for our test.
 
-In real life you would issue either the same or different certificates to the origin endpoint, but leverage the same common name, based on the DNS hostname that you configured for your Anycast addresses.  
+In real life you would issue either the same or different certificates to the origin endpoint, but leverage the same common name, based on the DNS hostname that you configured for your Anycast addresses. As this is not a production setup, but a test, the actual certificate common name doesn't matter here.  
 
 ## RIPE Atlas setup
 
@@ -80,7 +80,7 @@ The location of each RIPE Atlas probe as reported by the probe’s host is lever
 * **Red pin:** Represents a response with the SSL certificate that is assigned to the “US-West-2” origin. Traffic from this probe is therefore served by the AWS US-West-2 (Oregon) region. In this setup this represents 31% of the probes, which is 2 percentage points higher than with DNS-based geographic routing for the same set of probes.
 * **Blue pin:** Represents a response with the SSL certificate that is assigned to the “US-East-2” origin. Traffic from this probe is therefore served by the AWS US-East-2 (Ohio) region. Here this represents 61% of the probes, which is 2 percentage points lower than with DNS-based geographic routing for the same set of probes.
 
-We can see that most of the US-East coast based probes would correctly route to the US-East coast origin (depicted in blue) and most of the US-West coast probes would also correctly route to the US-West coast origin (depicted in red). But we do see a few blue pins on the US-West coast, meaning that the corresponding probe would be routed to the US-East coast instead of the closer US-West coast. Similarly we also see a few red pins on the US-East coast. This clearly shows some non-optimal routing behavior. Later on we will look in more detail into the reasons for this behavior.
+We can see that most of the US-East coast based probes are correctly routed to the US-East coast origin (depicted in blue) and most of the US-West coast probes are also correctly routed to the US-West coast origin (depicted in red). But we do see a few blue pins on the US-West coast, meaning that the corresponding probe is routed to the US-East coast instead of the closer US-West coast. Similarly we also see a few red pins on the US-East coast. This clearly shows some non-optimal routing behavior. Later on we will look in more detail into the reasons for this behavior.
 
 ## Probe Details
 
@@ -94,6 +94,8 @@ After clicking on one of the pins you’re able to see:
 * **Traceroute:** Traceroute results from the RIPE Atlas probe to the AWS Edge location serving the anycasted address.
 * **ASN:** [The Autonomous System Number (ASN)](https://en.wikipedia.org/wiki/Autonomous_system_(Internet)), allowing you to identify the Internet Service Provider of the probes host.
 * **Origin:** Result of the certificate lookup against the entry. This will either be “US-West-2” or “US-East-2” and corresponds to the color of the pin.
+
+This setup will later help us drill down deeper into some of the RIPE Atlas locations that showed sub-optmal routing behavior.
 
 ## Explore the GeoJSON
 
@@ -120,9 +122,10 @@ Next we have a RIPE Atlas probe whose host is a customer of [Charter Communicati
 
 {% include figure image_path="/content/uploads/2019/03/RIPE-Atlas-Charter.png" caption="Figure 7: Example of RIPE Atlas probe on US West Coast preferring the origin in US-East-2" %}
 
-Once again this routing decision could be based on financial reasons.
+Once again this routing decision could be based on financial reasons. Nevertheless Charter's customer in this case will experience higher latency and therefore a reduced experience as a result of this decision.
 
 # Summary
 
 This article provided a closer look at the limitations of Anycast routing. Using AWS Global Accelerator and RIPE Atlas we were able to visualize the real life results of Anycast-based routing and dive deeper into some of the unwanted effects. Also we were able to contrast these results with a similar DNS-based geographic routing setup.
 Similar to the test setup of DNS-based geographic routing, even with an Anycast base approach we see inefficient routings, where customers are directed to leverage an origin across the continental US even though another origin is closer by.
+But what performs better, DNS-based geographic routing or traffic steering via Anycast? Overall it appears that both perform in a similar way with each having some corner cases that provide a reduced end-user experience.
