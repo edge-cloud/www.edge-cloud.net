@@ -19,7 +19,7 @@ In the previous article on [Limitations of DNS-based geographic routing](/2019/0
 The network and routing methodology of [Anycast](https://en.wikipedia.org/wiki/Anycast) provides multiple routing to multiple endpoints for a single destination. Routers will select the desired path on the basis of number of hops, distance, lowest cost, latency measurements or based on the least congested route. This is in contrary to the typical [Unicast](https://en.wikipedia.org/wiki/Unicast) network and routing methodology, where each destination address uniquely identifies a single receiver endpoint (See Figure 1).
 
 
-{% include figure image_path="/content/uploads/2019/03/Anycast.png" caption="Figure 1: Unicast vs. Anycast" %}
+{% include figure image_path="/content/uploads/2019/04/Anycast.png" caption="Figure 1: Unicast vs. Anycast" %}
 
 Anycast networks are widely used for content delivery network (CDN) products to bring their content closer to the end user, but also large public DNS resolvers make use of this concept.
 In the case of e.g. the [Google Public DNS](https://developers.google.com/speed/public-dns/) offering, the well-known IPv4 address of 8.8.8.8 is provided via Anycast from hundreds of Google locations, thus providing low latency DNS lookups from around the world.
@@ -28,7 +28,7 @@ In the case of e.g. the [Google Public DNS](https://developers.google.com/speed/
 
 [AWS Global Accelerator](https://aws.amazon.com/global-accelerator/) is a networking service offering from Amazon Web Services that aims at improving the availability and performance of the applications that you offer to your global users. It does so by using Anycast with a set of static IPv4 addresses that act as a fixed entry point into the AWS global network (See Figure 2).
 
-{% include figure image_path="/content/uploads/2019/03/Global-Accelerator-Concept.png" caption="Figure 2: Concept of AWS Global Accelerator" %}
+{% include figure image_path="/content/uploads/2019/04/Global-Accelerator-Concept.png" caption="Figure 2: Concept of AWS Global Accelerator" %}
 
 When you set up AWS Global Accelerator, you associate anycasted static IP addresses to regional endpoints - such as Elastic IPv4 addresses, Network Load Balancers, and Application Load Balancers - in one or more AWS Regions. The static anycasted IPv4 addresses accept incoming traffic onto the AWS global network from the edge location that is closest to your users. From there, traffic for your application is routed to the desired AWS endpoint based on several factors, including the user’s location, the health of the endpoint, and the endpoint weights that you configure.
 
@@ -55,7 +55,7 @@ While investigating DNS-based geographic routing, we were able to leverage the R
 
 For this test we will create a single [accelerator](https://docs.aws.amazon.com/global-accelerator/latest/dg/about-accelerators.html) within AWS Global Accelerator along with a single [Listener](https://docs.aws.amazon.com/global-accelerator/latest/dg/about-listeners.html). This listener is configured on Port 443 for the protocol TCP, as we want to make use of HTTPS for this test run (See Figure 3).
 
-{% include figure image_path="/content/uploads/2019/03/Test-Setup.png" caption="Figure 3: Test Setup with AWS Global Accelerator and two origins" %}
+{% include figure image_path="/content/uploads/2019/04/Test-Setup.png" caption="Figure 3: Test Setup with AWS Global Accelerator and two origins" %}
 
 Before we can add [Endpoint Groups](https://docs.aws.amazon.com/global-accelerator/latest/dg/about-endpoint-groups.html) and [Endpoints](https://docs.aws.amazon.com/global-accelerator/latest/dg/about-endpoints.html), we have to actually create these endpoints. And as mentioned before we want to create these endpoints with a separate TLS/SSL certificate, so that we can differentiate to which origin a given RIPE Atlas probe was steered towards.
 
@@ -73,7 +73,7 @@ The RIPE Atlas test is configured as a [SSL](https://atlas.ripe.net/docs/udm/#cr
 
 With some Python code the gathered results can easily be turned into a GeoJSON file (See Figure 4).
 
-{% include figure image_path="/content/uploads/2019/03/RIPE-Atlas-Probes-Anycast.png" caption="Figure 4: Mapping of RIPE Atlas probes to Origins" %}
+{% include figure image_path="/content/uploads/2019/04/RIPE-Atlas-Probes-Anycast.png" caption="Figure 4: Mapping of RIPE Atlas probes to Origins" %}
 
 The location of each RIPE Atlas probe as reported by the probe’s host is leveraged in this visualization. The pin representing the location is colored in depending on the result for the Route 53 geographic routing test:
 
@@ -86,7 +86,7 @@ We can see that most of the US-East coast based probes are correctly routed to t
 
 The way that I’ve setup the GeoJSON is to also display relevant information for each of the RIPE Atlas Probes (Figure 5).
 
-{% include figure image_path="/content/uploads/2019/03/RIPE-Atlas-Probe-Detail.png" caption="Figure 5: Detail view of RIPE Atlas probe results" %}
+{% include figure image_path="/content/uploads/2019/04/RIPE-Atlas-Probe-Detail.png" caption="Figure 5: Detail view of RIPE Atlas probe results" %}
 
 After clicking on one of the pins you’re able to see:
 
@@ -112,7 +112,7 @@ Let’s drill down on two RIPE Atlas probes to explore the limitations of Anycas
 The first case is for a probe at the [PennState university](https://www.psu.edu/) in University Park, PA. While this location is only around 500 km away from the AWS US-East-2 (Ohio) region and around 4,500 km from the AWS US-West-2 (Oregon) region, the probe is steered to the US-West-2 (Oregon) region by Anycast.
 Looking at the Traceroute results for this probe, we can see that it uses the [Internet2 Network](https://www.internet2.edu/), an IP network that delivers network services for research and education. Further we can see that the Internet2 Network peers with AWS at [Seattle Internet Exchange (SIX)](https://www.seattleix.net/) in Seattle, WA (See Figure 6).
 
-{% include figure image_path="/content/uploads/2019/03/RIPE-Atlas-Internet2.png" caption="Figure 6: Example of RIPE Atlas probe on US East Coast preferring the origin in US-West-2" %}
+{% include figure image_path="/content/uploads/2019/04/RIPE-Atlas-Internet2.png" caption="Figure 6: Example of RIPE Atlas probe on US East Coast preferring the origin in US-West-2" %}
 
 Looking at [ASN 3999](https://bgp.he.net/AS3999#_peers), the ASN for the Pennsylvania State University, we can see IPv4 peering with two different Internet2 ASNs. There is [ASN 11537](https://bgp.he.net/AS11537#_asinfo), which participates [in a single public Internet Exchange](https://www.peeringdb.com/net/923). Also there is [ASN 11164](https://bgp.he.net/AS11164#_asinfo), which participates in [10 public Internet Exchanges](https://www.peeringdb.com/net/937).
 
@@ -120,7 +120,7 @@ It appears that the Pennsylvania State University - potentially due to financial
 
 Next we have a RIPE Atlas probe whose host is a customer of [Charter Communications](https://www.spectrum.com/). Here we can see that Charter routes the traffic from this Gillroy, CA based customer via Denver, CA and St. Louis, MO to the AWS Edge at an unknown location (See Figure 7).
 
-{% include figure image_path="/content/uploads/2019/03/RIPE-Atlas-Charter.png" caption="Figure 7: Example of RIPE Atlas probe on US West Coast preferring the origin in US-East-2" %}
+{% include figure image_path="/content/uploads/2019/04/RIPE-Atlas-Charter.png" caption="Figure 7: Example of RIPE Atlas probe on US West Coast preferring the origin in US-East-2" %}
 
 Once again this routing decision could be based on financial reasons. Nevertheless Charter's customer in this case will experience higher latency and therefore a reduced experience as a result of this decision.
 
