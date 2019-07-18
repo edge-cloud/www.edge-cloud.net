@@ -3,7 +3,7 @@ title: AWS Site-to-Site VPN with IPSec VPN (Strongwan) and BGP (FRRouting)
 author: Christian Elsen
 excerpt: Step-by-step guide to setup an AWS Site-to-Site VPN with Strongswan for IPSec VPN and FRRouting for BGP.
 layout: single
-permalink: /2019/07/30/aws-site-2-site-vpn-with-strongswan-frrouting/
+permalink: /2019/07/18/aws-site-2-site-vpn-with-strongswan-frrouting/
 categories:
   - EdgeCloud
 tags:
@@ -12,15 +12,16 @@ tags:
 toc: true
 ---
 
-This blog post will show the setup of an EC2-based VPN endpoint - using Ubuntu Linux 16.04 with [Strongswan](https://www.strongswan.org/) and [FRRouting](https://frrouting.org/) - for a Site-to-Site VPN connection.
-It will allow you to experiment with [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol) in your AWS account, test out new AWS features such as AWS Transit Gateway or use it for many other things.
-Especially if you are interested in learning more about the interaction of BGP over a Site-to-Site VPN with [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/), this is an easy way to do so.
+This blog post walks through the setup of an EC2-based VPN endpoint - using Ubuntu Linux 16.04 with [Strongswan](https://www.strongswan.org/) and [FRRouting](https://frrouting.org/) - for a Site-to-Site VPN connection to AWS with [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol) routing.
+It will allow you to experiment with BGP in your AWS account, test out new AWS features such as [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/) or use it for many other things.
+Especially if you are interested in learning more about the interaction of BGP over a Site-to-Site VPN with AWS Transit Gateway, this is an easy way to do so.
 
-The desired final setup will look like depicted in Figure 1.
+The desired final setup will look like depicted in Figure 1. The AWS Transit Gateway connects on one side to a VPC with the CIDR 172.31.0.0/16 and on the other side to an [AWS Site-to-Site VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html). This AWS Site-to-Site VPN connects to an EC2-based router, which uses Strongswan for IPSec and FRRouting for BGP. To make things interesting the EC2-based router has a second network interface on a private subnet of 10.16.16.0/24, which can be announced via BGP.
+
 
 {% include figure image_path="/content/uploads/2019/07/EC2-Based-Router-BGP.png" caption="Figure 1: Setup Overview of EC2-based VPN endpoint for Site-to-Site VPN with AWS" %}
 
-The AWS Transit Gateway connects on one side to a VPC with the CIDR 172.31.0.0/16 and on the other side to an [AWS Site-to-Site VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html). This AWS Site-to-Site VPN connects to an EC2-based router, which uses Strongswan for IPSec and FRRouting for BGP. To make things interesting the EC2-based router has a second network interface on a private subnet of 10.16.16.0/24, which can be announced via BGP.
+While Transit Gateway and EC2 instance can reside in the same AWS account and even AWS region, the EC2 instance should reside in a different VPC than connected to the Transit Gateway.
 
 # AWS Transit Gateway
 
@@ -36,7 +37,7 @@ The AWS Transit Gateway's hub and spoke model simplifies management and reduces 
 
 Follow the AWS documentation for [setting up the AWS Transit Gateway](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html) and [attaching it to an AWS Site-to-Site VPN](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpn-attachments.html).
 
-It is recommended to configure **VPN ECMP support** with **enable** to enable [Equal Cost Multipath (ECMP) routing support between VPN connections](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-transit-gateways.html). This will allow you to use both tunnels of the AWS Sit-to-Site VPN connection at the same time.
+It is recommended to configure **"VPN ECMP support"** with **"enable"** to enable [Equal Cost Multipath (ECMP) routing support between VPN connections](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-transit-gateways.html). This will allow you to use both tunnels of the AWS Sit-to-Site VPN connection at the same time.
 
 # Linux-based Router
 
