@@ -21,7 +21,9 @@ Later Christian worked as an Integration Architect on [VMware Validated Designs
 
 In 2015 Christian joined [CloudFlare](https://www.cloudflare.com) as a Product Manager, launching [HTTP/2 support](https://blog.cloudflare.com/introducing-http2/) and [quadrupling the number of HTTP/2 powered sites](https://blog.cloudflare.com/cloudflares-impact-on-the-http-2-universe/).
 
-Currently he works for [Amazon Web Services (AWS)](https://aws.amazon.com/) as a Sr. Technical Account Manager.
+Joining [Amazon Web Services (AWS)](https://aws.amazon.com/) as an Enterprise Support Lead in 2016, Christian served as a dedicated technical point of contact for a strategic AWS customer with the Enterprise support organization. He worked across customer organizations to ensure customer’s applications in AWS were well designed and scaled to the needs of large events and business initiatives. He acted as the voice of the customer within AWS to escalate problems and to drive prioritization of business needs. Furthermore he lead and assisted strategic AWS customers with application performance and architecture improvements, cost optimization, deployment planning, and problem resolution.
+
+Currently he works for [Amazon Web Services (AWS)](https://aws.amazon.com/) as a Sr. Solutions Architect (Networking Specialist), where he designs Networking Solutions for AWS customers and partners, contributes to external publications such as blogs, whitepapers and reference architectures, as well as internal trainings. 
 
 ## Disclaimer
 
