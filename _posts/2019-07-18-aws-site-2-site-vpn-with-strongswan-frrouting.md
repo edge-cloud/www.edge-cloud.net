@@ -236,6 +236,11 @@ sysctl -w net.ipv4.conf.eth0.disable_policy=1
 
 ```
 
+As this is a bash script, don't forget to make the file executable:
+```
+chmod +x /etc/ipsec-vti.sh
+```
+
 ## FRRouting Setup
 
 [Cumulus Networks](https://cumulusnetworks.com/) has excellent instructions for [installing FRRouting](https://docs.cumulusnetworks.com/display/HOSTPACK/Installing+FRRouting+on+the+Host) and [configuring FRRouting](https://docs.cumulusnetworks.com/display/HOSTPACK/Configuring+FRRouting+on+the+Host) on a Linux Host. Just follow these instructions to setup the BGP routing instance on your EC2-based router.
