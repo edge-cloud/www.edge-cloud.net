@@ -3,7 +3,7 @@ title: BGP route summarization with AWS Transit Gateway
 author: Christian Elsen
 excerpt: Step-by-step guide to summarize BGP routes with AWS Transit Gateway and Cisco IOS
 layout: single
-permalink: /2019/08/09/bgp-route-summary-with-tgw/
+permalink: /2019/08/07/bgp-route-summary-with-tgw/
 categories:
   - EdgeCloud
 tags:
