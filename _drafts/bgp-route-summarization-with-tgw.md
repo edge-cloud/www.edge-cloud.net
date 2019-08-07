@@ -32,7 +32,7 @@ The AWS Transit Gateway's hub and spoke model simplifies management and reduces 
 
 {% include figure image_path="/content/uploads/2019/08/TGW_VPC_Routes.png" caption="Figure 2: Desired BGP announcements between VPCs, TGW and customer gateway over VPN." %}
 
-{% include figure image_path="/content/uploads/2019/08/TGW_Route_Table_1.png" caption="Figure 3: Transit Gateway Route Table with individual VPC routes." %}
+{% include figure image_path="/content/uploads/2019/08/TGW_Route_Table_1.jpg" caption="Figure 3: Transit Gateway Route Table with individual VPC routes." %}
 
 
 ```
@@ -71,7 +71,7 @@ CSR100V-01#
 
 # BGP Route Aggregation with Static TGW Route
 
-{% include figure image_path="/content/uploads/2019/08/TGW_Route_Table_SummaryRoute.png" caption="Figure 4: Transit Gateway Route Table with summary route." %}
+{% include figure image_path="/content/uploads/2019/08/TGW_Route_Table_SummaryRoute.jpg" caption="Figure 4: Transit Gateway Route Table with summary route." %}
 
 
 ```
