@@ -12,11 +12,21 @@ tags:
 toc: true
 ---
 
-Intro of what to accomplish
+A very common network architecture pattern on AWS is to deploy an AWS Site-to-Site (IPSec) VPN connection as the backup for an AWS Direct Connect connection between on-premises networks and AWS VPCs.
+With the introduction of AWS Transit Gateway and AWS Direct Connect Gateway, this architecture pattern is no longer a trivial task. This blog post highlihts the associated challenges and offers a solution using BGP route summarization, BGP prefix filtering as well as tweaking the LOCAL_PREF value on the primary active path to manage traffic over the Direct Connect and ite-to-Site (IPSec) VPN path as expected.
 
 # Desired Architecture
 
+To highlight the challenges with this architecture pattern, we assume the AWS network architecture as outlined in Figure 1.  
+
 {% include figure image_path="/content/uploads/2019/08/DXGW_with_VPN-Backup_Desired.png" caption="Figure 1: Desired Setup with Direct Connect Gateway as the primary active path and Site-to-Site (IPSec) VPN as the backup path." %}
+
+This architecture includes the following assumptions and design decisions:
+* **VPC Prefixes:** Within AWS we assume that each of the four VPCs is configured with a single /24 prefix.
+* **DX Gateway announced prefixes:** As the number of prefixes  per AWS Transit Gateway from AWS to on-premise on a transit virtual interface (via Direct Connect Connect Gateway) is limited to 20, we will announce a /16 summary route for all current VPC prefixes.
+* **Site-to-Site (IPSec) VPN over Internet:** The backup path via the Site-to-Site (IPSec) VPN tunnels will leverage the internet and not another Direct Connect connection as transport mechanism
+* **Direct Connect as primary active path:** as Direct Connect offers a more consistent network experience than Internet-based connections, this network path is desired to be the primary active path, while the Site-to-Site (IPSec) VPN path should solely serve as the standby backup path.
+* **BGP as failover mechanism:** We want to leverage BGP as the failover mechanism and not implement any manual out-of-band monitoring and failover mechanism.
 
 # Actual asymmetric routing
 
