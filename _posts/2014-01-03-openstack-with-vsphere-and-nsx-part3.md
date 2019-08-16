@@ -71,7 +71,7 @@ Next we configure the IP address for the transport endpoint. This transport endp
 Set the IP address of the transport endpoint with the command `nsxcli uplink/set-ip <interface> <ip address> <netmask>`:
 
 **Note:** If the physical switchport that this vmnic connects to is not configured as an access port but as a trunk, you will need to also specify the correct VLAN to be used with the command `nsxcli uplink/set-ip <interface> <ip address> <netmask> vlan=<id>`
-{: .notice}
+{: .notice--info}
 
 ```
 ~ # nsxcli uplink/set-ip vmnic1 192.168.110.121 255.255.255.0

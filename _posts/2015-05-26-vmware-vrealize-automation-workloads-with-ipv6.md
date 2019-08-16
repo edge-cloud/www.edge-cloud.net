@@ -58,7 +58,7 @@ When it comes to IPv6, we will have to work with the following limitations of VM
   * **VM address assignment:** The virtual machines above will not be able to learn an IPv6 address via DHCPv6 or SLAAC from the Logical Router as the Logical Router cannot act as a DHCPv6 server or relay.
 
 As a side note: With IPv4, vRA will maintain a pool of IPv4 subnets, assign them to an instantiated blueprint and configure the dynamic IPv4 routing. This is not possible today with IPv6.
-{: .notice}
+{: .notice--info}
 
 ## External:
 
@@ -123,7 +123,7 @@ On the other hand, this approach would allow to use all of the NSX Edge based ne
 **Con:** Requirement to manage IPv6 addresses statically and maintain IPv6 prefix pools manually. Need to custom develop missing software capabilities via custom workflows in vRA.
 
 One important thing to keep in mind: Any of the L2 network transport capabilities (vDS, vSS, VXLAN) in vSphere will transport IPv6 traffic. This is different from e.g. AWS, where network segments that look like L2 (e.g. VPC subnet) are not actually L2 and will filter out any kind of IPv6 traffic. The focus of the workaround is therefore almost exclusively on the L3 element.
-{: .notice}
+{: .notice--info}
 
 # Summary
 

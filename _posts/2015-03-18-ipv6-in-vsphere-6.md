@@ -16,7 +16,7 @@ tags:
 toc: true
 ---
 **Note:** Last updated on May 1st, 2015
-{: .notice}
+{: .notice--info}
 
 With the [release of vSphere 6](https://www.vmware.com/support/vsphere6/doc/vsphere-esxi-vcenter-server-60-release-notes.html), the IPv6 capabilities of vSphere have greatly improved. In this post I want to provide an overview of these new capabilities for vSphere as well as NSX for vSphere (NSX-v). Together these two products are now able to form a decent virtual infrastructure layer, supporting many capabilities in IPv6.
 
@@ -32,7 +32,7 @@ The overview will be grouped by use case, product and then by function. The two 
 For each use case this article lists what capabilities and features supported IPv6 in vSphere 5.1, vSphere 5.5, vSphere 6.0, vCNS 5.5, NSX-v 6.0 and NSX-v 6.1.
 
 **Note:** Only NSX-v 6.1.3, [supports](http://www.vmware.com/resources/compatibility/sim/interop_matrix.php) vSphere 6.0.
-{: .notice}
+{: .notice--info}
 
 Let's have a look at these two use cases in more detail:
 

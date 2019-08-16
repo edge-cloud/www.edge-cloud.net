@@ -117,7 +117,7 @@ The generated TLSA record could be used directly with a modern version of ISC BI
 Unfortnately Rage4 doesn't support adding TLSA records to a domain via the Web GUI yet. TLSA records are an experimental feature and are only supported via the API. We therefore need to use a REST client against [Rage4's API](https://gbshouse.uservoice.com/knowledgebase/articles/109834-rage4-dns-developers-api) to complete this step. I will show you how to do this via the [Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?hl=en-US) for Chrome. But any other REST client should work as well in a similar way.
 
 **Note:** In the meantime Rage4 has added support for TSLA records via their Web GUI. Instead of using the API you can therefore now create the entry via the Web GUI.
-{: .notice}
+{: .notice--info}
 
 Before we can get started you need to lookup the zone ID for your domain. You can find this numeric 5 digit value as the last part of the URL while in the Manage view of your domain in the Rage4 Web GUI. In this example I'll assume that this zone IS is 12345
 

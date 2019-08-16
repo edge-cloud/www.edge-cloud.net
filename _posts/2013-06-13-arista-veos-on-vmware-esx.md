@@ -27,7 +27,7 @@ Besides at least one ESXi 5.x host you will need the following files from Arista
   * The actual vEOS image as a VMDK: EOS-4.12.0-veos.vmdk
 
 **Note:** This guide is current as of June 13, 2013. I have used the latest available vEOS VMDK file. You might want to check if a newer vEOS files [was published](https://www.arista.com/en/support) in the meantime.
-{: .notice}
+{: .notice--info}
 
 # Installation
 

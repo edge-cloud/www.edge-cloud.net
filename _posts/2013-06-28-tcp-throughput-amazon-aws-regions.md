@@ -29,7 +29,7 @@ Figure 1 shows the single TCP stream throughput between the two AWS regions. One
 Looking at the traceroute between the two instances one can clearly see that Amazon uses its own links to connect the regions.
 
 **Side Note:** The network team at Amazon AWS should brush up their skills on [Reverse DNS lookups](https://en.wikipedia.org/wiki/Reverse_DNS_lookup) as almost none of the routing hops' IP addresses resolves to DNS names. But the Autonomous System (AS) number of hops clearly shows that the IP addresses belong to Amazon.
-{: .notice}
+{: .notice--info}
 
 # "Broken" example, not Amazon AWS
 

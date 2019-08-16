@@ -159,7 +159,7 @@ Next we will need to setup a custom Alexa Skill that interacts with the AWS Lamb
 Add a New Skill. Leave the *Language* and *Skill Type* at the default value. Set **Next Muni Bus or Metro** as the skill name and **muni** as the invocation name (See Figure 5).
 
 The *Invocation Name* is what is used to activate this particular skill. For example you would say: "Alexa, ask Muni when the next bus is coming."
-{: .notice}
+{: .notice--info}
 
 Click **Next** to go the next screen.
 
@@ -204,19 +204,19 @@ Here are some examples on what you can ask the Alexa Skill about:
 
 Q: "Alexa, ask Muni when the next metros are coming.";  
 A: "The next metros are N in 1 minute, KT in 6 minutes, and N in 9 minutes.";
-{: .notice}
+{: .notice--info}
 
 Q: "Alexa, ask Muni for the next 45."  
 A: "The next outbound 45 buses are 45 in 5 minutes, 45 in 17 minutes, and 45 in 32 minutes."
-{: .notice}
+{: .notice--info}
 
 Q: "Alexa, ask Muni for the next inbound 10."  
 A: "The next inbound 10 buses are 10 in 3 minutes, 10 in 21 minutes, and 10 in 34 minutes."
-{: .notice}
+{: .notice--info}
 
 Q: "Alexa, ask Muni if there is a problem with the 45 bus."  
 A: "There is currently no service message for the outbound 45 buses."
-{: .notice}
+{: .notice--info}
 
 # Limitations
 

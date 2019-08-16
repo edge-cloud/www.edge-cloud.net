@@ -21,7 +21,7 @@ toc: true
 While there are numerous instructions and blog posts out there which try to show the load balancing configuration of an F5 Big-IP LTM with VMware vCloud Director (vCD), none of them proved to be complete and comprehensive. This post attempts to give this complete and comprehensive walk through guide.
 
 **Update June 06, 2013:** In the original version of this article, I described the usage of a standard F5 TCP monitor for the vCD Console Proxy. This will lead to a log pollution, as each connection by the F5 monitor is logged as a failed attempt on vCD. Thus this revised guide makes usage of a console proxy feature to access the SDK to monitor the health of a cell for the Console Proxy.
-{: .notice}
+{: .notice--info}
 
 # 1. Logical setup of a load-balanced VMware vCloud Director configuration
 

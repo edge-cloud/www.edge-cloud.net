@@ -38,7 +38,7 @@ Using the [mechanism known from IPv4](https://en.wikipedia.org/wiki/Subnetwork),
 IPv6 addresses are 128 bit long. If we want to mask out a subnet with the length of 64 bit, this would require us to mask out half of the bits. With the previously mentioned notation of eight groups of four hexadecimal digits separated by colons, this translates into the four first groups being FFFF in hex, which translates to all 1s in binary. And the remaining four groups being all zeros.
 
 **Note:** In older versions of Big-IP, F5 has a bug that doesn't allow you to use address shortening via double-colons ("::") through the GUI or tmsh. Instead all IPv6 addresses need to be written out. Thus the address `20BA:DD06:F00D:1234::11` would need to become `20BA:DD06:F00D:1234:0:0:0:11`.
-{: .notice}
+{: .notice--info}
 
 # Configuration
 
