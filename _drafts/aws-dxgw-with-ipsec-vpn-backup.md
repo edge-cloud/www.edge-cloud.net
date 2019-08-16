@@ -1,7 +1,7 @@
 ---
 title: AWS Transit Gateway with Direct Connect Gateway and Site-to-Site (IPSec) VPN Backup
 author: Christian Elsen
-excerpt: This article shows you how to setup a primary active Direct Connect connection between a Transit Gateway and on-premises networks via Direct Connect Gateway, while leveraging a Site-to-Site (IPSec) VPN as backup.
+excerpt: This article shows you how to setup a primary active Direct Connect connection between an AWS Transit Gateway and on-premises networks via Direct Connect Gateway, while leveraging a Site-to-Site (IPSec) VPN as backup.
 layout: single
 permalink: /2019/08/16/aws-dxgw-with-ipsec-vpn-backup/
 categories:
@@ -12,8 +12,8 @@ tags:
 toc: true
 ---
 
-A very common network architecture pattern on AWS is to deploy an AWS Site-to-Site (IPSec) VPN connection as the backup for an AWS Direct Connect connection between on-premises networks and AWS VPCs.
-With the introduction of AWS Transit Gateway and AWS Direct Connect Gateway, this architecture pattern is no longer a trivial task. This blog post highlihts the associated challenges and offers a solution using BGP route summarization, BGP prefix filtering as well as tweaking the LOCAL_PREF value on the primary active path to manage traffic over the Direct Connect and ite-to-Site (IPSec) VPN path as expected.
+A very common network architecture pattern on AWS is to deploy an AWS Site-to-Site (IPSec) VPN connection as the backup for an AWS Direct Connect (DX) connection between on-premises networks and AWS VPCs.
+With the introduction of AWS Transit Gateway and AWS Direct Connect Gateway, this architecture pattern is no longer a trivial task. This blog post highlihts the associated challenges and offers a solution using BGP route summarization, BGP prefix filtering as well as tweaking the LOCAL_PREF value on the primary active path to manage traffic over the Direct Connect and Site-to-Site (IPSec) VPN path as expected.
 
 # Desired Architecture
 
@@ -23,8 +23,9 @@ To highlight the challenges with this architecture pattern, we assume the AWS ne
 
 This architecture includes the following assumptions and design decisions:
 * **VPC Prefixes:** Within AWS we assume that each of the four VPCs is configured with a single /24 prefix.
-* **DX Gateway announced prefixes:** As the number of prefixes  per AWS Transit Gateway from AWS to on-premise on a transit virtual interface (via Direct Connect Connect Gateway) is limited to 20, we will announce a /16 summary route for all current VPC prefixes.
-* **Site-to-Site (IPSec) VPN over Internet:** The backup path via the Site-to-Site (IPSec) VPN tunnels will leverage the internet and not another Direct Connect connection as transport mechanism
+* **DX Gateway announced prefixes:** As the number of prefixes  per AWS Transit Gateway from AWS to on-premises on a transit virtual interface (via Direct Connect Connect Gateway) is limited to 20, we will announce a /16 summary route for the VPC prefixes.
+* **Site-to-Site (IPSec) VPN over Internet:** The backup path via the Site-to-Site (IPSec) VPN tunnels will leverage the Internet and not another Direct Connect connection as transport mechanism.
+* **Equal Cost Multi-Pathing (ECMP):** A single AWS Site-to-Site (IPSec) VPN tunnel only provides us a bandwidth of 1.25 Gbps. For the case that the primary active DX connection has a bandwidth higher than 1 GBps this could lead to contention during a failover scenario. Therefore we want to leverage multiple VPN tunnels with ECMP to provide higher throughputs.
 * **Direct Connect as primary active path:** as Direct Connect offers a more consistent network experience than Internet-based connections, this network path is desired to be the primary active path, while the Site-to-Site (IPSec) VPN path should solely serve as the standby backup path.
 * **BGP as failover mechanism:** We want to leverage BGP as the failover mechanism and not implement any manual out-of-band monitoring and failover mechanism.
 * **No IPv6 failover support:** Unfortunately the AWS Site-to-Site (IPSec) VPN does not support carrying IPv6 traffic. Therefore this failover design is not suited for use cases, where you want to carry private IPv6 traffic between on-premises and AWS.
@@ -38,12 +39,12 @@ Unfortunately when implementing the above design, you'll quickly notice that the
 
 {% include figure image_path="/content/uploads/2019/08/DXGW_with_VPN-Backup_Actual.png" caption="Figure 2: Actual asymmetric routing due to more specific prefixes being propagated over the Site-to-Site (IPSec) VPN." %}
 
-For traffic from on-premises to AWS, a few challenges cause this traffic to traverse the Site-to-Site (VPN) VPN connection instead of the AWS Direct Connect link. The following sections will look at these challenges in more detail:
+For traffic from on-premises to AWS, a few challenges cause this traffic to traverse the Site-to-Site (VPN) VPN connection instead of the AWS Direct Connect link. The following sections will dive into these challenges in more detail:
 
 ## AS path length
 
-When looking from the customer router at the CIDR(s) announced via BGP from the AWS Direct Connect Gateway, we would expect to see them an ASN path of 65001 and 64512, therefore with a path length of 2. Instead we will only see the ASN 65001 of the AWS Direct Connect Gateway in the path. AWS in this BGP session suppresses the ASN of the Transit Gateway.
-This results in the customer router seeing the same path length over the Direct Connect Gateway link as over the Site-to-Site (IPSec) VPN link. In case Equal Cost Multipathing (ECMP) is configured on the customer router, this could lead to both Direct Connect and VPN link being used.
+When looking from the customer router at the CIDR(s) announced via BGP from the AWS Direct Connect Gateway, we would expect to see them with an ASN path of 65001 and 64512, therefore with a path length of 2. Instead we will only see the ASN 65001 of the AWS Direct Connect Gateway in the path. AWS in this BGP session suppresses the ASN of the Transit Gateway, reducing the path length to one.
+This results in the customer router seeing the same path length over the Direct Connect Gateway link as over the Site-to-Site (IPSec) VPN link. In case Equal Cost Multipathing (ECMP) is configured on the customer router, this could lead to both Direct Connect and VPN link being used simultaneously.
 
 Similarly the AS path received by the AWS Transit Gateway is reduced to the path length of 1, resulting in the same path length over the Direct Connect Gateway link as over the Site-to-Site (IPSec) VPN link. Due to the Transit Gateway's preference of DX over VPN - see next section - traffic from AWS to on-premises doesn't run the risk of leveraging the Direct Connect and VPN link at the same time.
 
@@ -55,7 +56,7 @@ You can imagine the AWS Transit Gateway setting a higher "local preference" (LOC
 ## More Specific Routes
 
 The AWS Transit Gateway will announce all active static routes and propagated routes over the Site-to-Site (IPSec) VPN link, which in this example results in four /24 prefixes being announced towards the customer routers. As mentioned before, due to the limitation on the number of prefixes per AWS Transit Gateway from AWS to on-premise on a transit virtual interface (via Direct Connect Connect Gateway), we are announcing a /16 summary route instead of the four /24 routes over the AWS Direct Connect Gateway.
-As a result the customer router will see more specific routes over the Site-to-Site (IPSec) VPN link and therefore prefer this link.
+As a result the customer router will see more specific routes over the Site-to-Site (IPSec) VPN link and therefore prefer this link. Obviously this is not what we have desired.
 
 # Corrected traffic flow
 
@@ -68,9 +69,9 @@ The following sections look at these required changes in detail:
 ## Route summarization and filtering
 
 I already covered how to implement BGP route summarization with the AWS Transit Gateway in a [previous post](https://www.edge-cloud.net/2019/08/07/bgp-route-summary-with-tgw/).
-In this example we assume that VPCs 1 - 4 are using the CIDRs 10.1.1.0/24, 10.1.2.0/24, 10.1.3.0/24, and 10.1.4.0/24. As we are propagating the summary prefix of 10.1.0.0/16 over the Direct Connect link, we want to send the same summary prefix over the Site-to-Site (IPSec) VPN.
+In this example we assume that VPCs 1 - 4 are using the CIDRs 10.1.1.0/24, 10.1.2.0/24, 10.1.3.0/24, and 10.1.4.0/24 respectively. As we are propagating the summary prefix of 10.1.0.0/16 over the Direct Connect link, we want to send the same summary prefix over the Site-to-Site (IPSec) VPN.
 
-As outlined in the [previous post](https://www.edge-cloud.net/2019/08/07/bgp-route-summary-with-tgw/) we can achieve this by creating a static route for the prefix 10.1.0.0/16 and point it to VPC 1.
+As outlined in the [previous post](https://www.edge-cloud.net/2019/08/07/bgp-route-summary-with-tgw/) we can achieve this by creating a static route for the prefix 10.1.0.0/16 and point it to e.g. VPC 1.
 
 Now the customer gateway will receive the summary route of 10.1.0.0/16 along with the more specific routes of 10.1.1.0/24, 10.1.2.0/24, 10.1.3.0/24, and 10.1.4.0/24. Using prefix filtering on the customer gateway, we can filter out the more specific routes and solely install the summary route into the BGP route table.
 
@@ -92,14 +93,14 @@ router bgp 65100
   neighbor 169.254.15.221 activate
   neighbor 169.254.15.221 description VPN
   neighbor 169.254.15.221 soft-reconfiguration inbound
-  neighbor 169.254.15.221 route-map REJECT in
+  neighbor 169.254.15.221 route-map SUM_FILTER in
   maximum-paths eibgp 4
  exit-address-family
 !
 
 ip prefix-list incoming seq 5 permit 10.1.0.0/16
 !
-route-map REJECT permit 10
+route-map SUM_FILTER permit 10
  match ip address prefix-list incoming
 !
 ```
@@ -127,14 +128,14 @@ router bgp 65100
   neighbor 169.254.15.221 activate
   neighbor 169.254.15.221 description VPN
   neighbor 169.254.15.221 soft-reconfiguration inbound
-  neighbor 169.254.15.221 route-map REJECT in
+  neighbor 169.254.15.221 route-map SUM_FILTER in
   maximum-paths eibgp 4
  exit-address-family
 !
 
 ip prefix-list incoming seq 5 permit 10.1.0.0/16
 !
-route-map REJECT permit 10
+route-map SUM_FILTER permit 10
  match ip address prefix-list incoming
 !
 route-map LOCAL_PREF_110 permit 10
