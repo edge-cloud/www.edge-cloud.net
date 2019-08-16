@@ -21,7 +21,7 @@ Intro of what to accomplish
 **Bold**
 
 **Note:** This is a notice box
-{: .notice-info}
+{: .notice--info}
 
 ```
 #
