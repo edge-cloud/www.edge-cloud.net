@@ -49,7 +49,7 @@ deploy:
       branch: sf-s3-file-specific-opts
     region: us-west-2
     acl: public_read
-    max_threads: 25
+    max_threads: 15
     bucket: www.edge-cloud.net
     local_dir: _site
     default_text_charset: "utf-8"
