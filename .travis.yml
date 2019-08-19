@@ -46,8 +46,7 @@ after_success:
 deploy:
   - provider: s3
     edge:
-      source: chriselsen/dpl
-      branch: edge-cloud
+      branch: sf-s3-file-specific-opts
     region: us-west-2
     acl: public_read
     max_threads: 25
