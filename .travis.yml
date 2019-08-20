@@ -45,6 +45,9 @@ after_success:
   - rm content.tgz
 deploy:
   - provider: s3
+    edge:
+      source: chriselsen/dpl
+      branch: edge-cloud
     region: us-west-2
     acl: public_read
     max_threads: 15
