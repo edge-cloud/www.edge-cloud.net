@@ -14,7 +14,7 @@ toc: true
 
 A very common network architecture pattern on AWS is to deploy an [AWS Site-to-Site (IPSec) VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html) connection as the backup for an [AWS Direct Connect (DX)](https://aws.amazon.com/directconnect/) connection between on-premises networks and AWS VPCs.
 With the introduction of [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/) and [AWS Direct Connect Gateway](https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-gateways.html), this architecture pattern is no longer a trivial task.
-This blog post highlights the associated challenges and offers a solution using BGP route summarization, BGP prefix filtering as well as tweaking the LOCAL_PREF value on the primary active path to manage traffic over the Direct Connect and Site-to-Site (IPSec) VPN path as expected.
+This blog post highlights the associated challenges and offers a solution using BGP route summarization and BGP prefix filtering to manage traffic over the Direct Connect and Site-to-Site (IPSec) VPN path as expected.
 
 # Desired Architecture
 
@@ -44,14 +44,17 @@ For traffic from on-premises to AWS, a few challenges cause this traffic to trav
 
 ## AS path length
 
-When looking from the customer router at the CIDR(s) announced via BGP from the AWS Direct Connect Gateway, we would expect to see them with an ASN path of 65001 and 64512, therefore with a path length of two. Instead we will only see the ASN 65001 of the AWS Direct Connect Gateway in the path. AWS in this BGP session suppresses the ASN of the Transit Gateway, reducing the path length to one.
-This results in the customer router seeing the same path length over the Direct Connect Gateway link as over the Site-to-Site (IPSec) VPN link. In case Equal Cost Multipathing (ECMP) is configured on the customer router, this could lead to both Direct Connect and VPN link being used simultaneously.
+When looking from the customer router at the CIDR(s) announced via BGP from the AWS Direct Connect Gateway, we would expect to see them with an ASN path of 65001 and 64512, therefore with a path length of two. Instead we will only see the ASN 65001 of the AWS Direct Connect Gateway in the path. AWS in this BGP session suppresses the ASN of the Transit Gateway by using BGP confederations, effectively reducing the path length to one.
+This results in the customer router seeing the same path length over the Direct Connect Gateway link as over the Site-to-Site (IPSec) VPN link.
 
-Similarly the AS path received by the AWS Transit Gateway is reduced to the path length of one, resulting in the same path length over the Direct Connect Gateway link as over the Site-to-Site (IPSec) VPN link. Due to the Transit Gateway's preference of DX over VPN - see next section - traffic from AWS to on-premises doesn't run the risk of leveraging the Direct Connect and VPN link at the same time.
+## Multi Exit Discriminator (MED)
+
+We might end up in a situation where the same prefix is being announced over the Direct Connect link as well as the VPN link with the same AS path length. In case Equal Cost Multipathing (ECMP) is configured on the customer router, we would expect both of these path to be considered at the same time.
+But AWS sets a Multi Exit Discriminator (MED) value of 100 on BGP sessions over VPN links. As this value is higher than the default value of 0 - which the DX path uses - the DX path would be preferred.   
 
 ## TGW preference of DX over VPN
 
-Even though the AWS Transit Gateway will receive via BGP the same prefixes with the same path length over both Direct Connect and Site-to-Site (IPSec) VPN, traffic will solely traverses over the Direct Connect link to on-premises. The AWS Transit Gateway in this case prefers the AWS Direct Connect gateway over the VPN connection, as outlined in the [AWS Transit Gateway documentation](https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-routing-overview).
+The AS path received by the AWS Transit Gateway is not reduced to the path length of one by the BGP confederation configuration. this results in a longer path length over the Direct Connect Gateway link as over the Site-to-Site (IPSec) VPN link. Nevertheless, traffic will solely traverses over the Direct Connect link to on-premises. The AWS Transit Gateway in this case prefers the AWS Direct Connect gateway over the VPN connection, as outlined in the [AWS Transit Gateway documentation](https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-routing-overview).
 You can imagine the AWS Transit Gateway setting a higher "local preference" (LOCAL_PREF) on the AWS Direct Connect gateway BGP sessions.
 
 ## More Specific Routes
@@ -63,7 +66,7 @@ As a result the customer router will see more specific routes over the Site-to-S
 
 To correct the asymmetric routing situation we need to implement a few changes as highlighted in Figure 3.
 
-{% include figure image_path="/content/uploads/2019/08/DXGW_with_VPN-Backup_Fix.png" caption="Figure 3: Corrected traffic flow after using route summarization, prefix filtering and LOCAL_PREF." %}
+{% include figure image_path="/content/uploads/2019/08/DXGW_with_VPN-Backup_Fix.png" caption="Figure 3: Corrected traffic flow after using route summarization and prefix filtering." %}
 
 The following sections look at these required changes in detail:
 
@@ -106,49 +109,37 @@ route-map SUM_FILTER permit 10
 !
 ```
 
-In this case we only allow the summary prefix of 10.1.0.0/16 over the VPN link. 
+In this case we only allow the summary prefix of 10.1.0.0/16 over the VPN link.
 
-## Preferring Direct Connect via increasing LOCAL_PREF
+# Results
 
-At this point we are not done yet. The customer gateway will still see the same summary route announced with the same AS path length over Direct Connect and VPN link. As we have ECMP configured this would result in both path being utilized. Instead we need a tie-breaker to steer traffic from on-premises to AWS solely via the Direct Connect link. This is done by increasing the local preference (LOCAL_PREF) on the AWS Direct Connect link within the BGP configuration of the customer gateway.
+At this point we are done and have succeeded: The customer gateway will see the same summary route announced with the same AS path length over Direct Connect and VPN link, except that the route over VPN will have a MED of 100. Therefore the DX route - having a MED of 0 - will be chosen instead.
+
+With this we can look at the routes that are received from the BGP peer over DX (here: 169.254.13.253) and the BGP peer over VPN (here: 169.254.15.221)
+```
+#sh ip bgp neighbors 169.254.13.253 received-routes | beg Network
+      Network          Next Hop            Metric LocPrf Weight Path
+  *    10.1.0.0/16     169.254.15.221           0             0 65001 e
+
+#sh ip bgp neighbors 169.254.15.221 received-routes | beg Network
+      Network          Next Hop            Metric LocPrf Weight Path
+  *    10.1.0.0/16     169.254.15.221         100             0 64512 e
+  *    10.1.1.0/24     169.254.15.221         100             0 64512 e
+  *    10.1.2.0/24     169.254.15.221         100             0 64512 e
+  *    10.1.3.0/24     169.254.15.221         100             0 64512 e
+  *    10.1.4.0/24     169.254.15.221         100             0 64512 e
+```
+While we see the four more specific /24 routes over VPN - which will be filtered out - we also see the summary route matching the route over DX. While both routes have the same AS path length, we can see the difference in Metric (showing MED).
+
+With this the route installed into the RIB by BGP will solely be the one traversing DX.
 
 ```
-router bgp 65100
- bgp log-neighbor-changes
- neighbor 169.254.13.253 remote-as 64512
- neighbor 169.254.13.253 timers 10 30 30
- neighbor 169.254.15.221 remote-as 65001
- neighbor 169.254.15.221 timers 10 30 30
- !
- address-family ipv4
-  network 10.2.0.0 mask 255.255.0.0
-  neighbor 169.254.13.253 activate
-  neighbor 169.254.13.253 description Direct Connect
-  neighbor 169.254.13.253 soft-reconfiguration inbound
-  neighbor 169.254.13.253 route-map LOCAL_PREF_110 in
-  neighbor 169.254.15.221 activate
-  neighbor 169.254.15.221 description VPN
-  neighbor 169.254.15.221 soft-reconfiguration inbound
-  neighbor 169.254.15.221 route-map SUM_FILTER in
-  maximum-paths eibgp 4
- exit-address-family
-!
-
-ip prefix-list incoming seq 5 permit 10.1.0.0/16
-!
-route-map SUM_FILTER permit 10
- match ip address prefix-list incoming
-!
-route-map LOCAL_PREF_110 permit 10
- set local-preference 110
-!
+#sh ip bgp | beg Network
+      Network          Next Hop            Metric LocPrf Weight Path
+  *    10.1.0.0/16     169.254.15.221           0             0 65001 e
 ```
-
-In this case we set a local preference (LOCAL_PREF) of 110 - which is higher than the default value of 100 - for all prefixes received via the Direct Connect link.
-
-Now traffic from on-premises to AWS will prefer the DX link, while it is active and we have achieved our desired behavior.
 
 # Summary
 
 This article walked you through the challenges associated with configuring a Site-to-Site (IPSec) VPN tunnel as a backup path with a primary active traffic between an AWS Transit Gateway and on-premises networks via a Direct Connect Gateway.
-To overcome these challenges a solution is proposed that leverages BGP route summarization, BGP prefix filtering and tweaking the LOCAL_PREF value on the primary active path.
+To overcome these challenges a solution is proposed that leverages BGP route summarization and BGP prefix filtering.
