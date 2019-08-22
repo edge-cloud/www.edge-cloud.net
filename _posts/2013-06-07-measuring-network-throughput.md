@@ -146,11 +146,15 @@ First, change the maximum TCP windows size (receiving) on the receiver:
 
     user@receiver:~$ sysctl -w net.ipv4.tcp_rmem="4096 65536 131072"
     net.ipv4.tcp_wmem = 4096 65536 131072
+    user@receiver:~$ sysctl -w net.core.rmem_max=131072
+    net.core.rmem_max = 131072
 
 Next, change the default TCP windows size (sending) on the sender:
 
     user@sender:~$ sysctl -w net.ipv4.tcp_wmem="4096 65536 131072"
     net.ipv4.tcp_wmem = 4096 65536 131072
+    user@receiver:~$ sysctl -w net.core.wmem_max=131072
+    net.core.rmem_max = 131072
 
 On the receiver host we will start iperf as a server and advice it to use the TCP window size of 128K:
 
@@ -158,10 +162,10 @@ On the receiver host we will start iperf as a server and advice it to use the TC
 
 Now we run the test again:
 
-    user@sender:~$ iperf -c receiver.edge-cloud.net
+    user@sender:~$ iperf -c receiver.edge-cloud.net -w 131072
     ------------------------------------------------------------
     Client connecting to receiver.edge-cloud.net, TCP port 5001
-    TCP window size: 128 KByte
+    TCP window size:  256 KByte (WARNING: requested  128 KByte)
     ------------------------------------------------------------
     [  3] local 1.2.3.4 port 48448 connected with 5.6.7.8 port 5001
     [ ID] Interval       Transfer     Bandwidth
@@ -186,10 +190,10 @@ On the receiver host we again start Iperf as a server and advice it to use the T
 
 But on the server side we will advise Iperf to start 10 parallel test:
 
-    user@sender:~$ iperf -c receiver.edge-cloud.net -P 10
+    user@sender:~$ iperf -c receiver.edge-cloud.net -P 10 -w 131072
     ------------------------------------------------------------
     Client connecting to receiver.edge-cloud.net, TCP port 5001
-    TCP window size: 64 KByte (default)
+    TCP window size:  256 KByte (WARNING: requested  128 KByte)
     ------------------------------------------------------------
     [  4] local 1.2.3.4 port 48524 connected with 4.3.2.1 port 5001
     [  6] local 1.2.3.4 port 48526 connected with 4.3.2.1 port 5001
