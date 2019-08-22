@@ -153,7 +153,7 @@ Next, change the default TCP windows size (sending) on the sender:
 
     user@sender:~$ sysctl -w net.ipv4.tcp_wmem="4096 65536 131072"
     net.ipv4.tcp_wmem = 4096 65536 131072
-    user@receiver:~$ sysctl -w net.core.wmem_max=131072
+    user@sender:~$ sysctl -w net.core.wmem_max=131072
     net.core.rmem_max = 131072
 
 On the receiver host we will start iperf as a server and advice it to use the TCP window size of 128K:
