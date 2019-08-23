@@ -44,8 +44,9 @@ For traffic from on-premises to AWS, a few challenges cause this traffic to trav
 
 ## AS path length
 
-When looking from the customer router at the CIDR(s) announced via BGP from the AWS Direct Connect Gateway, we would expect to see them with an ASN path of 65001 and 64512, therefore with a path length of two. Instead we will only see the ASN 65001 of the AWS Direct Connect Gateway in the path. AWS in this BGP session suppresses the ASN of the Transit Gateway by using BGP confederations, effectively reducing the path length to one.
-This results in the customer router seeing the same path length over the Direct Connect Gateway link as over the Site-to-Site (IPSec) VPN link.
+When looking from the customer router at the CIDR(s) announced via BGP from the AWS Direct Connect Gateway, we would expect to see them with an ASN path of 65001 and 64512, therefore with a path length of two. Instead we will only see the ASN 65001 of the AWS Direct Connect Gateway in the path.
+This is the result of users manually setting the CIDRs to be announced by the AWS Direct Connect Gateway towards on-premises. Imagine the AWS Direct Connect Gateway effectively filtering out any CIDRs learned from the AWS Transit Gateway and instead announcing a static route with the manually configured CIDR. 
+The result is a reduced path length to one over Direct Connect, which is the same AS path length as over the Site-to-Site (IPSec) VPN link.
 
 ## Multi Exit Discriminator (MED)
 
