@@ -58,7 +58,7 @@ But as the Direct Connect path uses a different ASN compared to the VPN path, th
 
 The origin code shows how BGP learned about a certain path, not how your node learned about it. It is a BGP path attribute that is carried along with the NLRI information in BGP update messages. The origin attribute is a mandatory attribute and must be included with every route entry, as it is used in the BGP best-path selection process.
 When e.g. configuring a prefix with the *network* statement, the origin code *i* indicates *IGP*. On the other hand when you redistribute a prefix into BGP - either via an interior gateway protocol such as OSPF or a static route, the origin code is set to *?*. The origin code of *e* for *EGP* is not widely used anymore today. EGP is the predecessor of BGP and prefixes with this origin code receive a lower priority.
-This is something that AWS makes use of: All prefixes announced over VPN are marked with an origin code of *e* for *EGP*. As a result the customer gateway will prefer the path announced over Direct Connect having an origin code of *i* for *IGP*, instead of the path over VPN. 
+This is something that AWS makes use of: All prefixes announced over VPN terminating on a TGW, are marked with an origin code of *e* for *EGP*. As a result the customer gateway will prefer the path announced over Direct Connect having an origin code of *i* for *IGP*, instead of the path over VPN. 
 
 ## TGW preference of DX over VPN
 
