@@ -93,11 +93,16 @@ eth1      Link encap:Ethernet  HWaddr 02:7b:35:90:92:ae
           RX bytes:854331 (854.3 KB)  TX bytes:213798 (213.7 KB)
 ```
 
+### Source or Destination checking
+
+In AWS the Source or Destination checking attribute on an interface determines whether an instance can handle network traffic that isn't specifically destined for the instance. 
+
+Before installing Strongswan on your EC2 instance [disable Source/Destination Checks](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck) for this instance. 
+Keep in mind that this needs to be done for both interfaces (ENIs) separately.
+
 ## Strongswan setup
 
-Before installing Strongswan on your EC2 instance [disable Source/Destination Checks](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck) for this instance.
-
- Next use **apt-get update && apt-get install strongswan** to install Strongswan on the Ubuntu Linux 16.04 instance.
+Next use **apt-get update && apt-get install strongswan** to install Strongswan on the Ubuntu Linux 16.04 instance.
 
  Update the configuration file **/etc/ipsec.conf** with generic settings for an AWS Site-to-Site VPN, as well as the specific settings for the two tunnels that each AWS Site-to-Site VPN provides.
  Make sure to replace the relevant IPv4 addresses from this example with your IPv4 addresses.
