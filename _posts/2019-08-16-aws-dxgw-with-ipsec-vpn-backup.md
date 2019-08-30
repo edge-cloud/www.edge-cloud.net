@@ -45,7 +45,7 @@ For traffic from on-premises to AWS, a few challenges cause this traffic to trav
 ## AS path length
 
 When looking from the customer router at the CIDR(s) announced via BGP from the AWS Direct Connect Gateway, we would expect to see them with an ASN path of 65001 and 64512, therefore with a path length of two. Instead we will only see the ASN 65001 of the AWS Direct Connect Gateway in the path.
-This is the result of users manually setting the CIDRs to be announced by the AWS Direct Connect Gateway towards on-premises. Imagine the AWS Direct Connect Gateway effectively filtering out any CIDRs learned from the AWS Transit Gateway and instead announcing a static route with the manually configured CIDR. 
+This is the result of users manually setting the CIDRs to be announced by the AWS Direct Connect Gateway towards on-premises. Imagine the AWS Direct Connect Gateway effectively filtering out any CIDRs learned from the AWS Transit Gateway and instead announcing a static route with the manually configured CIDR.
 The result is a reduced path length to one over Direct Connect, which is the same AS path length as over the Site-to-Site (IPSec) VPN link.
 
 ## Multi Exit Discriminator (MED)
@@ -85,16 +85,16 @@ The below example shows how to implement this under Cisco IOS with route-maps.
 ```
 router bgp 65100
  bgp log-neighbor-changes
- neighbor 169.254.13.253 remote-as 64512
- neighbor 169.254.13.253 timers 10 30 30
+ neighbor 169.254.254.1 remote-as 64512
+ neighbor 169.254.254.1 timers 10 30 30
  neighbor 169.254.15.221 remote-as 65001
  neighbor 169.254.15.221 timers 10 30 30
  !
  address-family ipv4
   network 10.2.0.0 mask 255.255.0.0
-  neighbor 169.254.13.253 activate
-  neighbor 169.254.13.253 description Direct Connect
-  neighbor 169.254.13.253 soft-reconfiguration inbound
+  neighbor 169.254.254.1 activate
+  neighbor 169.254.254.1 description Direct Connect
+  neighbor 169.254.254.1 soft-reconfiguration inbound
   neighbor 169.254.15.221 activate
   neighbor 169.254.15.221 description VPN
   neighbor 169.254.15.221 soft-reconfiguration inbound
@@ -116,11 +116,11 @@ In this case we only allow the summary prefix of 10.1.0.0/16 over the VPN link.
 
 At this point we are done and have succeeded: The customer gateway will see the same summary route announced with the same AS path length over Direct Connect and VPN link, except that the route over VPN will have a MED of 100. Therefore the DX route - having a MED of 0 - will be chosen instead.
 
-With this we can look at the routes that are received from the BGP peer over DX (here: 169.254.13.253) and the BGP peer over VPN (here: 169.254.15.221)
+With this we can look at the routes that are received from the BGP peer over DX (here: 169.254.254.1) and the BGP peer over VPN (here: 169.254.15.221)
 ```
-#sh ip bgp neighbors 169.254.13.253 received-routes | beg Network
+#sh ip bgp neighbors 169.254.254.1 received-routes | beg Network
       Network          Next Hop            Metric LocPrf Weight Path
-  *    10.1.0.0/16     169.254.15.221           0             0 65001 e
+  *    10.1.0.0/16     169.254.254.1                          0 65001 i
 
 #sh ip bgp neighbors 169.254.15.221 received-routes | beg Network
       Network          Next Hop            Metric LocPrf Weight Path
@@ -137,7 +137,8 @@ With this the route installed into the RIB by BGP will solely be the one travers
 ```
 #sh ip bgp | beg Network
       Network          Next Hop            Metric LocPrf Weight Path
-  *    10.1.0.0/16     169.254.15.221           0             0 65001 e
+  *    10.1.0.0/16     169.254.15.221         100             0 64512 e
+  *>                   169.254.254.1            0             0 65001 i
 ```
 
 # Summary
