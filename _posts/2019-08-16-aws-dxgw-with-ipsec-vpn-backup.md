@@ -86,20 +86,21 @@ The below example shows how to implement this under Cisco IOS with route-maps.
 router bgp 65100
  bgp log-neighbor-changes
  neighbor 169.254.254.1 remote-as 64512
+ neighbor 169.254.254.1 description Direct Connect
  neighbor 169.254.254.1 timers 10 30 30
+ neighbor 169.254.254.1 password 0 mypassword
  neighbor 169.254.15.221 remote-as 65001
+ neighbor 169.254.15.221 description VPN
  neighbor 169.254.15.221 timers 10 30 30
  !
  address-family ipv4
   network 10.2.0.0 mask 255.255.0.0
   neighbor 169.254.254.1 activate
-  neighbor 169.254.254.1 description Direct Connect
   neighbor 169.254.254.1 soft-reconfiguration inbound
   neighbor 169.254.15.221 activate
-  neighbor 169.254.15.221 description VPN
   neighbor 169.254.15.221 soft-reconfiguration inbound
   neighbor 169.254.15.221 route-map SUM_FILTER in
-  maximum-paths eibgp 4
+  maximum-paths 4
  exit-address-family
 !
 
