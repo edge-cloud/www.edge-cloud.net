@@ -3,7 +3,7 @@ title: AWS Direct Connect Deep Dive
 author: Christian Elsen
 excerpt: A deep dive look into the AWS Direct Connect Gateway
 layout: single
-permalink: /2019/09/05/dx-gateway-deep-dive/
+permalink: /2019/09/06/dx-gateway-deep-dive/
 categories:
   - EdgeCloud
 tags:
@@ -30,7 +30,7 @@ Before Direct Connect Gateway you were only able to reach the AWS Region [associ
 
 {% include figure image_path="/content/uploads/2019/09/DX-Associated-Region.png" caption="Figure 1: Direct Connect with associated AWS region." %}
 
-If you required to access multiple AWS regions via Direct Connect over Private VIFs you had to work with [AWS Direct Connect Partners](https://aws.amazon.com/directconnect/partners/) to establish a presence in a DX location associated with the AWS Region of interest. Depending on the location of the DX location this could become very expensive.
+If you required to access multiple AWS regions via Direct Connect over Private VIFs you had to work with [AWS Direct Connect Partners](https://aws.amazon.com/directconnect/partners/) to establish a presence in a DX location associated with the AWS Region of interest. Depending on your location and the location of the DX location this could become very expensive.
 
 With AWS Direct Connect Gateway you can now access Virtual Private Clouds (VPC) via Virtual Private Gateways (VGW) in any AWS region (except China) from any Direct Connect location (except China), simplifying this use case dramatically (See Figure 2).
 
@@ -57,7 +57,7 @@ AWS Direct Connect is a global AWS object which supports "Virtual Interface Atta
 An AWS Direct Connect *Dedicated Connection* or *Hosted Connection* can support up to 50 such private virtual interfaces. A *Hosted Virtual Interface* on the other hand support only supports a single virtual Interface, which can be Private Virtual Interface.
 
 * **Transit Gateway with Transit Virtual interface:** A Transit Gateway is an AWS networking component, which allows you to connect multiple VPCs, Direct Connect Gateways, and Site-to-Site (IPSec) VPNs together via attachments. Currently these attachments have to reside in the same AWS region, although cross-region support has been announced. In this case the on-premises facing attachment of the Direct Connect Gateway is a Transit Virtual Interface (VIF).
-Only AWS Direct Connect *Dedicated Connections* or *Hosted Connections* with a capacity of greater than or equal to 1G support Transit VIFs. In the case of a Dedicated Connection you can use one Transit VIF in addition to 50 private or public VIFs. In the case of a Hosted Connection - which only provides a single Virtual Interface - that VIF can either be a private, public or transit Virtual Interface.
+Only AWS Direct Connect *Dedicated Connections* or *Hosted Connections* with a capacity of [greater than or equal to 1G](https://aws.amazon.com/directconnect/partners/) support Transit VIFs. In the case of a Dedicated Connection you can use one Transit VIF in addition to 50 private or public VIFs. In the case of a Hosted Connection - which only provides a single Virtual Interface - that VIF can either be a private, public or transit Virtual Interface.
 AWS Direct Connect *Hosted Virtual Interfaces* do not support Transit VIFs at all.
 
 # Multi-Account support
@@ -105,4 +105,4 @@ If you advertise more than 100 routes over the BGP session, the BGP session will
 
 # Summary
 
-This article provided deeper insights into AWS Direct Connect Gateway, covering use cases, the Direct Connect Gateway components, multi-account setup support, as well as limits and restrictions. 
+This article provided deeper insights into AWS Direct Connect Gateway, covering use cases, the Direct Connect Gateway components, multi-account setup support, as well as limits and restrictions.
