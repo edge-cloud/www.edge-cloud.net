@@ -60,6 +60,15 @@ An AWS Direct Connect *Dedicated Connection* or *Hosted Connection* can support 
 Only AWS Direct Connect *Dedicated Connections* or *Hosted Connections* with a capacity of [greater than or equal to 1G](https://aws.amazon.com/directconnect/partners/) support Transit VIFs. In the case of a Dedicated Connection you can use one Transit VIF in addition to 50 private or public VIFs. In the case of a Hosted Connection - which only provides a single Virtual Interface - that VIF can either be a private, public or transit Virtual Interface.
 AWS Direct Connect *Hosted Virtual Interfaces* do not support Transit VIFs at all.
 
+
+# Automation
+
+AWS Direct Connect gateway supports various forms of automation via it's API.
+
+* **API and SDKs:** The AWS Direct Connect gateway's API is part of the [AWS Direct Connect API](https://docs.aws.amazon.com/cli/latest/reference/directconnect/index.html). Therefore you can manage AWS Direct Connect gateway via [AWS SDKs and command line tools](https://aws.amazon.com/tools/).
+* **CloudFormation:** As of today, CloudFormation does not support AWS Direct Connect and therefore also does not support AWS Direct Connect gateway.
+* **TerraForm:** HashiCorp's TerraForm does support creation and management of [AWS Direct Connect gateways](https://www.terraform.io/docs/providers/aws/r/dx_gateway.html).
+
 # Multi-Account support
 
 Similar to AWS Direct Connect itself, DX Gateway also support multi-account setups. This is especially important for larger customer that want to split ownership of the components across teams or units. Also customers of [AWS GovCloud (US)](https://aws.amazon.com/govcloud-us/) benefit from this capability, as various components can be managed from a standard commercial account instead of the GovCloud account.
