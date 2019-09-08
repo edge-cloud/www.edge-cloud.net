@@ -23,8 +23,10 @@
       {{ content }}
       
       <!-- Google Adsense -->
-      {% if jekyll.environment == 'production' %}
-        {% include google-adsense.html %}
+      {% if page.url != "/" and site.adsense %}
+        {% if jekyll.environment == 'production' %}
+          {% include google-adsense.html %}
+        {% endif %}
       {% endif %}
       
     </div>
