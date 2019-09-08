@@ -2,9 +2,33 @@
    Google Adsense
    ========================================================================== */
 
-.google-adsense { width:320px; height:50px }
-@media (min-width:320px) { .google-adsense { width:300px; height:250px; } }
-@media (min-width:480px) { .google-adsense { width:336px; height:280px; } }
-@media (min-width:500px) { .google-adsense { width:468px; height:60px; } }
-@media (min-width:800px) { .google-adsense { width:728px; height:90px; } }
-@media (min-width:1080px) { .google-adsense { width:970px; height:90px; } }
+.google-adsense-wrapper,
+.google-adsense {
+  width: 728px;
+  height: 90px;
+}
+@media screen and (max-width: 768px) {
+  .google-adsense-wrapper,
+  .google-adsense {
+    width: 336px;
+    height: 280px;
+  }
+  .google-adsense-wrapper {
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .google-adsense-wrapper,
+  .google-adsense {
+    width: 336px;
+    height: 280px;
+  }
+  .google-adsense-wrapper {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+}
