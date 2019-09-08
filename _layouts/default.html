@@ -21,12 +21,6 @@
 
     <div class="initial-content">
       {{ content }}
-      
-      <!-- Google Adsense -->
-      {% if page.url != "/" and site.adsense and jekyll.environment == 'production' %}
-        {% include google-adsense.html %}
-      {% endif %}
-      
     </div>
 
     {% if site.search == true %}
