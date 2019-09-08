@@ -92,6 +92,10 @@ layout: default
       </div>
     </div>
   {% endif %}
+  {% comment %}<!-- Google Adsense -->{% endcomment %}
+  {% if page.url != "/" and site.adsense and jekyll.environment == 'production' %}
+    {% include google-adsense.html %}
+  {% endif %}
   
 </div>
 
