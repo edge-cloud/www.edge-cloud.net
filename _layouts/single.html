@@ -92,11 +92,15 @@ layout: default
       </div>
     </div>
   {% endif %}
+  
+  <!-- Google Adsense -->
+  {% if jekyll.environment == 'production' %}
+    {% include google-adsense.html %}
+  {% endif %}
+  
 </div>
 
-{% if jekyll.environment == 'production' %}
-  {% include google-adsense.html %}
-{% endif %}
+
 
 
 
