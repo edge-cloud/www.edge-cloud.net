@@ -45,9 +45,43 @@ router bgp 64970
 neighbor 10.1.103.34 remote-as AWS_ASN
 ```
 
-Turns out that looking at the Megaport portal gave a slightly different view with the BGP Auth Key showing up. To be fair, Megaport clearly [documents](https://knowledgebase.megaport.com/cloud-connectivity/aws-cloud/) this behavior of the BGP Auth key solely showing up in the Megaport portal, but not the AWS Console.
-
 # Troubleshooting
+
+As mentioned before it was possible to ping the AWS Direct Connect peer interface successfully:
+```
+Router1#ping 10.1.103.34
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.1.103.34, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 12/12/13 ms
+```
+
+Next, came checking via Telnet whether the BGP daemon was accessible on port TCP/179 on the AWS Direct Connect peer side.
+A successful connection would eventually be closed by the remote side and therefore look like this:
+```
+Router1#telnet 10.1.103.34 179
+Trying 10.1.103.34, 179 ... Open
+
+[Connection to 10.1.103.34 closed by foreign host]
+```
+
+Just as a reference: In case the remote host was not accessible due to lack of Layer 3 connectivity, the result would like like this:
+```
+Router1#telnet 10.1.103.34 179
+Trying 10.1.103.34, 179 ...
+% Connection timed out; remote host not responding
+```
+
+And if connectivity to port TCP/179 was blocked by e.g. an access control list (ACL), the result would look like this:
+```
+Router1#telnet 10.1.103.34 179
+Trying 10.1.103.34, 179 ...
+% Connection refused by remote host
+```
+
+After validating that the BGP peer could be reached successfully, it was time to look further.
+
+Turns out that looking at the Megaport portal gave a slightly different view with the BGP Auth Key showing up. To be fair, Megaport clearly [documents](https://knowledgebase.megaport.com/cloud-connectivity/aws-cloud/) this behavior of the BGP Auth key solely showing up in the Megaport portal, but not the AWS Console.
 
 Using some more advanced Cisco IOS troubleshooting commands then confirmed that the AWS Direct Connect peer router was indeed setting an BGP Auth MD5, which the local router was not accepting.
 
@@ -57,6 +91,8 @@ MD5 received, but NOT expected from 10.1.103.34:24834 to 10.1.103.33:179
 
 ```
 
+# Fix
+
 After adding the MD5 Auth key to the customer's BGP config, the BGP peer session came up right away.
 
 ```
@@ -64,3 +100,5 @@ router bgp 64970
 neighbor 10.1.103.34 remote-as AWS_ASN
 neighbor 10.1.103.34 password My5UpeR5eCRetPA55W0rD
 ```
+
+I would have expected the above *"debug ip bgp"* command would have showed us some information regarding the missing BGP Auth key. But as there was no BGP Auth setup on the local node, there was no information about the Auth mismatch in the debug output.  
