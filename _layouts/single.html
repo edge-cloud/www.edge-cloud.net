@@ -94,6 +94,7 @@ layout: default
   {% endif %}
   {% comment %}<!-- Google Adsense -->{% endcomment %}
   {% if page.url != "/" and site.adsense and jekyll.environment == 'production' %}
+    <h4 class="page__adsense-title">{{ site.data.ui-text[site.locale].adsense_label | default: "Advertisement" }}</h4>
     {% include google-adsense.html %}
   {% endif %}
   
