@@ -12,7 +12,7 @@ tags:
 toc: true
 ---
 
-This blog post walks through the setup of an EC2-based VPN endpoint - using Ubuntu Linux 16.04 with [Strongswan](https://www.strongswan.org/) and [FRRouting](https://frrouting.org/) - for a Site-to-Site VPN connection to AWS with [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol) routing.
+This blog post walks through the setup of an EC2-based VPN endpoint - using Ubuntu Linux 18.04 with [Strongswan](https://www.strongswan.org/) and [FRRouting](https://frrouting.org/) - for a Site-to-Site VPN connection to AWS with [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol) routing.
 It will allow you to experiment with BGP in your AWS account, test out new AWS features such as [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/) or use it for many other things.
 Especially if you are interested in learning more about the interaction of BGP over a Site-to-Site VPN with AWS Transit Gateway, this is an easy way to do so.
 
@@ -37,7 +37,7 @@ The AWS Transit Gateway's hub and spoke model simplifies management and reduces 
 
 Follow the AWS documentation for [setting up the AWS Transit Gateway](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html) and [attaching it to an AWS Site-to-Site VPN](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpn-attachments.html).
 
-It is recommended to configure **"VPN ECMP support"** with **"enable"** to enable [Equal Cost Multipath (ECMP) routing support between VPN connections](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-transit-gateways.html). This will allow you to use both tunnels of the AWS Sit-to-Site VPN connection at the same time.
+It is recommended to configure *"VPN ECMP support"* with *"enable"* to enable [Equal Cost Multipath (ECMP) routing support between VPN connections](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-transit-gateways.html). This will allow you to use both tunnels of the AWS Sit-to-Site VPN connection at the same time.
 
 # Linux-based Router
 
@@ -47,7 +47,7 @@ This setup uses Ubuntu 16.04-LTS, Xenial Xerus as the Linux distribution for the
 
 As mentioned earlier the Ubuntu Linux EC2 instance uses a secondary network interface on a private subnet. This subnet is announced via BGP towards the AWS Transit Gateway. AWS Premium Support provides a detailed instruction on [how to make a secondary network interface work in Ubuntu EC2 instances](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-ubuntu-secondary-network-interface/). The presented concepts are used here.
 
-First create a configuration file for the secondary interface at **/etc/network/interfaces.d/99-eth1.cfg**. his example uses a secondary interface of 'eth1'. Be sure to change 'eth1' to match your secondary interface name.
+First create a configuration file for the secondary interface at */etc/network/interfaces.d/99-eth1.cfg*. his example uses a secondary interface of 'eth1'. Be sure to change 'eth1' to match your secondary interface name.
 ```
 #
 # /etc/network/interfaces.d/99-eth1.cfg
@@ -61,7 +61,7 @@ iface eth1 inet6 dhcp
 
 ```
 
-Next create the restrict-default-gw file to prevent the default gateway from being overwritten on the main table via the **/etc/dhcp/dhclient-enter-hooks.d/restrict-default-gw** file.
+Next create the restrict-default-gw file to prevent the default gateway from being overwritten on the main table via the */etc/dhcp/dhclient-enter-hooks.d/restrict-default-gw* file.
 ```
 #
 # /etc/dhcp/dhclient-enter-hooks.d/restrict-default-gw
@@ -102,9 +102,9 @@ Keep in mind that this needs to be done for both interfaces (ENIs) separately.
 
 ## Strongswan setup
 
-Next use **apt-get update && apt-get install strongswan** to install Strongswan on the Ubuntu Linux 16.04 instance.
+Next use *apt-get update && apt-get install -y strongswan* to install Strongswan on the Ubuntu Linux 16.04 instance.
 
- Update the configuration file **/etc/ipsec.conf** with generic settings for an AWS Site-to-Site VPN, as well as the specific settings for the two tunnels that each AWS Site-to-Site VPN provides.
+ Update the configuration file */etc/ipsec.conf* with generic settings for an AWS Site-to-Site VPN, as well as the specific settings for the two tunnels that each AWS Site-to-Site VPN provides.
  Make sure to replace the relevant IPv4 addresses from this example with your IPv4 addresses.
 
  ```
@@ -169,7 +169,7 @@ conn AWS-VPC-GW2
          mark=200
 ```
 
-Next update the configuration file **/etc/ipsec.secrets** with the Pre-Shared Keys of your AWS Site-to-Site VPN. Here also ensure that you update the IPv4 addresses from this example with the IPv4 addresses of your setup.
+Next update the configuration file */etc/ipsec.secrets* with the Pre-Shared Keys of your AWS Site-to-Site VPN. Here also ensure that you update the IPv4 addresses from this example with the IPv4 addresses of your setup.
 
 ```
 #
@@ -248,9 +248,9 @@ chmod +x /etc/ipsec-vti.sh
 
 ## FRRouting Setup
 
-[Cumulus Networks](https://cumulusnetworks.com/) has excellent instructions for [installing FRRouting](https://docs.cumulusnetworks.com/display/HOSTPACK/Installing+FRRouting+on+the+Host) and [configuring FRRouting](https://docs.cumulusnetworks.com/display/HOSTPACK/Configuring+FRRouting+on+the+Host) on a Linux Host. Just follow these instructions to setup the BGP routing instance on your EC2-based router.
+Follow the FFRouting [documentation](http://docs.frrouting.org/projects/dev-guide/en/latest/building-frr-for-ubuntu1804.html) for installing FFRouting on Ubuntu 18.04 or have a look at my [installation script](https://gist.github.com/chriselsen/a0aec32f615da8047fbd04e6afca305b).
 
-When configuring the **/etc/frr/daemons** file, ensure to enable the **bgpd** daemon.
+When configuring the */etc/frr/daemons* file, ensure to enable the *bgpd* daemon.
 
 You can now connect via the vtysh Modal CLI to the router process.
 
