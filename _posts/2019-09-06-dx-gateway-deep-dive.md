@@ -51,7 +51,7 @@ As reference, AWS Transit Gateway only supports the following attachment types:
 
 # Attachments and associations
 
-AWS Direct Connect is a global AWS object which supports "Virtual Interface Attachments" on the on-premises facing side and "Gateway Associations" on the AWS facing side. These attachments and associations cannot be freely mixed and matched, but instead only allow two fixed combinations. Below is an overview of these two combinations and resulting attachments and associations.
+AWS Direct Connect Gateway is a global AWS object which supports "Virtual Interface Attachments" on the on-premises facing side and "Gateway Associations" on the AWS facing side. These attachments and associations cannot be freely mixed and matched, but instead only allow two fixed combinations. Below is an overview of these two combinations and resulting attachments and associations.
 
 * **Virtual Private Gateway with Private Virtual Interface:** In this case the AWS-facing termination point, or gateway association, is a Virtual Private Gateway (VGW). A VGW can connect to exactly one VPC. The on-premises facing corresponding attachment for this scenario is a private virtual interface.
 An AWS Direct Connect *Dedicated Connection* or *Hosted Connection* can support up to 50 such private virtual interfaces. A *Hosted Virtual Interface* on the other hand support only supports a single virtual Interface, which can be Private Virtual Interface.
