@@ -28,11 +28,11 @@ Using an invalid IP address, such as a Loopback address like 127.0.0.1 would cau
 
 ## Route 53 Geolocation routing
 
-{% include figure image_path="/content/uploads/2019/12/GeoBlock_China.png" caption="Figure 1: Create TXT record with a 'Geolocation' routing policy for the origin country 'China'." %}
+{% include figure image_path="/content/uploads/2019/12/GeoBlock_China.jpg" caption="Figure 1: Create TXT record with a 'Geolocation' routing policy for the origin country 'China'." %}
 
-{% include figure image_path="/content/uploads/2019/12/GeoBlock_Default.png" caption="Figure 2: Create TXT record with a 'Geolocation' routing policy for all other countries." %}
+{% include figure image_path="/content/uploads/2019/12/GeoBlock_Default.jpg" caption="Figure 2: Create TXT record with a 'Geolocation' routing policy for all other countries." %}
 
-{% include figure image_path="/content/uploads/2019/12/GeoBlock_Result.png" caption="Figure 3: Resulting TXT record sets for a 'Geolocation' routing policy." %}
+{% include figure image_path="/content/uploads/2019/12/GeoBlock_Result.jpg" caption="Figure 3: Resulting TXT record sets for a 'Geolocation' routing policy." %}
 
 ## Error page using CloudFront and S3
 
