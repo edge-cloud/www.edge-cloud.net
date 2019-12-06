@@ -1,5 +1,5 @@
 ---
-title: Block access from certain countries with Route 53
+title: Block access from certain countries with Route 53 Geolocation
 author: Christian Elsen
 excerpt: Use Amazon Route 53 Geolocation Routing to block access to services from certain countries. Leverage RIPE Atlas to validate the setup.
 layout: single
@@ -14,9 +14,25 @@ toc: true
 
 This article walks you through using [Amazon Route 53 Geolocation Routing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-geo), in order to block access to services from certain countries. In addition [RIPE Atlas](https://atlas.ripe.net/) is used in a subsequent step to validate the setup.
 
+# Motivation
+
+There are multiple reasons why you might want to block access to your website or API from a certain countries. If you are a US based company, you are required to comply with [US regulations regarding sanctions](https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations) against countries such as Cuba, Iran, North Korea, Sudan, or Syria.
+
+Another motivation could be to prevent illicit traffic from countries that you do not conduct business with. Especially China and Russia are known to be a prime source of illicit traffic.
+
 # Configuration setup
 
+Here, we are using [Amazon Route 53 Geolocation Routing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-geo) to direct traffic from China for one or multiple domain names to either an invalid target IP or a static error page.
+
+Using an invalid IP address, such as a Loopback address like 127.0.0.1 would cause traffic destined for web site or API not to even reach your or your provider's network.
+
 ## Route 53 Geolocation routing
+
+{% include figure image_path="/content/uploads/2019/12/GeoBlock_China.png" caption="Figure 1: Create TXT record with a 'Geolocation' routing policy for the origin country 'China'." %}
+
+{% include figure image_path="/content/uploads/2019/12/GeoBlock_Default.png" caption="Figure 2: Create TXT record with a 'Geolocation' routing policy for all other countries." %}
+
+{% include figure image_path="/content/uploads/2019/12/GeoBlock_Result.png" caption="Figure 3: Resulting TXT record sets for a 'Geolocation' routing policy." %}
 
 ## Error page using CloudFront and S3
 
@@ -56,19 +72,4 @@ with open(my_results_file) as results:
         print(probe_country + ": " + str(probe_id) + ": " + probe_result + ": " + status)
 ```
 
-
-## Heading 1.1
-
-**Bold**
-
-**Note:** This is a notice box
-{: .notice--info}
-
-```
-#
-# Code
-#
-
-```
-
-{% include figure image_path="/content/uploads/2019/07/EC2-Based-Router-BGP.png" caption="Figure 1: Setup Overview of EC2-based VPN endpoint for Site-to-Site VPN with AWS" %}
+# Summary
