@@ -3,7 +3,7 @@ title: Block access from certain countries with Route 53 Geolocation
 author: Christian Elsen
 excerpt: Use Amazon Route 53 Geolocation Routing to block access to services from certain countries. Leverage RIPE Atlas to validate the setup.
 layout: single
-permalink: /2019/12/06/block-countries-with-route53/
+permalink: /2019/12/09/block-countries-with-route53/
 categories:
   - EdgeCloud
 tags:
@@ -111,6 +111,33 @@ with open(my_results_file) as results:
             status = "Unknown"
 
         print(probe_country + ": " + str(probe_id) + ": " + probe_result + ": " + status)
+```
+
+Running the above script will yield the following results:
+
+```
+user@host:~$ ./geo-loc-atlas.py
+CN: 1000050: China: OK
+EC: 10032: Default: OK
+CN: 1008: China: OK
+AM: 11623: Default: OK
+RS: 12835: Default: OK
+CN: 14584: None: Unknown
+BA: 14628: Default: OK
+GB: 14775: Default: OK
+CN: 16562: China: OK
+GB: 18321: Default: OK
+HU: 18355: Default: OK
+CZ: 18611: Default: OK
+TR: 20019: Default: OK
+US: 20418: Default: OK
+SK: 20970: Default: OK
+CN: 21744: Default: Not OK <====
+CN: 21832: China: OK
+RS: 22363: Default: OK
+FI: 23163: Default: OK
+FR: 23939: Default: OK
+...
 ```
 
 ## Findings
