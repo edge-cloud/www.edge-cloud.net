@@ -12,19 +12,19 @@ tags:
 toc: true
 ---
 
-This article walks you through using [Amazon Route 53 Geolocation Routing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-geo), in order to block access to services from certain countries. In addition [RIPE Atlas](https://atlas.ripe.net/) is used in a subsequent step to validate the setup.
+This article walks you through using [Amazon Route 53 Geolocation Routing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-geo), in order to block access to your services from certain countries. In addition [RIPE Atlas](https://atlas.ripe.net/) is used in a subsequent step to validate the setup.
 
 # Motivation
 
-There are multiple reasons why you might want to block access to your website or API from a certain countries. If you are a US based company, you are required to comply with [US regulations regarding sanctions](https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations) against countries such as Cuba, Iran, North Korea, Sudan, or Syria.
+There are multiple reasons why you might want to block access to your website or API from certain countries. If you are a US based company, you are required to comply with [US regulations regarding sanctions](https://www.bis.doc.gov/index.php/policy-guidance/country-guidance/sanctioned-destinations) against countries such as Cuba, Iran, North Korea, Sudan, or Syria. This could result in the requirement to block access to your website or API from these countries.
 
-Another motivation could be to prevent illicit traffic from countries that you do not conduct business with. Especially China and Russia are known to be a prime source of illicit traffic.
+Another motivation could be to prevent illicit traffic from countries that you do not conduct business with. Especially [China](https://www.zdnet.com/article/china-resurrects-great-cannon-for-ddos-attacks-on-hong-kong-forum/) and [Russia](https://en.wikipedia.org/wiki/Russian_web_brigades) are known to be a prime source of illicit traffic. Therefore blocking access from these traffic might be wanted in your situation.
 
 # Configuration setup
 
 Here, we are using [Amazon Route 53 Geolocation Routing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-geo) to direct traffic from China for one or multiple domain names to either an invalid target IP or a static error page.
 
-Using an invalid IP address, such as a Loopback address like 127.0.0.1 would cause traffic destined for web site or API not to even reach your or your provider's network.
+Using an invalid IP address, such as a Loopback address like 127.0.0.1 would cause traffic destined for web site or API not to even reach your or your provider's network. Instead it will already be discarded on the client device.
 
 ## Route 53 Geolocation routing
 
@@ -44,7 +44,7 @@ That's it! In our simple case only two entries are needed. The resulting two Rou
 
 {% include figure image_path="/content/uploads/2019/12/GeoBlock_Result.jpg" caption="Figure 3: Resulting TXT record sets for a 'Geolocation' routing policy." %}
 
-Once we have used the above "TXT" records to validate the setup, we can setup a corresponding production record of e.g. our website or API endpoint.
+Once we have used the above "TXT" records to validate the setup, we can setup a corresponding production record of e.g. our website or API endpoint. This setup will look almost the same, but use a Route 53 record type of "A" instead along with the correct IP addresses. 
 
 ## Error page using CloudFront and S3
 
