@@ -18,7 +18,7 @@ Here is a quick look at an issue with a BGP session between a customer router (c
 
 While it was possible to ping the AWS Direct Connect peer interface from the customer peer interface the BGP remained in the *Idle* state. Local and remote ASNs matched up and IP addresses also matched up.
 
-Turning on *"debug ip bgp"* gave the following insight, which solely shoed that the BGP peer connection was timing out.
+Turning on *"debug ip bgp"* gave the following insight, which solely showed that the BGP peer connection was timing out.
 
 ```
 10.1.103.34 active went from Idle to Active
@@ -101,4 +101,4 @@ neighbor 10.1.103.34 remote-as AWS_ASN
 neighbor 10.1.103.34 password My5UpeR5eCRetPA55W0rD
 ```
 
-I would have expected the above *"debug ip bgp"* command would have showed us some information regarding the missing BGP Auth key. But as there was no BGP Auth setup on the local node, there was no information about the Auth mismatch in the debug output.  
+I would have expected the above *"debug ip bgp"* command would have shown us some information regarding the missing BGP Auth key. But as there was no BGP Auth setup on the local node, there was no information about the Auth mismatch in the debug output.  
