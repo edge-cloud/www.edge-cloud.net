@@ -1,5 +1,5 @@
 ---
-title: AWS Direct Connect Deep Dive
+title: AWS Direct Connect Gateway Deep Dive
 author: Christian Elsen
 excerpt: A deep dive look into the AWS Direct Connect Gateway
 layout: single
