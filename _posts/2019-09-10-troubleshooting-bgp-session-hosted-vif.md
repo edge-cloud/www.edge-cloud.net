@@ -101,4 +101,17 @@ neighbor 10.1.103.34 remote-as AWS_ASN
 neighbor 10.1.103.34 password My5UpeR5eCRetPA55W0rD
 ```
 
+<<<<<<< HEAD
 I would have expected the above *"debug ip bgp"* command would have shown us some information regarding the missing BGP Auth key. But as there was no BGP Auth setup on the local node, there was no information about the Auth mismatch in the debug output.  
+=======
+I would have expected the above *"debug ip bgp"* command would have showed us some information regarding the missing BGP Auth key. But as there was no BGP Auth setup on the local node, there was no information about the Auth mismatch in the debug output.  
+
+# Improvements
+
+Keep in mind, that in this case two AWS accounts are involved in this setup. Megaport owns account "A", which includes the DX connection. Megaport then creates a Private VIF on this connection and shares it out with the customer into account "B".
+In this case account "A" can see the BGP MD5 auth key - which is needed to configure the physical router - while account "B" cannot.
+
+It is understandable that AWS does not necessarily want to show the actual MD5 auth value of a shared private VIF within the receiving. In e.g. Enterprise customer scenarios it is common, that account "A" would be owned by the network team - which configures the physical router, while account "B" is owned by an infrastructure team.
+
+Yet it would make sense that account "B" could at least see that an MD5 hash is set instead of making the user believe that it is empty.  
+>>>>>>> dev
