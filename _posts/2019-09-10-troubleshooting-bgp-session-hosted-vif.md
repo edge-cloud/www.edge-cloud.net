@@ -101,7 +101,6 @@ neighbor 10.1.103.34 remote-as AWS_ASN
 neighbor 10.1.103.34 password My5UpeR5eCRetPA55W0rD
 ```
 
-<<<<<<< HEAD
 I would have expected the above *"debug ip bgp"* command would have shown us some information regarding the missing BGP Auth key. But as there was no BGP Auth setup on the local node, there was no information about the Auth mismatch in the debug output.  
 =======
 I would have expected the above *"debug ip bgp"* command would have showed us some information regarding the missing BGP Auth key. But as there was no BGP Auth setup on the local node, there was no information about the Auth mismatch in the debug output.  
@@ -114,4 +113,3 @@ In this case account "A" can see the BGP MD5 auth key - which is needed to confi
 It is understandable that AWS does not necessarily want to show the actual MD5 auth value of a shared private VIF within the receiving. In e.g. Enterprise customer scenarios it is common, that account "A" would be owned by the network team - which configures the physical router, while account "B" is owned by an infrastructure team.
 
 Yet it would make sense that account "B" could at least see that an MD5 hash is set instead of making the user believe that it is empty.  
->>>>>>> dev
