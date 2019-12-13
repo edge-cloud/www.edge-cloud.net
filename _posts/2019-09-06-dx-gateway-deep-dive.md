@@ -38,6 +38,14 @@ With AWS Direct Connect Gateway you can now access Virtual Private Clouds (VPC) 
 
 This dramatically improves flexibility and reduces cost, when connecting from on-premises to AWS regions.
 
+## Connectivity to multiple Virtual Private Clouds (VPC)
+
+If you want to connect from on-premises to multiple Virtual Private Clouds (VPCs) within AWS, without Direct Connect Gateway you had to create a separate Private Virtual Interface on your DX connection for each of these VPCs. In addition you had to create a separate BGP peering over the different VLANs for each of these Private Virtual Interfaces between your physical router and the Virtual Private Gateway (VGW) in AWS.
+
+As depicted in Figure 2, with Direct Connect Gateway there is only one Private Virtual Interface necessary to connect to multiple VPCs. As a result you now only need to establish a single BGP session between your on-premises router and the Direct Connect gateway. When attaching additional VPCs their CIDRs are propagated towards on-premises - with the Direct Connect Gateway's ASN as the origin - towards on-premises.
+
+This also simplifies the physical setup of your Direct Connect dramatically.
+
 ## AWS Transit Gateway with Direct Connect
 
 If you want to connect an [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/) to on-premises via AWS Direct Connect, you have to leverage AWS Direct Connect Gateway (See Figure 3). It is not possible to connect directly to a Direct Connect connection from a Transit Gateway.  
