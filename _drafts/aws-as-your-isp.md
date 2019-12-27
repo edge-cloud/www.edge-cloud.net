@@ -32,6 +32,11 @@ Intro of what to accomplish
 
 {% include figure image_path="/content/uploads/2019/12/AWS-as-ISP.png" caption="Figure 1: Design to leverage AWS as your ISP." %}
 
-{% include figure image_path="/content/uploads/2019/12/AWS-as-ISP_RegionalOffice.png" caption="Figure 2: Intra-office connectivity within the same region." %}
+{% include figure image_path="/content/uploads/2019/12/AWS-as-ISP-Non-Working.png" caption="Figure 2: Design to leverage AWS as your ISP." %}
 
-{% include figure image_path="/content/uploads/2019/12/AWS-as-ISP_GlobalOffice.png" caption="Figure 3: Intra-office connectivity outside a region over the AWS backbone." %}
+{% include figure image_path="/content/uploads/2019/12/AWS-as-ISP-Working.png" caption="Figure 3: Design to leverage AWS as your ISP." %}
+
+
+{% include figure image_path="/content/uploads/2019/12/AWS-as-ISP_RegionalOffice.png" caption="Figure 4: Intra-office connectivity within the same region." %}
+
+{% include figure image_path="/content/uploads/2019/12/AWS-as-ISP_GlobalOffice.png" caption="Figure 5: Intra-office connectivity outside a region over the AWS backbone." %}
