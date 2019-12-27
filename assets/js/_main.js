@@ -130,8 +130,8 @@ $(document).ready(function() {
     type: "image",
     tLoading: "Loading image #%curr%...",
     gallery: {
-      enabled: false,
-      navigateByImgClick: false,
+      enabled: true,
+      navigateByImgClick: true,
       preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
     },
     image: {

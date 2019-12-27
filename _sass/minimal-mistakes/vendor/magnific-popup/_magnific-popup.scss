@@ -31,14 +31,14 @@
 // 1. Default Settings
 ////////////////////////
 
-$mfp-overlay-color:                   #000000 !default;
+$mfp-overlay-color:                   #0b0b0b !default;
 $mfp-overlay-opacity:                 0.8 !default;
 $mfp-shadow:                          0 0 8px rgba(0, 0, 0, 0.6) !default; // shadow on image or iframe
 $mfp-popup-padding-left:              8px !default; // Padding from left and from right side
 $mfp-popup-padding-left-mobile:       6px !default; // Same as above, but is applied when width of window is less than 800px
 
 $mfp-z-index-base:                    1040 !default; // Base z-index of popup
-$mfp-include-arrows:                  true !default; // include styles for nav arrows
+$mfp-include-arrows:                  false !default; // include styles for nav arrows
 $mfp-controls-opacity:                0.65 !default;
 $mfp-controls-color:                  #FFF !default;
 $mfp-controls-border-color:           #3F3F3F !default;
@@ -56,7 +56,7 @@ $mfp-iframe-ratio:                    9/16 !default;
 
 // Image-type options
 $mfp-include-image-type:              true !default;
-$mfp-image-background:                #444 !default;
+$mfp-image-background:                #000 !default;
 $mfp-image-padding-top:               40px !default;
 $mfp-image-padding-bottom:            40px !default;
 $mfp-include-mobile-layout-for-image: true !default; // Removes paddings from top and bottom
