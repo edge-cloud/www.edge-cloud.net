@@ -14,7 +14,7 @@
 {% assign smallest = resized | sort: 'width' | first %}
 {% assign path_webp = path | replace: '.png', '.webp' | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' %}
 
-<a href="/{{ path }}" class="image-popup">
+<a href="/{{ path }}" title="{{ include.caption | markdownify | remove: "<p>" | remove: "</p>" }}" class="image-popup">
 <picture>
   <source
     {% if original.width <= 1250 %}width="{{ original.width }}"{% endif %}
