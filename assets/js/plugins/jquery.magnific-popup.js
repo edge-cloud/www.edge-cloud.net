@@ -1675,7 +1675,7 @@
       arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
       preload: [0,2],
       navigateByImgClick: true,
-      arrows: true,
+      arrows: false,
 
       tPrev: 'Previous (Left arrow key)',
       tNext: 'Next (Right arrow key)',
