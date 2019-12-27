@@ -10,7 +10,7 @@
   {% assign alt = include.caption | markdownify | remove: "<p>" | remove: "</p>" %}
 {% endif %}
 
-<figure class="{{ include.class }}">
+<figure class="full {{ include.class }}">
 
 {% responsive_image_block %}
   path: {{ path }}
