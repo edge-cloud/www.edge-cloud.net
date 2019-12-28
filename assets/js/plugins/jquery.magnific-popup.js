@@ -1671,11 +1671,11 @@
   $.magnificPopup.registerModule('gallery', {
 
     options: {
-      enabled: true,
+      enabled: false,
       arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
       preload: [0,2],
       navigateByImgClick: true,
-      arrows: false,
+      arrows: true,
 
       tPrev: 'Previous (Left arrow key)',
       tNext: 'Next (Right arrow key)',
