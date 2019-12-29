@@ -62,11 +62,11 @@ While implementing this approach there are a few caveats that need to be conside
 
 Keep [in mind](https://edge-cloud-net.web.app/2019/09/06/dx-gateway-deep-dive/) that the AWS Direct Connect Gateway does not allow you to route traffic from one Virtual Interface to another Virtual Interface. Therefore the traffic flow as despicted in Figure 2 is not possible.
 
-{% include figure image_path="/content/uploads/2019/12/AWS-as-ISP-Non-Working.png" caption="Figure 2: Design to leverage AWS as your ISP." %}
+{% include figure image_path="/content/uploads/2019/12/AWS-as-ISP-Non-Working.png" caption="Figure 2: Unsupported VIF to VIF routing with Direct Connect Gateway." %}
 
 If you have a need to route traffic between offices in a certain region through the same AWS region, you need to leverage a separate Direct Connect Gateway, Transit VIF, and Direct Connect connection for each of your offices. The resulting design is depicted in Figure 3.  
 
-{% include figure image_path="/content/uploads/2019/12/AWS-as-ISP-Working.png" caption="Figure 3: Design to leverage AWS as your ISP." %}
+{% include figure image_path="/content/uploads/2019/12/AWS-as-ISP-Working.png" caption="Figure 3: Workaround to leverage Transit Gateway for intra-office routing." %}
 
 This approach could make sense in case you have the requirement of inspecting and filtering traffic between on-premises locations. In case you have no such requirement, it makes more sense to route traffic between offices directly via the Carrier Ethernet connectivity (Figure 4), completely leaving it out of AWS.
 
