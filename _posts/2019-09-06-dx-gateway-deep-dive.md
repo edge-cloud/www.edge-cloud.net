@@ -97,7 +97,7 @@ The following limits and restrictions apply to Direct Connect Gateway.
 
 The number of AWS Direct Connect gateways and associated objects is [limited](https://docs.aws.amazon.com/directconnect/latest/UserGuide/limits.html) within a single AWS account to the following values:
 * **AWS Direct Connect gateways per account:** 200
-* **Virtual Interfaces:** 30 (Either Private Virtual Interfaces or Transit Gateways)
+* **Virtual Interfaces:** 30 (Either Private Virtual Interfaces or Transit Virtual Interfaces)
 * **Transit Gateways:** 3 (Cannot be combined with Virtual Private Gateways)
 * **Virtual Private Gateways:** 30 (Cannot be combined with Transit Gateways)
 
