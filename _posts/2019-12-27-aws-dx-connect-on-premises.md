@@ -1,9 +1,9 @@
 ---
-title: Use AWS Direct Connect to interconnect your on-premis locations
+title: Use AWS Direct Connect to connect your on-premise locations
 author: Christian Elsen
 excerpt: Use AWS with Direct Connect and Transit Gateway to interconnect on-premise locations
 layout: single
-permalink: /2019/12/27/aws-dx-interconnect-on-premises/
+permalink: /2019/12/27/aws-dx-connect-on-premises/
 categories:
   - EdgeCloud
 tags:
@@ -28,7 +28,7 @@ If you have a need to route traffic between offices in a certain region through 
 
 {% include figure image_path="/content/uploads/2019/12/AWS-Interconnect-Working.png" caption="Figure 2: Workaround to leverage Transit Gateway for intra-office routing." %}
 
-This approach could make sense in case you have the requirement of inspecting and filtering traffic between on-premises locations. In case you have no such requirement, it makes more sense to route traffic between offices directly via the Carrier Ethernet connectivity (Figure 3), completely leaving it out of AWS.
+This approach could make sense in case you have the requirement of inspecting and filtering traffic between on-premises locations. In case you have no such requirement, it makes more sense to route traffic between locations directly via the Carrier Ethernet connectivity (Figure 3), completely leaving it out of AWS.
 
 {% include figure image_path="/content/uploads/2019/12/AWS-Interconnect_RegionalOffice.png" caption="Figure 3: Intra-office connectivity within the same region." %}
 
@@ -36,11 +36,11 @@ Such setup will reduce the cost for Direct Connect connections.
 
 ## Inter Region traffic
 
-Thanks to the recently released capability of [Inter-Region Peering](https://aws.amazon.com/about-aws/whats-new/2019/12/aws-transit-gateway-supports-inter-region-peering/) for the Transit Gateway you can extend the above described model and interconnect your offices across the globe with AWS Direct Connect and Transit Gateway (Figure 4).
+Thanks to the recently released capability of [Inter-Region Peering](https://aws.amazon.com/about-aws/whats-new/2019/12/aws-transit-gateway-supports-inter-region-peering/) for the Transit Gateway you can extend the above described model and connect your offices across the globe with AWS Direct Connect and Transit Gateway (Figure 4).
 
 {% include figure image_path="/content/uploads/2019/12/AWS-Interconnect_GlobalOffice.png" caption="Figure 4: Intra-office connectivity outside a region over the AWS backbone." %}
 
-When implementing this inter region approach it is highly recommended to egress traffic to the Internet within each AWS region. Carrying traffic destined for the Internet over the AWS backbone does not make financial sense, due to the added cost. In addition traffic would experience increased latency, resulting in a poor end-user experience.
+This approach is also useful in case you want to connect your on-premise locations to more than three AWS regions. Due to the limitation of only being able to connect [up to three Transit Gateways per Direct Connect Gateway](https://www.edge-cloud.net/2019/09/06/dx-gateway-deep-dive/) regionalizing your Direct Connect Gateways this way allows you to scale very elegantly.
 
 # Summary
 
