@@ -1,7 +1,7 @@
 ---
 title: Use AWS Direct Connect to connect your on-premise locations
 author: Christian Elsen
-excerpt: Use AWS with Direct Connect and Transit Gateway to interconnect on-premise locations
+excerpt: Caveats for data flow between on-premises locations, when using AWS with Direct Connect and Transit Gateway
 layout: single
 permalink: /2019/12/27/aws-dx-connect-on-premises/
 categories:
