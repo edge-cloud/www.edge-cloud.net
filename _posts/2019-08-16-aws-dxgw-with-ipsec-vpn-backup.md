@@ -149,6 +149,10 @@ With this the route installed into the RIB by BGP will solely be the one travers
   *>                   169.254.254.1            0             0 65001 i
 ```
 
+# Word of Warning
+
+The fundamental underlying principle of this approach is to have the same IP CIDRs with the same AS path length announced over both Direct Connect and VPN. Having a more specific CIDR announced over one of the two paths, would shift traffic towards this path. With that you might be tempted to announce more specific routes from the Transit Gateway over the Direct Connect Gateway into on-premises, than what is sent over VPN. While this approach is technically possible, it will very quickly bring you within the service limit of 20 prefixes that can be announced from a Transit Gateway to a Direct Connect Gateway. 
+
 # Summary
 
 This article walked you through the challenges associated with configuring a Site-to-Site (IPSec) VPN tunnel as a backup path with a primary active traffic between an AWS Transit Gateway and on-premises networks via a Direct Connect Gateway.
