@@ -12,7 +12,7 @@ tags:
 toc: true
 ---
 
-As a Senior Solutions Architect Specialist for Networking at AWS, I spent a lot of time in online meetings with customers helping them design networks or understand AWS networking better. Part of these meetings usually involves whiteboarding network diagrams. While visualizing ideas of concepts is something very common and straight forward on a physical whiteboard, it is not trivial in an online meeting.
+As a Senior Solutions Architect Specialist for Networking at [AWS](https://aws.amazon.com/), I spent a lot of time in online meetings with customers helping them design networks or understand AWS networking better. Part of these meetings usually involves whiteboarding network diagrams. While visualizing ideas of concepts is something very common and straight forward on a physical whiteboard, it is not trivial in an online meeting.
 
 As I often get asked about my setup during or after calls, I want to shed some light on what I'm using and what's working for me.
 
