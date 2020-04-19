@@ -3,7 +3,7 @@ title: Title goes here
 author: Christian Elsen
 excerpt: Brief description goes here
 layout: single
-permalink: /2019/01/01/template/
+permalink: /2020/01/01/template/
 categories:
   - EdgeCloud
 tags:
@@ -30,4 +30,4 @@ Intro of what to accomplish
 
 ```
 
-{% include figure image_path="/content/uploads/2019/07/EC2-Based-Router-BGP.png" caption="Figure 1: Setup Overview of EC2-based VPN endpoint for Site-to-Site VPN with AWS" %}
+{% include figure image_path="/content/uploads/2020/01/SecuringYourAWSNetwork.png" caption="Figure 1: Setup Overview of EC2-based VPN endpoint for Site-to-Site VPN with AWS" %}
