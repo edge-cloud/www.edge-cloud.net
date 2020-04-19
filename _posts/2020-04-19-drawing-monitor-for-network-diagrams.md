@@ -3,7 +3,7 @@ title: Drawing monitor for network diagrams
 author: Christian Elsen
 excerpt: Home office setup with Huion Kamvas Pro 12 drawing monitor for network diagrams
 layout: single
-permalink: /2020/04/20/drawing-monitor-for-network-diagrams/
+permalink: /2020/04/19/drawing-monitor-for-network-diagrams/
 categories:
   - EdgeCloud
 tags:
