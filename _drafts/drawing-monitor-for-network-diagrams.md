@@ -12,7 +12,7 @@ tags:
 toc: true
 ---
 
-As a Senior Solutions Architect Specialist for Networking at [AWS](https://aws.amazon.com/), I spent a lot of time in online meetings with customers helping them design networks or understand AWS networking better. Part of these meetings usually involves whiteboarding network diagrams. While visualizing ideas of concepts is something very common and straight forward on a physical whiteboard, it is not trivial in an online meeting.
+As a Senior Solutions Architect Specialist for Networking at [AWS](https://aws.amazon.com/), I spent a lot of time in online meetings with customers, helping them design networks or understand AWS networking better. Part of these meetings usually involves whiteboarding network diagrams. While visualizing ideas or concepts is something very common and straight forward on a physical whiteboard, it is not trivial in an online meeting.
 
 As I often get asked about my setup during or after calls, I want to shed some light on what I'm using and what's working for me.
 
@@ -41,6 +41,10 @@ For my particular use case the software [OpenBoard](https://openboard.ch/index.e
 OpenBoard not only allows free-hand drawing, but you can also quickly and easily import existing customer design documents or pull up pre-made diagrams to draw over (See Figure 3).
 
 {% include figure image_path="/content/uploads/2020/04/HomeOffice2.jpg" caption="Figure 3: Huion Kamvas Pro 12 Drawing Monitor with pre-made diagrams and free-hand drawings." %}
+
+Effectively having two mice as input along with two monitors can cause unwanted situations in the form of not finding the mouse pointer. Under Windows 10 you can enable the setting "Show location of pointer when I press the CTRL key" under the mouse properties to mitigate this challenge (See Figure 4).
+
+{% include figure image_path="/content/uploads/2020/04/HomeOffice4.jpg" caption="Figure 4: Windows 10 setting for 'Show location of pointer when I press the CTRL key'." %}
 
 # Summary
 
