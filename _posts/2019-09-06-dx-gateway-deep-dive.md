@@ -36,7 +36,7 @@ With AWS Direct Connect Gateway you can now access Virtual Private Clouds (VPC) 
 
 {% include figure image_path="/content/uploads/2019/09/DX-with-DXGW.png" caption="Figure 2: Direct Connect with Direct Connect Gateway." %}
 
-This dramatically improves flexibility and reduces cost, when connecting from on-premises to AWS regions.
+This dramatically improves flexibility and reduces cost, when connecting from on-premises to AWS regions. Looking at the [AWS Direct Connect data transfer cost](https://aws.amazon.com/directconnect/pricing/#AWS_Direct_Connect_data_transfer) for AWS Regions in North America, you can see that the data transfer OUT price to any of the Direct Connect locations in North America is the same at currently $0.02. Therefore in this case picking a Direct Connect location within North America that is the closest to your on-premises location does not increase the AWS cost. 
 
 ## Connectivity to multiple Virtual Private Clouds (VPC)
 
