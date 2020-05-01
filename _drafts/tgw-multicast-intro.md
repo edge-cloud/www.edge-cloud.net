@@ -22,7 +22,7 @@ The following article will give you a brief overview of how to use IP Multicast 
 
 With IP Multicasting a source host can send a single packet to hundreds or thousands of hosts at the same time. All this works over a route network - e.g. the Internet. The replication of the source packet along with tracking of destination membership happens inside of the network itself, instead of the application (See Figure 1).
 
-{% include figure image_path="/content/uploads/2020/05/Multicast-IP Multicast.png" caption="Figure 1: IP Multicasting with source host, rendezvous point and multicast receiver." %}
+{% include figure image_path="/content/uploads/2020/05/Multicast-IPMulticast.png" caption="Figure 1: IP Multicasting with source host, rendezvous point and multicast receiver." %}
 
 For this to work the source host addresses the packet with a Multicast Address from the range of 224.0.0.0 through 239.255.255.255. Each Multicast Address specifies a Multicast group to which other hosts can subscribe to. Such a group can have between 1 and an unlimited number of members as neither hosts nor routers maintain a list of all members. Instead the source host send the packet to an initial router, called the rendezvous point (RP), which serves as the root of a tree-like multicast distribution. With that the most common [transport layer](https://en.wikipedia.org/wiki/Transport_layer) protocol to use multicast addressing is [User Datagram Protocol (UDP)](https://en.wikipedia.org/wiki/User_Datagram_Protocol).  
 
