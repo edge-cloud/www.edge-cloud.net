@@ -18,13 +18,16 @@ The following article will give you a brief overview of how to use IP Multicast 
 
 # Multicast
 
+Let's have a look at the basics of IP Multicasting and IP Multicast on AWS.
+
 ## What is IP Multicasting
 
 With IP Multicasting a source host can send a single packet to hundreds or thousands of hosts at the same time. All this works over a route network - e.g. the Internet. The replication of the source packet along with tracking of destination membership happens inside of the network itself, instead of the application (See Figure 1).
 
 {% include figure image_path="/content/uploads/2020/05/Multicast-IPMulticast.png" caption="Figure 1: IP Multicasting with source host, rendezvous point and multicast receiver." %}
 
-For this to work the source host addresses the packet with a Multicast Address from the range of 224.0.0.0 through 239.255.255.255. Each Multicast Address specifies a Multicast group to which other hosts can subscribe to. Such a group can have between one and an unlimited number of members as neither hosts nor routers maintain a list of all members. Instead the source host send the packet to an initial router, called the rendezvous point (RP), which serves as the root of a tree-like multicast distribution. With that the most common [transport layer](https://en.wikipedia.org/wiki/Transport_layer) protocol to use multicast addressing is [User Datagram Protocol (UDP)](https://en.wikipedia.org/wiki/User_Datagram_Protocol).  
+For this to work the source host addresses the packet with a Multicast Address from the range of 224.0.0.0 through 239.255.255.255. Each Multicast Address specifies a Multicast group to which other hosts can subscribe to. Such a group can have between one and an unlimited number of members as neither hosts nor routers maintain a list of all members. Instead the source host send the packet to an initial router, called the rendezvous point (RP), which serves as the root of a tree-like multicast distribution.
+The most common [transport layer](https://en.wikipedia.org/wiki/Transport_layer) protocol to use multicast addressing is [User Datagram Protocol (UDP)](https://en.wikipedia.org/wiki/User_Datagram_Protocol).  
 
 
 ## Multicast and AWS Transit Gateway
@@ -34,7 +37,7 @@ While an AWS VPC by itself does not support Multicast, AWS Transit Gateway can p
 # Constraints
 
 Today Multicast on AWS Transit Gateway comes with a few restrictions that need to be considered:
- * Only the AWS Region us-east-1 (N. Virginia) is currently supported.
+ * Creation and usage of Multicast-enabled TGW is currently only supported in the AWS Region us-east-1 (N. Virginia).
  * You must create a new TGW to enable Multicast. It is not possible to enable Multicast on an existing Transit Gateway. In case you are already using a Transit Gateway, you can create another instance that will just serve the purpose of distributing Multicast traffic (See Figure 2). As neither VPC nor TGW route tables are used to handle multicast traffic, this deployment model will not interfere with your existing traditional TGW or VPC route tables.
  * Self-Management of Multicast group membership by hosts through the [Internet Group Management Protocol (IGMP)](https://en.wikipedia.org/wiki/Internet_Group_Management_Protocol) is not yet supported. Instead Multicast group membership is solely managed using Amazon VPC Console or the AWS CLI.
  * Only [AWS Nitro](https://aws.amazon.com/ec2/nitro/) instances can be a Multicast source. If you use a non-Nitro instance as a receiver, you must disable the [Source/Dest check](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#change_source_dest_check).
@@ -47,7 +50,7 @@ Before kicking the tires on Multicast, it needs to be setup. At a minimum this r
 
 ## Source and Receiver Instances
 
-First setup the EC2 instances that we will use in our testing as the Multicast Source and Multicast Receiver. To better understand the how Multicast works, you should create at least one Multicast Source and two Multicast Receiver. Also keep the constraint around usage of AWS Nitro instances in mind and select a Nitro-based EC2 instance for the three EC2 instances.
+First setup the EC2 instances that we will use in our testing as the Multicast Source and Multicast Receiver. To better understand how Multicast works, you should create at least one Multicast Source and two Multicast Receiver. Also keep the constraint around usage of AWS Nitro instances in mind and select a Nitro-based EC2 instance for the three EC2 instances.
 This blog post will assume use of Ubuntu Linux instances for the EC2 instances and you should install [iPerf](https://iperf.fr/) on these instances. On Ubuntu Linux you will do this via ```sudo apt get install iperf```.
 
 Last, but not least ensure that port UDP 5001 is opened within the [security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) associated with the Multicast Receiver instances. The source IP will be the IPv4 address of the ENI associated with the Multicast Source EC2 instance.
