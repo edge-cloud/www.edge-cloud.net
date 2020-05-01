@@ -10,6 +10,7 @@ tags:
   - AWS
   - Network
 toc: true
+use_math: true
 ---
 
 Intro of what to accomplish
@@ -31,3 +32,7 @@ Intro of what to accomplish
 ```
 
 {% include figure image_path="/content/uploads/2020/01/SecuringYourAWSNetwork.png" caption="Figure 1: Setup Overview of EC2-based VPN endpoint for Site-to-Site VPN with AWS" %}
+
+$$
+   Buffer (Mbit) = bandwidth (Mbit/s) × delay (s)
+$$
