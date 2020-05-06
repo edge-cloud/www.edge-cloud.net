@@ -41,7 +41,10 @@ $$
 
 
 $$
-  Price_{TGW+NGW}=( 720 hr / month \cdot Num_{VPC} \cdot Cost_{TGW-Attachment} ) + ( 720 hr / month \cdot Num_{AZ} \cdot Cost_{NGW-Attachment} ) + (traffic \cdot ( Cost_{TGW-Traffic} + Cost_{NGW-Traffic}))
+  Price_{TGW+NGW}=
+  ( 720 hr / month \cdot Num_{VPC} \cdot Cost_{TGW-Attachment} ) + \\
+  ( 720 hr / month \cdot Num_{AZ} \cdot Cost_{NGW-Attachment} ) + \\
+  (traffic \cdot ( Cost_{TGW-Traffic} + Cost_{NGW-Traffic}))
 $$
 
 $$
@@ -49,18 +52,28 @@ $$
 $$
 
 $$
-  ( 720 hr / month \cdot Num_{VPC} \cdot Cost_{TGW-Attachment} ) + ( 720 hr / month \cdot Num_{AZ} \cdot Cost_{NGW-Attachment} ) + (traffic \cdot ( Cost_{TGW-Traffic} + Cost_{NGW-Traffic})) \leq ( 720 hr / month \cdot Num_{VPC} \cdot Cost_{NGW-Attachment} ) + (traffic \cdot Cost_{NGW-Traffic})  
+  ( 720 hr / month \cdot Num_{VPC} \cdot Cost_{TGW-Attachment} ) + \\
+  ( 720 hr / month \cdot Num_{AZ} \cdot Cost_{NGW-Attachment} ) + \\
+  (traffic \cdot ( Cost_{TGW-Traffic} + Cost_{NGW-Traffic})) \\
+  \leq ( 720 hr / month \cdot Num_{VPC} \cdot Cost_{NGW-Attachment} ) + (traffic \cdot Cost_{NGW-Traffic})  
 $$
 
 $$
-  traffic \cdot Cost_{TGW-Traffic} +  traffic \cdot Cost_{NGW-Traffic} - traffic \cdot Cost_{NGW-Traffic} \leq ( 720 hr / month \cdot Num_{VPC} \cdot Cost_{NGW-Attachment} ) - ( 720 hr / month \cdot Num_{VPC} \cdot Cost_{TGW-Attachment} ) - ( 720 hr / month \cdot Num_{AZ} \cdot Cost_{NGW-Attachment} )
+  traffic \cdot Cost_{TGW-Traffic} +  traffic \cdot Cost_{NGW-Traffic} - traffic \cdot Cost_{NGW-Traffic} \\
+  \leq ( 720 hr / month \cdot Num_{VPC} \cdot Cost_{NGW-Attachment} ) - \\
+  ( 720 hr / month \cdot Num_{VPC} \cdot Cost_{TGW-Attachment} ) - \\
+  ( 720 hr / month \cdot Num_{AZ} \cdot Cost_{NGW-Attachment} )
 $$
 
 $$
-  traffic \cdot Cost_{TGW-Traffic} \leq 720 hr / month \cdot (( Num_{VPC} \cdot Num_{AZ} \cdot Cost_{NGW-Attachment} ) - ( Num_{VPC} \cdot Cost_{TGW-Attachment} ) - ( Num_{AZ} \cdot Cost_{NGW-Attachment} ))
+  traffic \cdot Cost_{TGW-Traffic} \\
+  \leq 720 hr / month \cdot (( Num_{VPC} \cdot Num_{AZ} \cdot Cost_{NGW-Attachment} ) \\
+  - ( Num_{VPC} \cdot Cost_{TGW-Attachment} ) - ( Num_{AZ} \cdot Cost_{NGW-Attachment} ))
 $$
 
 
 $$
-  traffic \leq \frac{720 hr / month}{Cost_{TGW-Traffic}} \cdot (( Num_{VPC} \cdot Num_{AZ} \cdot Cost_{NGW-Attachment} ) - ( Num_{VPC} \cdot Cost_{TGW-Attachment} ) - ( Num_{AZ} \cdot Cost_{NGW-Attachment} ))
+  traffic \leq \frac{720 hr / month}{Cost_{TGW-Traffic}} \cdot \\
+  (( Num_{VPC} \cdot Num_{AZ} \cdot Cost_{NGW-Attachment} ) - \\
+  ( Num_{VPC} \cdot Cost_{TGW-Attachment} ) - ( Num_{AZ} \cdot Cost_{NGW-Attachment} ))
 $$
