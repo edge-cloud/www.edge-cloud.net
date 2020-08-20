@@ -54,12 +54,6 @@ We might end up in a situation where the same prefix is being announced over the
 To combat this behavior AWS sets a Multi Exit Discriminator (MED) value of 100 on BGP sessions over VPN links. As this value is higher than the default value of 0 - which the DX path uses - the DX path should be preferred. This works well in the case DX and VPN are used with a Virtual Private Gateway (VGW) as the same AS is announced over both connections.
 But with the TGW the Direct Connect path uses a different ASN compared to the VPN path. Therefore the MED value is only taken into consideration if the setting *"bgp always-compare-med"* is used within the customer's router. With this setting MED is always compared if multiple routes to a destination have the same local preference and AS path length.
 
-## Origin code  
-
-With the TGW a different "trick" is used to prefer DX over VPN. The origin code shows how BGP learned about a certain path, not how your node learned about it. It is a BGP path attribute that is carried along with the NLRI information in BGP update messages. The origin attribute is a mandatory attribute and must be included with every route entry, as it is used in the BGP best-path selection process.
-When e.g. configuring a prefix with the *"network"* statement, the origin code *"i"* indicates "IGP". On the other hand when you redistribute a prefix into BGP - either via an interior gateway protocol such as OSPF or a static route, the origin code is set to *"?"* for "incomplete". The origin code of *"e"* for "EGP" is not widely used anymore today as it was mostly intended as a transition mechanism. EGP is the predecessor of BGP and prefixes with this origin code receive a lower priority.
-With the TGW this is something that AWS makes use of: All prefixes announced over a TGW VPN are marked with an origin code of *"e"* for "EGP". As a result the customer gateway will prefer the path announced over Direct Connect having an origin code of *"i"* for "IGP", instead of the path over VPN.
-
 ## TGW preference of DX over VPN
 
 The AS path received by the AWS Transit Gateway is not reduced to the path length of one by the BGP configuration. This results in a longer path length over the Direct Connect Gateway link as over the Site-to-Site (IPSec) VPN link. Nevertheless, traffic will solely traverses over the Direct Connect link to on-premises. The AWS Transit Gateway in this case prefers the AWS Direct Connect gateway over the VPN connection, as outlined in the [AWS Transit Gateway documentation](https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-routing-overview).
@@ -122,7 +116,7 @@ In this case we only allow the summary prefix of 10.1.0.0/16 over the VPN link.
 
 # Results
 
-At this point we are done and have succeeded: The customer gateway will see the same summary route announced with the same AS path length over Direct Connect and VPN link, except that the route over VPN will have an origin code of *"e"* for "EGP". Therefore the DX route - having an origin code of *"i"* for "IGP" - will be chosen instead.
+At this point we are done and have succeeded: The customer gateway will see the same summary route announced with the same AS path length over Direct Connect and VPN link, except that the route over VPN will have an MED of 100. Therefore the DX route - having an MED of 0 - will be chosen instead.
 
 With this we can look at the routes that are received from the BGP peer over DX (here: 169.254.254.1) and the BGP peer over VPN (here: 169.254.15.221)
 ```
@@ -132,11 +126,11 @@ With this we can look at the routes that are received from the BGP peer over DX 
 
 #sh ip bgp neighbors 169.254.15.221 received-routes | beg Network
       Network          Next Hop            Metric LocPrf Weight Path
-  *    10.1.0.0/16     169.254.15.221         100             0 64512 e
-  *    10.1.1.0/24     169.254.15.221         100             0 64512 e
-  *    10.1.2.0/24     169.254.15.221         100             0 64512 e
-  *    10.1.3.0/24     169.254.15.221         100             0 64512 e
-  *    10.1.4.0/24     169.254.15.221         100             0 64512 e
+  *    10.1.0.0/16     169.254.15.221         100             0 64512 i
+  *    10.1.1.0/24     169.254.15.221         100             0 64512 i
+  *    10.1.2.0/24     169.254.15.221         100             0 64512 i
+  *    10.1.3.0/24     169.254.15.221         100             0 64512 i
+  *    10.1.4.0/24     169.254.15.221         100             0 64512 i
 ```
 While we see the four more specific /24 routes over VPN - which will be filtered out - we also see the summary route matching the route over DX. While both routes have the same AS path length, we can see the difference in Metric (showing MED).
 
@@ -145,13 +139,13 @@ With this the route installed into the RIB by BGP will solely be the one travers
 ```
 #sh ip bgp | beg Network
       Network          Next Hop            Metric LocPrf Weight Path
-  *    10.1.0.0/16     169.254.15.221         100             0 64512 e
+  *    10.1.0.0/16     169.254.15.221         100             0 64512 i
   *>                   169.254.254.1            0             0 65001 i
 ```
 
 # Word of Warning
 
-The fundamental underlying principle of this approach is to have the same IP CIDRs with the same AS path length announced over both Direct Connect and VPN. Having a more specific CIDR announced over one of the two paths, would shift traffic towards this path. With that you might be tempted to announce more specific routes from the Transit Gateway over the Direct Connect Gateway into on-premises, than what is sent over VPN. While this approach is technically possible, it will very quickly bring you within the service limit of 20 prefixes that can be announced from a Transit Gateway to a Direct Connect Gateway. 
+The fundamental underlying principle of this approach is to have the same IP CIDRs with the same AS path length announced over both Direct Connect and VPN. Having a more specific CIDR announced over one of the two paths, would shift traffic towards this path. With that you might be tempted to announce more specific routes from the Transit Gateway over the Direct Connect Gateway into on-premises, than what is sent over VPN. While this approach is technically possible, it will very quickly bring you within the service limit of 20 prefixes that can be announced from a Transit Gateway to a Direct Connect Gateway.
 
 # Summary
 
