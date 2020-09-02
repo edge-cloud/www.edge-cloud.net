@@ -41,6 +41,7 @@ Today Multicast on AWS Transit Gateway comes with a few restrictions that need t
  * You must create a new TGW to enable Multicast. It is not possible to enable Multicast on an existing Transit Gateway. In case you are already using a Transit Gateway, you can create another instance that will just serve the purpose of distributing Multicast traffic (See Figure 2). As neither VPC nor TGW route tables are used to handle multicast traffic, this deployment model will not interfere with your existing traditional TGW or VPC route tables.
  * Self-Management of Multicast group membership by hosts through the [Internet Group Management Protocol (IGMP)](https://en.wikipedia.org/wiki/Internet_Group_Management_Protocol) is not yet supported. Instead Multicast group membership is solely managed using Amazon VPC Console or the AWS CLI.
  * Only [AWS Nitro](https://aws.amazon.com/ec2/nitro/) instances can be a Multicast source. If you use a non-Nitro instance as a receiver, you must disable the [Source/Dest check](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#change_source_dest_check).
+ * While the AWS Transit Gateway has a default limit of only supporting [1x TGW source per group](https://docs.aws.amazon.com/vpc/latest/tgw/transit-gateway-quotas.html#multicast-quota), this limit can be increased.
 
 {% include figure image_path="/content/uploads/2020/05/Multicast-Multicast-TGW.png" caption="Figure 2: Multicast-enabled TGW besides traditional TGW." %}
 
