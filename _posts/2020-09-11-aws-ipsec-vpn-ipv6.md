@@ -9,6 +9,7 @@ categories:
 tags:
   - AWS
   - Network
+  - IPv6
 toc: true
 ---
 
