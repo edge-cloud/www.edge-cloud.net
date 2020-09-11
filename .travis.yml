@@ -60,11 +60,17 @@ deploy:
     on:
       branch: master
   - provider: firebase
+    edge:
+      source: travis-ci/dpl
+      branch: master
     token: $FIREBASE_TOKEN
     project: www-edge-cloud-net
     on:
       branch: master
   - provider: pages
+    edge:
+      source: travis-ci/dpl
+      branch: master
     local-dir: _site
     repo: edge-cloud/edge-cloud.github.io
     target-branch: master
