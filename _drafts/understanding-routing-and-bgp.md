@@ -20,19 +20,27 @@ Intro of what to accomplish
 
 ### Asymmetric Routing
 
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-trail-map.jpg" caption="Figure 1: Asymmetric routing is like a hiking-trail loop." %}
+
 ## Hop-by-Hop Routing
+
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-boardgame.jpg" caption="Figure 2: IP Hop-by-Hop routing is like a boardgame." %}
 
 ## Route Table
 
 # Routing Protocols
 
-## bgp
+## BGP
 
 ### BGP Best Path Selection Algorithm
 
 #### Local_Pref
 
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-exit.jpg" caption="Figure 3: Local_Pref dictates how traffic leaves a local ASN." %}
+
 #### Multi-Exit Discriminator (MED)
+
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-main-entrance.jpg" caption="Figure 4: Multi-Exit Discriminator (MED) suggests how traffic should enter an ASN." %}
 
 **Bold**
 
