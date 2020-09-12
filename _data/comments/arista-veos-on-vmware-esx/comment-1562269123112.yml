@@ -1,6 +1,0 @@
-_id: 548ae280-9e93-11e9-8f26-358012253295
-message: "Thank you! \r\nI had to run the below command to convert the image since I'm running ESXi 6.0.\r\n[root@localhost:~] vmkfstools -i /vmfs/volumes/DatastoreSource/vmdk/vEOS/vEOS-lab-4.22.0F.vmdk -d eagerzeroedthick /vmfs/volumes/DatastoreSource/vmdk/vEOS/vEOS-lab-4.22.0F-thick.vmdk"
-name: Biju
-email: 5735a4a02fb3df8cc59b983faea688d0
-hidden: ''
-date: '2019-07-04T19:38:43.104Z'

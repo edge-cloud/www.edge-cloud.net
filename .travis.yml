@@ -71,10 +71,10 @@ deploy:
     edge:
       source: travis-ci/dpl
       branch: master
-    local-dir: _site
+    local_dir: _site
     repo: edge-cloud/edge-cloud.github.io
-    target-branch: master
-    github-token: $GITHUB_TOKEN
+    target_branch: master
+    token: $GITHUB_TOKEN
     on:
       branch: dev
 after_deploy:
