@@ -95,9 +95,9 @@ eth1      Link encap:Ethernet  HWaddr 02:7b:35:90:92:ae
 
 ### Source or Destination checking
 
-In AWS the Source or Destination checking attribute on an interface determines whether an instance can handle network traffic that isn't specifically destined for the instance. 
+In AWS the Source or Destination checking attribute on an interface determines whether an instance can handle network traffic that isn't specifically destined for the instance.
 
-Before installing Strongswan on your EC2 instance [disable Source/Destination Checks](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck) for this instance. 
+Before installing Strongswan on your EC2 instance [disable Source/Destination Checks](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck) for this instance.
 Keep in mind that this needs to be done for both interfaces (ENIs) separately.
 
 ## Strongswan setup
@@ -245,6 +245,14 @@ As this is a bash script, don't forget to make the file executable:
 ```
 chmod +x /etc/ipsec-vti.sh
 ```
+
+Afterwards restart the Strongwan daemon to load the configuration changes and establish the tunnels:
+```
+systemctl restart strongswan
+```
+
+You can validate that the two tunnel interfaces vti1 and vti2 are up and running with the commands `ip -s tunnel show` or
+`ifconfig vti01`. You should see the IP address of the tunnels displayed within the 169.254.0.0/16 range. 
 
 ## FRRouting Setup
 
