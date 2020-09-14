@@ -251,8 +251,45 @@ Afterwards restart the Strongwan daemon to load the configuration changes and es
 systemctl restart strongswan
 ```
 
+### Strongswan validation
+
 You can validate that the two tunnel interfaces vti1 and vti2 are up and running with the commands `ip -s tunnel show` or
-`ifconfig vti1`. You should see the IP address of the tunnels displayed within the 169.254.0.0/16 range. 
+`ifconfig vti1`. You should see the IP address of the tunnels displayed within the 169.254.0.0/16 range.
+
+Looing at the tunnel status you should see bytes being send (TX) and received (RX) for both tunnels.
+
+```
+ubuntu@host:~$ ip -s tunnel show
+vti1: ip/ip remote 35.98.76.54 local 18.123.45.67 ttl inherit nopmtudisc key 100
+RX: Packets    Bytes        Errors CsumErrs OutOfSeq Mcasts
+    12         792          0      0        0        0
+TX: Packets    Bytes        Errors DeadLoop NoRoute  NoBufs
+    12         714          7      0        7        0
+vti2: ip/ip remote 54.98.76.54 local 18.123.45.67 ttl inherit nopmtudisc key 200
+RX: Packets    Bytes        Errors CsumErrs OutOfSeq Mcasts
+    4          240          0      0        0        0
+TX: Packets    Bytes        Errors DeadLoop NoRoute  NoBufs
+    4          160          7      0        7        0
+ip_vti0: ip/ip remote any local any ttl inherit nopmtudisc key 0
+RX: Packets    Bytes        Errors CsumErrs OutOfSeq Mcasts
+    0          0            0      0        0        0
+TX: Packets    Bytes        Errors DeadLoop NoRoute  NoBufs
+    0          0            0      0        0        0
+```
+
+Similarly you should see the interface in an "UP" state.
+
+```
+ubuntu@host:~$ ifconfig vti1
+vti1: flags=209<UP,POINTOPOINT,RUNNING,NOARP>  mtu 1436
+        inet 169.254.12.38  netmask 255.255.255.252  destination 169.254.12.37
+        inet6 fe80::5efe:ac1f:27e0  prefixlen 64  scopeid 0x20<link>
+        tunnel   txqueuelen 1000  (IPIP Tunnel)
+        RX packets 12  bytes 792 (792.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 12  bytes 714 (714.0 B)
+        TX errors 7  dropped 0 overruns 0  carrier 7  collisions 0
+```
 
 ## FRRouting Setup
 
