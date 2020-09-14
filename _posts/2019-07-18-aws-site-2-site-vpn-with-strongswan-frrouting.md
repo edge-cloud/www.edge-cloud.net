@@ -252,7 +252,7 @@ systemctl restart strongswan
 ```
 
 You can validate that the two tunnel interfaces vti1 and vti2 are up and running with the commands `ip -s tunnel show` or
-`ifconfig vti01`. You should see the IP address of the tunnels displayed within the 169.254.0.0/16 range. 
+`ifconfig vti1`. You should see the IP address of the tunnels displayed within the 169.254.0.0/16 range. 
 
 ## FRRouting Setup
 
