@@ -20,7 +20,7 @@ Intro of what to accomplish
 
 ### Asymmetric Routing
 
-{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-trail-map.jpg" caption="Figure 1: Asymmetric routing is like a hiking-trail loop." %}
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-trail-map.jpg" caption="Figure 1: Asymmetric routing is like a hiking-trail loop. " %}
 
 ## Hop-by-Hop Routing
 
@@ -42,20 +42,6 @@ Intro of what to accomplish
 
 {% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-main-entrance.jpg" caption="Figure 4: Multi-Exit Discriminator (MED) suggests how traffic should enter an ASN." %}
 
-**Bold**
+# Summary
 
-**Note:** This is a notice box
-{: .notice--info}
-
-```
-#
-# Code
-#
-
-```
-
-{% include figure image_path="/content/uploads/2020/01/SecuringYourAWSNetwork.png" caption="Figure 1: Setup Overview of EC2-based VPN endpoint for Site-to-Site VPN with AWS" %}
-
-$$
-   Buffer (Mbit) = bandwidth (Mbit/s) × delay (s)
-$$
+Fill me out
