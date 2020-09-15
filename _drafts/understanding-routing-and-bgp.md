@@ -71,7 +71,7 @@ Let's extend the above example using AWS VPCs and TGWs to showcase asymmetric ro
 Now, if you follow the path of traffic from VPC 1 to VPC 2, you'll notice that nothing has changed. Traffic still traverses TGW 1, TGW 2, and TGW 3 on the way to VPC 2. But now look at traffic from VPC 2 to VPC 1. What do you notice?
 Looking at the route tables of the TGWs you should notice that traffic  on the return path from VPC 2 to VPC 1 will traverse TGW 3, TGW 4, and TGW 1, thereby creating and asymmetric path.
 
-This asymmetric traffic flow is depicted with the green arrows. 
+This asymmetric traffic flow is depicted with the green arrows.
 
 # Routing Protocols
 
@@ -83,9 +83,41 @@ This asymmetric traffic flow is depicted with the green arrows.
 
 {% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-exit.jpg" caption="Figure 5: Local_Pref dictates how traffic leaves a local ASN." %}
 
+|BGP Session|Local_Pref|
+|---|---|
+|**Private Peering**|500|
+|**Direct Peering via IXP**|400|
+|**Peering via IXP Route Server**|300|
+|**Transit**|200|
+
+{% include figure image_path="/content/uploads/2019/12/DX-VIFs-Overview.png" caption="Figure 1: Direct Connect Overview" %}
+
+{% include figure image_path="/content/uploads/2019/12/DX-Cross-Connect.png" caption="Figure 2: Direct Connect Cross Connect" %}
+
+{% include figure image_path="/content/uploads/2019/12/DX-Connectivity.png" caption="Figure 3: Direct Connect Connectivity Options" %}
+
+
 #### Multi-Exit Discriminator (MED)
 
 {% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-main-entrance.jpg" caption="Figure 6: Multi-Exit Discriminator (MED) suggests how traffic should enter an ASN." %}
+
+```
+CSR1000V#sh ip bgp
+BGP table version is 292, local router ID is 1.1.1.1
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal,
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter,
+              x best-external, a additional-path, c RIB-compressed,
+              t secondary path, L long-lived-stale,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+      0.0.0.0          0.0.0.0                                0 i
+ *>   10.0.1.0/24      0.0.0.0                  0         32768 i
+ *>   10.0.16.0/24     0.0.0.0                  0         32768 i
+ *>   172.16.0.0/24    169.254.63.25          100             0 64512 i
+ *                     169.254.39.225         200             0 64512 i
+```
 
 # Summary
 
