@@ -16,15 +16,20 @@ Intro of what to accomplish
 
 # Routing
 
+## Hop-by-Hop Routing
+
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-boardgame.jpg" caption="Figure 1: IP Hop-by-Hop routing is like a boardgame." %}
+
+
+{% include figure image_path="/content/uploads/2020/09/Understanding-Routing-and-BGP-Hop-by-Hop.png" caption="Figure 2: IP Hop-by-Hop routing with VPCs and multiple Transit Gateways (TGW)" %}
+
 ## Directional
 
 ### Asymmetric Routing
 
-{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-trail-map.jpg" caption="Figure 1: Asymmetric routing is like a hiking-trail loop. " %}
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-trail-map.jpg" caption="Figure 3: Asymmetric routing is like a hiking-trail loop. " %}
 
-## Hop-by-Hop Routing
-
-{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-boardgame.jpg" caption="Figure 2: IP Hop-by-Hop routing is like a boardgame." %}
+{% include figure image_path="/content/uploads/2020/09/Understanding-Routing-and-BGP-Asymmetric-Routing.png" caption="Figure 4: Asymmetric routing with VPCs and multiple Transit Gateways (TGW)" %}
 
 ## Route Table
 
@@ -36,11 +41,11 @@ Intro of what to accomplish
 
 #### Local_Pref
 
-{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-exit.jpg" caption="Figure 3: Local_Pref dictates how traffic leaves a local ASN." %}
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-exit.jpg" caption="Figure 5: Local_Pref dictates how traffic leaves a local ASN." %}
 
 #### Multi-Exit Discriminator (MED)
 
-{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-main-entrance.jpg" caption="Figure 4: Multi-Exit Discriminator (MED) suggests how traffic should enter an ASN." %}
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-main-entrance.jpg" caption="Figure 6: Multi-Exit Discriminator (MED) suggests how traffic should enter an ASN." %}
 
 # Summary
 
