@@ -13,20 +13,21 @@ toc: true
 ---
 
 Today we will look at some of the fundamental principles of IP routing, along with some related BGP Routing protocol concepts. While these principles and concepts are generic, we will use examples based on AWS networking.
-I've seen numerous people confused by these principles and concepts while either designing networks or troubleshooting them. Therefore it appears to be a good idea to point them out explicitly.
+
+This blog post is not intended to be an all encompassing primer on IP routing or BGP. Instead I've seen numerous people confused by some of these principles and concepts while either designing networks or troubleshooting them. Therefore it appears to be a good idea to select and explain them explicitly.
 
 Please keep in mind that we will be using AWS VPCs and TGWs to illustrate routing principles. The AWS networking designs presented are rather not suited or recommended for production deployments.  
 {: .notice--info}
 
 # Routing
 
-[Routing](https://en.wikipedia.org/wiki/Routing) and more specifically here, [IP routing](https://en.wikipedia.org/wiki/IP_routing), deals with selecting a path for traffic in an IP network. Routing directs the forwarding of IP packets based on a [routing table](https://en.wikipedia.org/wiki/Routing_table).
+[Routing](https://en.wikipedia.org/wiki/Routing) and more specifically here, [IP routing](https://en.wikipedia.org/wiki/IP_routing), deals with selecting a path for traffic in an IP network. Routing directs the forwarding of IP packets based on a [routing table](https://en.wikipedia.org/wiki/Routing_table) and the destination IP address within a packet.
 
-As we will see later, routing tables maintain information on how to reach various network destinations. Typically they are either configured manually (also known as "Static Routing") or with the help of a routing protocol.
+As we will see later, routing tables maintain information on how to reach various network destinations. Typically they are either configured manually (also known as "Static Routing") or with the help of a routing protocol (e.g. BGP).
 
 ## Hop-by-Hop Routing
 
-One of the most fundamental concepts to understand in IP routing is that the actual forwarding decision is made on a hop-by-hop basis. This means that within each hop of the network path, a router makes a forwarding decision based on the local route table. Image this to be like a boardgame, where at each step in the game it is decided where to go next. Neither the previous nor the next step have any influence on the local decision.
+One of the most fundamental concepts to understand in IP routing is that the actual forwarding decision is made on a hop-by-hop basis. This means that within each hop of the network path, a router makes a forwarding decision based on the local route table. Image this to be like a board game, where at each step in the game it is decided where to go next. Neither the previous nor the next step have any influence on the local decision.
 
 Taking AWS VPCs and [Transit Gateways (TGWs)](https://aws.amazon.com/transit-gateway/?aws-transit-gateway-wn.sort-by=item.additionalFields.postDateTime&aws-transit-gateway-wn.sort-order=desc) as an example, we can quickly understand how this hop-by-hop decision making plays out while looking at the routing tables of the VPCs and TGWs (See Figure 1).
 
