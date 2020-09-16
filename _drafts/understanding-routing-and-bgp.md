@@ -22,8 +22,6 @@ Please keep in mind that we will be using AWS VPCs and TGWs to illustrate routin
 
 [Routing](https://en.wikipedia.org/wiki/Routing) and more specifically here, [IP routing](https://en.wikipedia.org/wiki/IP_routing), deals with selecting a path for traffic in an IP network. Routing directs the forwarding of IP packets based on a [routing table](https://en.wikipedia.org/wiki/Routing_table).
 
-## Route Tables
-
 As we will see later, routing tables maintain information on how to reach various network destinations. Typically they are either configured manually (also known as "Static Routing") or with the help of a routing protocol.
 
 ## Hop-by-Hop Routing
@@ -72,6 +70,88 @@ Now, if you follow the path of traffic from VPC 1 to VPC 2, you'll notice that n
 Looking at the route tables of the TGWs you should notice that traffic  on the return path from VPC 2 to VPC 1 will traverse TGW 3, TGW 4, and TGW 1, thereby creating and asymmetric path.
 
 This asymmetric traffic flow is depicted with the green arrows.
+
+## Route Tables
+
+Next we will look at route tables in a bit more detail. Being able to read and understand route tables, will help understand the routing decision of the hops within each path.
+
+The most simple route tables have already been depicted in Figure 2 and Figure 4. These routes show a simple mapping between the destination CIDR - also called prefix or network - and the next hop.   
+
+Translated into a route table on a Cisco device this might look like this:
+
+```
+CSR1000V-01#sh ip bgp
+BGP table version is 297, local router ID is 1.1.1.1
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal,
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter,
+              x best-external, a additional-path, c RIB-compressed,
+              t secondary path, L long-lived-stale,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+      0.0.0.0          0.0.0.0                                0 i
+ *>   10.0.1.0/24      0.0.0.0                  0         32768 i
+ *>   10.0.16.0/24     0.0.0.0                  0         32768 i
+ *>   10.1.0.0/16      169.254.15.221         100             0 64512 i
+```
+
+Focus on the last line, which effectively translates into: Packets for the prefix "10.1.0.0/16" should be send to the next hop with the IP address of "169.254.15.221".
+
+### Longest prefix match
+
+Next let's look at [longest prefix match](https://en.wikipedia.org/wiki/Longest_prefix_match), sometimes also referred to as "more specific routing". This algorithm specifies which entry to be chosen from the IP routing table in case of destination addresses matching more than one entry. For IP routing the most specific of the matching table entries — the one with the longest subnet mask — is called the longest prefix match and is the one chosen.
+
+Let's have a look at an example. Consider the below routing table on a Cisco device and especially focus on the last five lines:
+
+```
+CSR1000V-01#sh ip bgp
+BGP table version is 297, local router ID is 1.1.1.1
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal,
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter,
+              x best-external, a additional-path, c RIB-compressed,
+              t secondary path, L long-lived-stale,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+      0.0.0.0          0.0.0.0                                0 i
+ *>   10.0.1.0/24      0.0.0.0                  0         32768 i
+ *>   10.0.16.0/24     0.0.0.0                  0         32768 i
+ *>   10.1.0.0/16      169.254.15.221         100             0 64512 i
+ *>   10.1.1.0/24      169.254.16.222         100             0 64513 i
+ *>   10.1.2.0/24      169.254.17.223         100             0 64514 i
+ *>   10.1.3.0/24      169.254.18.224         100             0 64515 i
+ *>   10.1.4.0/24      169.254.19.225         100             0 64516 i
+```
+
+Here we can see that the destination IP address of "10.1.1.1" would match both the entry for "10.1.0.0/16", as well as the entry for "10.1.1.0/24". As the entry for "10.1.1.0/24" has a longer subnet mask - it is more specific - and therefore the chosen entry. With that this entry would be chosen and traffic send to 169.254.16.222 as the next hop.
+
+### Equal Cost Multipath (ECMP)
+
+Usually with IP forwarding there is one engress path per hop for a given destination IP. This rule can be softened via a routing strategy called [Equal-cost multi-path routing (ECMP)](https://en.wikipedia.org/wiki/Equal-cost_multi-path_routing). With ECMP packet forwarding to a single destination IP can occur over multiple "best path".
+
+Again, let's have a look at an example and consider the below routing table on a Cisco router, especially the last two lines:
+
+```
+CSR1000V#sh ip bgp
+BGP table version is 297, local router ID is 1.1.1.1
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal,
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter,
+              x best-external, a additional-path, c RIB-compressed,
+              t secondary path, L long-lived-stale,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+      0.0.0.0          0.0.0.0                                0 i
+ *>   10.0.1.0/24      0.0.0.0                  0         32768 i
+ *>   10.0.16.0/24     0.0.0.0                  0         32768 i
+ *m   10.0.255.0/24    169.254.13.253         100             0 64512 i
+ *>                    169.254.15.221         100             0 64512 i
+```
+
+In this case we can see that we have a multipath route for the destination prefix of "10.0.255.0/24", where both "169.254.13.253" and "169.254.15.221" are considered as the next best hop. In this case the router device will randomly send out traffic for this destination network over both next hops, while using a 5-tuple hash. A 5-tuple hash refers to a set of five different values that comprise a Transmission Control Protocol/Internet Protocol (TCP/IP) connection. It includes a source IP address/port number, destination IP address/port number and the protocol in use. This means that packets belonging to the same 5-tuple travel to the same next hop, while packets from different 5-tuple may be send to another next hop. 
 
 # Routing Protocols
 
