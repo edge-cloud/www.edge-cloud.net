@@ -26,13 +26,11 @@ As we will see later, routing tables maintain information on how to reach variou
 
 ## Hop-by-Hop Routing
 
-One of the most fundamental concepts to understand in IP routing is that the actual forwarding decision is made on a hop-by-hop basis. This means that within each hop of the network path, a router makes a forwarding decision based on the local route table. Image this to be like a boardgame, where at each step in the game it is decided where to go next. Neither the previous nor the next step have any influence on the local decission (See Figure 1).
+One of the most fundamental concepts to understand in IP routing is that the actual forwarding decision is made on a hop-by-hop basis. This means that within each hop of the network path, a router makes a forwarding decision based on the local route table. Image this to be like a boardgame, where at each step in the game it is decided where to go next. Neither the previous nor the next step have any influence on the local decision.
 
-{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-boardgame.jpg" caption="Figure 1: IP Hop-by-Hop routing is like a boardgame." %}
+Taking AWS VPCs and [Transit Gateways (TGWs)](https://aws.amazon.com/transit-gateway/?aws-transit-gateway-wn.sort-by=item.additionalFields.postDateTime&aws-transit-gateway-wn.sort-order=desc) as an example, we can quickly understand how this hop-by-hop decision making plays out while looking at the routing tables of the VPCs and TGWs (See Figure 1).
 
-Taking AWS VPCs and [Transit Gateways (TGWs)](https://aws.amazon.com/transit-gateway/?aws-transit-gateway-wn.sort-by=item.additionalFields.postDateTime&aws-transit-gateway-wn.sort-order=desc) as an example, we can quickly understand how this hop-by-hop decision making plays out while looking at the routing tables of the VPCs and TGWs (See Figure 2).
-
-{% include figure image_path="/content/uploads/2020/09/Understanding-Routing-and-BGP-Hop-by-Hop.png" caption="Figure 2: IP Hop-by-Hop routing with VPCs and multiple Transit Gateways (TGW)" %}
+{% include figure image_path="/content/uploads/2020/09/Understanding-Routing-and-BGP-Hop-by-Hop.png" caption="Figure 1: IP Hop-by-Hop routing with VPCs and multiple Transit Gateways (TGW)" %}
 
 Traffic from an EC2 instance in VPC 1 wanting to reach another EC2 instance in VPC 2 will have to follow this hop-by-hop process through the five routing tables involved here. What do you think? Will traffic from VPC 1 reach VPC 2? Or is there a mistake in the route tables?
 
@@ -47,7 +45,7 @@ But what about the return traffic from VPC 2 to VPC 1? Read on to see how anothe
 
 ## Directional
 
-Another important principle of IP routing, effectively caused by the hop-by-hop decision making behavior is that path determination is directional. Looking back at the provided example in the previous section (See Figure 2) only showed us that traffic from VPC 1 can reach VPC 2. But it did not provide any information on whether traffic from VPC 2 can reach VPC 1.
+Another important principle of IP routing, effectively caused by the hop-by-hop decision making behavior is that path determination is directional. Looking back at the provided example in the previous section (See Figure 1) only showed us that traffic from VPC 1 can reach VPC 2. But it did not provide any information on whether traffic from VPC 2 can reach VPC 1.
 
 I leave it up to you as an exercise to determine if the route tables across the VPCs and TGWs are setup correctly to allow return traffic and thereby enable bidirectional communication.
 
@@ -56,15 +54,15 @@ Also when talking with co-workers, customer, support staff, or anyone alike it i
 
 ### Asymmetric Routing
 
-What's even more interesting is that the directional nature of IP forwarding can lead to asymmetric traffic flows. But there is nothing wrong like this. In fact an asymmetric IP traffic flow is like a hiking trail loop (See Figure 3). Such hiking trails are often more fascinating as you get to see a different set of landscape, plants and animals on the way back as compared to the way out.
+What's even more interesting is that the directional nature of IP forwarding can lead to asymmetric traffic flows. But there is nothing wrong like this. In fact an asymmetric IP traffic flow is like a hiking trail loop (See Figure 2). Such hiking trails are often more fascinating as you get to see a different set of landscape, plants and animals on the way back as compared to the way out.
 
-{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-trail-map.jpg" caption="Figure 3: Asymmetric routing is like a hiking-trail loop. " %}
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-trail-map.jpg" caption="Figure 2: Asymmetric routing is like a hiking-trail loop. " %}
 
 And as long as you make the correct decision at your "routing hops" - aka. a trail fork - you will return to your trail head as well.
 
-Let's extend the above example using AWS VPCs and TGWs to showcase asymmetric routing. For this we add another TGW and two more TGW peering connections along with changes to the route table (See Figure 4).
+Let's extend the above example using AWS VPCs and TGWs to showcase asymmetric routing. For this we add another TGW and two more TGW peering connections along with changes to the route table (See Figure 3).
 
-{% include figure image_path="/content/uploads/2020/09/Understanding-Routing-and-BGP-Asymmetric-Routing.png" caption="Figure 4: Asymmetric routing with VPCs and multiple Transit Gateways (TGW)" %}
+{% include figure image_path="/content/uploads/2020/09/Understanding-Routing-and-BGP-Asymmetric-Routing.png" caption="Figure 3: Asymmetric routing with VPCs and multiple Transit Gateways (TGW)" %}
 
 Now, if you follow the path of traffic from VPC 1 to VPC 2, you'll notice that nothing has changed. Traffic still traverses TGW 1, TGW 2, and TGW 3 on the way to VPC 2. But now look at traffic from VPC 2 to VPC 1. What do you notice?
 Looking at the route tables of the TGWs you should notice that traffic  on the return path from VPC 2 to VPC 1 will traverse TGW 3, TGW 4, and TGW 1, thereby creating and asymmetric path.
@@ -75,7 +73,7 @@ This asymmetric traffic flow is depicted with the green arrows.
 
 Next we will look at route tables in a bit more detail. Being able to read and understand route tables, will help understand the routing decision of the hops within each path.
 
-The most simple route tables have already been depicted in Figure 2 and Figure 4. These routes show a simple mapping between the destination CIDR - also called prefix or network - and the next hop.   
+The most simple route tables have already been depicted in Figure 1 and Figure 3. These routes show a simple mapping between the destination CIDR - also called prefix or network - and the next hop.   
 
 Translated into a route table on a Cisco device this might look like this:
 
@@ -151,7 +149,7 @@ RPKI validation codes: V valid, I invalid, N Not found
  *>                    169.254.15.221         100             0 64512 i
 ```
 
-In this case we can see that we have a multipath route for the destination prefix of "10.0.255.0/24", where both "169.254.13.253" and "169.254.15.221" are considered as the next best hop. In this case the router device will randomly send out traffic for this destination network over both next hops, while using a 5-tuple hash. A 5-tuple hash refers to a set of five different values that comprise a Transmission Control Protocol/Internet Protocol (TCP/IP) connection. It includes a source IP address/port number, destination IP address/port number and the protocol in use. This means that packets belonging to the same 5-tuple travel to the same next hop, while packets from different 5-tuple may be send to another next hop. 
+In this case we can see that we have a multipath route for the destination prefix of "10.0.255.0/24", where both "169.254.13.253" and "169.254.15.221" are considered as the next best hop. In this case the router device will randomly send out traffic for this destination network over both next hops, while using a 5-tuple hash. A 5-tuple hash refers to a set of five different values that comprise a Transmission Control Protocol/Internet Protocol (TCP/IP) connection. It includes a source IP address/port number, destination IP address/port number and the protocol in use. This means that packets belonging to the same 5-tuple travel to the same next hop, while packets from different 5-tuple may be send to another next hop.
 
 # Routing Protocols
 
@@ -161,7 +159,7 @@ In this case we can see that we have a multipath route for the destination prefi
 
 #### Local_Pref
 
-{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-exit.jpg" caption="Figure 5: Local_Pref dictates how traffic leaves a local ASN." %}
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-exit.jpg" caption="Figure 4: Local_Pref dictates how traffic leaves a local ASN." %}
 
 |BGP Session|Local_Pref|
 |---|---|
@@ -170,16 +168,9 @@ In this case we can see that we have a multipath route for the destination prefi
 |**Peering via IXP Route Server**|300|
 |**Transit**|200|
 
-{% include figure image_path="/content/uploads/2019/12/DX-VIFs-Overview.png" caption="Figure 1: Direct Connect Overview" %}
-
-{% include figure image_path="/content/uploads/2019/12/DX-Cross-Connect.png" caption="Figure 2: Direct Connect Cross Connect" %}
-
-{% include figure image_path="/content/uploads/2019/12/DX-Connectivity.png" caption="Figure 3: Direct Connect Connectivity Options" %}
-
-
 #### Multi-Exit Discriminator (MED)
 
-{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-main-entrance.jpg" caption="Figure 6: Multi-Exit Discriminator (MED) suggests how traffic should enter an ASN." %}
+{% include figure image_path="/content/uploads/2020/09/understanding-routing-and-bgp-main-entrance.jpg" caption="Figure 5: Multi-Exit Discriminator (MED) suggests how traffic should enter an ASN." %}
 
 ```
 CSR1000V#sh ip bgp
