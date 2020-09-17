@@ -1,5 +1,5 @@
 ---
-title: Understanding BGP
+title: Better understanding BGP
 author: Christian Elsen
 excerpt: Primer to better understanding BGP
 layout: single
@@ -12,7 +12,7 @@ tags:
 toc: true
 ---
 
-In a previous post we took a look at some of the fundamental principles of IP routing. Today we want to look at some more details of related BGP Routing protocol concepts. While these principles and concepts are generic, we will again use examples based on AWS networking.
+In a [previous post](https://www.edge-cloud.net/2020/09/18/understanding-routing/) we took a look at some of the fundamental principles of IP routing. Today we want to look at some more details of related BGP Routing protocol concepts. While these principles and concepts are generic, we will again use examples based on AWS networking.
 
 This blog post is not intended to be an all encompassing primer on BGP. Instead I've seen numerous people confused by some of these principles and concepts while either designing networks or troubleshooting them. Therefore it appears to be a good idea to select and explain them explicitly.
 
@@ -45,7 +45,7 @@ In practice Local_Pref can be used to specify how traffic should leave our AS, t
 
 This is typically used for traffic engineering purposes, where an ASN wants to prefer a certain kind of peer over another. Usually this is done for financial reasons, as traffic exchanged over e.g. a Transit peering might incur cost, while traffic exchanged over a direct peering might be settlement free.
 
-As a result a typical mapping of BGP session types to Local_Pref values could look like this.
+As a result a typical mapping of BGP session types to Local_Pref values could look like this:
 
 |BGP Session|Local_Pref|
 |---|---|
@@ -54,12 +54,24 @@ As a result a typical mapping of BGP session types to Local_Pref values could lo
 |**Peering via IXP Route Server**|300|
 |**Transit**|200|
 
+Here we generally prefer settlement-free peering with higher Local_Pref over paid transit with lower Local_Pref.
 
 #### AS_PATH length
 
 A common mechanism to manage traffic across AS with BGP is to make a BGP AS_PATH longer via [AS path prepending](https://www.noction.com/blog/as-path-and-as-path-prepending). Prepending means adding one or more AS numbers to the left side of the AS path. Normally this is done using one’s own AS number, while announcing routes to another AS.
 
-With that we can influence how traffic will reach our ASN. And as we might not only have a commercial interest in reducing the cost that we pay for Transit
+With that we can influence how traffic will reach our ASN. Similar to what I described before we might not only have a commercial interest in reducing the cost that we pay for Transit for traffic leaving our ASN, but also for traffic entering our ASN. We have seen that we can perform traffic engineering for egress traffic via Local_Pref, using AS path prepending can be used for traffic engineering on ingress traffic.
+
+With this we could use AS path prepending for IP prefixes originated or announced by our ASN over various types of BGP session types like this to optimize for cost:
+
+|BGP Session|AS path prepending|
+|---|---|
+|**Private Peering**|None|
+|**Direct Peering via IXP**|1x|
+|**Peering via IXP Route Server**|2x|
+|**Transit**|3x|
+
+In this case we tell other ASNs to prefer path via our settlement-free peering through lower AS_PATH length over paid transit through longer AS_PATH length.
 
 #### Multi-Exit Discriminator (MED)
 
