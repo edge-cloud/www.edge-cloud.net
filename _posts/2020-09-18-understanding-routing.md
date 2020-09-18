@@ -1,7 +1,7 @@
 ---
 title: Better understanding IP Routing
 author: Christian Elsen
-excerpt: Primer to better understanding IP routing
+excerpt: Look at fundamental principles of IP routing to better design and troubleshoot networks
 layout: single
 permalink: /2020/09/18/understanding-routing/
 categories:
@@ -156,4 +156,4 @@ In this case we can see that we have a multipath route for the destination prefi
 
 # Summary
 
-In today's post took a look at some of the fundamental principles of IP routing. A future post will look in more detail at  BGP Routing protocol concepts. Neither of these blog posts is intended to be an all encompassing primer on IP routing or BGP. Instead I've seen numerous people confused by some of these principles and concepts while either designing networks or troubleshooting them. Hopefully after reading through this post you feel a bit more confident to design, troubleshoot or just talk about IP networks.
+In today's post we took a look at some of the fundamental principles of IP routing. A future post will look in more detail at  BGP Routing protocol concepts. Neither of these blog posts is intended to be an all encompassing primer on IP routing or BGP. Instead I've seen numerous people confused by some of these principles and concepts while either designing networks or troubleshooting them. Hopefully after reading through this post you feel a bit more confident to design, troubleshoot or just talk about IP networks.
