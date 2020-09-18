@@ -28,6 +28,8 @@ permalink: /feed.xml
       {% for tag in post.tags %}
       <category term="{{ tag | xml_escape }}"/>
       {% endfor %}
+      <logo>https://www.edge-cloud.net/assets/images/square-image.jpg</logo>
+      <icon>https://www.edge-cloud.net/assets/images/square-image.jpg</icon>
       {% for cat in post.categories %}
       <category term="{{ cat | xml_escape }}"/>
       {% endfor %}
