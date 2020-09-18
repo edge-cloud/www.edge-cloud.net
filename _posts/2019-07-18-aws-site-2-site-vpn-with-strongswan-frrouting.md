@@ -100,6 +100,13 @@ In AWS the Source or Destination checking attribute on an interface determines w
 Before installing Strongswan on your EC2 instance [disable Source/Destination Checks](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck) for this instance.
 Keep in mind that this needs to be done for both interfaces (ENIs) separately.
 
+### Security Group setup
+
+Within the security group for the external interface: Make sure to allow inbound traffic using UDP port 500 (ISAKMP) and 4500 (IPsec NAT-Traversal) from both of the AWS Virtual Private Gateways.
+
+For the security group on the internal interface: Here you want to allow any traffic that you want to be transported inside of the AWS Site-to-Site VPN tunnels. 
+
+
 ## Strongswan setup
 
 Next use *apt-get update && apt-get install -y strongswan* to install Strongswan on the Ubuntu Linux 16.04 instance.
