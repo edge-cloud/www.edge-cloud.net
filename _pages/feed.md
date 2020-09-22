@@ -15,6 +15,8 @@ permalink: /feed.xml
   </author>
   <link rel="self" type="application/atom+xml" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}"/>
   <link rel="alternate" type="text/html" href="{{ site.url }}{{ site.baseurl }}"/>
+  <logo>https://www.edge-cloud.net/assets/images/square-image.jpg</logo>
+  <icon>https://www.edge-cloud.net/assets/images/square-image.jpg</icon>
 
   {% for post in site.posts limit:10 %}
     <entry>
@@ -26,10 +28,9 @@ permalink: /feed.xml
       <summary type="html">{{ post.excerpt | xml_escape }}</summary>
       <content type="html">{{ post.content | strip_html | xml_escape | truncatewords:75 }}</content>
       {% for tag in post.tags %}
+      <image>https://www.edge-cloud.net/assets/images/square-image.jpg</image>
       <category term="{{ tag | xml_escape }}"/>
       {% endfor %}
-      <logo>https://www.edge-cloud.net/assets/images/square-image.jpg</logo>
-      <icon>https://www.edge-cloud.net/assets/images/square-image.jpg</icon>
       {% for cat in post.categories %}
       <category term="{{ cat | xml_escape }}"/>
       {% endfor %}
