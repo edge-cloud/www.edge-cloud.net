@@ -35,8 +35,6 @@ In the following we want to look in more detail at the three most important sele
  * **AS_PATH** is the fourth criteria considered. Routes with the shortest AS_PATH attribute are preferred.
  * **Multi-exit discriminator (MED)** is the sixth selection criteria considered. Here routes with a lower MED value are preferred with 0 being the default value.
 
- With regards to what we learned in the [previous post](https://www.edge-cloud.net/2020/09/18/understanding-routing/) about route tables, it is important to understand that only the best path is installed in the route table. Only if the BGP best path selection algorithm results in a "tie", more than one route can be installed into the route table. Therefore if we want to use [Equal-cost multi-path routing (ECMP)](https://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) with prefixes learned over BGP, we have to enforce such a "tie".
-
 ## Local_Pref
 
 As previously seen, Local_Pref is one of the first Best Path Selection Algorithm criteria that a router looks at. It is evaluated before the AS path length. While the default value of Local_Pref is 100, routes that have a higher Local_Pref value are preferred. An important characteristic to consider is that Local_Pref is local in the sense that the attribute is only propagated over iBGP sessions (within your AS) and not over eBGP sessions (to external ASes). Therefore you might see BGP route tables with empty entries for Local_Pref for a given route, sometimes along with other routes that do have an explicit entry. In this case the empty entries just mean that the deafult value of 100 applies.
@@ -109,6 +107,26 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 In this case, while not using stateful rules on your CGW, you might be tempted to override the MED value with a Local_Pref to force return traffic through the standby tunnel and thereby increasing the overall throughput. While doing this you might hope that now one tunnel - serving traffic from AWS VPC to on-premises - will provide you a throughput of ~ 1.25 Gbps, while the other tunnel - serving traffic from on-premises to the AWS VPC - will provide you an additional throughput of ~1.25 Gbps.
 This train of thought shows that you understood the fundamental principles of BGP and how to use them to influence traffic. Congratulation! Unfortunately the AWS Site-to-Site (IPSec) VPN specific throughput limitation of ~ 1.25 Gbps is per connection and not per tunnel as the VGW is the forcing element. Therefore this approach will not yield the desired results.
+
+# Best Path selectiom algorithm relaxation 
+
+Various router platforms offer different sets if capabilities to relax the rules around the BGP best path selection algorithm. While by default e.g. MED are only considered across path with the same neighboring ASN, the Cisco IOS command *bgp always-compare-med* ignores the ASN when considering MEDs. We saw in the previous blog post [AWS Transit Gateway with Direct Connect Gateway and Site-to-Site (IPSec) VPN Backup](https://www.edge-cloud.net/2019/08/16/aws-dxgw-with-ipsec-vpn-backup/#multi-exit-discriminator-med) how this can used in the case of AWS.
+
+# BGP Multipath
+
+With regards to what we learned in the [previous post](https://www.edge-cloud.net/2020/09/18/understanding-routing/) about route tables, it is important to understand that only the best path is installed in the route table. Only if the BGP best path selection algorithm results in a "tie", more than one route can be installed into the route table.
+
+This is called BGP Multipath and it is independent of whether the underlying route table has [Equal-cost multi-path routing (ECMP)](https://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) capabilities. In other words: To have full ECMP capability on a BGP enabled router, BGP needs to deliver parallel path to the routing table and the router needs to make use of them. 
+
+Therefore if we want to use ECMP with prefixes learned over BGP, we have to enforce such a "tie". This means we need to ensure the following BGP attributes are kept same on each paths:
+* Weight
+* Local Preference
+* AS Path (both AS number and AS path length)
+* Origin code
+* MED
+* IGP metric
+
+Various routing platforms offer ways to relax some of the attributes as tie breaker. As an example, the Cisco IOS command *bgp bestpath as-path multipath-relax* will ignore the actual AS numbers and only consider the AS path length. This allows ECMP across multiple upstream provider. 
 
 # Summary
 
