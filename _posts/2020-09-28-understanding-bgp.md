@@ -3,7 +3,7 @@ title: Better understanding BGP
 author: Christian Elsen
 excerpt: Primer to better understanding BGP
 layout: single
-permalink: /2020/09/25/understanding-bgp/
+permalink: /2020/09/28/understanding-bgp/
 categories:
   - EdgeCloud
 tags:
@@ -112,4 +112,4 @@ This train of thought shows that you understood the fundamental principles of BG
 
 # Summary
 
-Today's blog post builds on what you've learned in the previous blog post on [Better understanding IP Routing](https://www.edge-cloud.net/2020/09/18/understanding-routing/). It provides an introduction into the BGP Best Path Selection Algorithm and how to use some of the valued to influence traffic flowing into (ingress) and out of (egress) your ASN. 
+Today's blog post builds on what you've learned in the previous blog post on [Better understanding IP Routing](https://www.edge-cloud.net/2020/09/18/understanding-routing/). It provides an introduction into the BGP Best Path Selection Algorithm and how to use some of the valued to influence traffic flowing into (ingress) and out of (egress) your ASN.
