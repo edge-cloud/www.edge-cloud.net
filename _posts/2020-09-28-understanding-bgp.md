@@ -12,10 +12,9 @@ tags:
 toc: true
 ---
 
-In a [previous post](https://www.edge-cloud.net/2020/09/18/understanding-routing/) we took a look at some of the fundamental principles of IP routing. Today we want to look at some more details of related BGP Routing protocol concepts. While these principles and concepts are generic, we will again use examples based on AWS networking.
+In a [previous post](https://www.edge-cloud.net/2020/09/18/understanding-routing/) we took a look at some of the fundamental principles of IP routing. Today we want to look at some more details of related BGP Routing protocol concepts. While these principles and concepts are generic, we will again use examples based on AWS networking, along with examples from running an [Autonomous System](https://en.wikipedia.org/wiki/Autonomous_system_(Internet)) on the Internet.
 
 This blog post is not intended to be an all encompassing primer on BGP. Instead I've seen numerous people confused by some of these principles and concepts while either designing networks or troubleshooting them. Therefore it appears to be a good idea to select and explain them explicitly.
-
 
 # Routing Protocols
 
@@ -37,9 +36,9 @@ In the following we want to look in more detail at the three most important sele
 
 ## Local_Pref
 
-As previously seen, Local_Pref is one of the first Best Path Selection Algorithm criteria that a router looks at. It is evaluated before the AS path length. While the default value of Local_Pref is 100, routes that have a higher Local_Pref value are preferred. An important characteristic to consider is that Local_Pref is local in the sense that the attribute is only propagated over iBGP sessions (within your AS) and not over eBGP sessions (to external ASes). Therefore you might see BGP route tables with empty entries for Local_Pref for a given route, sometimes along with other routes that do have an explicit entry. In this case the empty entries just mean that the deafult value of 100 applies.
+As previously seen, Local_Pref is one of the first Best Path Selection Algorithm criteria that a router looks at. It is evaluated before the AS path length. While the default value of Local_Pref is 100, routes that have a higher Local_Pref value are preferred. An important characteristic to consider is that Local_Pref is local in the sense that the attribute is only propagated over iBGP sessions (within your AS) and not over eBGP sessions (to external ASes). You might see BGP route tables with empty entries for Local_Pref for a given route, sometimes along with other routes that do have an explicit entry. In this case the empty entries just mean that the deafult value of 100 applies.
 
-In practice Local_Pref can be used to specify how traffic should leave our AS, therefore it can guide the exit path (See Figure 1).
+In practice Local_Pref can be used to specify how traffic should leave our AS, therefore it can guide the exit path (See Figure 1). Here ASN 1 prefers the path to ASN2, as the Local_Pref on the corresponding interface has a higher value. 
 
 {% include figure image_path="/content/uploads/2020/09/Understanding-BGP-Local_Pref.png" caption="Figure 1: Local_Pref dictates how traffic leaves a local ASN, where path with a higher Local_Pref value being preferred." %}
 
@@ -60,7 +59,7 @@ Here we generally prefer settlement-free peering with higher Local_Pref over pai
 
 A common mechanism to manage traffic across AS with BGP is to make a BGP AS_PATH longer via [AS path prepending](https://www.noction.com/blog/as-path-and-as-path-prepending). Prepending means adding one or more AS numbers to the left side of the AS path. Normally this is done using one’s own AS number, while announcing routes to another AS.
 
-With that we can influence how traffic will reach our ASN. Similar to what I described before we might not only have a commercial interest in reducing the cost that we pay for Transit for traffic leaving our ASN, but also for traffic entering our ASN. We have seen that we can perform traffic engineering for egress traffic via Local_Pref, using AS path prepending can be used for traffic engineering on ingress traffic (See Figure 2).
+With that we can influence how traffic will reach our ASN. Similar to what I described before we might not only have a commercial interest in reducing the cost that we pay for Transit for traffic leaving our ASN, but also for traffic entering our ASN. We have seen that we can perform traffic engineering for egress traffic via Local_Pref, using AS path prepending can be used for traffic engineering on ingress traffic (See Figure 2). Here ASN 1 makes its path artificially longer towards ASN 3 by prepending its own ASN once. 
 
 {% include figure image_path="/content/uploads/2020/09/Understanding-BGP-AS-Path-Prepending.png" caption="Figure 2: AS_PATH prepending makes the AS path length artificially longer, therefore influencing inbound traffic to an ASN." %}
 
@@ -78,6 +77,8 @@ In this case we tell other ASNs to prefer path via our settlement-free peering t
 ## Multi-Exit Discriminator (MED)
 
 Multi-Exit Discriminator (MED) is used for the case that more than one link between two ASN exists. I can be used to influence which of these links is then used (See Figure 3). It is important to point out that the MED value is not transitive. Therefore it is not passed on by the receiving AS and therefore can solely be used to influence traffic between directly neighboring AS.
+
+In this case traffic from the neighboring ASN 2 will ingress via device R1 as the MED on the corresponding link is lower.
 
 {% include figure image_path="/content/uploads/2020/09/Understanding-BGP-MED.png" caption="Figure 3: Multi-Exit Discriminator (MED) suggests how traffic should enter an ASN. Path with lower MED value are preferred." %}
 
@@ -105,8 +106,11 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 ## Traffic engineering example
 
-In this case, while not using stateful rules on your CGW, you might be tempted to override the MED value with a Local_Pref to force return traffic through the standby tunnel and thereby increasing the overall throughput. While doing this you might hope that now one tunnel - serving traffic from AWS VPC to on-premises - will provide you a throughput of ~ 1.25 Gbps, while the other tunnel - serving traffic from on-premises to the AWS VPC - will provide you an additional throughput of ~1.25 Gbps.
-This train of thought shows that you understood the fundamental principles of BGP and how to use them to influence traffic. Congratulation! Unfortunately the AWS Site-to-Site (IPSec) VPN specific throughput limitation of ~ 1.25 Gbps is per connection and not per tunnel as the VGW is the forcing element. Therefore this approach will not yield the desired results.
+If you're not using stateful rules on your CGW, you might be tempted to override the MED value with a Local_Pref to force return traffic through the standby tunnel and thereby increasing the overall throughput. While doing this you might hope that now one tunnel - serving traffic from AWS VPC to on-premises - will provide you a throughput of ~ 1.25 Gbps, while the other tunnel - serving traffic from on-premises to the AWS VPC - will provide you an additional throughput of ~1.25 Gbps. The result should be an increased thoughput at ~ 2.5 Gbps.
+
+This train of thought shows that you understood the fundamental principles of BGP and how to use them to influence traffic. Congratulation!
+
+Unfortunately the AWS Site-to-Site (IPSec) VPN specific throughput limitation of ~ 1.25 Gbps is per connection and not per tunnel as the VGW is the forcing element. Therefore this approach will not yield the desired results.
 
 # Best Path selectiom algorithm relaxation 
 
