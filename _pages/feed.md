@@ -13,11 +13,13 @@ permalink: /feed.xml
   <author>
     <name>Christian Elsen</name><uri>https://www.edge-cloud.net/about/</uri>
   </author>
+  <webfeeds:icon>/assets/images/favicon-32x32.png</webfeeds:icon>
   <webfeeds:logo>/assets/images/edgecloud.svg</webfeeds:logo>
+  <webfeeds:accentColor>5197ad</webfeeds:accentColor>
+  <webfeeds:related layout="card" target="browser"/>
+
   <link rel="self" type="application/atom+xml" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}"/>
   <link rel="alternate" type="text/html" href="{{ site.url }}{{ site.baseurl }}"/>
-  <logo>https://www.edge-cloud.net/assets/images/square-image.jpg</logo>
-  <icon>https://www.edge-cloud.net/assets/images/square-image.jpg</icon>
 
   {% for post in site.posts limit:10 %}
     <entry>
