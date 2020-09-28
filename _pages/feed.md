@@ -13,10 +13,13 @@ permalink: /feed.xml
   <author>
     <name>Christian Elsen</name><uri>https://www.edge-cloud.net/about/</uri>
   </author>
+  <description>On the edge to cloud computing</description>
+  <webfeeds:cover image="https://www.edge-cloud.net/assets/images/unsplash-image-1.jpg" />
   <webfeeds:icon>/assets/images/favicon-32x32.png</webfeeds:icon>
   <webfeeds:logo>/assets/images/edgecloud.svg</webfeeds:logo>
   <webfeeds:accentColor>5197ad</webfeeds:accentColor>
   <webfeeds:related layout="card" target="browser"/>
+  <webfeeds:analytics id="UA-39076327-2" engine="GoogleAnalytics"/>
 
   <link rel="self" type="application/atom+xml" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}"/>
   <link rel="alternate" type="text/html" href="{{ site.url }}{{ site.baseurl }}"/>
