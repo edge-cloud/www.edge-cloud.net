@@ -32,11 +32,6 @@
   {%- assign author_twitter = author.twitter | replace: "@", "" -%}
 {%- endif -%}
 
-{%- if site.twitter_image -%}
-  {%- assign site_twitter_image = site.twitter_image | absolute_url -%}
-{%- endif -%}
-
-
 {%- assign page_large_image = page.header.og_image | default: page.header.overlay_image | default: page.header.image -%}
 {%- unless page_large_image contains '://' -%}
   {%- assign page_large_image = page_large_image | absolute_url -%}
@@ -89,7 +84,7 @@
 <meta name="twitter:url" content="{{ canonical_url }}">
 <meta name="twitter:card" content="summary">
 {% if page_teaser_image %}
-<meta name="twitter:image" content="{{ site_twitter_image }}">
+<meta name="twitter:image" content="{{ site_og_image }}">
 {% endif %}
 {% endif %}
 {% if author_twitter %}
