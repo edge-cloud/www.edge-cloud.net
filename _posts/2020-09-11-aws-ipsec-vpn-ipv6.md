@@ -60,7 +60,7 @@ So with the value of "fdbe:1a26:45b0:4631:ca60:3307:371b:631**5**/128" displayed
  * AWS-side interface address: fdbe:1a26:45b0:4631:ca60:3307:371b:631**5**/12**6**
  * Customer-side address: fdbe:1a26:45b0:4631:ca60:3307:371b:631**6**/12**6**
 
-You should notice the pattern for constructing the unnecessary IPv6 information:
+You should notice the pattern for constructing the necessary IPv6 information:
 * Subnet (aka CIDR): Provided IPv6 address - 1
 * AWS-side interface address: Provided IPv6 address
 * Customer-side address: Provided IPv6 address + 1
