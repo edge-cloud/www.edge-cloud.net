@@ -154,6 +154,20 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 In this case we can see that we have a multipath route for the destination prefix of "10.0.255.0/24", where both "169.254.13.253" and "169.254.15.221" are considered as the next best hop. In this case the router device will randomly send out traffic for this destination network over either next hop, while using a 5-tuple hash. A 5-tuple hash refers to a set of five different values that comprise a Transmission Control Protocol/Internet Protocol (TCP/IP) connection. It includes a source IP address/port number, destination IP address/port number and the protocol in use. Here with ECMP and 5-tuple hashing, packets belonging to the same 5-tuple travel to the same next hop, while packets from different 5-tuple may be send to another next hop.
 
+# Analogy
+
+IP routing is actually very simple, once you realize that it is similar to hiking without a map:
+
+{% include figure image_path="/content/uploads/2020/09/bear-tree.jpg" caption="Figure 4: IP routing is similar to hiking without a map. Here: Packet loss. " %}
+
+* You start at the trailhead (source) and want to reach some target (destination).
+* Move along the hiking trail to the next fork (router) and look at the signs (route table). Decide which trail (next hop) to chose, in order to reach your destination.
+If the sign at the fork lacks an entry to the desired destination, you're stuck forever and will eventually get eaten by a bear (dropped packet; See Figure 4).
+  * If you pass the same fork more than once, you're lost (packet looping) and will eventually run out of food (see below).  
+  * If you pass by more than 64 forks you run out of food, starve and get eaten by a bear (TTL expired).
+  * If you made it to your desired target (destination), you succeeded. Good job!
+* Like IP routing, hiking is bidirectional: You want to get home again, don't you? Therefore consider the return path as well and follow the above steps.
+
 # Summary
 
 In today's post we took a look at some of the fundamental principles of IP routing. A future post will look in more detail at  BGP Routing protocol concepts. Neither of these blog posts is intended to be an all encompassing primer on IP routing or BGP. Instead I've seen numerous people confused by some of these principles and concepts while either designing networks or troubleshooting them. Hopefully after reading through this post you feel a bit more confident to design, troubleshoot or just talk about IP networks.
