@@ -47,7 +47,7 @@ Today Multicast on AWS Transit Gateway comes with a few restrictions that need t
 
 # Setup
 
-Before kicking the tires on Multicast, it needs to be setup. At a minimum this requires the network setup within the Transit Gateway, as well as at least one Multicast Source and one Multicast Receiver instance.
+Before kicking the tires on Multicast, it needs to be setup. At a minimum this requires the network setup within the Transit Gateway, as well as at least one Multicast Source and one Multicast Receiver instance.  
 
 ## Source and Receiver Instances
 
@@ -59,7 +59,7 @@ Last, but not least ensure that port UDP 5001 is opened within the [security gro
 ## Transit Gateway (TGW)
 
 You can follow the [AWS instructions](https://docs.aws.amazon.com/vpc/latest/tgw/working-with-multicast.html) for setting up a Multicast-enabled TGW, along with a multicast domain.
-Next associate any of the VPCs and subnets that will include Multicast Sources and Receivers to this TGW. Then associate the individual Multicast Sources and Receiver via their Elastic Network Interface (ENI) with a Multicast Group (See Figure 3).
+Next associate any of the VPCs and subnets that will include Multicast Sources and Receivers to this TGW. Multicast Source and Receiver can either be in the same VPC, or in different VPCs. Then associate the individual Multicast Sources and Receiver via their Elastic Network Interface (ENI) with a Multicast Group (See Figure 3).
 
 {% include figure image_path="/content/uploads/2020/05/TGW-Multicast-Group.jpg" caption="Figure 3: Multicast-Group with single source and multiple receiver." %}
 
