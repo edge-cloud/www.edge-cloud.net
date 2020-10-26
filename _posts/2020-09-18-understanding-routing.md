@@ -158,7 +158,7 @@ In this case we can see that we have a multipath route for the destination prefi
 
 IP routing is actually very simple, once you realize that it is similar to hiking without a map:
 
-{% include figure image_path="/content/uploads/2020/09/bear-tree.jpg" caption="Figure 4: IP routing is similar to hiking without a map. Here: Packet loss. " %}
+{% include figure image_path="/content/uploads/2020/09/bear-tree.jpg" caption="Figure 4: IP routing is similar to hiking without a map. Here: Packet loss. (Photo courtesy of USDA Forest Service)" %}
 
 * You start at the trailhead (source) and want to reach some target (destination).
 * Move along the hiking trail to the next fork (router) and look at the signs (route table). Decide which trail (next hop) to chose, in order to reach your destination.
