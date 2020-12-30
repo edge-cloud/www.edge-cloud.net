@@ -60,8 +60,14 @@ deploy:
     on:
       branch: master
   - provider: gcs
+    edge:
+      source: travis-ci/dpl
+      branch: master 
     access_key_id: $GCP_ACCESS_KEY_ID
     secret_access_key: $GCP_SECRET_ACCESS_KEY
+    local_dir: _site
+    detect_encoding: true
+    cache_control: "public, max-age=31536000: *.{jpg,gif,png,webp,css,js,ico}"
     bucket: www.edge-cloud.net
     on:
       branch: master
