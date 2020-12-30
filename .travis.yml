@@ -59,6 +59,12 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     on:
       branch: master
+  - provider: gcs
+    access_key_id: $GCP_ACCESS_KEY_ID
+    secret_access_key: $GCP_SECRET_ACCESS_KEY
+    bucket: www.edge-cloud.net
+    on:
+      branch: master
   - provider: firebase
     edge:
       source: travis-ci/dpl
