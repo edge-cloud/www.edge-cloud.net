@@ -44,9 +44,7 @@ after_success:
   - rm content.tgz
 deploy:
   - provider: s3
-    edge:
-      source: travis-ci/dpl
-      branch: master
+    edge: true
     region: us-west-2
     acl: public_read
     max_threads: 15
@@ -60,9 +58,7 @@ deploy:
     on:
       branch: master
   - provider: gcs
-    edge:
-      source: travis-ci/dpl
-      branch: master 
+    edge: true
     access_key_id: $GCP_ACCESS_KEY_ID
     secret_access_key: $GCP_SECRET_ACCESS_KEY
     local_dir: _site
@@ -72,17 +68,13 @@ deploy:
     on:
       branch: master
   - provider: firebase
-    edge:
-      source: travis-ci/dpl
-      branch: master
+    edge: true
     token: $FIREBASE_TOKEN
     project: www-edge-cloud-net
     on:
       branch: master
   - provider: pages
-    edge:
-      source: travis-ci/dpl
-      branch: master
+    edge: true
     local_dir: _site
     repo: edge-cloud/edge-cloud.github.io
     target_branch: master
