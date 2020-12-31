@@ -19,6 +19,7 @@ addons:
     - libcurl4-openssl-dev
     - webp
 before_install:
+  - export TZ=Etc/UTC
   - openssl aes-256-cbc -K $encrypted_25b200caff90_key -iv $encrypted_25b200caff90_iv -in _build/client_secrets.json.enc -out _build/client_secrets.json -d
   - if [ -a _build/client_secrets.json ]; then
       gcloud -q auth activate-service-account --key-file _build/client_secrets.json;
