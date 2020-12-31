@@ -68,7 +68,6 @@ deploy:
     local_dir: _site
     acl: public-read
     detect_encoding: true
-    cache_control: "public, max-age=31536000: *.{jpg,gif,png,webp,css,js,ico}"
     bucket: www.edge-cloud.net
     on:
       branch: master
@@ -94,4 +93,11 @@ after_deploy:
   - if [[ $TRAVIS_BRANCH == "master" ]]; then
       aws configure set preview.cloudfront true;
       aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*";
+      gsutil setmeta -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.jpg
+      gsutil setmeta -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.gif
+      gsutil setmeta -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.png
+      gsutil setmeta -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.webp
+      gsutil setmeta -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.css
+      gsutil setmeta -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.js
+      gsutil setmeta -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.ico
     fi
