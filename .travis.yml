@@ -36,7 +36,7 @@ install:
   - bundle install
 before_script:
   - if [[ $TRAVIS_COMMIT_MESSAGE == *"[rebuild images]"* ]]; then
-      rm -r _site/content;
+      rm -r _site/content/resized;
     fi
 script:
   - if [[ $TRAVIS_BRANCH == "master" ]]; then
