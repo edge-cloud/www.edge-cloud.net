@@ -88,5 +88,5 @@ after_deploy:
   - if [[ $TRAVIS_BRANCH == "master" ]]; then
       aws configure set preview.cloudfront true;
       aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*";
-      gcloud compute url-maps invalidate-cdn-cache edge-cloud-net --path "/*" --async;
+      gcloud compute url-maps invalidate-cdn-cache projects/edge-cloud-300221/global/urlMaps/edge-cloud-net --path "/*" --async;
     fi
