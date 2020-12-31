@@ -4,6 +4,7 @@ rvm:
   - 2.5.3
 bundler_args: --without development
 env:
+  - GOOGLE_APPLICATION_CREDENTIALS=$TRAVIS_BUILD_DIR/client_secrets.json
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 notifications:
@@ -20,7 +21,7 @@ addons:
     - webp
 before_install:
   - if [ -a client_secrets.json ]; then
-      gcloud -q auth activate-service-account --key-file client_secrets.json
+      gcloud -q auth activate-service-account --key-file client_secrets.json;
     fi
 install:
   - pip install --user awscli
