@@ -18,6 +18,10 @@ addons:
     packages:
     - libcurl4-openssl-dev
     - webp
+cache:
+  bundler: true
+  directories:
+    - _site/content
 before_install:
   - export TZ=Etc/UTC
   - openssl aes-256-cbc -K $encrypted_25b200caff90_key -iv $encrypted_25b200caff90_iv -in _build/client_secrets.json.enc -out _build/client_secrets.json -d
@@ -37,6 +41,9 @@ before_script:
       tar -xzf content.tgz;
       rm content.tgz;
     fi
+  - if [[ $TRAVIS_COMMIT_MESSAGE == *"[rebuild images]"* ]]; then
+      rm -r _site/content;
+    fi
 script:
   - if [[ $TRAVIS_BRANCH == "master" ]]; then
       JEKYLL_ENV=production bundle exec jekyll build --config _config.yml;
@@ -46,11 +53,6 @@ script:
   - ALGOLIA_API_KEY=$ALGOLIA_KEY bundle exec jekyll algolia
   - ./_build/webp-convert.sh ./_site/content
   - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
-after_success:
-  - tar -czf content.tgz _site/content
-  - aws s3 cp content.tgz s3://cache.edge-cloud.net/content.tgz
-  - gsutil cp content.tgz gs://cache.edge-cloud.net/content.tgz
-  - rm content.tgz
 deploy:
   - provider: s3
     edge: true
