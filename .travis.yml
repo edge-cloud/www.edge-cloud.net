@@ -32,7 +32,6 @@ install:
   - bundle install
 before_script:
   - if [[ $TRAVIS_COMMIT_MESSAGE != *"[rebuild images]"* ]]; then
-      # aws s3 cp s3://cache.edge-cloud.net/content.tgz .;
       gsutil cp gs://cache.edge-cloud.net/content.tgz .;
       tar -xzf content.tgz;
       rm content.tgz;
