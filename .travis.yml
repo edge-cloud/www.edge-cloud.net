@@ -23,6 +23,7 @@ before_install:
   - if [ -a client_secrets.json ]; then
       gcloud -q auth activate-service-account --key-file client_secrets.json;
     fi
+  - rm client_secrets.json
 install:
   - pip install --user awscli
   - gem install bundler
