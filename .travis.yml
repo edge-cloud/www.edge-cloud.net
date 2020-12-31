@@ -35,11 +35,6 @@ install:
   - gem install html-proofer
   - bundle install
 before_script:
-  - if [[ $TRAVIS_COMMIT_MESSAGE != *"[rebuild images]"* ]]; then
-      gsutil cp gs://cache.edge-cloud.net/content.tgz .;
-      tar -xzf content.tgz;
-      rm content.tgz;
-    fi
   - if [[ $TRAVIS_COMMIT_MESSAGE == *"[rebuild images]"* ]]; then
       rm -r _site/content;
     fi
