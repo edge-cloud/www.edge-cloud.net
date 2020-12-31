@@ -83,11 +83,5 @@ after_deploy:
   - if [[ $TRAVIS_BRANCH == "master" ]]; then
       aws configure set preview.cloudfront true;
       aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*";
-      gsutil setmeta -r -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.jpg
-      gsutil setmeta -r -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.gif
-      gsutil setmeta -r -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.png
-      gsutil setmeta -r -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.webp
-      gsutil setmeta -r -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.css
-      gsutil setmeta -r -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.js
-      gsutil setmeta -r -h "Cache-Control:public, max-age=31536000" gs://www.edge-cloud.net/*.ico
+      gcloud compute url-maps invalidate-cdn-cache edge-cloud-net --path "/*" --async;
     fi
