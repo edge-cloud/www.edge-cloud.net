@@ -36,7 +36,7 @@ install:
   - bundle install
 before_script:
   - if [[ $TRAVIS_COMMIT_MESSAGE == *"[rebuild images]"* ]]; then
-      rm -r _site/content/resized;
+      find _site/content/ -maxdepth 5 -type f -name "*.webp" -delete;
     fi
 script:
   - if [[ $TRAVIS_BRANCH == "master" ]]; then
