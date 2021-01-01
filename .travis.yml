@@ -4,7 +4,7 @@ cache:
   directories:
     - _site/content
 rvm:
-  - 2.6
+  - 2.4.9
 bundler_args: --without development
 env:
   global:
@@ -33,7 +33,7 @@ install:
   - pip install --user awscli
   - gem install bundler
   - gem install html-proofer
-  - bundle install --verbose
+  - bundle install
 before_script:
   - if [[ $TRAVIS_COMMIT_MESSAGE == *"[rebuild images]"* ]]; then
       find _site/content/ -maxdepth 5 -type f -name "*.webp" -delete;
