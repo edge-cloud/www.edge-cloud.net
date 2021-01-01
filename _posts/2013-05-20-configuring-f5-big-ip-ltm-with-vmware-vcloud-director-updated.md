@@ -1,5 +1,5 @@
 ---
-title: Configuring F5 Big-IP LTM with VMware vCloud Director (Updated)
+title: Configuring F5 Big-IP LTM with VMware vCloud Director
 date: 2013-05-20 13:30:00 -0700
 author: Christian Elsen
 excerpt: >-
