@@ -33,7 +33,7 @@ install:
   - pip install --user awscli
   - gem install bundler
   - gem install html-proofer
-  - bundle install
+  - bundle install --verbose
 before_script:
   - if [[ $TRAVIS_COMMIT_MESSAGE == *"[rebuild images]"* ]]; then
       find _site/content/ -maxdepth 5 -type f -name "*.webp" -delete;
