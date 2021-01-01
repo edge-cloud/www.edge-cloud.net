@@ -20,7 +20,6 @@ group :jekyll_plugins do
   gem "jekyll-target-blank"
   gem "jekyll-responsive-image"
   gem "jekyll-algolia"
-  gem "algolia"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
