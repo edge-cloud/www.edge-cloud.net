@@ -4,7 +4,7 @@ cache:
   directories:
     - _site/content
 rvm:
-  - 2.5.3
+  - 2.6
 bundler_args: --without development
 env:
   global:
