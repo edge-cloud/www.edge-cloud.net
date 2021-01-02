@@ -9,10 +9,10 @@
     <input type="text" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="{{ site.data.ui-text[site.locale].search_placeholder_text | default: 'Enter your search term...' }}" />
     </form>
     <div id="results" class="results">
-        <gcse:searchresults-only></gcse:searchresults-only>    
+        <gcse:searchresults-only></gcse:searchresults-only>
     </div>
   {%- when "algolia" -%}
-    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
     <div class="search-searchbar"></div>
     <div class="search-hits"></div>
 {%- endcase -%}
