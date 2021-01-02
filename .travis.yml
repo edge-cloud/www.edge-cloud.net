@@ -1,8 +1,5 @@
 language: ruby
-cache:
-  bundler: true
-  directories:
-    - _site/content
+cache: bundler
 rvm:
   - 2.5.3
 bundler_args: --without development
@@ -21,22 +18,16 @@ addons:
     packages:
     - libcurl4-openssl-dev
     - webp
-before_install:
-  - export TZ=Etc/UTC
-  - openssl aes-256-cbc -K $encrypted_25b200caff90_key -iv $encrypted_25b200caff90_iv -in _build/client_secrets.json.enc -out _build/client_secrets.json -d
-  - if [ -a _build/client_secrets.json ]; then
-      gcloud -q auth activate-service-account --key-file _build/client_secrets.json;
-      rm _build/client_secrets.json;
-      rm _build/client_secrets.json.enc;
-    fi
 install:
   - pip install --user awscli
   - gem install bundler
   - gem install html-proofer
   - bundle install
 before_script:
-  - if [[ $TRAVIS_COMMIT_MESSAGE == *"[rebuild images]"* ]]; then
-      find _site/content/ -maxdepth 5 -type f -name "*.webp" -delete;
+  - if [[ $TRAVIS_COMMIT_MESSAGE != *"[rebuild images]"* ]]; then
+      aws s3 cp s3://cache.edge-cloud.net/content.tgz .;
+      tar -xzf content.tgz;
+      rm content.tgz;
     fi
 script:
   - if [[ $TRAVIS_BRANCH == "master" ]]; then
@@ -47,9 +38,15 @@ script:
   - ALGOLIA_API_KEY=$ALGOLIA_KEY bundle exec jekyll algolia
   - ./_build/webp-convert.sh ./_site/content
   - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
+after_success:
+  - tar -czf content.tgz _site/content
+  - aws s3 cp content.tgz s3://cache.edge-cloud.net/content.tgz
+  - rm content.tgz
 deploy:
   - provider: s3
-    edge: true
+    edge:
+      source: travis-ci/dpl
+      branch: master
     region: us-west-2
     acl: public_read
     max_threads: 15
@@ -61,24 +58,19 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     on:
-      condition: "$AWS_DEPLOY = true"
       branch: master
-  - provider: s3
-    edge: true
-    endpoint: https://storage.googleapis.com
-    acl: public_read
-    max_threads: 15
-    bucket: www.edge-cloud.net
-    local_dir: _site
-    default_text_charset: "utf-8"
-    cache_control: "public, max-age=31536000: *.{jpg,gif,png,webp,css,js,ico}"
-    expires: "`date -u +\"%Y-%m-%d %H:%M:%S -0000\" --date \"next Year\"`: *.{jpg,gif,png,webp,css,js,ico}"
-    access_key_id: $GCP_ACCESS_KEY_ID
-    secret_access_key: $GCP_SECRET_ACCESS_KEY
+  - provider: firebase
+    edge:
+      source: travis-ci/dpl
+      branch: master
+    token: $FIREBASE_TOKEN
+    project: www-edge-cloud-net
     on:
       branch: master
   - provider: pages
-    edge: true
+    edge:
+      source: travis-ci/dpl
+      branch: master
     local_dir: _site
     repo: edge-cloud/edge-cloud.github.io
     target_branch: master
@@ -89,5 +81,4 @@ after_deploy:
   - if [[ $TRAVIS_BRANCH == "master" ]]; then
       aws configure set preview.cloudfront true;
       aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*";
-      gcloud compute url-maps invalidate-cdn-cache $GCP_URL_MAP --path "/*" --async;
     fi
