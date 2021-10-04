@@ -1,10 +1,11 @@
+dist: focal
 language: ruby
 cache:
   bundler: true
   directories:
     - _site/content
 rvm:
-  - 2.5.3
+  - 2.7.1
 bundler_args: --without development
 env:
   global:
@@ -41,9 +42,7 @@ script:
   - htmlproofer ./_site --allow-hash-href --assume-extension --url-ignore "/localhost/" --http-status-ignore "999" --disable-external
 deploy:
   - provider: s3
-    edge:
-      source: travis-ci/dpl
-      branch: master
+    edge: true
     region: us-west-2
     acl: public_read
     max_threads: 15
@@ -56,10 +55,8 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     on:
       branch: master
-  - provider: pages
-    edge:
-      source: travis-ci/dpl
-      branch: master
+  - provider: pages:git
+    edge: true
     local_dir: _site
     repo: edge-cloud/edge-cloud.github.io
     target_branch: master
