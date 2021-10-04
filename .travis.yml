@@ -1,10 +1,11 @@
+dist: focal
 language: ruby
 cache:
   bundler: true
   directories:
     - _site/content
 rvm:
-  - 2.6
+  - 2.7.1
 bundler_args: --without development
 env:
   global:
@@ -57,6 +58,7 @@ deploy:
     on:
       branch: master
   - provider: pages
+    strategy: git
     edge:
       source: travis-ci/dpl
       branch: master
