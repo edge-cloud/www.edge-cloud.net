@@ -3,7 +3,7 @@ title: Title goes here
 author: Christian Elsen
 excerpt: Brief description goes here
 layout: single
-permalink: /2020/01/01/template/
+permalink: /2021/01/01/tgw-ngw-cost-breakeven/
 categories:
   - EdgeCloud
 tags:
