@@ -37,7 +37,7 @@ jobs:
             aws configure set default.s3.max_concurrent_requests 20
             aws s3 sync s3://${{ secrets.AWS_S3_BUCKET_NAME }} ./_site/
 
-    - name: "Build Site"
+    - name: "Build Jekyll site"
       run: bundle exec jekyll build --config _config.yml --incremental
       env:
         JEKYLL_ENV: production
@@ -45,11 +45,11 @@ jobs:
     - name: "Build Algolia Search"
       run: bundle exec jekyll algolia
   
-    - name: "Purge images"
+    - name: "Purge Webp images"
       run: find _site/content/ -maxdepth 5 -type f -name "*.webp" -delete;
       if: "contains(github.event.head_commit.message, '[rebuild images]')"
   
-    - name: "Convert images"
+    - name: "Convert Webp images"
       run: |
             chmod +x ./_build/webp-convert.sh
             ./_build/webp-convert.sh ./_site/content
@@ -61,4 +61,6 @@ jobs:
             aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete --cache-control max-age=604800
       
     - name: "Create AWS Cloudfront Invalidation"
-      run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+      run: |
+            aws configure set preview.cloudfront true;
+            aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
