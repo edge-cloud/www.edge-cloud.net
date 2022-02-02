@@ -28,8 +28,10 @@ jobs:
         ruby-version: 2.7.1
         bundler-cache: true
 
-    - name: Download all workflow run artifacts
-      uses: actions/download-artifact@v2
+    - name: "Download site from AWS S3"
+      run: |
+            aws configure set default.s3.max_concurrent_requests 20
+            aws s3 sync s3://${{ secrets.AWS_S3_BUCKET_NAME }} ./_site/
 
     - name: "Build Site"
       run: bundle exec jekyll build --config _config.yml --incremental
@@ -44,12 +46,6 @@ jobs:
             sudo apt-get install -y webp
             ./_build/webp-convert.sh ./_site/content
             
-    - name: Archive site build results
-      uses: actions/upload-artifact@v2
-      with:
-        name: site-build
-        path: _site
-
     - name: "Deploy to AWS S3"
       run: |
             aws configure set default.s3.max_concurrent_requests 20
