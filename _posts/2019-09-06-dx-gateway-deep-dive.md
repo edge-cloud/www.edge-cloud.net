@@ -36,7 +36,7 @@ With AWS Direct Connect Gateway you can now access Virtual Private Clouds (VPC) 
 
 {% include figure image_path="/content/uploads/2019/09/DX-with-DXGW.png" caption="Figure 2: Direct Connect with Direct Connect Gateway." %}
 
-This dramatically improves flexibility and reduces cost, when connecting from on-premises to AWS regions. Looking at the [AWS Direct Connect data transfer cost](https://aws.amazon.com/directconnect/pricing/#AWS_Direct_Connect_data_transfer) for AWS Regions in North America, you can see that the data transfer OUT price to any of the Direct Connect locations in North America is the same at currently $0.02. Therefore in this case picking a Direct Connect location within North America that is the closest to your on-premises location does not increase the AWS cost. 
+This dramatically improves flexibility and reduces cost, when connecting from on-premises to AWS regions. Looking at the [AWS Direct Connect data transfer cost](https://aws.amazon.com/directconnect/pricing/#AWS_Direct_Connect_data_transfer) for AWS Regions in North America, you can see that the data transfer OUT price to any of the Direct Connect locations in North America is the same at currently $0.02. Therefore in this case picking a Direct Connect location within North America that is the closest to your on-premises location does not increase the AWS cost.
 
 ## Connectivity to multiple Virtual Private Clouds (VPC)
 
@@ -64,7 +64,7 @@ AWS Direct Connect Gateway is a global AWS object which supports "Virtual Interf
 * **Virtual Private Gateway with Private Virtual Interface:** In this case the AWS-facing termination point, or gateway association, is a Virtual Private Gateway (VGW). A VGW can connect to exactly one VPC. The on-premises facing corresponding attachment for this scenario is a private virtual interface.
 An AWS Direct Connect *Dedicated Connection* or *Hosted Connection* can support up to 50 such private virtual interfaces. A *Hosted Virtual Interface* on the other hand support only supports a single virtual Interface, which can be Private Virtual Interface.
 
-* **Transit Gateway with Transit Virtual interface:** A Transit Gateway is an AWS networking component, which allows you to connect multiple VPCs, Direct Connect Gateways, and Site-to-Site (IPSec) VPNs together via attachments. Currently these attachments have to reside in the same AWS region, although cross-region support has been announced. In this case the on-premises facing attachment of the Direct Connect Gateway is a Transit Virtual Interface (VIF).
+* **Transit Gateway with Transit Virtual interface:** A Transit Gateway is an AWS networking component, which allows you to connect multiple VPCs, Direct Connect Gateways, and Site-to-Site (IPSec) VPNs together via attachments. Currently these attachments have to reside in the same AWS region, except for peering to other TGW - which can be in the same or another region. In this case the on-premises facing attachment of the Direct Connect Gateway is a Transit Virtual Interface (VIF).
 Only AWS Direct Connect *Dedicated Connections* or *Hosted Connections* with a capacity of [greater than or equal to 1G](https://aws.amazon.com/directconnect/partners/) support Transit VIFs. In the case of a Dedicated Connection you can use one Transit VIF in addition to 50 private or public VIFs. In the case of a Hosted Connection - which only provides a single Virtual Interface - that VIF can either be a private, public or transit Virtual Interface.
 AWS Direct Connect *Hosted Virtual Interfaces* do not support Transit VIFs at all.
 
@@ -99,13 +99,13 @@ The number of AWS Direct Connect gateways and associated objects is [limited](ht
 * **AWS Direct Connect gateways per account:** 200
 * **Virtual Interfaces:** 30 (Either Private Virtual Interfaces or Transit Virtual Interfaces)
 * **Transit Gateways:** 3 (Cannot be combined with Virtual Private Gateways)
-* **Virtual Private Gateways:** 30 (Cannot be combined with Transit Gateways)
+* **Virtual Private Gateways:** 10 (Cannot be combined with Transit Gateways)
 
 ## Data flow
 
-It is important to point out that only data flow between AWS-facing Gateway associations and on-premises facing VIF attachments is possible. This is depicted in Figure 5 as green pathes. Data flow between associated Gateways or data flow between multiple VIFs, connected to the same Direct Connect Gateway, is not possible. This is depicted in Figure 5 as red pathes.
+It is important to point out that only data flow between AWS-facing Gateway associations and on-premises facing VIF attachments is possible. This is depicted in Figure 5 as green paths. Data flow between associated Gateways connected to the same Direct Connect Gateway, is not possible. This is depicted in Figure 5 as red path. Data flow between multiple VIFs is only possible via the optional [SiteLink](https://aws.amazon.com/blogs/aws/new-site-to-site-connectivity-with-aws-direct-connect-sitelink/) capability. This is depicted in Figure 5 as orange path. 
 
-{% include figure image_path="/content/uploads/2019/09/DXGW-DataFlow.png" caption="Figure 5: Permitted data flow (green) and not permitted data flow (red) with Direct Connect Gateway." %}
+{% include figure image_path="/content/uploads/2019/09/DXGW-DataFlow-SiteLink.png" caption="Figure 5: Permitted data flow (green), data flow with optional SiteLink enabled and not permitted data flow (red) with Direct Connect Gateway." %}
 
 It is important to point out that the red depicted data flow not only includes BGP routing traffic, but also routed traffic. Looking at the VIFs facing on-premises, you will not receive BGP route announcements from the Direct Connect Gateway that were originated by one of the other VIFs. But even attempting to place a static route towards the Direct Connect for traffic from one VIF to another will fail.
 
