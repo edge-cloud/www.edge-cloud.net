@@ -36,6 +36,7 @@ jobs:
       run: |
             aws configure set default.s3.max_concurrent_requests 20
             aws s3 sync s3://${{ secrets.AWS_S3_BUCKET_NAME }} ./_site/
+      if: "!contains(github.event.head_commit.message, '[rebuild images]')"
 
     - name: "Build Jekyll site"
       run: bundle exec jekyll build --config _config.yml --incremental
@@ -44,10 +45,6 @@ jobs:
         
     - name: "Build Algolia Search"
       run: bundle exec jekyll algolia
-  
-    - name: "Purge Webp images"
-      run: find _site/content/ -maxdepth 5 -type f -name "*.webp" -delete;
-      if: "contains(github.event.head_commit.message, '[rebuild images]')"
   
     - name: "Convert Webp images"
       run: |
