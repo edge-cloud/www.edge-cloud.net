@@ -45,10 +45,10 @@ jobs:
             ./_build/webp-convert.sh ./_site/content
             
     - name: Archive converted images
-        uses: actions/upload-artifact@v2
-        with:
-          name: converted-webp-images
-          path: _site/content
+      uses: actions/upload-artifact@v2
+      with:
+        name: converted-webp-images
+        path: _site/content
 
     - name: "Deploy to AWS S3"
       run: aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete --cache-control max-age=604800
