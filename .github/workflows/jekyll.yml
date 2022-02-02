@@ -22,11 +22,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby
+    - name: "Set up Ruby"
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7.1
         bundler-cache: true
+        
+    - name: "Install Ubuntu dependencies"
+      run: |
+            sudo apt-get install -y webp
 
     - name: "Download site from AWS S3"
       run: |
@@ -46,9 +50,7 @@ jobs:
       if: "contains(github.event.head_commit.message, '[rebuild images]')"
   
     - name: "Convert images"
-      run: |
-            sudo apt-get install -y webp
-            ./_build/webp-convert.sh ./_site/content
+      run: ./_build/webp-convert.sh ./_site/content
             
     - name: "Deploy to AWS S3"
       run: |
