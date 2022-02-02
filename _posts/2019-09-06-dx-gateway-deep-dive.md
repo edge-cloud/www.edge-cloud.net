@@ -105,7 +105,7 @@ The number of AWS Direct Connect gateways and associated objects is [limited](ht
 
 It is important to point out that only data flow between AWS-facing Gateway associations and on-premises facing VIF attachments is possible. This is depicted in Figure 5 as green paths. Data flow between associated Gateways connected to the same Direct Connect Gateway, is not possible. This is depicted in Figure 5 as red path. Data flow between multiple VIFs is only possible via the optional [SiteLink](https://aws.amazon.com/blogs/aws/new-site-to-site-connectivity-with-aws-direct-connect-sitelink/) capability. This is depicted in Figure 5 as orange path.
 
-{% include figure image_path="/content/uploads/2019/09/DXGW-DataFlow-SiteLink.png" caption="Figure 5: Permitted data flow (green), data flow with optional SiteLink enabled and not permitted data flow (red) with Direct Connect Gateway." %}
+{% include figure image_path="/content/uploads/2019/09/DXGW-DataFlow-SiteLink.png" caption="Figure 5: Permitted data flow (green), data flow with optional SiteLink enabled (orange) and not permitted data flow (red) with Direct Connect Gateway." %}
 
 It is important to point out that the red depicted data flow not only includes BGP routing traffic, but also routed traffic. Looking at the VIFs facing on-premises, you will not receive BGP route announcements from the Direct Connect Gateway that were originated by one of the other VIFs. But even attempting to place a static route towards the Direct Connect for traffic from one VIF to another will fail.
 
