@@ -51,8 +51,8 @@ jobs:
   
     - name: "Convert images"
       run: |
-            chmod +x "${GITHUB_WORKSPACE}/_build/webp-convert.sh"
-            "${GITHUB_WORKSPACE}/_build/webp-convert.sh ${GITHUB_WORKSPACE}/_site/content"
+            chmod +x ./_build/webp-convert.sh
+            ./_build/webp-convert.sh ./_site/content
       shell: bash
             
     - name: "Deploy to AWS S3"
