@@ -27,7 +27,10 @@ jobs:
       with:
         ruby-version: 2.7.1
         bundler-cache: true
-        
+
+    - name: Download all workflow run artifacts
+      uses: actions/download-artifact@v2
+
     - name: "Build Site"
       run: bundle exec jekyll build --config _config.yml
       env:
@@ -40,6 +43,12 @@ jobs:
       run: |
             sudo apt-get install -y webp
             ./_build/webp-convert.sh ./_site/content
+            
+    - name: Archive converted images
+        uses: actions/upload-artifact@v2
+        with:
+          name: converted-webp-images
+          path: _site/content
 
     - name: "Deploy to AWS S3"
       run: aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete --cache-control max-age=604800
