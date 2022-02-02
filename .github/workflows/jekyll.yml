@@ -25,6 +25,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
+        ruby-version: 2.7.1
         bundler-cache: true
     - name: "Build Site"
       run: bundle exec jekyll build --config _config.yml
