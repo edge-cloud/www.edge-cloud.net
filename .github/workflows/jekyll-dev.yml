@@ -47,6 +47,7 @@ jobs:
             
     - name: "Deploy to GitHub pages"
       run: |
+            git add -A
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git commit -m 'deploy'
