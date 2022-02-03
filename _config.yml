@@ -132,6 +132,9 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/chriselsen/"
+    - label: "AS213151"
+      icon: "fab fa-fw fa-network-wired"
+      url: "https://as213151.net/"
 
 ############################################################
 # Site Footer
