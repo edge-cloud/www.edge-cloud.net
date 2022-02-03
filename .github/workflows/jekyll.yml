@@ -1,0 +1,63 @@
+name: Jekyll site CI to Amazon S3
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: 'us-west-2'
+  ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_KEY }}
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: "Set up Ruby"
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7.1
+        bundler-cache: true
+        
+    - name: "Install Ubuntu dependencies"
+      run: |
+            sudo apt-get install -y webp
+
+    - name: "Download site from AWS S3"
+      run: |
+            aws configure set default.s3.max_concurrent_requests 20
+            aws s3 sync s3://${{ secrets.AWS_S3_BUCKET_NAME }} ./_site/
+      if: "!contains(github.event.head_commit.message, '[rebuild images]')"
+
+    - name: "Build Jekyll site"
+      run: bundle exec jekyll build --config _config.yml
+      env:
+        JEKYLL_ENV: production
+        
+    - name: "Build Algolia Search"
+      run: bundle exec jekyll algolia
+  
+    - name: "Convert Webp images"
+      run: |
+            chmod +x ./_build/webp-convert.sh
+            ./_build/webp-convert.sh ./_site/content
+      shell: bash
+            
+    - name: "Deploy to AWS S3"
+      run: |
+            aws configure set default.s3.max_concurrent_requests 20
+            aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete --cache-control max-age=604800
+      
+    - name: "Create AWS Cloudfront Invalidation"
+      run: |
+            aws configure set preview.cloudfront true;
+            aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"

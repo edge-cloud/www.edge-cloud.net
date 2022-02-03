@@ -1,0 +1,62 @@
+name: Jekyll site CI to Github Pages
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_KEY }}
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: "Set up Ruby"
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7.1
+        bundler-cache: true
+        
+    - name: "Install Ubuntu dependencies"
+      run: |
+            sudo apt-get install -y webp
+
+    - name: "Clone Site from GitHub pages"
+      run: |
+            git clone https://github.com/edge-cloud/edge-cloud.github.io.git ./_site/
+      if: "!contains(github.event.head_commit.message, '[rebuild images]')"
+
+    - name: "Build Jekyll site"
+      run: bundle exec jekyll build --config _config.yml
+      env:
+        JEKYLL_ENV: production
+        
+    - name: "Convert Webp images"
+      run: |
+            chmod +x ./_build/webp-convert.sh
+            ./_build/webp-convert.sh ./_site/content
+      shell: bash
+            
+    - name: "Deploy to GitHub pages"
+      run: |
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git commit -m 'deploy'
+
+    - name: "Force push to destination branch"
+      uses: ad-m/github-push-action@v0.5.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
+        force: true
+        directory: ./_site/
+      
+    
