@@ -54,7 +54,7 @@ jobs:
       with:
         github_token: ${{ secrets.EDGECLOUD_GITHUB_TOKEN }}
         repository: edge-cloud/edge-cloud.github.io
-        branch: gh-pages
+        branch: master
         force: true
         directory: ./_site/
       
