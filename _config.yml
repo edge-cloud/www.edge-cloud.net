@@ -133,7 +133,7 @@ author:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/chriselsen/"
     - label: "AS213151"
-      icon: "fas fa-network-wired"
+      icon: "fas fa-fw fa-network-wired"
       url: "https://as213151.net/"
 
 ############################################################
