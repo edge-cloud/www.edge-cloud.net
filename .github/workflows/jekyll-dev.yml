@@ -28,13 +28,11 @@ jobs:
 
     - name: "Clone Site from GitHub pages"
       run: |
-            git clone https://github.com/edge-cloud/edge-cloud.github.io.git ./_site/
+            git clone https://github.com/edge-cloud/edge-cloud.github.io.git ./_site
       if: "!contains(github.event.head_commit.message, '[rebuild images]')"
 
     - name: "Build Jekyll site"
-      run: bundle exec jekyll build --config _config.yml
-      env:
-        JEKYLL_ENV: production
+      run: bundle exec jekyll build --config _config.yml --future --drafts
         
     - name: "Convert Webp images"
       run: |
@@ -44,18 +42,12 @@ jobs:
             
     - name: "Deploy to GitHub pages"
       run: |
+            cd ./_site
             git add -A
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git commit -m 'deploy'
+            git push --force https://${{ secrets.EDGECLOUD_GITHUB_TOKEN }}@github.com/edge-cloud/edge-cloud.github.io.git
 
-    - name: "Force push to destination branch"
-      uses: ad-m/github-push-action@v0.5.0
-      with:
-        github_token: ${{ secrets.EDGECLOUD_GITHUB_TOKEN }}
-        repository: edge-cloud/edge-cloud.github.io
-        branch: master
-        force: true
-        directory: ./_site/
       
     
