@@ -1,10 +1,8 @@
 ---
 sitemap: false
-layout: none
+layout: blank
 permalink: /feed_atom.xml
 ---
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
-
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title type="text">{{ site.title | xml_escape }}</title>
