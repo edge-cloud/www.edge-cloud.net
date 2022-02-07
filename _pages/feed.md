@@ -1,7 +1,7 @@
 ---
 sitemap: false
 layout: none
-permalink: /feed.xml
+permalink: /feed.atom
 ---
 
 <?xml version="1.0" encoding="UTF-8"?>
