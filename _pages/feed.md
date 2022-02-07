@@ -4,7 +4,7 @@ layout: none
 permalink: /feed_atom.xml
 ---
 
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title type="text">{{ site.title | xml_escape }}</title>
   <subtitle type="html">{{ site.description | xml_escape }}</subtitle>
