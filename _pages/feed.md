@@ -1,6 +1,6 @@
 ---
 sitemap: false
-layout: nil
+layout: null
 permalink: /feed_atom.xml
 ---
 <?xml version="1.0" encoding="utf-8"?>
