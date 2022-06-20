@@ -4,3 +4,5 @@ _site
 .jekyll-cache
 Gemfile.lock
 content.tgz
+content/uploads/**/*.webp
+assets/images/**/*.webp
