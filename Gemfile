@@ -29,4 +29,4 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "wdm", "~> 0.1.0" if Gem.win_platform?
 
 # Theme: Minimal-Mistakes
-gem "minimal-mistakes-jekyll", "~> 4.21.0"
+gem "minimal-mistakes-jekyll", "~> 4.24.0"
