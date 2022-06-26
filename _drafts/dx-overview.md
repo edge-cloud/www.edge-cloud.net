@@ -1,9 +1,9 @@
 ---
 title: AWS Direct Connect overview
 author: Christian Elsen
-excerpt: Overview of AWS Direct Connect
+excerpt: Overview of AWS Direct Connect, with which you can establish private connectivity between AWS and your data center, office, factory or collocated environment.
 layout: single
-permalink: /2022/07/13/dx-overview/
+permalink: /2022/06/28/dx-overview/
 categories:
   - EdgeCloud
 tags:
@@ -20,7 +20,7 @@ This article will provide an overview of AWS Direct Connect, outlining the vario
 
 AWS Direct Connect provides direct physical connectivity to the AWS Network via 3rd party [colocation facilities (DX locations)](https://aws.amazon.com/directconnect/locations/), using a cross-connect between an AWS-owned device and either a customer or partner owned device (See figure 1). 
 
-{% include figure image_path="/content/uploads/2022/07/DX-Physical.png" caption="Figure 1: Direct Connect Overview" %}
+{% include figure image_path="/content/uploads/2022/06/DX-Physical.png" caption="Figure 1: Direct Connect Overview" %}
 
 These colocation facilities are not AWS data centers, but rather colocation facilities operated by 3rd part providers such as [Equinix](https://www.equinix.com/), [CoreSite](https://www.coresite.com/), [Cologix](https://cologix.com/), [Digital Realty](https://www.digitalrealty.com/), and others. A colocation data center, often referred to as a "colo", is a large datacenter facility that rents out rack space to third parties for their servers or other network equipment. This is a very popular service that is used by businesses that may not have the resources needed to maintain their own data center, but still want to enjoy all the benefits. Or it is used by Network Service Providers to interconnect with partners - such as cloud providers - or customers.
 
@@ -59,13 +59,13 @@ Customers can request a dedicated connection through the AWS Direct Connect cons
 
 As depicted in figure 1, the customer or partner will order the colo operator to create a cross-connect from a meet-me room to the customer's or partner's space - also somethimes called cage. 
 
-{% include figure image_path="/content/uploads/2022/07/meet-me-room.jpg" caption="Figure 2: Meet-me room in a colocation facility" %}
+{% include figure image_path="/content/uploads/2022/06/meet-me-room.jpg" caption="Figure 2: Meet-me room in a colocation facility" %}
 
 A meet-me room is part of a colo that you will most likely never get to see in real life (See figure 2). It is a room where only authorized personell of the colo operator is allowed access to and where data connections are established between customers of the colo. To do so, one customer has to obtain a Letter of Authorization - Connecting Facility Assignment (LOA-CFA) from the other customer - in this case AWS - and provide it to the colo operator. This LOA-CFA document specifies which pre-cabled connection is to be used for this particular customer. 
 
 The colo operator will then typically terminate the cross connect within the customer or partner space at the top of a particular rack in form of a patch panel (See Figure 3). 
 
-{% include figure image_path="/content/uploads/2022/07/DX-Cross-Connect.png" caption="Figure 3: Direct Connect Cross Connect within a customer's rack" %}
+{% include figure image_path="/content/uploads/2022/06/DX-Cross-Connect.png" caption="Figure 3: Direct Connect Cross Connect within a customer's rack" %}
 
 Depending on the chosen speed of the DX connection, different [optical transceiver](https://en.wikipedia.org/wiki/Optical_module) are then used on the customer or partner side to terminate the DX connection on network equipment: 
 
@@ -98,7 +98,7 @@ This is a legacy offering which is no longer available for new provisioning by A
 
 A Direct Connect connection supports one or multiple Virtual Interfaces (VIF) as logical component. Refer to the above table to understand which DX connection type offers what kind and how many virtual interfaces. 
 
-{% include figure image_path="/content/uploads/2022/07/DX-VIFs-Overview.png" caption="Figure 4: Direct Connect Logical Overview" %}
+{% include figure image_path="/content/uploads/2022/06/DX-VIFs-Overview.png" caption="Figure 4: Direct Connect Logical Overview" %}
 
 While each Virtual Interface serves a different purpose, they are all provided as an IEEE 802.1q VLAN over a trunk and require use of BGP via IPv4 and/or IPv6 (See Figure 4):
 
@@ -120,7 +120,7 @@ Redundant Direct Connect connections are highly recommended as AWS need to perfo
 
 Customers have multiple options to connect their own network equipment via a Direct Connect location (See Figure 5).
 
-{% include figure image_path="/content/uploads/2022/07/DX-Connectivity.png" caption="Figure 5: Direct Connect Connectivity Options" %}
+{% include figure image_path="/content/uploads/2022/06/DX-Connectivity.png" caption="Figure 5: Direct Connect Connectivity Options" %}
 
 * **In-location cross connect (Option 1):** If the customer has resources deployed in the same colo facility as the DX location, the colo facility can provide a cross-connect between the AWS DX equipment and the customer resources. The customer has to provide a [Letter of Authorization and Connecting Facility Assignment (LOA-CFA)](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html) to the facility for this. This option is only available for Dedicated Connections. 
 
@@ -142,7 +142,7 @@ End-customers have a direct business relationship with AWS and are charged direc
 
 In addition end-customers will need to engage with [Direct Connect Delivery Partners](https://aws.amazon.com/directconnect/partners/) such as carriers, network service providers (NSP), or colocation providers to provide them with network connectivity to AWS. For this they will have a separate contract with this partner and the partner will invoice end-customers for the connectivity services they provide.
 
-{% include figure image_path="/content/uploads/2022/07/Direct-Connect-Commercial-Workflow.png" caption="Figure 6: Commercial Workflow" %}
+{% include figure image_path="/content/uploads/2022/06/Direct-Connect-Commercial-Workflow.png" caption="Figure 6: Commercial Workflow" %}
 
 # Summary
 
