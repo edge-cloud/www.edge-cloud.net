@@ -103,11 +103,10 @@ The number of AWS Direct Connect gateways and associated objects is [limited](ht
 
 ## Data flow
 
-It is important to point out that only data flow between AWS-facing Gateway associations and on-premises facing VIF attachments is possible. This is depicted in Figure 5 as green paths. Data flow between associated Gateways connected to the same Direct Connect Gateway, is not possible. This is depicted in Figure 5 as red path. Data flow between multiple VIFs is only possible via the optional [SiteLink](https://aws.amazon.com/blogs/aws/new-site-to-site-connectivity-with-aws-direct-connect-sitelink/) capability. This is depicted in Figure 5 as orange path.
+Direct Connect Gateway is geared towards data flows between AWS-facing Gateway associations and on-premises facing VIF attachments. This is depicted in Figure 5 as green paths. Data flow between associated Gateways connected to the same Direct Connect Gateway, depicted in Figure 5 as red path, is only possible if an aggregate route (e.g. 0.0.0.0/0) for the other gateway is announced over Direct Connect. In the depicted example announcing 172.16. 0.0/12 and 192.168. 0.0/16 from one of the on-premises locations would enable the traffic path shown in red.
+Data flow between multiple VIFs is only possible via the optional [SiteLink](https://aws.amazon.com/blogs/aws/new-site-to-site-connectivity-with-aws-direct-connect-sitelink/) capability. This is depicted in Figure 5 as orange path.
 
 {% include figure image_path="/content/uploads/2019/09/DXGW-DataFlow-SiteLink.png" caption="Figure 5: Permitted data flow (green), data flow with optional SiteLink enabled (orange) and not permitted data flow (red) with Direct Connect Gateway." %}
-
-It is important to point out that the red depicted data flow not only includes BGP routing traffic, but also routed traffic. Looking at the VIFs facing on-premises, you will not receive BGP route announcements from the Direct Connect Gateway that were originated by one of the other VIFs. But even attempting to place a static route towards the Direct Connect for traffic from one VIF to another will fail.
 
 ## BGP prefixes
 

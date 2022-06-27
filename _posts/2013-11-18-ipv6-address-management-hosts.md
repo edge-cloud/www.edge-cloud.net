@@ -2,7 +2,7 @@
 title: IPv6 Address management of hosts
 date: 2013-11-18T08:04:50+00:00
 author: Christian Elsen
-excerpt: 'This article explores the address management concepts available with IPv6: None, Manual, Stateless Address Auto Configuration (SLLAC), Statefull with DHCPv6'
+excerpt: 'This article explores the address management concepts available with IPv6: None, Manual, Stateless Address Auto Configuration (SLAAC), Statefull with DHCPv6'
 layout: single
 permalink: /2013/11/18/ipv6-address-management-hosts/
 redirect_from:

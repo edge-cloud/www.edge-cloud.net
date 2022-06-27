@@ -3,8 +3,6 @@ name: Jekyll site CI to Amazon S3
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -55,7 +53,7 @@ jobs:
     - name: "Deploy to AWS S3"
       run: |
             aws configure set default.s3.max_concurrent_requests 20
-            aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete --cache-control max-age=604800
+            aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete --cache-control max-age=604800
       
     - name: "Create AWS Cloudfront Invalidation"
       run: |
