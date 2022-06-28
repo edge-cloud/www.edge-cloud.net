@@ -20,7 +20,7 @@ This article will provide an overview of AWS Direct Connect, outlining the vario
 
 AWS Direct Connect provides direct physical connectivity to the AWS Network via 3rd party [colocation facilities (DX locations)](https://aws.amazon.com/directconnect/locations/), using a cross-connect between an AWS-owned device and either a customer- or partner-owned device (See figure 1). 
 
-{% include figure image_path="/content/uploads/2022/06/DX-Physical.png" caption="Figure 1: Direct Connect Overview" %}
+{% include figure image_path="/content/uploads/2022/06/DX-Physical.png" caption="Figure 1: Direct Connect Overview" class="webfeedsFeaturedVisual"%}
 
 These [DX locations](https://aws.amazon.com/directconnect/locations/) are not AWS data centers, but rather colocation facilities operated by 3rd part providers such as [Equinix](https://www.equinix.com/), [CoreSite](https://www.coresite.com/), [Cologix](https://cologix.com/), [Digital Realty](https://www.digitalrealty.com/), and others. A colocation facility or colocation data center, often referred to as a "colo", is a large datacenter facility that rents out rack space to third parties for their servers or other network equipment. This is a very popular service that is used by businesses that may not have the resources needed to maintain their own data center, but still want to enjoy all the benefits. Or it is used by Network Service Providers to interconnect with partners - such as cloud providers - or customers.
 
