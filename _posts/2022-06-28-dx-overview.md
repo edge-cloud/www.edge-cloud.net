@@ -113,6 +113,8 @@ In order to achieve high resiliency, AWS recommends customers to follow the [AWS
 
 Redundant Direct Connect connections are highly recommended as AWS need to perform regular [maintenance](https://aws.amazon.com/premiumsupport/knowledge-center/prepare-direct-connect-maintenance/) on individual connections. 
 
+If you decide to use a Site-to-Site (IPSec) VPN as backup to your DX, while using AWS Transit Gateway, refer to [this previous article](https://www.edge-cloud.net/2019/08/16/aws-dxgw-with-ipsec-vpn-backup/) on how to setup the routing correctly.
+
 # Connectivity 
 
 Customers have multiple options to connect their own network equipment via a Direct Connect location (See Figure 5).
