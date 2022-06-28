@@ -24,7 +24,7 @@ A few [constraints apply](https://docs.aws.amazon.com/vpn/latest/s2svpn/ipv4-ipv
 * You cannot retrofit existing Site-to-Site connections with IPv6, but need to create a new connection.
 * A Site-to-Site VPN connection can only support IPv4, or IPv6. This means that if you need to carry both IPv4 and IPv6 traffic between AWS and on-premises you need to create two separate connections, one for IPv4 and one for IPv6 (See Figure 1).
 
-{% include figure image_path="/content/uploads/2020/09/S2S-VPN-with-IPv6-1.png" caption="Figure 1: AWS Site-to-Site VPN setup with IPv4 and IPv6 support." %}
+{% include figure image_path="/content/uploads/2020/09/S2S-VPN-with-IPv6-1.png" caption="Figure 1: AWS Site-to-Site VPN setup with IPv4 and IPv6 support." class="webfeedsFeaturedVisual" %}
 
 As each AWS Site-to-Site VPN connection consist of two tunnels, in the case of supporting IPv4/IPv6 Dualstack traffic you will therefore end up with a total of four tunnels, two for IPv4 traffic and two for IPv6 traffic.
 Also note that this means you'll be paying separately for the tunnel carrying the IPv4 traffic as well as for the tunnel carrying the IPv6 traffic.

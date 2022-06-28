@@ -30,7 +30,7 @@ The key component of my home office setup is a [Huion Kamvas Pro 12 Drawing Moni
 
 It's important to point out that in contrary to touch enabled notebooks, this monitor does not provide touch input. It only reacts to the provided pen. Therefore you can touch it with the balm of your hand while drawing (See Figure 2). Although that does leave smudges and you'll have to clean the screen with a good [microfiber clearning cloth](https://amzn.to/2KjB3xe) from time to time.
 
-{% include figure image_path="/content/uploads/2020/04/HomeOffice3.jpg" caption="Figure 2: Drawing on Huion Kamvas Pro 12 Drawing Monitor with balm on screen." %}
+{% include figure image_path="/content/uploads/2020/04/HomeOffice3.jpg" caption="Figure 2: Drawing on Huion Kamvas Pro 12 Drawing Monitor with balm on screen." class="webfeedsFeaturedVisual" %}
 
 ## Software
 
