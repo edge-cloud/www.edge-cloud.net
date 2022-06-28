@@ -43,7 +43,7 @@ Today Multicast on AWS Transit Gateway comes with a few restrictions that need t
  * Only [AWS Nitro](https://aws.amazon.com/ec2/nitro/) instances can be a Multicast source. If you use a non-Nitro instance as a receiver, you must disable the [Source/Dest check](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#change_source_dest_check).
  * While the AWS Transit Gateway has a default limit of only supporting [1x TGW source per group](https://docs.aws.amazon.com/vpc/latest/tgw/transit-gateway-quotas.html#multicast-quota), this limit can be increased.
 
-{% include figure image_path="/content/uploads/2020/05/Multicast-Multicast-TGW.png" caption="Figure 2: Multicast-enabled TGW besides traditional TGW." %}
+{% include figure image_path="/content/uploads/2020/05/Multicast-Multicast-TGW.png" caption="Figure 2: Multicast-enabled TGW besides traditional TGW." class="webfeedsFeaturedVisual" %}
 
 # Setup
 

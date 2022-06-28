@@ -33,7 +33,7 @@ One of the most fundamental concepts to understand in IP routing is that the act
 
 Taking AWS VPCs and [Transit Gateways (TGWs)](https://aws.amazon.com/transit-gateway/?aws-transit-gateway-wn.sort-by=item.additionalFields.postDateTime&aws-transit-gateway-wn.sort-order=desc) as an example, we can quickly understand how this hop-by-hop decision making plays out, while looking at the routing tables of the VPCs and TGWs (See Figure 1).
 
-{% include figure image_path="/content/uploads/2020/09/Understanding-Routing-and-BGP-Hop-by-Hop.png" caption="Figure 1: IP Hop-by-Hop routing with VPCs and multiple Transit Gateways (TGW)" %}
+{% include figure image_path="/content/uploads/2020/09/Understanding-Routing-and-BGP-Hop-by-Hop.png" caption="Figure 1: IP Hop-by-Hop routing with VPCs and multiple Transit Gateways (TGW)" class="webfeedsFeaturedVisual" %}
 
 Traffic from an EC2 instance in VPC 1 wanting to reach another EC2 instance in VPC 2 will have to follow this hop-by-hop process through the five routing tables involved here. What do you think? Will traffic from VPC 1 reach VPC 2? Or is there a mistake in the route tables?
 

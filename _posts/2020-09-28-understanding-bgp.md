@@ -40,7 +40,7 @@ As previously seen, Local_Pref is one of the first Best Path Selection Algorithm
 
 In practice Local_Pref can be used to specify how traffic should leave our AS, therefore it can guide the exit path (See Figure 1). Here ASN 1 prefers the path to ASN2, as the Local_Pref on the corresponding interface has a higher value. 
 
-{% include figure image_path="/content/uploads/2020/09/Understanding-BGP-Local_Pref.png" caption="Figure 1: Local_Pref dictates how traffic leaves a local ASN, where path with a higher Local_Pref value being preferred." %}
+{% include figure image_path="/content/uploads/2020/09/Understanding-BGP-Local_Pref.png" caption="Figure 1: Local_Pref dictates how traffic leaves a local ASN, where path with a higher Local_Pref value being preferred." class="webfeedsFeaturedVisual" %}
 
 This is typically used for traffic engineering purposes, where an ASN wants to prefer a certain kind of peer over another. Usually this is done for financial reasons, as traffic exchanged over e.g. a Transit peering might incur cost, while traffic exchanged over a direct peering might be settlement free.
 
