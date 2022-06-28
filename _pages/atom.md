@@ -4,6 +4,7 @@ sitemap: false
 permalink: /atom.xml
 ---
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
+  <channel>
   <title type="text">{{ site.title | xml_escape }}</title>
   <subtitle type="html">{{ site.description | xml_escape }}</subtitle>
   <updated>{{ site.time | date_to_xmlschema }}</updated>
@@ -39,4 +40,5 @@ permalink: /atom.xml
       {% endfor %}
     </entry>
   {% endfor %}
+  </channel>
 </feed>
