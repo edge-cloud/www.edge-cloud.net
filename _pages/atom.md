@@ -13,6 +13,8 @@ permalink: /atom.xml
     <name>Christian Elsen</name><uri>https://www.edge-cloud.net/about/</uri>
   </author>
   <description>On the edge to cloud computing</description>
+  <icon>/assets/images/favicon-32x32.png</icon>
+  <logo>/assets/images/edgecloud.png</logo>
   <webfeeds:cover image="https://www.edge-cloud.net/assets/images/unsplash-image-1.jpg" />
   <webfeeds:icon>/assets/images/favicon-32x32.png</webfeeds:icon>
   <webfeeds:logo>/assets/images/edgecloud.svg</webfeeds:logo>
@@ -29,6 +31,9 @@ permalink: /atom.xml
       <id>{{ post.url | prepend: site.baseurl | prepend: site.url }}</id>
       <updated>{{ post.date | date_to_xmlschema }}</updated>
       <published>{{ post.date | date_to_xmlschema }}</published>
+      <author>
+        <name>Christian Elsen</name><uri>https://www.edge-cloud.net/about/</uri>
+      </author>
       <link href="{{ post.url | prepend: site.baseurl | prepend: site.url }}"/>
       <summary type="html">{{ post.excerpt | xml_escape }}</summary>
       <content type="html">{{ post.content | strip_html | xml_escape | truncatewords:75 }}</content>
