@@ -1,14 +1,13 @@
 ---
+layout: xml
 sitemap: false
-layout: null
 permalink: /atom.xml
 ---
-<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title type="text">{{ site.title | xml_escape }}</title>
   <subtitle type="html">{{ site.description | xml_escape }}</subtitle>
   <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}</id>
+  <id>{{ "/atom.xml" | prepend: site.baseurl | prepend: site.url }}</id>
   <author>
     <name>Christian Elsen</name><uri>https://www.edge-cloud.net/about/</uri>
   </author>
@@ -20,7 +19,7 @@ permalink: /atom.xml
   <webfeeds:related layout="card" target="browser"/>
   <webfeeds:analytics id="UA-39076327-2" engine="GoogleAnalytics"/>
 
-  <link rel="self" type="application/atom+xml" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}"/>
+  <link rel="self" type="application/atom+xml" href="{{ "/atom.xml" | prepend: site.baseurl | prepend: site.url }}"/>
   <link rel="alternate" type="text/html" href="{{ site.url }}{{ site.baseurl }}"/>
 
   {% for post in site.posts limit:10 %}
