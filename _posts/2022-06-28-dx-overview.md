@@ -3,7 +3,7 @@ title: AWS Direct Connect overview
 author: Christian Elsen
 excerpt: Overview of AWS Direct Connect, with which you can establish private connectivity between AWS and your data center, office, factory or collocated environment.
 layout: single
-image: /content/uploads/2022/06/DX-Physical.png
+image: /content/uploads/2022/06/title-dx-overview.png
 permalink: /2022/06/28/dx-overview/
 categories:
   - EdgeCloud
