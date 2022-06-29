@@ -52,11 +52,6 @@ If you want to connect an [AWS Transit Gateway](https://aws.amazon.com/transit-g
 
 {% include figure image_path="/content/uploads/2019/09/DXGW-with-TGW.png" caption="Figure 3: Direct Connect Gateway with Transit Gateway." %}
 
-As reference, AWS Transit Gateway only supports the following attachment types:
-* [Virtual Private Cloud (VPC)](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html)
-* [Direct Connect Gateway](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-dcg-attachments.html)
-* [Site-to-Site (IPSec) VPN](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpn-attachments.html)
-
 # Attachments and associations
 
 AWS Direct Connect Gateway is a global AWS object which supports "Virtual Interface Attachments" on the on-premises facing side and "Gateway Associations" on the AWS facing side. These attachments and associations cannot be freely mixed and matched, but instead only allow two fixed combinations. Below is an overview of these two combinations and resulting attachments and associations.
