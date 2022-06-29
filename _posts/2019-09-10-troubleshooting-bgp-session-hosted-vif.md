@@ -4,6 +4,7 @@ author: Christian Elsen
 excerpt: Troubleshooting a BGP neighbor issue of "active open failed - tcb is not available" on a Megaport Hosted VIF due to unset BGP MD5 Auth key
 layout: single
 permalink: /2019/09/09/troubleshooting-bgp-session-hosted-vif/
+image: /content/uploads/2019/09/Hosted-VIF.jpg
 categories:
   - EdgeCloud
 tags:

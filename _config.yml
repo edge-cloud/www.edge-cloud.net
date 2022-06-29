@@ -65,6 +65,8 @@ reCaptcha:
   secret                 : FqQbcOo7yGiRtPmysDZjkWZocn+gib26HtUj/tAkQVzWgT0jZXlsTAf37tgTqOahlhhkPZpXHVqXpNleJJ9GtGI6pqV8lLK9GgYXAKlue1h13Z4dAGh27L1bDFPSXbTtxWvcHn7FW+9iPxVSRjhVCz0pFHDKCEVue2LIVj+iO2w=
 atom_feed:
   path                   : # blank (default) uses feed.xml
+feed:
+  excerpt_only           : true
 search                   : true # true, false (default)
 search_full_content      : true # true, false (default)
 search_provider          : algolia # lunr (default), algolia, google
