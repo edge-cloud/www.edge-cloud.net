@@ -4,7 +4,9 @@ author: Christian Elsen
 excerpt: Walkthrough for setup and testing IP Multicast with AWS Transit Gateway (TGW)
 layout: single
 permalink: /2020/05/01/tgw-multicast-intro/
-image: /content/uploads/2020/05/title-tgw-multicast-intro.png
+header:
+  teaser: /content/uploads/2020/05/title-tgw-multicast-intro.png
+  og_image: /content/uploads/2020/05/title-tgw-multicast-intro.png
 categories:
   - EdgeCloud
 tags:

@@ -4,7 +4,9 @@ author: Christian Elsen
 excerpt: Home office setup with Huion Kamvas Pro 12 drawing monitor for network diagrams
 layout: single
 permalink: /2020/04/19/drawing-monitor-for-network-diagrams/
-image: /content/uploads/2020/04/HomeOffice3.jpg
+header:
+  teaser: /content/uploads/2020/04/HomeOffice3.jpg
+  og_image: /content/uploads/2020/04/HomeOffice3.jpg
 categories:
   - EdgeCloud
 tags:
