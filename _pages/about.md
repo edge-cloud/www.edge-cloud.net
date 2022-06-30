@@ -1,6 +1,6 @@
 ---
 title: About
-date: 2019-08-02T08:00:22+00:00
+date: 2021-06-30T08:00:00+00:00
 author: Christian Elsen
 author_profile: true
 layout: single
@@ -23,7 +23,7 @@ In 2015 Christian joined [CloudFlare](https://www.cloudflare.com) as a Produc
 
 Joining [Amazon Web Services (AWS)](https://aws.amazon.com/) as an Enterprise Support Lead in 2016, Christian served as a dedicated technical point of contact for a strategic AWS customer with the Enterprise support organization. He worked across customer organizations to ensure customer’s applications in AWS were well designed and scaled to the needs of large events and business initiatives. He acted as the voice of the customer within AWS to escalate problems and to drive prioritization of business needs. Furthermore he lead and assisted strategic AWS customers with application performance and architecture improvements, cost optimization, deployment planning, and problem resolution.
 
-Currently he works for [Amazon Web Services (AWS)](https://aws.amazon.com/) as a Sr. Solutions Architect (Networking Specialist), where he designs Networking Solutions for AWS customers and partners, contributes to external publications such as blogs, whitepapers and reference architectures, as well as internal trainings. 
+Currently he works for [Amazon Web Services (AWS)](https://aws.amazon.com/) as a Principal Networking Solutions Architect, where he designs Networking Solutions for AWS customers and partners, contributes to external publications such as blogs, whitepapers and reference architectures, as well as internal trainings. 
 
 ## Disclaimer
 
