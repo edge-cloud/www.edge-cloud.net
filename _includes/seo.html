@@ -83,8 +83,10 @@
 <meta name="twitter:description" content="{{ seo_description }}">
 <meta name="twitter:url" content="{{ canonical_url }}">
 <meta name="twitter:card" content="summary">
-{% if page_teaser_image %}
-<meta name="twitter:image" content="{{ page_teaser_image }}">
+{% if page_large_image %}
+<meta property="twitter:image" content="{{ page_large_image }}">
+{% elsif page_teaser_image %}
+<meta property="twitter:image" content="{{ page_teaser_image }}">
 {% endif %}
 {% endif %}
 {% if author_twitter %}
