@@ -4,9 +4,7 @@ author: Christian Elsen
 excerpt: Caveats for data flow between multiple on-premises locations, when using AWS with Direct Connect and Transit Gateway
 layout: single
 permalink: /2019/12/27/aws-dx-connect-on-premises/
-header:
-  teaser: /content/uploads/2019/12/AWS-Interconnect.png
-  og_image: /content/uploads/2019/12/AWS-Interconnect.png
+image: /content/uploads/2019/12/AWS-Interconnect.png
 redirect_from:
   - /2019/12/27/aws-as-your-isp/
 categories:

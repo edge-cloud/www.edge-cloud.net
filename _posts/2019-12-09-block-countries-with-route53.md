@@ -4,9 +4,7 @@ author: Christian Elsen
 excerpt: Use Amazon Route 53 Geolocation Routing to block access to services from certain countries. Leverage RIPE Atlas to validate the setup.
 layout: single
 permalink: /2019/12/09/block-countries-with-route53/
-header:
-  teaser: /content/uploads/2019/12/GeoBlock_China.jpg
-  og_image: /content/uploads/2019/12/GeoBlock_China.jpg
+image: /content/uploads/2019/12/GeoBlock_China.jpg
 categories:
   - EdgeCloud
 tags:
