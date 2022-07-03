@@ -25,7 +25,7 @@
   {%- assign seo_description = seo_description | markdownify | strip_html | strip_newlines | escape_once -%}
 {%- endif -%}
 
-{%- assign author = page.author | default: page.authors[0] | default: site:author -%}
+{%- assign author = page.author | default: page.authors[0] | default: site.author -%}
 {%- assign author = site.data.authors[author] | default: author -%}
 
 {%- if author.twitter -%}
@@ -61,6 +61,9 @@
 
 {% if author.name %}
   <meta name="author" content="{{ author.name | default: author }}">
+  {% if og_type == "article" %}
+  <meta property="article:author" content="{{ author.name | default: author }}">
+  {% endif %}
 {% endif %}
 
 <meta property="og:type" content="{{ og_type }}">
@@ -68,7 +71,7 @@
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:title" content="{{ page.title | default: site.title | markdownify | strip_html | strip_newlines | escape_once }}">
 <meta property="og:url" content="{{ canonical_url }}">
-{% if page.excerpt %}
+{% if seo_description %}
 <meta property="og:description" content="{{ seo_description }}">
 {% endif %}
 {% if page_large_image %}
@@ -116,28 +119,21 @@
   <link rel="next" href="{{ paginator.next_page_path | absolute_url }}">
 {% endif %}
 
-{% if site.og_image %}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    {% if site.social.type == "Organization" %}
       "@type": "Organization",
-      "url": {{ seo_url | jsonify }},
-      "logo": {{ site_og_image | jsonify }}
-    }
-  </script>
-{% endif %}
-
-{% if site.social %}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "{% if site.social.type %}{{ site.social.type }}{% else %}Person{% endif %}",
+      "url": {{ '/' | absolute_url | jsonify }}{% if site.og_image %},
+      "logo": {{ site_og_image | jsonify }}{% endif %}
+    {% else %}
+      "@type": "Person",
       "name": {{ site.social.name | default: site.name | jsonify }},
-      "url": {{ seo_url | jsonify }},
-      "sameAs": {{ site.social.links | jsonify }}
-    }
-  </script>
-{% endif %}
+      "url": {{ '/' | absolute_url |jsonify }}{% if site.social.links %},
+      "sameAs": {{ site.social.links | jsonify }}{% endif %}
+    {% endif %}
+  }
+</script>
 
 {% if site.google_site_verification %}
   <meta name="google-site-verification" content="{{ site.google_site_verification }}" />

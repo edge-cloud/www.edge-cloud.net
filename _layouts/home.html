@@ -6,9 +6,16 @@ og_image: "/assets/images/og-image.jpg"
 {{ content }}
 
 <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+{% if paginator %}
+  {% assign posts = paginator.posts %}
+{% else %}
+  {% assign posts = site.posts %}
+{% endif %}
 
-{% for post in paginator.posts %}
-  {% include archive-single.html %}
-{% endfor %}
+<div class="entries-{{ page.entries_layout | default: 'list' }}">
+  {% for post in posts %}
+    {% include archive-single.html type=page.entries_layout %}
+  {% endfor %}
+</div>
 
 {% include paginator.html %}
