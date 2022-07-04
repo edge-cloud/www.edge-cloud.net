@@ -37,6 +37,7 @@ jobs:
 
     - name: "Download site from AWS S3"
       run: |
+            echo "Rebuild_Images: ${{ github.event.inputs.rebuild_images }}"
             aws configure set default.s3.max_concurrent_requests 20
             aws s3 sync s3://${{ secrets.AWS_S3_BUCKET_NAME }} ./_site/
       if: |
