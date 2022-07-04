@@ -32,6 +32,10 @@ Intro of what to accomplish
 
 ```
 
+Font Awesome: <i class="fas fa-user"></i>
+<i class="fa-solid fa-check" style="color:green;" title="Yes"></i>
+<i class="fa-solid fa-xmark" style="color:red;" title="No"></i>
+
 {% include figure image_path="/content/uploads/2020/01/SecuringYourAWSNetwork.png" caption="Figure 1: Setup Overview of EC2-based VPN endpoint for Site-to-Site VPN with AWS" %}
 
 $$
