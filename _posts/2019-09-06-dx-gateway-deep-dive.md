@@ -9,6 +9,7 @@ categories:
 tags:
   - AWS
   - Network
+  - Direct-Connect
 toc: true
 ---
 

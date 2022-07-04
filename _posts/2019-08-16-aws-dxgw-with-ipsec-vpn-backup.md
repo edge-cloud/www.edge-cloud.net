@@ -9,6 +9,8 @@ categories:
 tags:
   - AWS
   - Network
+  - Direct-Connect
+  - VPN
 toc: true
 ---
 

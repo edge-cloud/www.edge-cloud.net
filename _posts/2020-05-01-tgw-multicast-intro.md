@@ -10,6 +10,7 @@ categories:
 tags:
   - AWS
   - Network
+  - Transit-Gateway
 toc: true
 ---
 

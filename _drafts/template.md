@@ -3,6 +3,7 @@ title: Title goes here
 author: Christian Elsen
 excerpt: Brief description goes here
 layout: single
+image: /content/uploads/2022/06/title-dx-overview.png
 permalink: /2021/01/01/template/
 categories:
   - EdgeCloud
