@@ -6,6 +6,11 @@ on:
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      rebuild_images:
+        description: 'Rebuild all images?'
+        required: true
+        default: 'true'
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -34,7 +39,9 @@ jobs:
       run: |
             aws configure set default.s3.max_concurrent_requests 20
             aws s3 sync s3://${{ secrets.AWS_S3_BUCKET_NAME }} ./_site/
-      if: "!contains(github.event.head_commit.message, '[rebuild images]')"
+      if: |
+        "!contains(github.event.head_commit.message, '[rebuild images]')"
+        value: "${{ github.event.inputs.rebuild_images == 'true' }}"
 
     - name: "Build Jekyll site"
       run: bundle exec jekyll build --config _config.yml
