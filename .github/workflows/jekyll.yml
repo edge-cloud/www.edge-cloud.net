@@ -41,7 +41,7 @@ jobs:
             aws s3 sync s3://${{ secrets.AWS_S3_BUCKET_NAME }} ./_site/
       if: |
         "!contains(github.event.head_commit.message, '[rebuild images]')"
-        value: "${{ github.event.inputs.rebuild_images == 'false' }}"
+        value: "${{ github.event.inputs.rebuild_images != 'true' }}"
 
     - name: "Build Jekyll site"
       run: bundle exec jekyll build --config _config.yml
