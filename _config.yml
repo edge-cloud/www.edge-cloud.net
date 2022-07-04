@@ -351,6 +351,8 @@ defaults:
       permalink: /:year/:month/:day/:title/
       author_profile: true
       read_time: true
+      show_date: true
+      show_tags: true
       comments: true
       share: true
       related: true
