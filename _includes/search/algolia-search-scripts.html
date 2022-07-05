@@ -51,12 +51,6 @@ search.addWidget(
   })
 );
 
-// Starting the search only when toggle is clicked
-$(document).ready(function () {
-  $(".search__toggle").on("click", function() {
-    if(!search.started) {
-      search.start();
-    }
-  });
-});
+// Starting the search
+search.start();
 </script>
