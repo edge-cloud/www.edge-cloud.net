@@ -27,11 +27,9 @@ You might wonder what the benefits of using BYOIP for Amazon EC2 is. They includ
 
 # Requirements
 
-While the AWS documentation lists various [requirements](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-requirements), the statements on IP address "ownership" can be ignored. This is due  "ownership" being a quite fuzzy term when it comes to IP address space. A better term would be "control", which we will use instead.
+The AWS documentation lists various [requirements](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-requirements) for using BYOIP. One key requirement is to be able to demonstrate "control" over the IP space in question.
 
-It's widely recognized within the Internet community that you can demonstrate sufficient control over IP address space for the purpose of announcement from another ASN, by being able to create the corresponding Route Origin Authorization (ROA) record.
-
-Later within the process you will see how you can demonstrate control over your IP space by creating the necessary ROA record. As of the writing of this article, doing so appears to be sufficient with the listed network types and allocation status being unverified.
+It's widely recognized within the Internet community that you can demonstrate sufficient control over IP address space for the purpose of announcement from another ASN, by being able to create the corresponding Route Origin Authorization (ROA) record. Later within the process you will see how you can demonstrate control over your IP space by creating the necessary ROA record.
 
 # Overall process
 
@@ -51,24 +49,48 @@ The overall process to bring IPv4 or IPv6 address space to AWS via the BYOIP pro
 
 # RIR/LIR Configuration
 
-In this blog post I will use IPv6 space allocated by my LIR [SnapServ](https://snapserv.net/) from the Regional Internet Registry (RIR) [RIPE NCC](https://www.ripe.net/).
+In this blog post I will use IPv6 space allocated by my Local Internet Registry (LIR) [SnapServ](https://snapserv.net/) from the Regional Internet Registry (RIR) [RIPE NCC](https://www.ripe.net/).
 
-RIPE policy ((IPv4)[https://www.ripe.net/publications/docs/ripe-733], (IPv6)[https://www.ripe.net/publications/docs/ripe-738]) states that any IP address sub-block that is used in a different network must be sub-allocated by the RIR or assigned by the end-user within the RIPE database.
+RIPE policy ([IPv4](https://www.ripe.net/publications/docs/ripe-733), [IPv6](https://www.ripe.net/publications/docs/ripe-738)) states that any IP address sub-block that is used in a different network must be sub-allocated by the RIR or assigned by the end-user within the RIPE database.
 
-For this particular example we will focus on the red circle in Figure 2: As
+For this particular example we will focus on the red circle in Figure 2:
 
 {% include figure image_path="/content/uploads/2021/10/BYOIP-RIPE-Assignment.png" caption="Figure 2: RIPE Assignment for IPv4 and IPv6 address space with example highlighted in red." %}
 
-
-https://apps.db.ripe.net/db-web-ui/lookup?source=ripe&key=2a06:e881:7300::%2F40&type=inet6num
-
-https://apps.db.ripe.net/db-web-ui/lookup?source=ripe&key=2a06:e881:73ff::%2F48&type=inet6num
-
-
-
 ## Assignment
 
+While the [/40 block](https://apps.db.ripe.net/db-web-ui/lookup?source=ripe&key=2a06:e881:7300::%2F40&type=inet6num) with the status "Allocated-By-LIR" already exists at this point, I need to create a new assignment for the [/48 block](https://apps.db.ripe.net/db-web-ui/lookup?source=ripe&key=2a06:e881:73ff::%2F48&type=inet6num) with the status "Assigned" to fulfill the RIPE policy. 
+
+Without going into full details of how to [document IPv6 assignments in the RIPE database](https://www.ripe.net/manage-ips-and-asns/db/support/documentation/documenting-ipv6-assignments-in-the-ripe-database), or what attributes the [inet6num object](https://www.ripe.net/manage-ips-and-asns/db/support/documentation/ripe-database-documentation/rpsl-object-types/4-2-descriptions-of-primary-objects/4-2-3-description-of-the-inet6num-object) can include, the resulting inet6num object in RPSL format will look like this:
+
+```
+inet6num:       2a06:e881:73ff::/48
+netname:        EU-CHRISTIANELSEN-AWS
+country:        EU
+admin-c:        CE2932-RIPE
+tech-c:         CE2932-RIPE
+status:         ASSIGNED
+mnt-by:         Christian_Elsen-MNT
+source:         RIPE
+
+```
+
+For now we have merely created this inet6num object in the RIPE database for documentation purposes and to fulfill the RIPE policy. Later on you'll see that we will come back to this object and update it with the self-signed X.509 certificate. 
+
+
 ## Resource Public Key Infrastructure (RPKI)
+
+Next we need to create a Route Origin Authorization (ROA), a cryptographically signed object that states which Autonomous System (AS) is authorized to originate a particular IP address prefix. For address objects with the status of "Assigned PI" for Provider Independent (See Figure 2), one would accomplish this via the Regional Internet Registry (RIR). In my case that would be the [RIPE RPKI Dashboard](https://my.ripe.net/#/rpki) and look like depicted in Figure 3. 
+
+{% include figure image_path="/content/uploads/2021/10/BYOIP-RIPE-RPKI.png" caption="Figure 3: RIPE RPKI dashboard for managing Provider Independent (PI) resources." %}
+
+But you'll remember from above that for this post I'm not using a Provider Independent IP block, but rather an IPv6 block in the "Assigned" state. Therefore I have to turn to my LIR in order to create the ROA. Luckily my LIR provides a web interface to accomplish this task (See Figure 4). 
+
+This allows me to create two ROA entries to map the /48 prefix in question to both the origin ASN of AS14618 and AS16509. As the prefix is a /48 , selecting a "Maximum Length" of 48 for the ROA object is the only choice. 
+
+{% include figure image_path="/content/uploads/2021/10/BYOIP-LIR-RPKI.png" caption="Figure 4: LIR RPKI dashboard for managing Assigned resources." %}
+
+AWS recommends to create a ROA object for both AS14618 - which is used for the US-East-1 (N.Virginia) region - as well as AS16509 - which is used for all other commercial AWS regions. If you want to use BYOIP with GovCloud (US) select AS8987 in your ROA object instead.  
 
 # AWS Preparation
 
