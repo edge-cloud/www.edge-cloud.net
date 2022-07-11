@@ -495,9 +495,18 @@ In case you are using one of the other supported RIR, the above command will loo
 [cloudshell-user@ip-10-1-2-3 ~]$ 
 ```
 
+## BGP announcement
+
+
+[Hurricane Electric Looking Glass](https://lg.he.net/)
+
+{% include figure image_path="/content/uploads/2022/07/BYOIP-LG-Success.png" caption="Figure 5: Looking glass result for a successfully announce BYOIP CIDR." %}
+
+{% include figure image_path="/content/uploads/2022/07/BYOIP-LG-Failure.png" caption="Figure 6: Looking glass result for a BYOIP CIDR that is not being announced." %}
+
 ## AWS Console view of BYOIP CIDR
 
-{% include figure image_path="/content/uploads/2022/07/BYOIP-AWS-VPC-Pool.png" caption="Figure 5: Resulting IPv6 pool within a VPC." %}
+{% include figure image_path="/content/uploads/2022/07/BYOIP-AWS-VPC-Pool.png" caption="Figure 7: Resulting IPv6 pool within a VPC." %}
 
 
 
