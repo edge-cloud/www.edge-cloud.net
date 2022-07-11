@@ -102,9 +102,9 @@ AWS recommends to create a ROA object for both AS14618 - which is used for the U
 
 ## Step 2: Preparation of Self-signed X.509 certificates
 
-Next we need to create a self-signed X.509 certificate, for which the [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-certificate) provides the necessary steps using OpenSSL on a Linux based system. A quick and easy way to get access to such a Linux based system is to use [AWS CloudShell](https://aws.amazon.com/cloudshell/) in one of the supported AWS Regions. In this demo I'll be using the EU-Central-1 (Frankfurt) region (See Figure 4).
+Next we need to create a self-signed X.509 certificate, for which the [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-certificate) provides the necessary steps using OpenSSL on a Linux based system. A quick and easy way to get access to such a Linux based system is to use [AWS CloudShell](https://aws.amazon.com/cloudshell/) in one of the supported AWS Regions. In this demo I'll be using the EU-Central-1 (Frankfurt) region (See Figure 5).
 
-{% include figure image_path="/content/uploads/2022/07/BYOIP-CloudShell.png" caption="Figure 4: Using AWS CloudShell with OpenSSL." %}
+{% include figure image_path="/content/uploads/2022/07/BYOIP-CloudShell.png" caption="Figure 5: Using AWS CloudShell." %}
 
 While AWS CloudShell does not provide OpenSSL out of the box, it can be installed quickly and easily via ```sudo yum -y install openssl```.
 
@@ -500,13 +500,13 @@ In case you are using one of the other supported RIR, the above command will loo
 
 [Hurricane Electric Looking Glass](https://lg.he.net/)
 
-{% include figure image_path="/content/uploads/2022/07/BYOIP-LG-Success.png" caption="Figure 5: Looking glass result for a successfully announce BYOIP CIDR." %}
+{% include figure image_path="/content/uploads/2022/07/BYOIP-LG-Success.png" caption="Figure 6: Looking glass result for a successfully announce BYOIP CIDR." %}
 
-{% include figure image_path="/content/uploads/2022/07/BYOIP-LG-Failure.png" caption="Figure 6: Looking glass result for a BYOIP CIDR that is not being announced." %}
+{% include figure image_path="/content/uploads/2022/07/BYOIP-LG-Failure.png" caption="Figure 7: Looking glass result for a BYOIP CIDR that is not being announced." %}
 
 ## AWS Console view of BYOIP CIDR
 
-{% include figure image_path="/content/uploads/2022/07/BYOIP-AWS-VPC-Pool.png" caption="Figure 7: Resulting IPv6 pool within a VPC." %}
+{% include figure image_path="/content/uploads/2022/07/BYOIP-AWS-VPC-Pool.png" caption="Figure 8: Resulting IPv6 pool within a VPC." %}
 
 
 
