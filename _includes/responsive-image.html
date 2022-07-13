@@ -17,16 +17,17 @@
 <a href="/{{ path }}" title="{{ alt }}" class="image-popup">
 <picture>
   <source
-    {% if original.width <= 1250 %}width="{{ original.width }}"{% endif %}
+    {% if original.width <= 1250 %}width="{{ original.width }}" height="{{ original.height }}"{% endif %}
     type="image/webp"
     data-srcset="{{ webpsrcset | split: '|' | join: ', ' | strip_newlines }}{% if original.width <= 1250 %} /{{ path_webp }} {{ original.width }}w{% endif %}" sizes="{{ original.width }}px">
   <source
-    {% if original.width <= 1250 %}width="{{ original.width }}"{% endif %}
+    {% if original.width <= 1250 %}width="{{ original.width }}" height="{{ original.height }}"{% endif %}
     data-srcset="{{ srcset | split: '|' | join: ', ' | strip_newlines }}{% if original.width <= 1250 %} /{{ path }} {{ original.width }}w{% endif %}" sizes="{{ original.width }}px">
   <img
     src="/{{ smallest.path }}"
     data-src="/{{ path }}"
     class="blur-up lazyautosizes lazyload"
+    {% if original.width <= 1250 %}width="{{ original.width }}" height="{{ original.height }}"{% endif %}
     alt="{{ alt }}">
 </picture>
 </a>

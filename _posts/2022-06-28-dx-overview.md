@@ -115,13 +115,19 @@ In order to achieve high resiliency, AWS recommends customers to follow the [AWS
 
 Redundant Direct Connect connections are highly recommended as AWS need to perform regular [maintenance](https://aws.amazon.com/premiumsupport/knowledge-center/prepare-direct-connect-maintenance/) on individual connections. 
 
+For resiliency purposes a [Link aggregation group (LAG)](https://docs.aws.amazon.com/directconnect/latest/UserGuide/lags.html) should be treated as a single connection, irrespective of the number of group members, as it terminates on the same physical AWS device. 
+
+Also ensure that the "AWS logical device" identifier differs across your redundant DX connections within a location (See Figure 5). This value identifies the physical device on the AWS side and two DX connections terminating on the same AWS device would not provide resiliency. 
+
+{% include figure image_path="/content/uploads/2022/06/DX-LogicakDeviceID.png" caption="Figure 5: AWS Logical Device ID for identifying the resiliency of the connection." %}
+
 If you decide to use a Site-to-Site (IPSec) VPN as backup to your DX, while using AWS Transit Gateway, refer to [this previous article](https://www.edge-cloud.net/2019/08/16/aws-dxgw-with-ipsec-vpn-backup/) on how to setup the routing correctly.
 
 # Connectivity 
 
-Customers have multiple options to connect their own network equipment via a Direct Connect location (See Figure 5).
+Customers have multiple options to connect their own network equipment via a Direct Connect location (See Figure 6).
 
-{% include figure image_path="/content/uploads/2022/06/DX-Connectivity.png" caption="Figure 5: Direct Connect Connectivity Options" %}
+{% include figure image_path="/content/uploads/2022/06/DX-Connectivity.png" caption="Figure 6: Direct Connect Connectivity Options" %}
 
 * **In-location cross connect (Option 1):** If the customer has resources deployed in the same colo facility as the DX location, the colo facility can provide a cross-connect between the AWS DX equipment and the customer resources. The customer has to provide a [Letter of Authorization and Connecting Facility Assignment (LOA-CFA)](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html) to the facility for this. This option is only available for Dedicated Connections. 
 
@@ -143,7 +149,7 @@ End-customers have a direct business relationship with AWS and are charged direc
 
 In addition end-customers will need to engage with [Direct Connect Delivery Partners](https://aws.amazon.com/directconnect/partners/) such as carriers, network service providers (NSP), or colocation providers to provide them with network connectivity to AWS. For this they will have a separate contract with this partner and the partner will invoice end-customers for the connectivity services they provide.
 
-{% include figure image_path="/content/uploads/2022/06/Direct-Connect-Commercial-Workflow.png" caption="Figure 6: Commercial Workflow" %}
+{% include figure image_path="/content/uploads/2022/06/Direct-Connect-Commercial-Workflow.png" caption="Figure 7: Commercial Workflow" %}
 
 # Summary
 
