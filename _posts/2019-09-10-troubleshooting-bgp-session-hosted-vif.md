@@ -12,6 +12,7 @@ tags:
   - Network
   - Direct-Connect
 toc: true
+toc_sticky: true
 ---
 
 Here is a quick look at an issue with a BGP session between a customer router (customer-premises equipment; CPE) and an AWS Direct Connect peer.

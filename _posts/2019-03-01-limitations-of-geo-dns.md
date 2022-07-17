@@ -12,6 +12,7 @@ tags:
   - Network
   - Route-53
 toc: true
+toc_sticky: true
 ---
 
 Various Internet services and offerings - such as [AWS CloudFront ](https://aws.amazon.com/cloudfront/) - rely on geographic routing, also known as geolocation or geo-locational routing. And with [Amazon Route 53](https://aws.amazon.com/route53/) you can build your own geographic routing enabled services. The basic concept behind this capability is to return a DNS answer for an endpoint that is physically closest to the requestor. In the case of AWS CloudFront this would be the closest [edge location](https://aws.amazon.com/cloudfront/features/), while for a service that you build yourself it might be the decision between an [Amazon Elastic Load Balancer](https://aws.amazon.com/elasticloadbalancing/) endpoint in the us-west-2 (Oregon) or in the us-east-2 (Ohio) region.

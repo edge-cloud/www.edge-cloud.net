@@ -11,6 +11,7 @@ tags:
   - Network
   - Transit-Gateway
 toc: true
+toc_sticky: true
 ---
 
 This blog post will look at using BGP Route Aggregation from the AWS Transit Gateway via IPSec VPN to a customer gateway. While the example configuration and output provided for the customer gateway are using a Cisco CSR1000V with IOS-XE, you can replicate the same with e.g. Ubuntu Linux, StrongSwan and FFRouting.

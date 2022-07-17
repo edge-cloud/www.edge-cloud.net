@@ -10,6 +10,7 @@ tags:
   - AWS
   - Network
 toc: true
+toc_sticky: true
 ---
 
 In the previous article on [Limitations of DNS-based geographic routing](/2019/03/01/limitations-of-geo-dns/) we have explored how DNS-based geographic routing works and especially what limitations you have to consider and accept, while using such a solution. In this article we will have a look at using Anycast instead. We will use the same set of origin locations within AWS and [RIPE Atlas](https://atlas.ripe.net/) test probes as with the above referenced DNS-based geographic routing setup, to discover limitations of Anycast.

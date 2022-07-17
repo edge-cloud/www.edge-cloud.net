@@ -12,6 +12,7 @@ tags:
   - Network
   - Direct-Connect
 toc: true
+toc_sticky: true
 ---
 
 [AWS Direct Connect](https://aws.amazon.com/directconnect/) (DX) makes it easy to establish a dedicated connection from an on-premises network to AWS. Using AWS Direct Connect, you can establish private connectivity between AWS and your data center, office, factory or collocated environment. Such connectivity can reduce network costs, increase bandwidth, and provide a more consistent network experience than internet-based connections.

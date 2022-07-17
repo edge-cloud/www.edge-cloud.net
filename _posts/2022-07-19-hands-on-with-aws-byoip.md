@@ -13,6 +13,7 @@ tags:
   - Network
   - IPv6
 toc: true
+toc_sticky: true
 ---
 
 This blog post will walk you through the [Bring your own IP addresses (BYOIP) for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html) feature, using a real-life example. With BYOIP you can bring part or all of your publicly routable IPv4 or IPv6 address ranges to your AWS account. While you continue to own the address range, AWS advertises it on the internet for you under the Amazon [Autonomous System Numbers (ASNs)](https://en.wikipedia.org/wiki/Autonomous_system_(Internet)). Within your AWS account, these BYOIP address ranges appear as an [address pool](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html).
