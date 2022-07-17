@@ -5,7 +5,6 @@ excerpt: Using AWS Bring your own IP addresses (BYOIP) in Amazon EC2 capability 
 layout: single
 permalink: /2022/07/19/hands-on-with-aws-byoip/
 header:
-  image: /content/uploads/2022/07/title-hands-on-with-aws-byoip.png
   og_image: /content/uploads/2022/07/title-hands-on-with-aws-byoip.png
 categories:
   - EdgeCloud
