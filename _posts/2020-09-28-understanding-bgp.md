@@ -4,7 +4,8 @@ author: Christian Elsen
 excerpt: Primer to better understanding BGP
 layout: single
 permalink: /2020/09/28/understanding-bgp/
-image: /content/uploads/2020/09/title-understanding-bgp.png
+header:
+  og_image: /content/uploads/2020/09/title-understanding-bgp.png
 categories:
   - EdgeCloud
 tags:

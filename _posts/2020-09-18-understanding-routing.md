@@ -4,7 +4,8 @@ author: Christian Elsen
 excerpt: Look at fundamental principles of IP routing to better design and troubleshoot networks
 layout: single
 permalink: /2020/09/18/understanding-routing/
-image: /content/uploads/2020/09/title-understanding-routing.png
+header:
+  og_image: /content/uploads/2020/09/title-understanding-routing.png
 categories:
   - EdgeCloud
 tags:

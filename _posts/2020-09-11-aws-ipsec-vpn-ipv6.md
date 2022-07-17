@@ -4,7 +4,8 @@ author: Christian Elsen
 excerpt: How to setup the AWS Site-to-Site VPN (IPSec) with IPv6
 layout: single
 permalink: /2020/09/11/aws-ipsec-vpn-ipv6/
-image: /content/uploads/2020/09/title-aws-ipsec-vpn-ipv6.png
+header:
+  og_image: /content/uploads/2020/09/title-aws-ipsec-vpn-ipv6.png
 categories:
   - EdgeCloud
 tags:
