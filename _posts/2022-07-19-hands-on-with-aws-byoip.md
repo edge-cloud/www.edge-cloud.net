@@ -59,6 +59,8 @@ For this particular example we will focus on the red circle in Figure 2:
 
 {% include figure image_path="/content/uploads/2022/07/BYOIP-RIPE-Assignment.png" caption="Figure 2: RIPE Assignment for IPv4 and IPv6 address space with example highlighted in red." %}
 
+As mentioned before all these IPv6 prefixes are real and you can follow along the process by checking yourself what is published via the RIPE DB. 
+
 ### RIR Assignment
 
 While the [/40 block](https://apps.db.ripe.net/db-web-ui/lookup?source=ripe&key=2a06:e881:7300::%2F40&type=inet6num) of ```2a06:e881:7300::/40``` with the status "Allocated-By-LIR" already exists at this point, I need to create a new assignment for the [/48 block](https://apps.db.ripe.net/db-web-ui/lookup?source=ripe&key=2a06:e881:73ff::%2F48&type=inet6num) of ```2a06:e881:73ff::/48``` with the status "Assigned" to fulfill the RIPE policy. 
@@ -313,6 +315,9 @@ For the above example the successful result would look like this:
 [cloudshell-user@ip-10-1-2-3 ~]$ 
 ```
 
+**Notice:** At this point the public certificate no longer needs to be placed within the inet6num object of the RIR DB - in this case for RIPE within the "descr:" field. You can therefore remove it. On the other hand if you created the public certificate for a parent IP block and plan to provision additional child blocks later on, you can keep the public certificate in place. In this case make sure you don loose the corresponding private key within your AWS CloudShell and keep an eye on the expiration date of the certificate. The ROA on the other hand has to remain in place!  
+{: .notice--info}
+
 ### Advertise the address space
 
 Now we are almost done and as a last step need to instruct AWS to advertise the BYOIP CIDR from the AWS region into which the address space was provisioned. This is done via the AWS CLI command ```aws ec2 advertise-byoip-cidr --cidr <cidr> --region <region>```.
@@ -329,8 +334,11 @@ The result would look like this:
 }
 [cloudshell-user@ip-10-1-2-3 ~]$
 ```
+At this point we are done with bringing over the desired IPv6 address space to AWS via BYOIP. But is that address space actually working as expected and how do I use it? Read on in the next paragraph for the answers to these questions. 
 
 # Validation
+
+This section will walk you through the validation of your BYOIP setup. As I'm using real IPv6 address space and not documentation ranges, you will be able to follow the below steps on your own. 
 
 ## ROA object for RPKI
 
@@ -338,7 +346,7 @@ You can validate the successful creation of the ROA objects using the [RIPEstat 
 
 You can inspect the ROA objects from different Amazon ASNs with your address range by using the following command: ```curl --location --request GET "https://stat.ripe.net/data/rpki-validation/data.json?resource=<ASN>&prefix=<CIDR>"```
 
-A successful output would look like this:
+The successful output for the [/48 block](https://apps.db.ripe.net/db-web-ui/lookup?source=ripe&key=2a06:e881:73ff::%2F48&type=inet6num) of ```2a06:e881:73ff::/48``` that is being used in this example looks like this:
 
 ```
 [cloudshell-user@ip-10-1-2-3 ~]$ curl --location --request GET "https://stat.ripe.net/data/rpki-validation/data.json?resource=16509&prefix=2a06:e881:73ff::/48"
@@ -386,7 +394,7 @@ A successful output would look like this:
 [cloudshell-user@ip-10-1-2-3 ~]$
 ```
 
-In this example output, the response has a result of *"status": "valid",* for the Amazon ASN 16509\. This indicates the ROA object for the address range was created successfully:
+In this example output, the response has a result of *"status": "valid",* for the Amazon ASN 16509. This indicates the ROA object for the address range was created successfully.
 
 
 If on the other side the response includes a response of *"status": "unknown",*, it indicates the ROA object for the address range has not been created. And a response of *"status": "invalid_asn"* shows that the ROA object for the address range was not created successfully. 
@@ -426,9 +434,12 @@ With that the following example would indicate that the required ROA for the add
 }
 [cloudshell-user@ip-10-1-2-3 ~]$
 ```
+
+That makes sense as it doesn match the IP range from this example. 
+
 ## Public certificate in RIR resource database
 
-Next, validate the whether the public certificate has been correctly placed into the RIR's resource database. This certificate is used by AWS in the provisioning step to validate which AWS account a certain CIDR should be allocated to. 
+Next, let's validate whether the public certificate has been correctly placed into the RIR's resource database. This certificate is used by AWS in the provisioning step to validate which AWS account a certain CIDR should be allocated to. 
 
 As we are using the RIR RIPE for this example, the command to lookup the public certiciate is ```whois -r -h whois.ripe.net <CIDR> | grep descr | grep BEGIN```. Before we can do so, we have to install the command *whois* within our AWS CloudShell environment via ```sudo yum -y install whois```
 
@@ -481,6 +492,8 @@ In case you are using one of the other supported RIR, the above command will loo
 
 ## AWS Provisioning outcome
 
+[Above](#step-5-provision-and-adverstise-address-space) we already saw how the successful provisioning of the BYOIP address space via the ```aws ec2 provision-byoip-cidr``` looks like. Here let's have a look at an unsuccesful provisioning example: 
+
 ```
 [cloudshell-user@ip-10-1-2-3 ~]$ aws ec2 describe-byoip-cidrs --max-results 5 --region eu-central-1
 {
@@ -495,19 +508,36 @@ In case you are using one of the other supported RIR, the above command will loo
 [cloudshell-user@ip-10-1-2-3 ~]$ 
 ```
 
-## BGP announcement
+In this case you can see that the provisioning failed, because AWS was unable to find the public certificate for this IP space within the RIR's database. And if you look closer, that result does make sense, as I (on purpose) attempted to provision an IP space that hasn been prepared. 
 
+## BGP advertisement
 
-[Hurricane Electric Looking Glass](https://lg.he.net/)
+After [above](#step-5-provision-and-adverstise-address-space) we asked AWS to advertise the IP space via the ```aws ec2 advertise-byoip-cidr``` command, how can we tell that this advertisement is actually happening? We can use the [Looking Glass server](https://en.wikipedia.org/wiki/Looking_Glass_server) of a major Tier 1 transit provider like the [Hurricane Electric Looking Glass](https://lg.he.net/) service. 
 
-{% include figure image_path="/content/uploads/2022/07/BYOIP-LG-Success.png" caption="Figure 6: Looking glass result for a successfully announce BYOIP CIDR." %}
+Selecting any of the Hurricane Electric Router locations along with the command ```BGP Route``` and the Argument ```2a06:e881:73ff::/48``` for the address space in question will show us the following result. 
 
-{% include figure image_path="/content/uploads/2022/07/BYOIP-LG-Failure.png" caption="Figure 7: Looking glass result for a BYOIP CIDR that is not being announced." %}
+{% include figure image_path="/content/uploads/2022/07/BYOIP-LG-Success.png" caption="Figure 6: Looking glass result for a successfully advertised BYOIP CIDR." %}
+
+As expected you can see that Hurricane Electric network learns the prefix 2a06:e881:73ff::/48 via multiple different routes. Looking at the *path*  column shows us that some of these routes are directly connected (where path only includes "16509"), while others are via other networks (E.g. the best route via [AS6453 - Tata Communications](https://bgp.he.net/AS6453)).
+
+Now let's have a look at a looking glass example for an IP range that was not successfully announced. Let's use our example from above again for an IP prefix that is not used with AWS BYOIP: 
+
+{% include figure image_path="/content/uploads/2022/07/BYOIP-LG-Failure.png" caption="Figure 7: Looking glass result for a BYOIP CIDR that is not being advertised." %}
+
+As this particular prefix is not announced on the Internet at all - only its parent block is announced - Hurricane Electric will not have any routes for this particular prefix. 
+
+# Using BYOIP address space
+
+Now that we have not only provisioned the IP address space, but also validate that everything is correctly working, remains the question about how to use this IP prefix in AWS. 
 
 ## AWS Console view of BYOIP CIDR
 
+AWS BYOIP prefixe become regular CIDR pools within the AWS VPC (See Figure 8).  
+
 {% include figure image_path="/content/uploads/2022/07/BYOIP-AWS-VPC-Pool.png" caption="Figure 8: Resulting IPv6 pool within a VPC." %}
 
-
+IPv4 prefixes can be used the same way as [Elastic IP addresses (EIP)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) and IPv6 prefixes can be [associated with VPCs](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#vpc-associate-ipv6-cidr) the same way as AWS provided IPv6 addresses.
 
 # Summary
+
+This article provide you a walk-through example of bringing IPv6 address space to AWS via the [Bring your own IP addresses (BYOIP) for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html) feature. It used a real address space example, so that you can follow along the onboarding and validation of the IP space.  
