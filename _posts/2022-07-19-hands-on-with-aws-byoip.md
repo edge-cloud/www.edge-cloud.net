@@ -4,6 +4,7 @@ author: Christian Elsen
 excerpt: Using AWS Bring your own IP addresses (BYOIP) in Amazon EC2 capability with a real life example of an IPv6 prefix, showing provisioning and troubleshooting steps.
 layout: single
 permalink: /2022/07/19/hands-on-with-aws-byoip/
+image: /content/uploads/2022/07/title-hands-on-with-aws-byoip.png
 header:
   og_image: /content/uploads/2022/07/title-hands-on-with-aws-byoip.png
 categories:
