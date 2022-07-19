@@ -159,6 +159,7 @@ pre {
 pre {
   overflow-x: auto; /* add scrollbars to wide code blocks*/
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
   font-size: 0.8em;
 }
 
