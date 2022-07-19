@@ -10,6 +10,7 @@ tags:
   - IPv6
   - Network
 toc: true
+toc_sticky: true
 ---
 A few days ago I discovered that my [AT&T Internet](https://www.att.com/internet/) connection at Home wasn't working as expected. Websites were loading sluggish and access to Ubuntu's repo via APT flat-out failed. My first suspicion that there must be an issue with the IPv6 connectivity was confirmed after heading to [Test-IPv6.com](https://test-ipv6.com/).
 

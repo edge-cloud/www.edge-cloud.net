@@ -12,6 +12,7 @@ tags:
   - Direct-Connect
   - VPN
 toc: true
+toc_sticky: true
 ---
 
 A very common network architecture pattern on AWS is to deploy an [AWS Site-to-Site (IPSec) VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html) connection as the backup for an [AWS Direct Connect (DX)](https://aws.amazon.com/directconnect/) connection between on-premises networks and AWS VPCs.

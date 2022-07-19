@@ -1,15 +1,15 @@
 ---
-title: Hands-on with AWS Bring your own IP addresses (BYOIP) in Amazon EC2
+title: Direct Connect Public VIF for S3 traffic only
 author: Christian Elsen
-excerpt: Using AWS Bring your own IP addresses (BYOIP) in Amazon EC2 capability with a real life example of an IPv6 prefix, showing provisioning and troubleshooting steps.
+excerpt: How to use a Direct Connect Public VIF solely for S3 traffic only
 layout: single
-permalink: /2021/10/15/aws-dx-public-vid-for-s3-only/
+permalink: /2022/07/15/aws-dx-public-vid-for-s3-only/
 categories:
   - EdgeCloud
 tags:
   - AWS
   - Network
-  - IPv6
+  - Direct-Connect
 toc: true
 ---
 

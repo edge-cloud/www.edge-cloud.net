@@ -13,6 +13,7 @@ tags:
   - Network
   - Transit-Gateway
 toc: true
+toc_sticky: true
 ---
 
 At the beginning of December 2019, AWS released [Multicast support](https://aws.amazon.com/blogs/aws/aws-transit-gateway-adds-multicast-and-inter-regional-peering/) within the [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/). This marked the beginning of being able to use applications that require support for [IP Multicast](https://en.wikipedia.org/wiki/IP_multicast) within AWS.

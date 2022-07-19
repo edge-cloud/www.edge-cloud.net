@@ -13,6 +13,7 @@ tags:
   - Network
   - Route-53
 toc: true
+toc_sticky: true
 ---
 
 This article walks you through using [Amazon Route 53 Geolocation Routing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-geo), in order to block access to your services from certain countries. In addition [RIPE Atlas](https://atlas.ripe.net/) is used in a subsequent step to validate the setup.

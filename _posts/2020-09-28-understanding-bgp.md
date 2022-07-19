@@ -12,6 +12,7 @@ tags:
   - BGP
   - Network
 toc: true
+toc_sticky: true
 ---
 
 In a [previous post](https://www.edge-cloud.net/2020/09/18/understanding-routing/) we took a look at some of the fundamental principles of IP routing. Today we want to look at some more details of related BGP Routing protocol concepts. While these principles and concepts are generic, we will again use examples based on AWS networking, along with examples from running an [Autonomous System](https://en.wikipedia.org/wiki/Autonomous_system_(Internet)) on the Internet.

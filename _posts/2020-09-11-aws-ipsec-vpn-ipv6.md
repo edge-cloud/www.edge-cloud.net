@@ -14,6 +14,7 @@ tags:
   - IPv6
   - VPN
 toc: true
+toc_sticky: true
 ---
 
 Recently AWS [released support for IPv6 traffic over the AWS Site-to-Site VPN (IPSec)](https://aws.amazon.com/about-aws/whats-new/2020/08/aws-site-to-site-vpn-supports-ipv6-traffic/). The [setup of the AWS Site-to-Site VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/SetUpVPNConnections.html) has always been quite straight forward and thanks to the [downloadable configuration files](https://docs.aws.amazon.com/vpn/latest/s2svpn/SetUpVPNConnections.html#vpn-download-config) at times even trivial.

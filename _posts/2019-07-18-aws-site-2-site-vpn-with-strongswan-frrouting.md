@@ -11,6 +11,7 @@ tags:
   - Network
   - VPN
 toc: true
+toc_sticky: true
 ---
 
 This blog post walks through the setup of an EC2-based VPN endpoint - using Ubuntu Linux 18.04 with [Strongswan](https://www.strongswan.org/) and [FRRouting](https://frrouting.org/) - for a Site-to-Site VPN connection to AWS with [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol) routing.

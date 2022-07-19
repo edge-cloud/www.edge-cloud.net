@@ -12,6 +12,7 @@ tags:
   - AWS
   - Network
 toc: true
+toc_sticky: true
 ---
 
 As a Senior Solutions Architect Specialist for Networking at [AWS](https://aws.amazon.com/), I spent a lot of time in online meetings with customers, helping them design networks or understand AWS networking better. Part of these meetings usually involves whiteboarding network diagrams. While visualizing ideas or concepts is something very common and straight forward on a physical whiteboard, it is not trivial in an online meeting.

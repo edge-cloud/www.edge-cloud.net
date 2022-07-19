@@ -15,6 +15,7 @@ tags:
   - Network
   - Direct-Connect
 toc: true
+toc_sticky: true
 ---
 
 This post covers the caveats of data flow between on-premises locations that are each connected to AWS via [AWS Direct Connect](https://aws.amazon.com/directconnect/). In case you have multiple on-premise locations connected to AWS via Direct Connect, enabling the data flow between these locations is not always trivial. Therefore this blog post highlights some of the pitfalls and outlines possible solutions.

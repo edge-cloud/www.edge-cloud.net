@@ -11,6 +11,7 @@ tags:
   - Network
   - Direct-Connect
 toc: true
+toc_sticky: true
 ---
 
 In November 2017 AWS [released](https://aws.amazon.com/blogs/aws/new-aws-direct-connect-gateway-inter-region-vpc-access/) AWS Direct Connect Gateway, which is probably one of the biggest innovations within the [AWS Direct Connect](https://aws.amazon.com/directconnect/) product in recent years. At the same time Direct Connect Gateway is often overlooked or not well understood. Therefore this blog post will dive deeper at the ins and outs of this extremely helpful AWS network capability.

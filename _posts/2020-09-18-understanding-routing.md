@@ -12,6 +12,7 @@ tags:
   - BGP
   - Network
 toc: true
+toc_sticky: true
 ---
 
 Today we will look at some of the fundamental principles of IP routing. While these principles and concepts are generic, we will use examples based on AWS networking.
