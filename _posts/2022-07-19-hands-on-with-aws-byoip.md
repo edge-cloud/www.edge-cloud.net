@@ -39,7 +39,7 @@ It's widely recognized within the Internet community that you can demonstrate su
 
 The overall process to bring IPv4 or IPv6 address space to AWS via the BYOIP process consists of multiple steps and is outlined in figure 1.
 
-{% include figure image_path="/content/uploads/2022/07/BYOIP-AWS-Process.png" caption="Figure 1: AWS Process to prepare and provison VPC BYOIP." %}
+{% include figure image_path="/content/uploads/2022/07/BYOIP-AWS-Process.png" caption="Figure 1: AWS Process to prepare and provision VPC BYOIP." %}
 
 * **Step 1: Configuration of IP address space via your RIR/LIR** - This includes creating appropriate RIR Resource DB records (aka. "Allocation" in the case of RIPE), as well as a Route Origin Authorization (ROA) record. This step represents good hygiene when using IP address space in general. Creation of a ROA record is only necessary for IPv4 address space and publicly advertised IPv6 address space.
 
@@ -188,7 +188,7 @@ Common Name (eg, your name or your server's hostname) []:AWS-BYOIP
 Email Address []:
 [cloudshell-user@ip-10-1-2-3 ~]$
 ```
-**Notice:** Due to the parameter ```-days 365``` the publicate certificate will have a validity of 365 days. The certificate will only be used during the initial provisioning steps for an IP range. You might want to place the certificate into the parent block of an IP range - e.g. the the [/40 block](https://apps.db.ripe.net/db-web-ui/lookup?source=ripe&key=2a06:e881:7300::%2F40&type=inet6num) of ```2a06:e881:7300::/40``` in my case - in order to later bring additional IP ranges to AWS, e.g. for additional regions. In this case make sure you don loose the corresponding private key within your AWS CloudShell and keep an eye on the expiration date of the certificate. The ROA on the other hand has to remain in place!
+**Notice:** Due to the parameter ```-days 365``` the public certificate will have a validity of 365 days. The certificate will only be used during the initial provisioning steps for an IP range. You might want to place the certificate into the parent block of an IP range - e.g. the the [/40 block](https://apps.db.ripe.net/db-web-ui/lookup?source=ripe&key=2a06:e881:7300::%2F40&type=inet6num) of ```2a06:e881:7300::/40``` in my case - in order to later bring additional IP ranges to AWS, e.g. for additional regions. In this case make sure you don't loose the corresponding private key within your AWS CloudShell and keep an eye on the expiration date of the certificate. The ROA on the other hand has to remain in place!
 {: .notice--info}
 
 ## Step 3: Uploading the public key to the RIR Resource DB (RDAP record)
@@ -247,7 +247,7 @@ Ncj8Yrm~6gbPuqDokOh9-tLsiCuMqzid5CxlseO87sRSG1DAhuz2RmL9Dw6TQA83lhiyhcLuHdiY34xo
 [cloudshell-user@ip-10-1-2-3 ~]$
 ```
 
-## Step 5: Provision and adverstise address space
+## Step 5: Provision and advertise address space
 
 ### Provision the CIDR with an AWS region
 
@@ -403,13 +403,13 @@ With that the following example would indicate that the required ROA for the add
 [cloudshell-user@ip-10-1-2-3 ~]$
 ```
 
-That makes sense as it doesn match the IP range from this example. 
+That makes sense as it doesn't match the IP range from this example. 
 
 ## Public certificate in RIR resource database
 
 Next, let's validate whether the public certificate has been correctly placed into the RIR's resource database. This certificate is used by AWS in the provisioning step to validate which AWS account a certain CIDR should be allocated to. 
 
-As we are using the RIR RIPE for this example, the command to lookup the public certiciate is ```whois -r -h whois.ripe.net <CIDR> | grep descr | grep BEGIN```. Before we can do so, we have to install the command *whois* within our AWS CloudShell environment via ```sudo yum -y install whois```
+As we are using the RIR RIPE for this example, the command to lookup the public certificate is ```whois -r -h whois.ripe.net <CIDR> | grep descr | grep BEGIN```. Before we can do so, we have to install the command *whois* within our AWS CloudShell environment via ```sudo yum -y install whois```
 
 With this we should expect the following output for this example:
 
@@ -458,11 +458,11 @@ You should ensure that the result in the line marked with *"descr:"* includes bo
 
 You can also copy & paste the result into a online [Certificate Decoder](https://certificatedecoder.dev/) to validate that the certificate itself is valid and not expired.
 
-In case you are using one of the other supported RIR, the above command will look slighly differen. In the case of ARIN it will be ```whois -h whois.arin.net r + <CIDR> | grep Comment | grep BEGIN```, while for APNIC it is ```whois -h whois.apnic.net <CIDR> | grep remarks | grep BEGIN```.
+In case you are using one of the other supported RIR, the above command will look slightly different. In the case of ARIN it will be ```whois -h whois.arin.net r + <CIDR> | grep Comment | grep BEGIN```, while for APNIC it is ```whois -h whois.apnic.net <CIDR> | grep remarks | grep BEGIN```.
 
 ## AWS Provisioning outcome
 
-[Above](#step-5-provision-and-adverstise-address-space) we already saw how the successful provisioning of the BYOIP address space via the ```aws ec2 provision-byoip-cidr``` looks like. Here let's have a look at an unsuccesful provisioning example: 
+[Above](#step-5-provision-and-advertise-address-space) we already saw how the successful provisioning of the BYOIP address space via the ```aws ec2 provision-byoip-cidr``` looks like. Here let's have a look at an unsuccessful provisioning example: 
 
 ```
 [cloudshell-user@ip-10-1-2-3 ~]$ aws ec2 describe-byoip-cidrs --max-results 5 --region eu-central-1
@@ -478,11 +478,11 @@ In case you are using one of the other supported RIR, the above command will loo
 [cloudshell-user@ip-10-1-2-3 ~]$ 
 ```
 
-In this case you can see that the provisioning failed, because AWS was unable to find the public certificate for this IP space within the RIR's database. And if you look closer, that result does make sense, as we (on purpose) attempted to provision an IP space that hasn been prepared. 
+In this case you can see that the provisioning failed, because AWS was unable to find the public certificate for this IP space within the RIR's database. And if you look closer, that result does make sense, as we (on purpose) attempted to provision an IP space that hasn't been prepared. 
 
 ## BGP advertisement
 
-After [succesfully provisioning the IP space above](#step-5-provision-and-adverstise-address-space) we asked AWS to advertise the IP space via the ```aws ec2 advertise-byoip-cidr``` command. But how can we tell that this advertisement is actually happening? We can use the [Looking Glass server](https://en.wikipedia.org/wiki/Looking_Glass_server) of a major Tier 1 transit provider like the [Hurricane Electric Looking Glass](https://lg.he.net/) service. 
+After [succesfully provisioning the IP space above](#step-5-provision-and-advertise-address-space) we asked AWS to advertise the IP space via the ```aws ec2 advertise-byoip-cidr``` command. But how can we tell that this advertisement is actually happening? We can use the [Looking Glass server](https://en.wikipedia.org/wiki/Looking_Glass_server) of a major Tier 1 transit provider like the [Hurricane Electric Looking Glass](https://lg.he.net/) service. 
 
 Selecting any of the Hurricane Electric Router locations along with the command ```BGP Route``` and the Argument ```2a06:e881:73ff::/48``` for the address space in question will show us the following result. 
 
@@ -502,7 +502,7 @@ We have not only provisioned the IP address space, but also validate that everyt
 
 ## AWS Console view of BYOIP CIDR
 
-AWS BYOIP prefixe become regular CIDR pools within the AWS VPC (See Figure 8).  
+AWS BYOIP prefixes become regular CIDR pools within the AWS VPC (See Figure 8).  
 
 {% include figure image_path="/content/uploads/2022/07/BYOIP-AWS-VPC-Pool.png" caption="Figure 8: Resulting IPv6 pool within a VPC." %}
 
