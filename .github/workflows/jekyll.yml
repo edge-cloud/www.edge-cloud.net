@@ -60,7 +60,11 @@ jobs:
       run: |
             aws configure set default.s3.max_concurrent_requests 20
             aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete --include "*" --exclude "*.jpg" --exclude "*.gif" --exclude "*.png" --exclude "*.webp" --exclude "*.css" --exclude "*.css" --exclude "*.js" --exclude "*.ico"
-            aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete --cache-control max-age=604800 --expires "`date -u +\"%Y-%m-%d %H:%M:%S -0000\" --date \"next Week\"`" --exclude "*" --include "*.jpg" --include "*.gif" --include "*.png" --include "*.webp" --include "*.css" --include "*.css" --include "*.js" --include "*.ico"
+            aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete --cache-control max-age=604800 --expires "`date -u +\"%Y-%m-%d %H:%M:%S -0000\" --date \"next Week\"`" --content-type image/jpeg --exclude "*" --include "*.jpg"
+            aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete --cache-control max-age=604800 --expires "`date -u +\"%Y-%m-%d %H:%M:%S -0000\" --date \"next Week\"`" --content-type image/gif --exclude "*" --include "*.gif" 
+            aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete --cache-control max-age=604800 --expires "`date -u +\"%Y-%m-%d %H:%M:%S -0000\" --date \"next Week\"`" --content-type image/png --exclude "*" --include "*.png" 
+            aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete --cache-control max-age=604800 --expires "`date -u +\"%Y-%m-%d %H:%M:%S -0000\" --date \"next Week\"`" --content-type image/webp --exclude "*" --include "*.webp" 
+            aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete --cache-control max-age=604800 --expires "`date -u +\"%Y-%m-%d %H:%M:%S -0000\" --date \"next Week\"`" --exclude "*" --include "*.css" --include "*.js" --include "*.ico"
       
     - name: "Create AWS Cloudfront Invalidation"
       run: |
