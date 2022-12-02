@@ -4,13 +4,16 @@ author: Christian Elsen
 excerpt: Brief description goes here
 layout: single
 image: /content/uploads/2022/06/title-dx-overview.png
-permalink: /2021/01/01/template/
+header:
+  og_image: /content/uploads/2022/06/title-dx-overview.png
+permalink: /2022/01/01/template/
 categories:
   - EdgeCloud
 tags:
   - AWS
   - Network
 toc: true
+toc_sticky: true
 use_math: true
 ---
 
@@ -32,12 +35,16 @@ Intro of what to accomplish
 
 ```
 
-Font Awesome: <i class="fas fa-user"></i>
+## Font Awesome Examples
+<i class="fas fa-user"></i>
 <i class="fa-solid fa-check" style="color:green;" title="Yes"></i>
 <i class="fa-solid fa-xmark" style="color:red;" title="No"></i>
 
+## Picture
 {% include figure image_path="/content/uploads/2020/01/SecuringYourAWSNetwork.png" caption="Figure 1: Setup Overview of EC2-based VPN endpoint for Site-to-Site VPN with AWS" %}
 
+
+## Math
 $$
    Buffer (Mbit) = bandwidth (Mbit/s) × delay (s)
 $$

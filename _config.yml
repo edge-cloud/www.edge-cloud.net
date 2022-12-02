@@ -89,7 +89,7 @@ naver_site_verification  :
 ############################################################
 # Social Sharing
 twitter:
-  username               : ChristianElsen
+  username               :
 facebook:
   username               :
   app_id                 :
@@ -102,7 +102,6 @@ social:
   type                   : # Person or Organization (defaults to Person)
   name                   : "Christian Elsen" # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
-    - "https://twitter.com/ChristianElsen"
     - "https://www.linkedin.com/in/christianelsen/"
 
 ############################################################
@@ -125,9 +124,9 @@ author:
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://chris.elsen.xyz"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/ChristianElsen"
+    - label: "Mastodon"
+      icon: "fab fa-fw fa-mastodon"
+      url: "https://noc.social/@chriselsen"  
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/christianelsen/"
@@ -142,9 +141,9 @@ author:
 # Site Footer
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: https://twitter.com/ChristianElsen
+    - label: "Mastodon"
+      icon: "fab fa-fw fa-mastodon"
+      url: https://noc.social/@chriselsen
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/christianelsen/"

@@ -1,7 +1,7 @@
 ---
-title: Title goes here
+title: Cost considerations for centralized NAT with Transit Gateway
 author: Christian Elsen
-excerpt: Brief description goes here
+excerpt: Determining the break-even point when a centralized NAT approach via Transit Gateway outperforms a decentralized NAT approach. 
 layout: single
 permalink: /2021/01/01/tgw-ngw-cost-breakeven/
 categories:
