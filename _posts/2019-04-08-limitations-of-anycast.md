@@ -33,7 +33,7 @@ In the case of e.g. the [Google Public DNS](https://developers.google.com/speed/
 
 When you set up AWS Global Accelerator, you associate anycasted static IP addresses to regional endpoints - such as Elastic IPv4 addresses, Network Load Balancers, and Application Load Balancers - in one or more AWS Regions. The static anycasted IPv4 addresses accept incoming traffic onto the AWS global network from the edge location that is closest to your users. From there, traffic for your application is routed to the desired AWS endpoint based on several factors, including the user’s location, the health of the endpoint, and the endpoint weights that you configure.
 
-**Note:** AWS Global Accelerator has very limited IPv6 support as of today.
+**Note:** As of today AWS Global Accelerator has very limited IPv6 support.
 {: .notice--info}
 
 # RIPE Atlas
