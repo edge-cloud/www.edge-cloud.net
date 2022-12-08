@@ -118,7 +118,7 @@ author:
   name             : "Christian Elsen"
   avatar           : /assets/images/chriselsen.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Technology Generalist"
-  location         : "San Francisco, CA"
+  location         :
   email            :
   links:
     - label: "Website"
