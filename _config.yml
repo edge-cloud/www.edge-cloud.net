@@ -234,6 +234,7 @@ plugins:
   - jekyll-redirect-from
   - jekyll-target-blank
   - jekyll-responsive-image
+  - jekyll/mastodon_webfinger
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -337,6 +338,14 @@ compress_html:
   clippings: all
   ignore:
     envs: development
+
+############################################################
+# Use your Jekyll website domain as an alias for your 
+# Mastodon username
+# - https://github.com/philnash/jekyll-mastodon_webfinger
+mastodon:
+  username: chriselsen
+  instance: noc.social
 
 ############################################################
 # Defaults
