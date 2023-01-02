@@ -1,16 +1,9 @@
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.google.tracking_id }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', '{{ site.analytics.google.tracking_id }}', { 'anonymize_ip': {{ site.analytics.google.anonymize_ip | default: false }}});
-  
-  var buttons = document.getElementsByClassName("share-button");
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function handleOutboundLinkClicks(event) {
-      gtag('event', 'share', { method: event.target.href });
-    });
-  }
+  gtag('config', '{{ site.analytics.google.tracking_id }}');
 </script>
