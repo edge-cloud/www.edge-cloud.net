@@ -118,9 +118,12 @@ author:
   name             : "Christian Elsen"
   avatar           : /assets/images/chriselsen.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Technology Generalist"
-  location         : "Aotearoa"
+  location         :
   email            :
   links:
+    - label: "Aotearoa"
+      icon: "fas fa-fw fa-map-marker-alt"
+      url: "https://www.newzealand.com/int/te-anau/"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://chris.elsen.xyz"
