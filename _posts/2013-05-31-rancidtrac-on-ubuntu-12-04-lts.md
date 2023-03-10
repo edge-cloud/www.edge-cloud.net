@@ -7,7 +7,7 @@ layout: single
 permalink: /2013/05/31/rancidtrac-on-ubuntu-12-04-lts/
 redirect_from:
   - /2013/05/31/rancidtrac-on-ubuntu-12-04-lts/amp/
-  - /2013/05/rancidtrac-on-ubuntu-12-04-lts
+  - /2013/05/rancidtrac-on-ubuntu-12-04-lts/
 image: /content/uploads/2013/05/Device.png
 categories:
   - EdgeCloud
