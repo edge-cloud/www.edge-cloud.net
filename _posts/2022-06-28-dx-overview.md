@@ -53,9 +53,9 @@ Three different connection options exist with "Dedicated Connections", "Hosted C
 |**AWS asigned capacity**|1 Gbps, 10 Gbps or 100 Gbps|50 Mbps to 10 Gbps|None|
 |**Private or Public Virtual Interfaces (VIFs)**|50|1|1|
 |**Transit Virtual Interface (VIF)**|1|1 (if assigned capacity >= 1 Gbps)|None|
-|**Partner-only offering**|<i class="fa-solid fa-xmark" style="color:red;" title="No"></i>|<i class="fa-solid fa-check" style="color:green;" title="Yes"></i>|<i class="fa-solid fa-check" style="color:green;" title="Yes"></i>|
-|**Covered under SLA**|<i class="fa-solid fa-check" style="color:green;" title="Yes"></i>|<i class="fa-solid fa-xmark" style="color:red;" title="No"></i>|<i class="fa-solid fa-xmark" style="color:red;" title="No"></i>|
-|**Supports MACsec (802.1ae)**|<i class="fa-solid fa-check" style="color:green;" title="Yes"></i> (10 Gbps or 100 Gbps at select locations)|<i class="fa-solid fa-xmark" style="color:red;" title="No"></i>|<i class="fa-solid fa-xmark" style="color:red;" title="No"></i>|
+|**Partner-only offering**|<i class="fas fa-times" style="color:red;" title="No"></i>|<i class="fas fa-check" style="color:green;" title="Yes"></i>|<i class="fas fa-check" style="color:green;" title="Yes"></i>|
+|**Covered under SLA**|<i class="fas fa-check" style="color:green;" title="Yes"></i>|<i class="fas fa-times" style="color:red;" title="No"></i>|<i class="fas fa-times" style="color:red;" title="No"></i>|
+|**Supports MACsec (802.1ae)**|<i class="fas fa-check" style="color:green;" title="Yes"></i> (10 Gbps or 100 Gbps at select locations)|<i class="fas fa-times" style="color:red;" title="No"></i>|<i class="fas fa-times" style="color:red;" title="No"></i>|
 
 ### Dedicated Connection
 
