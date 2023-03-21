@@ -26,3 +26,5 @@ end
 gem "minimal-mistakes-jekyll", "~> 4.24.0"
 
 gem "jekyll-mastodon_webfinger", "~> 1.0"
+
+gem "webrick", "~> 1.8"
