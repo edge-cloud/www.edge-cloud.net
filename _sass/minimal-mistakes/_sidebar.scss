@@ -33,7 +33,7 @@
          viewport height - nav height - masthead x-padding
       */
       max-height: calc(100vh - #{$nav-height} - 2em);
-      top: 56px;
+      top: 4em;
     }
   }
 
@@ -88,7 +88,7 @@
       @include clearfix();
       position: -webkit-sticky;
       position: sticky;
-      top: 78px;
+      top: 5em;
       float: right;
 
       .toc {
