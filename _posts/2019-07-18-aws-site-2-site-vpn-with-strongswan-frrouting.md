@@ -321,7 +321,7 @@ First we configure the BGP process with the provided AS number and the two VPN-b
 ```
 host# conf t
 host(config)# router bgp 65016
-host(config-router)# bgp ebgp-requires-policy
+host(config-router)# no bgp ebgp-requires-policy
 host(config-router)# neighbor 169.254.12.229 remote-as 64512
 host(config-router)# neighbor 169.254.14.37 remote-as 64512
 host(config-router)# address-family ipv4 unicast
