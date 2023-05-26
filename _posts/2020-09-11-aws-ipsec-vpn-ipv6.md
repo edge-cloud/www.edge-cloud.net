@@ -77,6 +77,9 @@ You can double check your conversion math knowing that the used netmask is a /12
 * AWS-side interface address: Must always end in 1,5,9,D
 * Customer-side address: Must always end in 2,6,A,E
 
+**Notice:** In the meantime the representation of the Inside IPv6 CIDR in the AWS Console has been fixed. You should notice that now the Subnet (AKA CIDR) is displayed with the correcet subnet mask of /126. Therefore in the above example the AWS Console would now display fdbe:1a26:45b0:4631:ca60:3307:371b:631**4**/12**6**.
+{: .notice--info}
+
 ### Configuration download
 
 The next challenge you will notice is that when downloading the [downloadable configuration files](https://docs.aws.amazon.com/vpn/latest/s2svpn/SetUpVPNConnections.html#vpn-download-config) from the AWS Console, it does not include any IPv6 address information. Instead for the inner address it includes IPv4 address information that are irrelevant as already pointed out.
