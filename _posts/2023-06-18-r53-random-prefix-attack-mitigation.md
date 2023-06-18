@@ -17,25 +17,25 @@ toc: true
 toc_sticky: true
 ---
 
-This blog post shows how to mitigate a random prefix attack with Amazon Route 53. While such an attack will not have an impact to performance or availability, owners of the corresponding public hosted zone will incur charges for queries to non-existing subdomains or prefixes. 
+This blog post shows how to mitigate a random prefix attack with Amazon Route 53. While such an attack will not have an impact on performance or availability, owners of the corresponding public hosted zone will incur charges for queries to non-existing subdomains or prefixes. These charges can be prevented via the mitigation presented here.
 
 # Background
 
 ## What is a random prefix attack
 
-With a random prefix attack someone sends large amounts of DNS queries to random subdomains (or prefixes) that most likely do not exist (e.g. "b835n0knic.edge-cloud.net, lkxmwdw13n.edge-cloud.net, ul1xx83vyq.edge-cloud.net, ..."). Nevertheless these attacks are still connnected to your domain, e.g. edge-cloud.net in the above example. 
+With a random prefix attack someone sends large amounts of DNS queries to random subdomains (or prefixes) that most likely do not exist (e.g. "b835n0knic.edge-cloud.net, lkxmwdw13n.edge-cloud.net, ul1xx83vyq.edge-cloud.net, ..."). Nevertheless these attacks are still connected to your domain, e.g. edge-cloud.net in the above example. 
 Usually the DNS queries to these subdomains or prefixes cannot be cached by DNS resolvers, due to their randomness and that the requests are not repeated. This in return leads to the requests always reaching the authoritative nameservers. 
 
 Rate limiting or blocking these requests based on the source address typically introduces a high amount of false positives as these attacks are usually conducted via public resolvers. Therefore these attacks are particularly effective and hard to mitigate. 
 
 ## The impact with Amazon Route 53
 
-In the case of [Amazon Route 53](https://aws.amazon.com/route53/) as the authoritative nameserver, owners of the corresponding public hosted zone will not see an impact to performance or availability from random prefix attacks. But as Amazon Route 53 also [charges for queries](https://aws.amazon.com/route53/pricing/#Queries) to non-existing subdomains or prefixes, users will incur cost. 
+In the case of [Amazon Route 53](https://aws.amazon.com/route53/) as the authoritative nameserver, owners of the corresponding public hosted zone will not see an impact on performance or availability from random prefix attacks. But as Amazon Route 53 also [charges for queries](https://aws.amazon.com/route53/pricing/#Queries) to non-existing subdomains or prefixes, users will incur cost. 
 
 ## Cost model of Amazon Route 53
 
-Having a look at the [Amazon Route 53 pricing](https://aws.amazon.com/route53/pricing/), youĺl notice that queries for a record that doesn't exist are charged at the standard rate for queries. Currently this is US$ 0.40 per million queries for the first 1 billion queries / month. 
-Using the [AWS Pricing Calculator](https://calculator.aws/#/addService/Route53) you can therefore see that 1 billion queries would incur charges of US$ 400.
+Having a look at the [Amazon Route 53 pricing](https://aws.amazon.com/route53/pricing/), you'll notice that queries for a record that doesn't exist are charged at the standard rate for queries. Currently this is US$ 0.40 per million queries for the first 1 billion queries / month. 
+Using the [AWS Pricing Calculator](https://calculator.aws/#/addService/Route53) you can therefore see that e.g. 1 billion queries would incur charges of US$ 400.
 
 It's interesting and important to have a closer look at the pricing for [Alias Queries](https://aws.amazon.com/route53/pricing/#Alias_Queries). You will notice that queries to records where the alias target is an AWS resource other than another Route 53 record are free. 
 
@@ -99,6 +99,10 @@ x-amz-cf-id: kdnl6bTnfVMSNe7uyRSKEqrqk2djdvP4g1y0XRvMkLee4Iauk8j80w==
 ```
 
 Just as with the previous blog post [URL Redirect with Amazon CloudFront and Amazon Route 53](https://www.edge-cloud.net/2023/03/20/http-redirect-with-cloudfront/#testing-the-setup), we are being redirected to the website at ```https://aws.edge-cloud.net```.
+
+## Further reduce cost
+
+As you will incur charges for HTTP(S) traffic successfully served by CloudFront, you could also chose to only configure your distribution with common mistake hostnames, such as "ww", or "wwww". This reduces the cost in case the attacker combines the DNS random prefix attack with an HTTP(S) based attack. 
 
 # Summary
 
