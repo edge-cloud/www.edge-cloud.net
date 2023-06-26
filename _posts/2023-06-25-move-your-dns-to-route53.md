@@ -169,17 +169,41 @@ Once everything looks good, click on **Import** and Route 53 will create all the
 
 After a few seconds our zone is ready and can serve traffic via the Route 53 authoritative name servers. But at this point nobody other than us knows yet about this new zone on a different authoritative name server. 
 
-### Import via Route 53 API
+### Create and import via Route 53 API
 
-If you prefer using the Route 53 API - e.g. because you want to do this process for hundreds of domains - you can look at the very valuable open source command line tool for Amazon Route 53, called "[cli53](https://github.com/barnybug/cli53)". You can even run it without any issues within [AWS CloudShell](https://aws.amazon.com/cloudshell/). Just download the latest [release](https://github.com/barnybug/cli53/releases) for amd64, make it executable and you're ready to run it. If you are using AWS CloudShell you can quickly and easily upload the zone file in BIND format via **Action -> Upload file**. 
+If you prefer using the Route 53 API - e.g. because you want to do this process for hundreds of domains - you can look at the very valuable open source command line tool for Amazon Route 53, called "[cli53](https://github.com/barnybug/cli53)". You can even run it without any issues within [AWS CloudShell](https://aws.amazon.com/cloudshell/). Just download the latest [release](https://github.com/barnybug/cli53/releases) for amd64, make it executable and you're ready to run it. If you are using AWS CloudShell you can quickly and easily upload the zone file in BIND format via **Action -> Upload file**. Also, when running cli53 in AWS CloudShell, AWS credentials don't need to be configured. 
 
-To import the zone file in BIND format with cli53, use the parameter ```cli53 import --file movetor53.com.zone movetor53.com```. When running cli53 in AWS CloudShell, AWS credentials don't need to be configured. 
+```
+[cloudshell-user@ip-10-1-23-45 ~]$ wget -q https://github.com/barnybug/cli53/releases/download/0.8.22/cli53-linux-amd64
+[cloudshell-user@ip-10-1-23-45 ~]$ chmod +x cli53-linux-amd64
+[cloudshell-user@ip-10-1-23-45 ~]$ ./cli53-linux-amd64 -v
+cli53 version 0.8.22 
+```
+
+If you are moving multiple zones, you want to make use of a [reusable delegation set](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/route-53-concepts.html#route-53-concepts-reusable-delegation-set) within Route 53. By default, Route 53 assigns a random selection of name servers to each new hosted zone. To make it easier to migrate DNS service to Route 53 for a large number of domains, you can create a reusable delegation set and then associate the reusable delegation set with new hosted zones. Therefore all migrated zones will have the same set of four Route 53 authoritative name servers.
+
+To create a new reusable delegation set with cli53, use the command ```cli53 dscreate```. Afterwards you can specify the delegation set ID when creating a new public hosted zone with ```cli53 create --delegation-set-id <delegation set id> movetor52.com```.
+
+Here is how this will look like:
+
+```
+[cloudshell-user@ip-10-2-169-87 ~]$ ./cli53-linux-amd64 dscreate
+Created reusable delegation set ID: '/delegationset/N12345678ABCDEFGH1IJK'
+Nameserver: ns-1990.awsdns-56.co.uk
+Nameserver: ns-118.awsdns-14.com
+Nameserver: ns-551.awsdns-04.net
+Nameserver: ns-1366.awsdns-42.org
+[cloudshell-user@ip-10-2-169-87 ~]$ ./cli53-linux-amd64 create --delegation-set-id N12345678ABCDEFGH1IJK movetor52.com
+Created zone: 'movetor52.com.' ID: '/hostedzone/Z12345678ABC9DEF0GH12'
+```
+
+For subsequent domains you would then re-use the same delegation set via ```--delegation-set-id N12345678ABCDEFGH1IJK``` and receive the same set of Route 53 authoritative name servers for the zones.
+
+To import the zone file in BIND format with cli53, use the parameter ```cli53 import --file movetor53.com.zone movetor53.com```. 
 
 The final result will look like this:
 
 ```
-[cloudshell-user@ip-10-1-23-45 ~]$ wget -q https://github.com/barnybug/cli53/releases/download/0.8.22/cli53-linux-amd64
-[cloudshell-user@ip-10-1-23-45 ~]$ chmod +x cli53-linux-amd64 
 [cloudshell-user@ip-10-1-23-45 ~]$ ./cli53-linux-amd64 import --file movetor53.com.zone movetor53.com 
 18 records imported (8 changes / 8 additions / 0 deletions) 
 [cloudshell-user@ip-10-1-23-45 ~]$
