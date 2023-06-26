@@ -54,8 +54,11 @@ $(function() {
   });
 
   // Smooth scrolling
+  var header = document.querySelector('.masthead');
   var scroll = new SmoothScroll('a[href*="#"]', {
-    offset: 20,
+    offset: function () {
+      return header.getBoundingClientRect().height;
+    },
     speed: 400,
     speedAsDuration: true,
     durationMax: 500
@@ -73,7 +76,9 @@ $(function() {
       nestedClass: "active", // applied to the parent items
 
       // Offset & reflow
-      offset: 20, // how far from the top of the page to activate a content area
+      offset: function () {
+        return header.getBoundingClientRect().height;
+      }, // how far from the top of the page to activate a content area
       reflow: true, // if true, listen for reflows
 
       // Event support
