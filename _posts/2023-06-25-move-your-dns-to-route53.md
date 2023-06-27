@@ -330,6 +330,76 @@ After several minutes you will receive an Email from Google Domains asking to ei
 
 After several minutes the Transfer will complete and you will receive a notification from Route 53 about the completion. After a few hours the migrated domain will disappear in the Google Domains portal. Congratulations! At this point all your DNS management needs are done via Route 53.
 
+## Use the Route 53 API
+
+While cli53 does not support Route 53's registration services, you can use the [AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/route53domains/transfer-domain.html) to move a domain. This is especially useful if you want to move many domains. And as with the previous API examples you can even run it without any issues within [AWS CloudShell](https://aws.amazon.com/cloudshell/).
+
+Usually when migrating many domains the contact details for these domains remain the same and only the domain name and authentication code changes. With that in mind we will split the part that remains the same from what changes.
+
+Everything that remains the same will go into a JSON file - let's call it *r53-domain-registrar.json* - and look like this:
+
+```
+{
+    "DurationInYears": 1,
+    "AutoRenew": true,
+    "AdminContact": {
+        "FirstName": "Martha",
+        "LastName": "Rivera",
+        "ContactType": "PERSON",
+        "OrganizationName": "Example",
+        "AddressLine1": "1 Main Street",
+        "City": "Anytown",
+        "State": "WA",
+        "CountryCode": "US",
+        "ZipCode": "98101",
+        "PhoneNumber": "+1.8005551212",
+        "Email": "mrivera@example.com"
+    },
+    "RegistrantContact": {
+        "FirstName": "Li",
+        "LastName": "Juan",
+        "ContactType": "PERSON",
+        "OrganizationName": "Example",
+        "AddressLine1": "1 Main Street",
+        "City": "Anytown",
+        "State": "WA",
+        "CountryCode": "US",
+        "ZipCode": "98101",
+        "PhoneNumber": "+1.8005551212",
+        "Email": "ljuan@example.com"
+    },
+    "TechContact": {
+        "FirstName": "Mateo",
+        "LastName": "Jackson",
+        "ContactType": "PERSON",
+        "OrganizationName": "Example",
+        "AddressLine1": "1 Main Street",
+        "City": "Anytown",
+        "State": "WA",
+        "CountryCode": "US",
+        "ZipCode": "98101",
+        "PhoneNumber": "+1.8005551212",
+        "Email": "mjackson@example.com"
+    },
+    "PrivacyProtectAdminContact": true,
+    "PrivacyProtectRegistrantContact": true,
+    "PrivacyProtectTechContact": true
+}
+```
+
+Afterwards we will use the AWS CLI command ```aws route53domains transfer-domain``` to pass this file along with the parameters that need to be adapted for each domain, which is namely the domain name and the "Auth Code".
+
+Using AWS CloudShell as an example again, result will look like this:
+
+```
+[cloudshell-user@ip-10-1-23-45 ~]$ aws route53domains transfer-domain --region us-east-1 --domain-name movetor53.com --auth-code ")o!v3dJeXampLe" --cli-input-json file://r53-domain-registrar.json 
+{
+    "OperationId": "a012ab3c-d45e-67f9-gh01-i23j4k567lm8"
+}
+```
+
+Note that even if you are running this AWS CLI command on a Linux-based machine - like AWS CloudShell - you have to specify the file via the *file://filename* format.
+
 # Optimize DNS records (Optional)
 
 As a final optional step we should optimize certain records in the Route 53 Public Hosted Zone by making use of [alias records](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html). 
