@@ -127,15 +127,19 @@ author:
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://chris.elsen.xyz"
+      rel: "me"
     - label: "Mastodon"
       icon: "fab fa-fw fa-mastodon"
       url: "https://noc.social/@chriselsen"  
+      rel: "me"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/christianelsen/"
+      rel: "me"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/chriselsen/"
+      rel: "me"
     - label: "AS213151"
       icon: "fas fa-fw fa-network-wired"
       url: "https://as213151.net/"
@@ -235,7 +239,7 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
   - jekyll-redirect-from
-  - jekyll-target-blank
+  - jekyll-link-attributes
   - jekyll-responsive-image
   - jekyll/mastodon_webfinger
 
@@ -350,6 +354,13 @@ mastodon:
   username: chriselsen
   instance: noc.social
 
+external_links:
+  enabled: true
+  rel: external nofollow noopener
+  target: _blank
+  exclude:
+    - https://noc.social
+    
 ############################################################
 # Defaults
 defaults:

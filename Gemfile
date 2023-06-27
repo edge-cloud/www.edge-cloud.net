@@ -17,7 +17,7 @@ gem "jekyll", "~> 4.3.2"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-redirect-from"
-  gem "jekyll-target-blank"
+  gem "jekyll-link-attributes"
   gem "jekyll-responsive-image"
   gem "jekyll-algolia"
 end
