@@ -53,19 +53,9 @@ $(function() {
     }, 400);
   });
 
-  // Smooth scrolling
+  
+    // Gumshoe scroll spy init
   var header = document.querySelector('.masthead');
-  var scroll = new SmoothScroll('a[href*="#"]', {
-    //offset: 20,
-    offset: function () {
-      return header.getBoundingClientRect().height;
-    },
-    speed: 400,
-    speedAsDuration: true,
-    durationMax: 500
-  });
-
-  // Gumshoe scroll spy init
   if($("nav.toc").length > 0) {
     var spy = new Gumshoe("nav.toc a", {
       // Active classes
@@ -79,7 +69,7 @@ $(function() {
       // Offset & reflow
       //offset: 20,
       offset: function () {
-        return header.getBoundingClientRect().height;
+        return (header.getBoundingClientRect().height + 20);
       }, // how far from the top of the page to activate a content area
       reflow: true, // if true, listen for reflows
 
@@ -88,46 +78,6 @@ $(function() {
     });
   }
 
-  // Scrollspy equivalent: update hash fragment while scrolling.
-  var smoothScrolling = false;
-  document.addEventListener('scrollStart', function () { smoothScrolling = true; }, false);
-  document.addEventListener('scrollStop', function () { smoothScrolling = false; }, false);
-  document.addEventListener('scrollCancel', function () { smoothScrolling = false; }, false);
-  $(window).scroll(jQuery.throttle(250, function() {
-    // Don't run while smooth scrolling (from clicking on a link).
-    if (smoothScrolling) return;
-    var scrollTop = $(window).scrollTop() + 80 + 1;  // 20 = offset
-    var links = [];
-    $("nav.toc a").each(function() {
-      var link = $(this);
-      var href = link.attr("href");
-      if (href && href[0] == "#") {
-        var element = $(href);
-        links.push({
-          link: link,
-          href: href,
-          top: element.offset().top
-        });
-        link.removeClass('active');
-      }
-    });
-    for (var i = 0; i < links.length; i++) {
-      var top = links[i].top;
-      var bottom = (i < links.length - 1 ? links[i+1].top : Infinity);
-      if (top <= scrollTop && scrollTop < bottom) {
-        // Mark all ancestors as active
-        links[i].link.parents("li").children("a").addClass('active');
-        if (links[i].href !== location.hash) {
-          history.replaceState(null, null, links[i].href);
-        }
-        return;
-      }
-    }
-    if ('#' !== location.hash) {
-      history.replaceState(null, null, '#');
-    }
-  }));
-  
   // add lightbox class to all image links
   $(
     "a[href$='.jpg'],a[href$='.jpeg'],a[href$='.JPG'],a[href$='.png'],a[href$='.gif'],a[href$='.webp']"
