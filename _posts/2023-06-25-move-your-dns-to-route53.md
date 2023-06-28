@@ -49,6 +49,10 @@ From a DNS management perspective there are two spots that as the owner of ```mo
 * **DNS Zone Management:** The DNS zone management controls the actual entries in the zone ```movetor53.com``` itself. It includes creating, changing or deleting records like ```www``` or ```mail```, which can be of different types like ```A```, ```AAAA```, ```CNAME```, ```MX```, or others. While in the old days you actually had to setup a set of servers running DNS software like [BIND](https://www.isc.org/bind/), with the availability of DNS services like Route 53, you no longer have to worry about this undifferentiated heavy lifting and can focus on the entries itself. In the case of Route 53 you can thereby make use of DNS server distributed across [400+ Edge Locations](https://aws.amazon.com/about-aws/global-infrastructure/).
 * **DNS Registration Services** The DNS registration services offer a few main components: 1) Exclusive use of a specific domain name as long as you meet the legal requirements of that particular top level domain, 2) Ability to update the TLD server for that TLD zone with a pointer to the authoritative DNS servers of the domain name, 3) Ability to upload the DNSSEC public key for the specific domain name, to create the chain of trust. 
 
+## API Usage
+
+While Route 53 offers an [API](https://docs.aws.amazon.com/Route53/latest/APIReference/) for both the zone management and the registration services, Google Domains does not offer an API. Therefore besides showing the web-console based approach for the migration, I can only show you how to use the API with Route 53. If you are following this walk-through while using another existing DNS provider, you might be able to use this provider's API to e.g. export the zone file. 
+
 # Initial setup
 
 Let's have a look at our initial DNS setup in Google Domains before we start making changes (See Figure 2). As mentioned above we will be using the domain ```movetor53.com``` for this guide.
@@ -98,7 +102,7 @@ For Google Domains this process is very straight forward: Within the *Resource r
 
 {% include figure image_path="/content/uploads/2023/06/move-your-dns-to-route53-export-to-bind.png" caption="Figure 5: Export a zone file from Google Domains in BIND format." %}
 
-That's it! The browser will now download the resulting zone file in BIND format. Once you open it with your favorite text editor you'll see a result similar to the one below for our zone ```movetor53.com```.Each line represents one DNS record and will be imported as such. 
+That's it! The browser will now download the resulting zone file in BIND format. Once you open it with your favorite text editor you'll see a result similar to the one below for our zone ```movetor53.com```. Each line represents one DNS record and will be imported as such. 
 
 ```
 ; A BIND file is a .TXT file that's used to export
@@ -133,7 +137,7 @@ movetor53.com. 3600 IN AAAA 2001:4860:4802:38::15
 There is one little catch that we need to take care of before we can import this zone file into Route 53 and it's related to DKIM public key records for Google Workspaces. By default Google Workspaces uses 2048-bit DKIM keys, which you can’t enter as a single text string in a DNS record with a 255-character limit. Although Google provides [guidance](https://support.google.com/a/answer/11613097?hl=en) on how to deal with these keys, that guidance is not very clear and the provided example is actually wrong. 
 In addition the Route 53 Console doesn't like the way these 2048-bit DKIM records were exported and ignores them. But there is a very quick and easy fix to it. 
 
-If you use the Route API to import the zone file in BIND format (See below), this correction is not necessary. Also if you are not using any 2048-bit DKIM keys or other records longer than 255 characters, there is no correction necessary. 
+If you use the Route 53 API to import the zone file in BIND format (See below), this correction is not necessary. Also if you are not using any 2048-bit DKIM keys or other records longer than 255 characters, there is no correction necessary. 
 
 You'll notice a line for the 2048-bit DKIM record in the format of ```google._domainkey.movetor53.com. 3600 IN TXT "k=rsa; p=<long string>" "<another long string>"```. The problem here is the whitespace between the two quotation marks ("). Just remove that whitespace to make it look like this: ```google._domainkey.movetor53.com. 3600 IN TXT "k=rsa; p=<long string>""<another long string>"```. 
 
@@ -224,9 +228,9 @@ But this approach is very cumbersome, especially if you want to do this for all 
 
 Instead have a look at the tool [dns_compare](https://github.com/chriselsen/dns_compare), which automates this task for you. You can either run it locally under Linux or use [AWS CloudShell](https://aws.amazon.com/cloudshell/) instead. If you are using AWS CloudShell you can quickly and easily upload our zone file in BIND format via **Action -> Upload file**. 
 
-Once you have dns_compare installed, run it while pointing to the local zone file in BIND format and one of the four authoritative Route 53 name servers for the zone.
+Once you have *dns_compare* installed, run it while pointing to the local zone file in BIND format and one of the four authoritative Route 53 name servers for the zone.
 
-If everything was imported correctly, dns_compare will report zero mis-matches: 
+If everything was imported correctly, *dns_compare* will report zero mis-matches: 
 ```
 ubuntu@ubuntu:~$ dns_compare --zone movetor53.com --file movetor53.com.zone --server ns-431.awsdns-53.com
 ........done
@@ -290,7 +294,7 @@ Next, head back to Google Domains to change the nameservers for the zone.
 
 Under the *DNS* tab  select **Custom name servers*  to start the setup. Enter the following data (See Figure 11):
 * **Name servers:** Within the *Name servers* section enter the four nameserver that correspond to the newly created Route 53 Public hosted zone. 
-* **DNSSEC:** Enter the DNSSEC details to establish the chain of trust. You have looked up the corresponding data for the fields *Key Tag*, *Algorithm*, *Digest Type*, and *Digest* in the previous step.
+* **DNSSEC (Optional):** If you want to use DNSSEC, enter the DNSSEC details to establish the chain of trust. You have looked up the corresponding data for the fields *Key Tag*, *Algorithm*, *Digest Type*, and *Digest* in the previous step.
 
 {% include figure image_path="/content/uploads/2023/06/move-your-dns-to-route53-custom-ns-setup.png" caption="Figure 11: Update your registration services through a \"Customer name server\" setup." %}
 
@@ -336,7 +340,7 @@ While cli53 does not support Route 53's registration services, you can use the [
 
 Usually when migrating many domains the contact details for these domains remain the same and only the domain name and authentication code changes. With that in mind we will split the part that remains the same from what changes.
 
-Everything that remains the same will go into a JSON file - let's call it *r53-domain-registrar.json* - and look like this:
+Everything that remains the same will go into a JSON file - let's call it *r53-domain-registrar.json* - and looks like this:
 
 ```
 {
@@ -399,6 +403,8 @@ Using AWS CloudShell as an example again, result will look like this:
 ```
 
 Note that even if you are running this AWS CLI command on a Linux-based machine - like AWS CloudShell - you have to specify the file via the *file://filename* format.
+
+This way we could write a quick shell script that iterates through a list of domain names and "Auth Codes", calling the above AWS CLI command for each of them. 
 
 # Optimize DNS records (Optional)
 
