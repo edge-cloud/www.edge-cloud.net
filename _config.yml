@@ -29,6 +29,7 @@ masthead_title           : " On the edge of cloud computing" # overrides the web
 # breadcrumbs            : false # true, false (default)
 adsense                  : false # Google Adsense support
 words_per_minute         : 200
+outdated_time_seconds    : 157680000 # After which time in seconds (1 year = 31536000 seconds) is a post considered outdated.
 comments:
   provider               : "utterances" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2", "utterances", "custom"
   disqus:

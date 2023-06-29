@@ -1,0 +1,8 @@
+{% assign timeframe = site.outdated_time_seconds | default: 157680000 %}
+{% assign post_in_seconds = document.date |date: "%s" | plus: 0 %}
+{% assign old_post = "now" | date: "%s" | minus: timeframe %}
+{% assign post_age_year = "now" | date: "%s" | minus: post_in_seconds | divided_by: 31536000 | round: 0 %}
+
+{% if post_in_seconds < old_post %}
+    <p class="notice--warning"><strong><i class="fas fa-clock"></i> Notice:</strong> This article is more than <strong>{{ post_age_year }} years old</strong>. It might be outdated.</p>
+{% endif %}
