@@ -13,6 +13,7 @@ tags:
   - Cloudflare
   - Google-Analytics
 toc: true
+toc_sticky: true
 ---
 [Cloudflare](https://www.cloudflare.com/) provides a content delivery network and distributed domain name server services to help secure and accelerate websites. This cloud-based service sits between the visitor and the CloudFlare user’s hosting provider, acting as a reverse proxy for the website.
 

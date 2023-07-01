@@ -17,6 +17,7 @@ tags:
   - OpenStack
   - VMware
 toc: true
+toc_sticky: true
 ---
 In a previous post I have already written about [Physical networks for VMware NSX](/2013/09/04/physical-networks-for-vmware-nsx/). Now it's time to put everything together and showcase you how VMware vSphere, VMware NSX and OpenStack come together for a cloud with network virtualization via overlay networks.
 

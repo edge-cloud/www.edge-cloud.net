@@ -13,6 +13,7 @@ categories:
 tags:
   - AWS
 toc: true
+toc_sticky: true
 ---
 [AWS OpsWorks](https://aws.amazon.com/opsworks/) is an application management service that makes it easy for DevOps users to model and manage the entire application from load balancers to databases. It offers a very powerful solution for users to deploy their application easily in AWS without giving up control.
 

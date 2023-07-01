@@ -13,6 +13,7 @@ tags:
   - AWS
   - Cloudflare
 toc: true
+toc_sticky: true
 ---
 This tutorial will show you how to configure [CloudFlare Railgun](https://www.cloudflare.com/website-optimization/railgun/) within [Amazon Web Services (AWS)](https://aws.amazon.com/). We will leverage [Amazon ElastiCache](https://aws.amazon.com/elasticache/) together with [AWS Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/), [AWS Auto Scaling](https://aws.amazon.com/autoscaling/) and [Amazon EC2](https://aws.amazon.com/ec2/) to quickly and simply achieve this goal (See Figure 1).
 

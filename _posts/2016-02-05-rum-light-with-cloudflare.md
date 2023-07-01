@@ -15,6 +15,7 @@ tags:
   - HTTP/2
   - IPv6
 toc: true
+toc_sticky: true
 ---
 Would you like to know the ratio of visitors accessing your website over IPv4 vs. IPv6? Or curious about how many visitors you serve over HTTP/2 vs. SPDY or HTTP 1.1?
 

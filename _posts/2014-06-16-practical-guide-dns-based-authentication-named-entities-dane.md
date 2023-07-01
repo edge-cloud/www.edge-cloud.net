@@ -15,6 +15,7 @@ tags:
   - Security
   - Web
 toc: true
+toc_sticky: true
 ---
 How can your users be sure that your HTTPS protected web-site is really what it seems to be and is actually your site? Today your web browser trusts a list of about 60-to-100 Certificate Authorities (CA) and you trust these CAs to only issue a certificate for a web site to the rightful owner of that site. As previous incidents, such as the March 11th [Comodo](https://en.wikipedia.org/wiki/Comodo_Group) security [incident](https://www.comodo.com/Comodo-Fraud-Incident-2011-03-23.html) and the [DigiNotar](https://en.wikipedia.org/wiki/Diginotar) SSL Certificate security breach in the summer of 2011 have shown, this trust is not always justified. But how can your users verify that the X.509 certificate offered by your HTTPS server is indeed the certificate that should be used by this server and not a fake one used for a man-in-the middle attack against them?
 

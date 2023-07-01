@@ -14,6 +14,7 @@ tags:
   - F5
   - IPv6
 toc: true
+toc_sticky: true
 ---
 A very simple way to enable legacy IPv4-based web applications to be reachable via IPv6 is to use an IPv4/IPv6-enabled load balancer to frontend the application. This is e.g. the [approach that Netflix took](http://techblog.netflix.com/2012/07/enabling-support-for-ipv6.html) in mid 2012 to enable their service for IPv6 via the AWS Elastic Load Balancers (ELBs).
 

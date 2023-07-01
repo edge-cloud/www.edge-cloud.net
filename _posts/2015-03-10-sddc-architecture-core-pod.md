@@ -14,6 +14,7 @@ tags:
   - Cloud
   - SDDC
 toc: true
+toc_sticky: true
 ---
 This article is part of a [series of articles](/2015/02/20/sddc-architecture-introduction/ "Software Defined Data Center (SDDC) Architecture – Introduction"), focusing on the architecture of an SDDC as well as some of its design elements. In this post we want to look at the physical layer of our SDDC architecture (See Figure 1).
 

@@ -17,6 +17,7 @@ tags:
   - OpenStack
   - VMware
 toc: true
+toc_sticky: true
 ---
 Welcome to part 5 of the [series: "OpenStack with vSphere and NSX"](/2013/12/12/openstack-vsphere-nsx/) on installing OpenStack with VMware vSphere and VMware NSX. This series shows the deployment of an OpenStack cloud that leverages VMware vSphere – along with it’s well-known enterprise-class benefits such as VMotion – as the underlying Hypervisor. In addition, network virtualization within OpenStack will be provided via NSX as a Neutron plugin. This allows the creation of virtual networks within OpenStack that consist of L2 segments and can be interconnected via L3 to each other or the outside world.
 

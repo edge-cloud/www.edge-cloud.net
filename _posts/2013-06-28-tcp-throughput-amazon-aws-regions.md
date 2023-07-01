@@ -13,6 +13,7 @@ tags:
   - AWS
   - Performance
 toc: true
+toc_sticky: true
 ---
 In a [previous post](https://www.edge-cloud.net/2013/06/07/measuring-network-throughput/) I wrote about "Measuring Network Throughput". Today I want to share a few quick performance test results that I assembled for the single TCP session throughput between the Amazon AWS Oregon and N. Virginia regions.
 

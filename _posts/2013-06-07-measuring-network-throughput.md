@@ -17,6 +17,7 @@ tags:
   - Network
   - Performance
 toc: true
+toc_sticky: true
 use_math: true
 ---
 The topic of measuring network throughput between network devices comes up quite frequently: It ranges from users claiming (and sometimes almost blaming) that the 100 Mbps Internet uplink in reality is only 10 Mbps to being surprised why they can't transfer that multi-gigabyte file via FTP faster between data center locations.

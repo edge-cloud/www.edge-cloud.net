@@ -17,6 +17,7 @@ tags:
   - IPv6
   - Network
 toc: true
+toc_sticky: true
 ---
 One of the big benefits in IPv6 is the automatic configuration capability for hosts via [Stateless address autoconfiguration (SLAAC)](/2013/11/18/ipv6-address-management-hosts/#3-stateless-address-auto-configuration-slaac). Yet sometimes even in IPv6 one wants to solely manually configure hosts in a L2 segment. For this use case one needs to provide basic network information to the user configuring the host. This usually includes at least the IP address of the host along with the prefix length, the default gateway and the DNS resolver. Wouldn't it be great if we could tell users that the default gateway and the DNS resolver are always the same, no matter what network segment the host is in? And wouldn't it be great if these IPv6 addresses for default gateway and DNS resolver were short and easy to remember?
 

@@ -14,6 +14,7 @@ categories:
 tags:
   - VMware
 toc: true
+toc_sticky: true
 ---
 Ethernet's default maximum size for data transmission is 1500 bytes due to legacy compatibility reasons. Unfortunately with newer high-speed networks - such as 10 Gigabit Ethernet (10 GigE) - breaking up data into chunks of 1500 bytes - also called frames - creates a lot of overhead with a high header to payload ratio. This not only creates a higher than necessary overhead on the Hypervisor's CPU, but also prevents one from utilizing the full capabilities of the network hardware. For example: On a 10Gbit link it is possible that you will only be able to transmit about 3-4 Gbps of data between machines using 1500 byte frames, while you can easily saturate 10Gbit when using jumbo frames.
 

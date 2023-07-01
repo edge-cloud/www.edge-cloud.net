@@ -13,6 +13,7 @@ categories:
 tags:
   - VMware
 toc: true
+toc_sticky: true
 ---
 While attempting to integrate the VMware vSphere 5.5 vCenter Server Appliance (vCSA) with Microsoft Active Directory you might have stumbled over the error message "Error: Idm client exception: Failed to establish server connection". This article will show you how to work around this issue and still use Active Directory with your vCSA.
 

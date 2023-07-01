@@ -1,3 +1,4 @@
+
 ---
 title: 'Implementing IPv6: Six steps to success'
 date: 2014-06-25T10:00:08+00:00
@@ -17,6 +18,7 @@ tags:
   - IPv6
   - Network
 toc: true
+toc_sticky: true
 ---
 Implementing IPv6 in your network does not require tearing down your aging IPv4 network and replacing it with a new IPv6-enabled network. Instead it is possible - usually even wise - to run the IPv4 and IPv6 networks in parallel in what the industry calls a "dual-stack" network, thus adding IPv6 capabilities to your network's existing IPv4 capabilities. While such an endeavor is certainly not trivial, it might be easier than your think.
 

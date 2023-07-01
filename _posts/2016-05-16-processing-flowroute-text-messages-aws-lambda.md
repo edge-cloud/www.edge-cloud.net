@@ -12,6 +12,7 @@ categories:
 tags:
   - AWS
 toc: true
+toc_sticky: true
 ---
 [Flowroute](https://www.flowroute.com/) is a great SIP communications provider that I've been using for a few years now. Especially because they support [T.38](https://en.wikipedia.org/wiki/T.38) for sending and receiving fax messages.
 

@@ -15,6 +15,7 @@ tags:
   - IPv6
   - VMware
 toc: true
+toc_sticky: true
 ---
 In this post I will present an architecture design recommendation for using VMware vSphere 5.x with IPv6. Instead of taking an "all has to be IPv6" approach, we will look at the use case for IPv6 along with the enterprise hypervisor platform VMware vSphere and create a recommended design.
 

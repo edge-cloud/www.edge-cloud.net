@@ -14,6 +14,7 @@ tags:
   - Infoblox
   - IPv6
 toc: true
+toc_sticky: true
 ---
 IPv6 brings a few new address management concepts to the table, that are unknown in IPv4. This article will shed some light on these mechanism along with some guidance on using them as well as giving examples with Linux and Windows hosts.
 

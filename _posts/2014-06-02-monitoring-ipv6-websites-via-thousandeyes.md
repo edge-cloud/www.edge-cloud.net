@@ -14,6 +14,7 @@ tags:
   - Management
   - Network
 toc: true
+toc_sticky: true
 ---
 Recently I stumbled over a small startup in San Francisco called [ThousandEyes](https://www.thousandeyes.com/). They provide a service for complete, end-to-end visibility of cloud applications and infrastructure telling you where and why services are breaking or under-performing. This allows SaaS providers to ensure that their application can be leveraged by customers at various locations throughout the world with an optimal or at least acceptable performance. But it also allows Enterprise customers to ensure that the SaaS applications used by the company are available from all campuses and branch offices at the desired performance, taking into consideration all elements of the delivery chain (See Figure 1).
 

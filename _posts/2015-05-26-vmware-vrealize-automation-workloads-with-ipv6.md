@@ -15,6 +15,7 @@ tags:
   - NSX
   - VMware
 toc: true
+toc_sticky: true
 ---
 Unfortunately VMware's primary Cloud Management Platform (CMP) for the Enterprise, VMware vRealize Automation (vRA) does not support IPv6-enabled workloads out of the box. This applies to IPv6-only workloads as well as IPv4/IPv6 Dualstack workloads.
 

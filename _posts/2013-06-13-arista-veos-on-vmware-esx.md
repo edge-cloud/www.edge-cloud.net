@@ -14,6 +14,7 @@ tags:
   - Arista
   -
 toc: true
+toc_sticky: true
 ---
 [Arista](https://www.arista.com/en/) EOS is released as a single image that supports all of their hardware platforms. But that same single image can also be run in a virtual machine! While a great article on [Building a Virtual Lab with Arista vEOS and VirtualBox](http://www.gad.net/Blog/2012/10/27/building-a-virtual-lab-with-arista-veos-and-virtualbox/) already exists, I wanted to accomplish the same with vSphere 5.x.
 

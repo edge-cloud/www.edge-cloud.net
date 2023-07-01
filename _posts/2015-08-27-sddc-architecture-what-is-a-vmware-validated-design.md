@@ -16,6 +16,7 @@ tags:
   - Cloud
   - SDDC
 toc: true
+toc_sticky: true
 ---
 This article is part of a [series of articles](/2015/02/20/sddc-architecture-introduction/), focusing on the architecture of an SDDC via VMware Validated Designs.
 

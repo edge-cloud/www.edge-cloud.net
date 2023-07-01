@@ -12,6 +12,7 @@ categories:
 tags:
   - AWS
 toc: true
+toc_sticky: true
 ---
 I have used various services from [Amazon AWS](https://aws.amazon.com/) for quite a while now and have always been amazed by what interesting things one can do with this services. Recently I took the AWS training course [Architecting on AWS](https://www.edge-cloud.net/2014/03/11/architecture-design-vsphere-ipv6/), which gives an awesome overview on what's possible with the AWS service.
 

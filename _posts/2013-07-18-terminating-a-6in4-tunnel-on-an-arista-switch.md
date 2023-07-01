@@ -13,6 +13,7 @@ tags:
   - Arista
   - Network
 toc: true
+toc_sticky: true
 ---
 In a [previous post](https://www.edge-cloud.net/2013/06/24/network-troubleshooting-via-arista-eos-shell/ "Network troubleshooting via Arista EOS shell") I have shown that [Arista switches](https://www.arista.com/en/) feature a full fledged Linux system underneath the CLI that is accessible to network administrators via the EOS shell.
 

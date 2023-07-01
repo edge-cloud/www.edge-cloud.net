@@ -13,6 +13,7 @@ tags:
   - Alexa
   - Echo
 toc: true
+toc_sticky: true
 ---
 Alexa is the voice service that powers the [Amazon Echo](http://amzn.to/2dY24Fv) and provides capabilities, or skills, that enable users to interact with the device by using voice. Examples of built-in skills include the ability to play music, answer general questions, set an alarm or timer, and more.
 

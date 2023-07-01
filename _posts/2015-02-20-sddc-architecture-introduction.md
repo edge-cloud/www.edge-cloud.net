@@ -15,6 +15,7 @@ tags:
   - Cloud
   - SDDC
 toc: true
+toc_sticky: true
 ---
 A Software Defined Data Center (SDDC) is a vision for a new IT infrastructure that applies virtualization concepts such as abstraction, pooling, and automation to all resources of a data center. It promises to improve the delivery, operation, and recovery of Business Applications through increased agility and performance, while reducing service delivery times.
 
