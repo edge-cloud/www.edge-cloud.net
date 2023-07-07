@@ -187,6 +187,25 @@
   }
 }
 
+.author__support {
+  width: 9em;
+  position: fixed;
+  top: 4.5em;
+  right: 1em;
+
+  @include breakpoint($large) {
+    width: 65%;
+    margin-top: 20px;
+    position: unset;
+  }
+
+  @media only screen and (max-width: 300px) {
+    width: 50%;
+    margin: auto;
+    position: inherit;
+  }
+}
+
 .author__urls-wrapper {
   position: relative;
   display: table-cell;
