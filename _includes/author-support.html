@@ -1,8 +1,0 @@
-{% assign author = page.author | default: page.authors[0] | default: site.author %}
-{% assign author = site.data.authors[author] | default: author %}
-
-{% if author.buymeacoffee %}
-<div class="author__support">
-    <a href="https://www.buymeacoffee.com/{{ author.buymeacoffee }}" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee"></a>
-</div>
-{% endif %}
