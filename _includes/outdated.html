@@ -6,7 +6,5 @@
 {% if post_in_seconds < old_post and page.outdated != false %}
 <section class="outdated__warning">
     <p class="notice--warning"><strong><i class="fas fa-clock"></i> Notice:</strong> This article is more than <strong>{{ post_age_year }} years old</strong>. It might be outdated.</p>
-    Post outdated: {{ post.outdated }}
-    Page outdated: {{ page.outdated }}
 </section>
 {% endif %}
