@@ -148,7 +148,7 @@ author:
       icon: "fas fa-fw fa-coffee"
       url: "https://www.buymeacoffee.com/chriselsen/"
     - label: "PayPal Me"
-      icon: "fab fa-fw fa-paypal"
+      icon: "fab fa-fw fa-paypal\" style=\"color: #253B80;"
       url: "https://www.paypal.com/paypalme/christianelsen"
 
 ############################################################
