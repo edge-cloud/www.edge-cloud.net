@@ -544,7 +544,8 @@ body {
   ins.adsbygoogle[data-ad-status="filled"] {
     &::before {
       content: "Advertisement:";
-      font-size: $type-size-6;
+      font-size: $type-size-7;
+      color: $muted-text-color;
       text-transform: uppercase;
     }
   }
