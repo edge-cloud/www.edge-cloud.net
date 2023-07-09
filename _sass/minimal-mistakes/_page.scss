@@ -524,10 +524,9 @@ body {
    Google Adsense
    ========================================================================== */
 
-ins.adsbygoogle[data-ad-status="filled"] {
+.page__adsense {
   @include clearfix();
   float: left;
-  border-top: 1px solid $border-color;
 
   @include breakpoint($large) {
     float: right;
@@ -538,10 +537,9 @@ ins.adsbygoogle[data-ad-status="filled"] {
     width: calc(100% - #{$right-sidebar-width});
   }
 
-}
-
-ins.adsbygoogle[data-ad-status="unfilled"] {
-  display: none !important;
+  ins.adsbygoogle[data-ad-status="unfilled"] {
+    display: none !important;
+  }
 }
 
 /*

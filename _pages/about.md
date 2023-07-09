@@ -10,6 +10,15 @@ outdated: false
 
 Edge Cloud is a personal blog about various technical subjects, especially data centers, virtualization, networking and cloud computing. The contributor of this site is <span class="vcard author post-author"><span class="fn">Christian Elsen</span></span>.
 
+## Sponsor
+
+If you enjoy my work, please consider sponsoring:
+
+[![Buy Me A Coffee](/assets/images/buymeacoffee.png)](https://www.buymeacoffee.com/chriselsen)
+[![Support via PayPal](/assets/images/paypal-donate.png)](https://www.paypal.me/christianelsen)
+[![Sponsor on Github](/assets/images/github-sponsor.png)](https://github.com/sponsors/chriselsen)
+
+
 ## About Christian Elsen
 
 Christian started as a Software Engineer with Cisco's Technology Center, focusing on Disruptive Innovation and Prototyping for Remote Collaboration Systems. Next, in his role as a  Technology Advisory for Data Center and Virtualization at Cisco, Christian served as a trusted advisory for M&A deals, strategy alignment as well as product and services category definition in the emerging space of data centers and virtualization technology.
