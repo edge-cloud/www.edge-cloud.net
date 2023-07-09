@@ -5,7 +5,6 @@ author: Christian Elsen
 author_profile: true
 layout: single
 permalink: /about/
-toc: true
 outdated: false
 ---
 
