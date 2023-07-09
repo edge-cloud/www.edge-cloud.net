@@ -2,6 +2,8 @@
 layout: xml
 sitemap: false
 permalink: /atom.xml
+outdated: false
+ads: false
 ---
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <channel>

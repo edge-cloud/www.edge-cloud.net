@@ -6,6 +6,7 @@ author_profile: true
 layout: single
 permalink: /about/
 outdated: false
+ads: false
 ---
 
 Edge Cloud is a personal blog about various technical subjects, especially data centers, virtualization, networking and cloud computing. The contributor of this site is <span class="vcard author post-author"><span class="fn">Christian Elsen</span></span>.

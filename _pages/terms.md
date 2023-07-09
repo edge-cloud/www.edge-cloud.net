@@ -5,6 +5,7 @@ last_modified_at: 2016-06-06
 layout: single
 toc: true
 outdated: false
+ads: false
 ---
 
 ## Privacy Policy
