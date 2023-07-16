@@ -551,6 +551,15 @@ body {
   }
 }
 
+.mys-wrapper {
+  &::before {
+    content: "Advertisement:";
+    font-size: $type-size-7;
+    color: $muted-text-color;
+    text-transform: uppercase;
+  }
+}
+
 /*
    Related
    ========================================================================== */
