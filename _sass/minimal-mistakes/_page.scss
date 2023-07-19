@@ -548,7 +548,6 @@ body {
       color: $muted-text-color;
       text-transform: uppercase;
     }
-    margin: inherit !important;
   }
 }
 
@@ -563,6 +562,11 @@ body {
   padding-bottom: 1em;
   margin-bottom: 1em;
 }
+
+.ins.adsbygoogle {
+  margin: auto !important;
+}
+
 
 /*
    Related
