@@ -558,15 +558,12 @@ body {
     color: $muted-text-color;
     text-transform: uppercase;
   }
-  border: 1px solid $primary-color;
   padding-bottom: 1em;
   margin-bottom: 1em;
+  @include breakpoint(max-width $small) {
+    border: 1px solid $primary-color;
+  }
 }
-
-.ins.adsbygoogle {
-  margin: auto !important;
-}
-
 
 /*
    Related
