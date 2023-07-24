@@ -298,7 +298,7 @@ Under the *DNS* tab  select **Custom name servers*  to start the setup. Enter th
 
 {% include figure image_path="/content/uploads/2023/06/move-your-dns-to-route53-custom-ns-setup.png" caption="Figure 11: Update your registration services through a \"Customer name server\" setup." %}
 
-Once complete, select **Save** for both sections. 
+Once complete, select **Save** for both sections. Afterwards click on **Switch to these settings** in the yellow box at the top of the screen.
 
 At this point it will take up to 48 hours for the zone of the domain to be fully moved from Google Domains to Route 53. During this time you should not make any changes to the records in the zone. Unfortunately Google Domains does not offer you the capability to reduce the TTL for NS records and thereby speed up this migration window. 
 
