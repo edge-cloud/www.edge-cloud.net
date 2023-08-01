@@ -1,7 +1,7 @@
 ---
 title: How to move your DNS to Amazon Route 53 [Video]
 author: Christian Elsen
-excerpt: Video with step-by-step guide to move your DNS - both registration services and zone file - to Amazon Route 53
+excerpt: YouTube Videos with step-by-step guide to move your DNS - both registration services and zone file - to Amazon Route 53
 layout: single
 image: /content/uploads/2023/07/video-move-your-dns-to-route53.png
 header:
@@ -17,7 +17,7 @@ tags:
 toc: false
 ---
 
-Youtube videos accompanying the previous blog post ["How to move your DNS to Amazon Route 53"](https://www.edge-cloud.net/2023/06/25/move-your-dns-to-route53/).
+<i class="fab fa-fw fa-youtube"></i> YouTube Videos accompanying the previous blog post ["How to move your DNS to Amazon Route 53"](https://www.edge-cloud.net/2023/06/25/move-your-dns-to-route53/).
 
 ## Part 1: Zone Services
 

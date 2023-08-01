@@ -19,6 +19,9 @@ toc_sticky: true
 
 This blog post will walk through the migration steps of the DNS setup for a public zone to [Amazon Route 53](https://aws.amazon.com/route53/). It will include steps for both making Route 53 the DNS service for an existing domain, but also transferring the DNS registration for this domain to Route 53. While it will use Google Domains as the DNS service initially providing the zone and registration service, the steps should be easily transferable to any other DNS provider (e.g. GoDaddy) that you would want to migrate away from.
 
+**<i class="fab fa-fw fa-youtube"></i> YouTube Video:** The content presented here is also available as a [series of YouTube videos](https://www.edge-cloud.net/2023/07/27/move-your-dns-to-route53/).
+{: .notice}
+
 **Note:** While you can accomplish most of the steps in this guide within about 1 hour, waiting for DNSSEC to be fully disabled will take 2 days. Therefore if you are planning to follow this guide you might want to skip ahead to the "Disable DNSSEC" step now and come back for the rest in a few days.
 {: .notice--info}
 
