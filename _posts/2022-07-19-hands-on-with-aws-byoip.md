@@ -288,7 +288,7 @@ For the above example the successful result would look like this:
 
 ### Advertise the address space
 
-Wwe are almost done and as a last step need to instruct AWS to advertise the BYOIP CIDR from the AWS region into which the address space was provisioned. This is done via the AWS CLI command ```aws ec2 advertise-byoip-cidr --cidr <cidr> --region <region>```.
+We are almost done and as a last step need to instruct AWS to advertise the BYOIP CIDR from the AWS region into which the address space was provisioned. This is done via the AWS CLI command ```aws ec2 advertise-byoip-cidr --cidr <cidr> --region <region>```.
 
 The result would look like this: 
 
