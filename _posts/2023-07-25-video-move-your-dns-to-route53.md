@@ -22,3 +22,7 @@ toc: false
 ## Part 1: Zone Services
 
 {% include video id="4B5hDjyFtVg" provider="youtube" %}
+
+## Part 2: Registration Services
+
+{% include video id="qAvwNJOf28Q" provider="youtube" %}
