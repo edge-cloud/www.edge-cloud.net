@@ -78,7 +78,7 @@ AWS Direct Connect gateway supports various forms of automation via it's API.
 
 Similar to AWS Direct Connect itself, DX Gateway also support multi-account setups. This is especially important for larger customer that want to split ownership of the components across teams or units. Also customers of [AWS GovCloud (US)](https://aws.amazon.com/govcloud-us/) benefit from this capability, as various components can be managed from a standard commercial account instead of the GovCloud account.
 
-Lookin at a standard deployment as depicted in Figure 4, it is possible - although not necessary - to split ownership of the three component types across different accounts.
+Looking at a standard deployment as depicted in Figure 4, it is possible - although not necessary - to split ownership of the three component types across different accounts.
 
 {% include figure image_path="/content/uploads/2019/09/DXGW-Owner.png" caption="Figure 4: Possible account ownership in multi-account setup." %}
 
@@ -115,6 +115,14 @@ Looking at the example in Figure, you also want to keep aggregates in mind. Whil
 
 If you advertise more than 100 routes over the BGP session, the BGP session will go into an idle state.
 {: .notice--info}
+
+# Behind the scenes
+
+Behind the scenes Direct Connect Gateway is implemented as a distributed BGP route reflector. Individual nodes of this BGP route reflector are distributed across multiple AWS Regions, which means that even in case of an entire AWS Region, the functionality of Direct Connect Gateway is not impaired.
+It's also important to point out that a Route Reflector - and thereby Direct Connect Gateway - is not in the traffic path, but rather part of the control path. Therefore traffic does not actually flow through a Direct Connect Gateway. 
+With this, it's sometimes better suited to depict a Direct Connect Gateway as such a distributed route reflector outside the traffic path (Figure 7).
+
+{% include figure image_path="/content/uploads/2019/09/DX-GW-RouteReflector.png" caption="Figure 7: Direct Connect Gateway depicted as a distributed route reflector outside the traffic path." %}
 
 # Summary
 
