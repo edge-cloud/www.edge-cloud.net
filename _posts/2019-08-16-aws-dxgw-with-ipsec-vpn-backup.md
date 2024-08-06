@@ -19,6 +19,9 @@ A very common network architecture pattern on AWS is to deploy an [AWS Site-to-S
 With the introduction of [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/) and [AWS Direct Connect Gateway](https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-gateways.html), this architecture pattern is no longer a trivial task.
 This blog post highlights the associated challenges and offers a solution using BGP route summarization and BGP prefix filtering to manage traffic over the Direct Connect and Site-to-Site (IPSec) VPN path as expected.
 
+**Note:** Failover and failback between AWS Direct Connect and AWS Site-to-Site can take around 60-90 seconds. During this time you might also see asymmetric traffic, where traffic in one direction flows over AWS Direct Connect, while traffic in the other direction flows over AWS Site-to-Site.
+{: .notice--info}
+
 # Desired Architecture
 
 To highlight the challenges with this architecture pattern, we assume the AWS network architecture as outlined in Figure 1.  
