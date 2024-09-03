@@ -27,7 +27,8 @@
     "uglify-js": "^3.19.0",
     "set-value": "^4.1.0",
     "braces": "^3.0.3",
-    "semver": "^5.7.2"
+    "semver": "^5.7.2",
+    "@blakeembrey/template": ">=1.2.0"
   },
   "scripts": {
     "uglify": "uglifyjs assets/js/vendor/jquery/jquery-3.6.0.js assets/js/plugins/jquery.fitvids.js assets/js/plugins/jquery.greedy-navigation.js assets/js/plugins/jquery.magnific-popup.js assets/js/plugins/jquery.ba-throttle-debounce.js assets/js/plugins/gumshoe.js assets/js/_main.js -c -m -o assets/js/main.min.js",
