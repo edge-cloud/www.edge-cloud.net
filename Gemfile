@@ -8,7 +8,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 4.3.2"
+gem "jekyll"
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
@@ -25,8 +25,8 @@ end
 # Theme: Minimal-Mistakes
 gem "minimal-mistakes-jekyll", "~> 4.24.0"
 
-gem "jekyll-mastodon_webfinger", "~> 1.0"
+gem "jekyll-mastodon_webfinger"
 
-gem "webrick", "~> 1.8.1"
+gem "webrick"
 
-gem "rmagick", "~> 6.0"
+gem "rmagick"
