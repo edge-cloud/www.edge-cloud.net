@@ -39,7 +39,7 @@ jobs:
       run: |
             sudo sed -i 's/azure\.//' /etc/apt/sources.list
             sudo apt-get update
-            sudo apt-get install -y webp libmagickwand-dev
+            sudo apt-get install -y webp libmagickwand-dev imagemagick
 
     - name: "Download site from AWS S3"
       run: |
