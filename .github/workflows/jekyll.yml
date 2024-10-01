@@ -32,14 +32,14 @@ jobs:
     - name: "Set up Ruby"
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7.1
+        ruby-version: 3.5.20
         bundler-cache: true
         
     - name: "Install Ubuntu dependencies"
       run: |
             sudo sed -i 's/azure\.//' /etc/apt/sources.list
             sudo apt-get update
-            sudo apt-get install -y webp
+            sudo apt-get install -y webp libmagickwand-dev
 
     - name: "Download site from AWS S3"
       run: |
