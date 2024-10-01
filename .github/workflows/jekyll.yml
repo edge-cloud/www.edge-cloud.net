@@ -29,17 +29,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: "Set up Ruby"
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.3.5
-        bundler-cache: true
-        
     - name: "Install Ubuntu dependencies"
       run: |
             sudo sed -i 's/azure\.//' /etc/apt/sources.list
             sudo apt-get update
             sudo apt-get install -y webp libmagickwand-dev imagemagick
+            
+    - name: "Set up Ruby"
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.3.5
+        bundler-cache: true
 
     - name: "Download site from AWS S3"
       run: |
