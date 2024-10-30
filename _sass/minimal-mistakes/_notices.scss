@@ -107,3 +107,7 @@
 .notice--danger {
   @include notice($danger-color);
 }
+
+.outdated__warning {
+  margin-top: 2.5em !important; 
+}
