@@ -131,7 +131,7 @@ author:
       rel: "me"
     - label: "Mastodon"
       icon: "fab fa-fw fa-mastodon"
-      url: "https://noc.social/@chriselsen"  
+      url: "https://mastodon.social/@chriselsen"  
       rel: "me"
     - label: "YouTube"
       icon: "fab fa-fw fa-youtube"
@@ -161,7 +161,7 @@ footer:
   links:
     - label: "Mastodon"
       icon: "fab fa-fw fa-mastodon"
-      url: https://noc.social/@chriselsen
+      url: https://mastodon.social/@chriselsen
     - label: "YouTube"
       icon: "fab fa-fw fa-youtube"
       url: "https://www.youtube.com/@EdgeCloud"
@@ -373,14 +373,14 @@ compress_html:
 # - https://github.com/philnash/jekyll-mastodon_webfinger
 mastodon:
   username: chriselsen
-  instance: noc.social
+  instance: mastodon.social
 
 external_links:
   enabled: true
   rel: external nofollow noopener
   target: _blank
   exclude:
-    - https://noc.social
+    - https://mastodon.social
     
 ############################################################
 # Defaults
