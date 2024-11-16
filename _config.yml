@@ -89,13 +89,13 @@ naver_site_verification  :
 
 ############################################################
 # Social Sharing
-twitter:
-  username               :
 facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : "/assets/images/og-image.jpg" # Open Graph/Twitter default site image
+og_image                 : "/assets/images/og-image.jpg" # Open Graph default site image
+bluesky:
+  username               : "chris.elsen.nz"
 
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
@@ -133,6 +133,10 @@ author:
       icon: "fab fa-fw fa-mastodon"
       url: "https://mastodon.social/@chriselsen"  
       rel: "me"
+    - label: "Bluesky"
+      icon: "fab fa-fw fa-bluesky"
+      url: "https://bsky.app/profile/chris.elsen.nz"  
+      rel: "me"
     - label: "YouTube"
       icon: "fab fa-fw fa-youtube"
       url: "https://www.youtube.com/@EdgeCloud"
@@ -162,6 +166,9 @@ footer:
     - label: "Mastodon"
       icon: "fab fa-fw fa-mastodon"
       url: https://mastodon.social/@chriselsen
+    - label: "Bluesky"
+      icon: "fab fa-fw fa-bluesky"
+      url: https://bsky.app/profile/chris.elsen.nz
     - label: "YouTube"
       icon: "fab fa-fw fa-youtube"
       url: "https://www.youtube.com/@EdgeCloud"

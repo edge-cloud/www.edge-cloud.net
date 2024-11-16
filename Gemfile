@@ -23,7 +23,7 @@ group :jekyll_plugins do
 end
 
 # Theme: Minimal-Mistakes
-gem "minimal-mistakes-jekyll", "~> 4.24.0"
+gem "minimal-mistakes-jekyll", "~> 4.26.2"
 
 gem "jekyll-mastodon_webfinger"
 
