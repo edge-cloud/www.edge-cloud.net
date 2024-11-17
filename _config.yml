@@ -95,7 +95,7 @@ facebook:
   publisher              :
 og_image                 : "/assets/images/og-image.jpg" # Open Graph default site image
 bluesky:
-  username               : "chris.elsen.nz"
+  username               : "edge-cloud.net"
 
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
@@ -135,7 +135,7 @@ author:
       rel: "me"
     - label: "Bluesky"
       icon: "fab fa-fw fa-bluesky"
-      url: "https://bsky.app/profile/chris.elsen.nz"  
+      url: "https://bsky.app/profile/edge-cloud.net"  
       rel: "me"
     - label: "YouTube"
       icon: "fab fa-fw fa-youtube"
@@ -165,10 +165,10 @@ footer:
   links:
     - label: "Mastodon"
       icon: "fab fa-fw fa-mastodon"
-      url: https://mastodon.social/@chriselsen
+      url: "https://mastodon.social/@chriselsen"
     - label: "Bluesky"
       icon: "fab fa-fw fa-bluesky"
-      url: https://bsky.app/profile/chris.elsen.nz
+      url: "https://bsky.app/profile/edge-cloud.net"
     - label: "YouTube"
       icon: "fab fa-fw fa-youtube"
       url: "https://www.youtube.com/@EdgeCloud"
