@@ -1,5 +1,5 @@
 ---
-title: \"Bring your own IP addresses\" (BYOIP) for Amazon EC2 [Video]
+title: Bring your own IP addresses (BYOIP) for Amazon EC2 [Video]
 author: Christian Elsen
 excerpt: YouTube Videos with step-by-step guide for moving IP prefixes to AWS with "Bring your own IP addresses" (BYOIP) for Amazon EC2
 layout: single
