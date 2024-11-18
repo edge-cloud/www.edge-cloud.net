@@ -93,7 +93,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : "/assets/images/og-image.jpg" # Open Graph default site image
+og_image                 : "/assets/images/og-image.png" # Open Graph default site image
 bluesky:
   username               : "edge-cloud.net"
 
