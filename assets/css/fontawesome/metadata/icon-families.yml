@@ -22693,22 +22693,6 @@ genderless:
       - sexless
   unicode: f22d
   voted: false
-get-pocket:
-  changes:
-    - 4.4.0
-    - 5.0.0
-  familyStylesByLicense:
-    free:
-      - family: classic
-        style: brands
-    pro:
-      - family: classic
-        style: brands
-  label: Get Pocket
-  search:
-    terms: []
-  unicode: f265
-  voted: false
 gg:
   changes:
     - 4.4.0
