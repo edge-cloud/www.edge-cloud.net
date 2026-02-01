@@ -3,6 +3,9 @@ title: Direct Connect Public VIF for S3 traffic only
 author: Christian Elsen
 excerpt: How to use a Direct Connect Public VIF solely for S3 traffic only
 layout: single
+image: /content/uploads/2026/01/aws-dx-public-vid-for-s3-only.png
+header:
+  og_image: /content/uploads/2026/01/aws-dx-public-vid-for-s3-only.png
 permalink: /2026/01/13/aws-dx-public-vid-for-s3-only/
 categories:
   - EdgeCloud
