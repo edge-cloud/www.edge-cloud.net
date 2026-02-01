@@ -18669,17 +18669,6 @@ genderless:
     - solid
   unicode: f22d
   voted: false
-get-pocket:
-  changes:
-    - 4.4.0
-    - 5.0.0
-  label: Get Pocket
-  search:
-    terms: []
-  styles:
-    - brands
-  unicode: f265
-  voted: false
 gg:
   changes:
     - 4.4.0

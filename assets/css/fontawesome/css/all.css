@@ -7545,9 +7545,6 @@ readers do not read off random characters that represent icons */
 .fa-creative-commons-nc-jp:before {
   content: "\f4ea"; }
 
-.fa-get-pocket:before {
-  content: "\f265"; }
-
 .fa-perbyte:before {
   content: "\e083"; }
 
