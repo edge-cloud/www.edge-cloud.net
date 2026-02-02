@@ -162,6 +162,7 @@ author:
 ############################################################
 # Site Footer
 footer:
+  since: 2013
   links:
     - label: "Mastodon"
       icon: "fab fa-fw fa-mastodon"
@@ -250,6 +251,16 @@ kramdown:
 sass:
   sass_dir: _sass
   style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  quiet_deps: true # Suppress deprecation warnings from dependencies
+  load_paths:
+    - _sass
+  sourcemap: never
+  # Suppress Sass deprecation warnings
+  silence_deprecations:
+    - import
+    - global-builtin
+    - color-functions
+    - if-function
 
 ############################################################
 # Outputting
