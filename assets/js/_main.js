@@ -170,15 +170,13 @@ $(document).ready(function () {
   };
 
   var copyButtonEventListener = function (event) {
-    var thisButton = event.target;
+    var thisButton = event.currentTarget;
+    var container = thisButton.parentElement;
 
-    // Locate the <code> element
-    var codeBlock = thisButton.nextElementSibling;
-    while (codeBlock && codeBlock.tagName.toLowerCase() !== "code") {
-      codeBlock = codeBlock.nextElementSibling;
-    }
+    // Find the <code> element within the container
+    var codeBlock = container.querySelector('code');
+    
     if (!codeBlock) {
-      // No <code> found - wtf?
       console.warn(thisButton);
       throw new Error("No code block found for this button.");
     }
@@ -207,14 +205,24 @@ $(document).ready(function () {
 
   if (window.enable_copy_code_button) {
     document
-      .querySelectorAll(".page__content pre.highlight > code")
+      .querySelectorAll(".page__content pre.highlight > code, .page__content div.highlight > pre > code")
       .forEach(function (element, index, parentList) {
-        // Locate the <pre> element
-        var container = element.parentElement;
+        // Locate the container element (either <pre> or <div.highlighter-rouge>)
+        var codeElement = element;
+        var preElement = codeElement.parentElement;
+        var container = preElement.parentElement;
+        
+        // For markdown fences: div.highlighter-rouge > div.highlight > pre > code
+        // We want to add button to div.highlighter-rouge
+        if (container.classList.contains('highlight')) {
+          container = container.parentElement;
+        }
+        
         // Sanity check - don't add an extra button if there's already one
-        if (container.firstElementChild.tagName.toLowerCase() !== "code") {
+        if (container.querySelector('.clipboard-copy-button')) {
           return;
         }
+        
         var copyButton = document.createElement("button");
         copyButton.title = "Copy to clipboard";
         copyButton.className = "clipboard-copy-button";
