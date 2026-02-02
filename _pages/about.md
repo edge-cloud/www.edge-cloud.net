@@ -1,6 +1,6 @@
 ---
 title: About
-date: 2022-06-30T08:00:00+00:00
+date: 2026-02-01T08:00:00+00:00
 author: Christian Elsen
 author_profile: true
 layout: single
@@ -47,15 +47,15 @@ As a **Principal Networking Solutions Architect at AWS**, I:
 ### VMware (2012-2015)
 **Integration Engineer → Integration Architect**
 
-- Architected [VMware Validated Designs](http://www.vmware.com/solutions/software-defined-datacenter/validated-designs.html) for Software Defined Data Centers
+- Architected VMware Validated Designs for Software Defined Data Centers
 - Led IPv6 readiness initiatives across vSphere product suite
-- Designed [VMworld Hands-on Labs](https://www.vmworld.com/blogs/vmworld/2012/07/18/hands-on-labs-updates-for-vmworld-2012) experiences
+- Designed VMworld Hands-on Labs experiences
 - Provided feedback on emerging VMware technologies
 
 ### Cisco Systems (2008-2012)
 **Software Engineer → Technology Advisory → Product Manager**
 
-- Spearheaded [Technology Intelligence initiatives](http://blogs.cisco.com/news/scouting-the-next-big-thing-ciscos-technology-radar-2) for executive decision-making
+- Spearheaded Technology Intelligence initiatives for executive decision-making
 - Advised on M&A deals and strategy alignment in data center/virtualization space
 - Developed prototypes for remote collaboration systems
 - Contributed to disruptive innovation projects
