@@ -3,7 +3,11 @@
    ========================================================================== */
 
 .masthead {
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 4.1em;
+  background: white;
   border-bottom: 1px solid $border-color;
   -webkit-animation: $intro-transition;
   animation: $intro-transition;
@@ -13,7 +17,8 @@
 
   &__inner-wrap {
     @include clearfix;
-    margin-inline: auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 1em;
     max-width: 100%;
     display: -webkit-box;
@@ -58,16 +63,17 @@
 }
 
 .masthead__menu {
-  float: inline-start;
-  margin-inline: 0;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
   width: 100%;
   clear: both;
 
   .site-nav {
-    margin-inline-start: 0;
+    margin-left: 0;
 
     @include breakpoint($small) {
-      float: inline-end;
+      float: right;
     }
   }
 
@@ -85,7 +91,7 @@
   white-space: nowrap;
 
   &--lg {
-    padding-inline-end: 2em;
+    padding-right: 2em;
     font-weight: 700;
   }
 }

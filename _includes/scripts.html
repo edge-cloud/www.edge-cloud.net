@@ -4,6 +4,12 @@
   {% endfor %}
 {% else %}
   <script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/lazysizes.min.js'| relative_url }}"></script>
+
+  {% if page.use_math %}
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  {% endif %}
+
 {% endif %}
 
 <script src="{{ '/assets/js/lazysizes.min.js'| relative_url }}"></script>
