@@ -46,8 +46,6 @@ comments:
     issue_term           : "pathname" # "pathname" (default)
 atom_feed:
   path                   : # blank (default) uses feed.xml
-feed:
-  excerpt_only           : true
 search                   : true # true, false (default)
 search_full_content      : true # true, false (default)
 search_provider          : algolia # lunr (default), algolia, google
@@ -103,7 +101,7 @@ author:
   email            :
   links:
     - label: "Aotearoa"
-      icon: "fas fa-fw fa-map-marker-alt"
+      icon: "fas fa-fw fa-location-dot"
       url: "https://www.newzealand.com/int/te-anau/"
     - label: "Website"
       icon: "fas fa-fw fa-link"
@@ -133,7 +131,7 @@ author:
       icon: "fas fa-fw fa-network-wired"
       url: "https://as213151.net/"
     - label: "Buy me a coffee"
-      icon: "fas fa-fw fa-coffee"
+      icon: "bmc-logo"
       url: "https://www.buymeacoffee.com/chriselsen/"
     - label: "PayPal Me"
       icon: "fab fa-fw fa-paypal\" style=\"color: #253B80;"
@@ -161,7 +159,7 @@ footer:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/chriselsen/"
     - label: "Buy me a coffee"
-      icon: "fas fa-fw fa-coffee"
+      icon: "bmc-logo"
       url: "https://www.buymeacoffee.com/chriselsen/"
     - label: "PayPal Me"
       icon: "fab fa-fw fa-paypal\" style=\"color: #253B80;"
@@ -249,7 +247,6 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
-  - jekyll-feed
   - jekyll-include-cache
   - jekyll-redirect-from
   - jekyll-link-attributes
@@ -261,7 +258,6 @@ whitelist:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
-  - jekyll-feed
   - jekyll-include-cache
 
 ############################################################
