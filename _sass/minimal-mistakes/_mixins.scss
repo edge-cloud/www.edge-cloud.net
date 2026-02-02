@@ -57,7 +57,6 @@
    https://github.com/easy-designs/yiq-color-contrast
    ========================================================================== */
 
-
 @function yiq-is-light(
   $color,
   $threshold: $yiq-contrasted-threshold
@@ -66,7 +65,7 @@
   $green: green($color);
   $blue: blue($color);
 
-  $yiq: calc((($red*299) + ($green*587) + ($blue*114))/1000);
+  $yiq: (($red*299)+($green*587)+($blue*114))/1000;
 
   @if $yiq-debug { @debug $yiq, $threshold; }
 
