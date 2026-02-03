@@ -49,7 +49,7 @@ The challenge lies in identifying and maintaining the correct S3 IP prefixes for
 
 # Automated Solution: s3-only-pubvif Repository
 
-The [s3-only-pubvif](https://github.com/chriselsen/s3-only-pubvif) Github repository provides an automated solution to this challenge by:
+The <i class="fab fa-github"></i> [s3-only-pubvif](https://github.com/chriselsen/s3-only-pubvif) Github repository provides an automated solution to this challenge by:
 
 ## Generating Region-Specific Prefix Lists
 
