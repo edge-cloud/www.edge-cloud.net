@@ -16,14 +16,18 @@ gem "jekyll"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
+  gem "jekyll-paginate"
+  gem "jekyll-sitemap"
+  gem "jekyll-gist"
+  gem "jekyll-include-cache"
   gem "jekyll-redirect-from"
   gem "jekyll-link-attributes"
   gem "jekyll-responsive-image"
   gem "jekyll-algolia"
 end
 
-# Theme: Minimal-Mistakes
-gem "minimal-mistakes-jekyll", "~> 4.27.0"
+# Theme: Local copy in _includes, _layouts, _sass
+# gem "minimal-mistakes-jekyll"
 
 gem "jekyll-mastodon_webfinger"
 

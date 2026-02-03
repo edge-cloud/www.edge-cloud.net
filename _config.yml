@@ -31,7 +31,7 @@ adsense                  : false # Google Adsense support
 words_per_minute         : 200
 outdated_time_seconds    : 157680000 # After which time in seconds (1 year = 31536000 seconds) is a post considered outdated.
 comments:
-  provider               : "utterances" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2", "utterances", "custom"
+  provider               : "utterances" # false (default), "disqus", "discourse", "facebook", "utterances", "giscus", "custom"
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -44,30 +44,8 @@ comments:
   utterances:
     theme                : "github-light" # "github-light" (default), "github-dark"
     issue_term           : "pathname" # "pathname" (default)
-staticman:
-  allowedFields          : ['name', 'email', 'message'] # ['name', 'email', 'url', 'message']
-  branch                 : "master" # "master"
-  commitMessage          : "New comment by {fields.name}" # "New comment by {fields.name}"
-  filename               : comment-{@timestamp} # comment-{@timestamp}
-  format                 : "yml" # "yml"
-  moderation             : true # true
-  path                   : "/_data/comments/{options.slug}" # "/_data/comments/{options.slug}" (default)
-  requiredFields         : ['name', 'email', 'message'] # ['name', 'email', 'message']
-  transforms:
-    email                : "md5" # "md5"
-  generatedFields:
-    date:
-      type               : "date" # "date"
-      options:
-        format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
-  endpoint               : https://api.staticman.net/v3/entry/github/ # URL of your own deployment with trailing slash, will fallback to the public instance
-reCaptcha:
-  siteKey                : 6Lc7AZcUAAAAAHT8_2CrB212rehB-T5dF8N6T4-w
-  secret                 : FqQbcOo7yGiRtPmysDZjkWZocn+gib26HtUj/tAkQVzWgT0jZXlsTAf37tgTqOahlhhkPZpXHVqXpNleJJ9GtGI6pqV8lLK9GgYXAKlue1h13Z4dAGh27L1bDFPSXbTtxWvcHn7FW+9iPxVSRjhVCz0pFHDKCEVue2LIVj+iO2w=
 atom_feed:
   path                   : # blank (default) uses feed.xml
-feed:
-  excerpt_only           : true
 search                   : true # true, false (default)
 search_full_content      : true # true, false (default)
 search_provider          : algolia # lunr (default), algolia, google
@@ -123,7 +101,7 @@ author:
   email            :
   links:
     - label: "Aotearoa"
-      icon: "fas fa-fw fa-map-marker-alt"
+      icon: "fas fa-fw fa-location-dot"
       url: "https://www.newzealand.com/int/te-anau/"
     - label: "Website"
       icon: "fas fa-fw fa-link"
@@ -153,7 +131,7 @@ author:
       icon: "fas fa-fw fa-network-wired"
       url: "https://as213151.net/"
     - label: "Buy me a coffee"
-      icon: "fas fa-fw fa-coffee"
+      icon: "bmc-logo"
       url: "https://www.buymeacoffee.com/chriselsen/"
     - label: "PayPal Me"
       icon: "fab fa-fw fa-paypal\" style=\"color: #253B80;"
@@ -162,6 +140,7 @@ author:
 ############################################################
 # Site Footer
 footer:
+  since: 2013
   links:
     - label: "Mastodon"
       icon: "fab fa-fw fa-mastodon"
@@ -180,7 +159,7 @@ footer:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/chriselsen/"
     - label: "Buy me a coffee"
-      icon: "fas fa-fw fa-coffee"
+      icon: "bmc-logo"
       url: "https://www.buymeacoffee.com/chriselsen/"
     - label: "PayPal Me"
       icon: "fab fa-fw fa-paypal\" style=\"color: #253B80;"
@@ -250,6 +229,10 @@ kramdown:
 sass:
   sass_dir: _sass
   style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  quiet_deps: true
+  silence_deprecations:
+    - import
+    - global-builtin
 
 ############################################################
 # Outputting
@@ -264,7 +247,6 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
-  - jekyll-feed
   - jekyll-include-cache
   - jekyll-redirect-from
   - jekyll-link-attributes
@@ -276,7 +258,6 @@ whitelist:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
-  - jekyll-feed
   - jekyll-include-cache
 
 ############################################################

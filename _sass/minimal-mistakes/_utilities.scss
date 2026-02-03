@@ -29,7 +29,8 @@
 .visually-hidden,
 .screen-reader-text,
 .screen-reader-text span,
-.screen-reader-shortcut {
+.screen-reader-shortcut,
+.sr-only {
   position: absolute !important;
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px !important;
@@ -568,6 +569,16 @@ a.reversefootnote {
 /*
    Responsive Video Embed
    ========================================================================== */
+
+// a <textarea> to hold text for document.execCommand("copy")
+.clipboard-helper {
+  font-size: 12pt !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  outline: none !important;
+  position: absolute;
+}
 
 .responsive-video-container {
   position: relative;
