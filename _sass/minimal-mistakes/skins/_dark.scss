@@ -3,26 +3,40 @@
    ========================================================================== */
 
 /* Colors */
-$background-color: #252a34 !default;
-$text-color: #eaeaea !default;
-$primary-color: #00adb5 !default;
-$border-color: mix(#fff, $background-color, 20%) !default;
-$code-background-color: mix(#000, $background-color, 15%) !default;
-$code-background-color-dark: mix(#000, $background-color, 20%) !default;
-$form-background-color: mix(#000, $background-color, 15%) !default;
-$footer-background-color: mix(#000, $background-color, 30%) !default;
-$link-color: mix($primary-color, $text-color, 40%) !default;
-$link-color-hover: mix(#fff, $link-color, 25%) !default;
-$link-color-visited: mix(#000, $link-color, 25%) !default;
-$masthead-link-color: $text-color !default;
-$masthead-link-color-hover: mix(#000, $text-color, 20%) !default;
-$navicon-link-color-hover: mix(#000, $background-color, 30%) !default;
+$background-color: #121212 !default;
+$text-color: rgba(255, 255, 255, 0.87) !default;
+$muted-text-color: rgba(255, 255, 255, 0.6) !default;
+$border-color: rgba(255, 255, 255, 0.12) !default;
+$form-background-color: rgba(255, 255, 255, 0.05) !default;
+$footer-background-color: #1a1a1a !default;
 
-.author__urls.social-icons .svg-inline--fa,
-.page__footer-follow .social-icons .svg-inline--fa {
-  color: inherit;
-}
+$primary-color: #bb86fc !default;
 
-.ais-search-box .ais-search-box--input {
-  background-color: $form-background-color;
-}
+$link-color: #bb86fc !default;
+$link-color-hover: rgba(255, 255, 255, 0.87) !default;
+$masthead-link-color: rgba(255, 255, 255, 0.87) !default;
+$masthead-link-color-hover: #bb86fc !default;
+
+$code-background-color: #1e1e1e !default;
+$code-background-color-dark: #333333 !default;
+
+$notice-background-mix: 80% !default;
+$code-notice-background-mix: 90% !default;
+
+/* Syntax highlighting (base16) */
+$base00: #263238 !default;
+$base01: #2e3c43 !default;
+$base02: #314549 !default;
+$base03: #546e7a !default;
+$base04: #b2ccd6 !default;
+$base05: #eeffff !default;
+$base06: #eeffff !default;
+$base07: #ffffff !default;
+$base08: #f07178 !default;
+$base09: #f78c6c !default;
+$base0a: #ffcb6b !default;
+$base0b: #c3e88d !default;
+$base0c: #89ddff !default;
+$base0d: #82aaff !default;
+$base0e: #c792ea !default;
+$base0f: #ff5370 !default;

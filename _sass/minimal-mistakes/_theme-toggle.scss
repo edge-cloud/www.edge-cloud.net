@@ -1,0 +1,28 @@
+#theme-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1.25em;
+  padding: 0.5em;
+
+  .fa-sun {
+    display: none;
+  }
+
+  .fa-moon {
+    display: inline-block;
+  }
+}
+
+html.dark {
+  #theme-toggle {
+    .fa-sun {
+      display: inline-block;
+    }
+
+    .fa-moon {
+      display: none;
+    }
+  }
+}

@@ -17,6 +17,19 @@
 <link rel="preload" href="/assets/css/main.css" as="style">
 <link rel="preload" href="/assets/css/fontawesome/css/all.min.css" as="style">
 
+<script>
+  (function() {
+    var isDark = localStorage.getItem("theme") === "dark" || (localStorage.getItem("theme") === null && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "{{ '/assets/css/dark.css' | relative_url }}";
+      document.head.appendChild(link);
+    }
+  })();
+</script>
+
 <link rel="dns-prefetch" href="https://www.google-analytics.com">
 <link rel="dns-prefetch" href="http://5xvqigedj8-dsn.algolia.net">
 
