@@ -3,3 +3,44 @@
 
 @import "minimal-mistakes/skins/dark";
 @import "minimal-mistakes";
+
+html {
+    font-size: 12px;
+  
+    @include breakpoint($small) {
+      font-size: 12px;
+    }
+    
+    @include breakpoint($medium) {
+      font-size: 14px;
+    }
+  
+    @include breakpoint($large) {
+      font-size: 16px;
+    }
+  
+    @include breakpoint($x-large) {
+      font-size: 18px;
+    }
+}
+
+.masthead {
+  background: $background-color;
+}
+
+.fab, .fas, .far {
+  color: inherit !important;
+}
+
+svg path {
+  fill: currentColor !important;
+}
+
+.page__content img {
+  background: white;
+  padding: 0.5em;
+}
+
+.search__toggle {
+  color: $text-color !important;
+}
