@@ -1,28 +1,31 @@
 #theme-toggle {
   background: none;
   border: none;
-  color: inherit;
+  color: $primary-color;
   cursor: pointer;
   font-size: 1.25em;
   padding: 0.5em;
+  outline: none;
 
-  .fa-sun {
-    display: none;
+  &:hover {
+    color: mix(#000, $primary-color, 25%);
   }
 
-  .fa-moon {
-    display: inline-block;
+  .fa-sun,
+  .fa-moon,
+  .fa-circle-half-stroke {
+    display: none;
   }
 }
 
-html.dark {
-  #theme-toggle {
-    .fa-sun {
-      display: inline-block;
-    }
+html[data-palette="auto"] #theme-toggle .fa-circle-half-stroke {
+  display: inline-block;
+}
 
-    .fa-moon {
-      display: none;
-    }
-  }
+html[data-palette="light"] #theme-toggle .fa-sun {
+  display: inline-block;
+}
+
+html[data-palette="dark"] #theme-toggle .fa-moon {
+  display: inline-block;
 }

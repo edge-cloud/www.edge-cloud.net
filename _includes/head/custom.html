@@ -19,11 +19,17 @@
 
 <script>
   (function() {
-    var isDark = localStorage.getItem("theme") === "dark" || (localStorage.getItem("theme") === null && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    if (isDark) {
+    var palette = localStorage.getItem("palette") || "auto";
+    var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var shouldUseDark = palette === "dark" || (palette === "auto" && prefersDark);
+    
+    document.documentElement.setAttribute("data-palette", palette);
+    
+    if (shouldUseDark) {
       document.documentElement.classList.add("dark");
       var link = document.createElement("link");
       link.rel = "stylesheet";
+      link.id = "dark-theme-style";
       link.href = "{{ '/assets/css/dark.css' | relative_url }}";
       document.head.appendChild(link);
     }
