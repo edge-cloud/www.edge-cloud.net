@@ -1,20 +1,15 @@
 <script>
-// Including InstantSearch.js library and styling
 const loadSearch = function() {
   const loadCSS = function(src) {
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.type = 'text/css';
     link.href = src;
-    link.media = 'all';
     document.head.appendChild(link);
   };
 
   var script = document.createElement('script');
-  script.setAttribute("type", "text/javascript");
-  script.setAttribute("src", "https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js");
+  script.src = "https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch.min.js";
   script.addEventListener("load", function() {
-    // Instantiating InstantSearch.js with Algolia credentials
     const search = instantsearch({
       appId: '{{ site.algolia.application_id }}',
       apiKey: '{{ site.algolia.search_only_api_key }}',
@@ -40,7 +35,6 @@ const loadSearch = function() {
       `;
     }
 
-    // Adding searchbar and results widgets
     search.addWidget(
       instantsearch.widgets.searchBox({
         container: '.search-searchbar',
@@ -64,14 +58,12 @@ const loadSearch = function() {
   });
   document.body.appendChild(script);
 
-  loadCSS("https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css");
-  loadCSS("https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css");
+  loadCSS("https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch.min.css");
+  loadCSS("https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch-theme-algolia.min.css");
 };
 
-// Starting the search only when toggle is clicked
 $(document).ready(function() {
   var scriptLoaded = false;
-
   $(".search__toggle").on("click", function() {
     if (!scriptLoaded) {
       loadSearch();

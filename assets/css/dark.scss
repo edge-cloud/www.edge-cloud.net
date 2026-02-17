@@ -44,3 +44,16 @@ svg path {
 .search__toggle {
   color: $text-color !important;
 }
+
+#theme-toggle {
+  color: $text-color !important;
+}
+
+.ais-search-box--input {
+  background-color: $form-background-color !important;
+  color: $text-color !important;
+}
+
+.search-content a {
+  color: $link-color !important;
+}

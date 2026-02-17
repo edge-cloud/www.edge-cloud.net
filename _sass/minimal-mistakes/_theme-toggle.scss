@@ -1,11 +1,15 @@
 #theme-toggle {
   background: none;
   border: none;
-  color: inherit;
+  color: $primary-color;
   cursor: pointer;
   font-size: 1.25em;
   padding: 0.5em;
   outline: none;
+
+  &:hover {
+    color: mix(#000, $primary-color, 25%);
+  }
 
   .fa-sun,
   .fa-moon,
