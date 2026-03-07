@@ -6,3 +6,4 @@ _site
 config
 Gemfile.lock
 content.tgz
+node_modules/
