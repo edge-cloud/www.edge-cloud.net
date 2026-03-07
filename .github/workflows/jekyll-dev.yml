@@ -17,12 +17,12 @@ jobs:
     - name: "Set up Ruby"
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7.1
+        ruby-version: 3.3.5
         bundler-cache: true
         
     - name: "Install Ubuntu dependencies"
       run: |
-            sudo apt-get install -y webp
+            sudo apt-get install -y webp libmagickwand-dev
 
     - name: "Clone Site from GitHub pages"
       run: |
