@@ -41,11 +41,13 @@ jobs:
     - name: "Deploy to GitHub pages"
       run: |
             cd ./_site
-            git add -A
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
+            git config --local credential.helper ''
+            git remote set-url origin https://x-access-token:${{ secrets.EDGECLOUD_GITHUB_TOKEN }}@github.com/edge-cloud/edge-cloud.github.io.git
+            git add -A
             git commit -m 'deploy'
-            git push --force https://${{ secrets.EDGECLOUD_GITHUB_TOKEN }}@github.com/edge-cloud/edge-cloud.github.io.git
+            git push --force origin
 
       
     
