@@ -7,3 +7,5 @@ config
 Gemfile.lock
 content.tgz
 node_modules/
+content/uploads/**/*.webp
+assets/images/*.webp
