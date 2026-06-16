@@ -3,6 +3,7 @@ _site
 .jekyll-metadata
 .jekyll-cache
 .bundle
+.vscode/
 config
 Gemfile.lock
 content.tgz
