@@ -1,6 +1,6 @@
 ---
 title: About
-date: 2026-02-01T08:00:00+00:00
+date: 2026-06-17T08:00:00+00:00
 author: Christian Elsen
 author_profile: true
 layout: single
@@ -9,62 +9,66 @@ outdated: false
 ads: false
 ---
 
-**Edge Cloud** is a technical blog focused on cloud computing, networking, and data center technologies. I'm Christian Elsen, a Principal Networking Solutions Architect at AWS, sharing insights on modern infrastructure and emerging technologies.
+**Edge Cloud** is a technical blog about cloud networking, infrastructure automation, and data center architecture. I'm Christian Elsen — a Principal Solutions Architect (Networking Specialist) at AWS and founder of TAK.NZ.
+
+I've been writing here since 2013, sharing deep-dives on AWS networking services, IPv6, infrastructure design, and increasingly, AI-augmented engineering workflows.
 
 ## TL;DR
 
-💼 **Current Role:** Principal Networking Solutions Architect at AWS  
-🎯 **Expertise:** Cloud networking, data centers, virtualization, IPv6  
-📝 **Blog Focus:** AWS networking, infrastructure design, technical deep-dives  
-🌐 **Background:** 15+ years across Cisco, VMware, Cloudflare, and AWS  
+💼 **Current Role:** Principal Solutions Architect — Networking Specialist at AWS  
+🚀 **Side Project:** Founder of [TAK.NZ](https://tak.nz/) — real-time common operating platform for emergency responders  
+🎯 **Expertise:** Cloud networking, network security, AI/LLM process automation, IPv6  
+📝 **Blog Focus:** AWS networking deep-dives, infrastructure automation, tooling, and open-source projects  
+🌐 **Background:** 19 years across Cisco, VMware, Cloudflare, and AWS  
+🔬 **Research Network:** Owner/operator of [AS213151](https://as213151.net/) — BGP routing, network observability, IPv6  
 
 ## What I Do Now
 
-As a **Principal Networking Solutions Architect at AWS**, I:
+As a **Principal Solutions Architect — Networking Specialist** at AWS, I:
 
-- Design networking solutions for enterprise customers and partners
-- Author technical content including blogs, whitepapers, and reference architectures
-- Develop internal training programs and best practices
-- Advise on complex networking challenges and emerging technologies
+- Design complex networking and security architectures for AWS's most strategic customers and partners
+- Build AI/LLM-powered quality systems and automation tools that scale knowledge across the organization
+- Lead the creation of the AWS Networking Best Practices Guide using a human-led, AI-augmented content model
+- Author blogs, whitepapers, and reference architectures; deliver sessions at re:Invent and AWS Summits
+- Curate domain knowledge for internal AI agents and mentor specialist architects
+
+Previously, I built and scaled AWS's Networking & Infrastructure Security specialist team as a Senior Manager (2024–2026), leading 7 Specialist Solutions Architects before transitioning back to principal-level technical leadership.
 
 ## Career Highlights
 
-### Amazon Web Services (2016-Present)
-**Enterprise Support Lead → Principal Solutions Architect**
+### Amazon Web Services (2016–Present)
+**Enterprise Support Lead → Principal Solutions Architect → Senior Manager → Principal Solutions Architect**
 
-- Served as dedicated technical contact for strategic enterprise customers
-- Led application performance optimization and cost reduction initiatives
-- Designed networking solutions for large-scale AWS deployments
-- Contributed to AWS networking best practices and documentation
+- Designed networking architectures (Transit Gateway, Direct Connect, Network Firewall, CloudWAN) for Fortune 500 customers
+- Built and deployed AI/LLM-powered quality systems that replaced external review processes
+- Trained and enabled 200+ Solutions Architects, Professional Services Consultants, and TAMs on advanced networking patterns
+- Served as dedicated technical advisor for strategic enterprise customers, driving architecture best practices and cost optimization
+- Drove AWS networking service roadmap through customer feedback and cross-team collaboration
 
-### Cloudflare (2015-2016)
-**Product Manager**
+### Cloudflare (2015–2016)
+**Product Manager — Edge Services**
 
-- Launched [HTTP/2 support](https://blog.cloudflare.com/introducing-http2/) across Cloudflare's global network
-- [Quadrupled HTTP/2 adoption](https://blog.cloudflare.com/cloudflares-impact-on-the-http-2-universe/) on the internet
-- Drove product strategy for web performance optimization
+- Shipped [HTTP/2 + SPDY support](https://blog.cloudflare.com/introducing-http2/) across 1.8 million domains
+- [Increased HTTP/2 adoption](https://blog.cloudflare.com/cloudflares-impact-on-the-http-2-universe/) on the Alexa 1M list by 3x
 
-### VMware (2012-2015)
-**Integration Engineer → Integration Architect**
+### VMware (2012–2015)
+**Staff Integration Architect**
 
-- Architected VMware Validated Designs for Software Defined Data Centers
-- Led IPv6 readiness initiatives across vSphere product suite
-- Designed VMworld Hands-on Labs experiences
-- Provided feedback on emerging VMware technologies
+- Architected the VMware Validated Design (VVD) program — design blueprints adopted as the standard for enterprise SDDC deployments
+- Led re-architecture of three global data centers
+- Served as "Customer Zero" for emerging VMware releases
 
-### Cisco Systems (2008-2012)
-**Software Engineer → Technology Advisory → Product Manager**
+### Cisco Systems (2007–2011)
+**Software Engineer → M&A Technology Advisory → Product Manager (Technology Intelligence)**
 
-- Spearheaded Technology Intelligence initiatives for executive decision-making
-- Advised on M&A deals and strategy alignment in data center/virtualization space
-- Developed prototypes for remote collaboration systems
-- Contributed to disruptive innovation projects
+- Created Cisco's Technology Radar — a systematic technology scouting framework used by C-suite for strategic decision-making
+- Provided technology advisory for M&A transactions in data center and virtualization
+- Built Cisco CloudLab — a global hands-on lab platform for customers and partners
 
-## Beyond Work
+## Side Projects
 
-When I'm not designing networks or writing technical content, I enjoy exploring New Zealand's stunning landscapes and staying current with emerging technologies. I'm passionate about IPv6 adoption, sustainable infrastructure, and making complex technical concepts accessible.
-
-I'm also the creator of [TAK.NZ](https://tak.nz/) (Team Awareness Kit), New Zealand's common operating platform providing a real-time Common Operating Picture (COP) for emergency responders.
+- **[TAK.NZ](https://tak.nz/)** — New Zealand's common operating platform for emergency responders. Built on AWS with GenAI-powered knowledge retrieval (Bedrock + RAG) for first responders in the field.
+- **[AS213151](https://as213151.net/)** — Personal research network. BGP routing, network observability, and IPv6 deployment via IXP peering.
 
 ## Support My Work
 
@@ -76,7 +80,7 @@ If you find my content valuable, consider supporting:
 
 ## Connect
 
-Find me on [Mastodon](https://mastodon.social/@chriselsen), [Bluesky](https://bsky.app/profile/edge-cloud.net), [LinkedIn](https://www.linkedin.com/in/christianelsen/), or [GitHub](https://github.com/chriselsen/). I'm always interested in discussing networking challenges, cloud architecture, or emerging technologies.
+Find me on [Mastodon](https://mastodon.social/@chriselsen), [Bluesky](https://bsky.app/profile/edge-cloud.net), [LinkedIn](https://www.linkedin.com/in/christianelsen/), or [GitHub](https://github.com/chriselsen/).
 
 ---
 
