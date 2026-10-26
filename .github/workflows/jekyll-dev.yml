@@ -10,20 +10,20 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
     - uses: actions/checkout@v7
+    - name: "Install Ubuntu dependencies"
+      run: |
+            sudo apt-get update
+            sudo apt-get install -y webp libmagickwand-6.q16-dev
+
     - name: "Set up Ruby"
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.3.5
         bundler-cache: true
-        
-    - name: "Install Ubuntu dependencies"
-      run: |
-            sudo apt-get update
-            sudo apt-get install -y webp libmagickwand-6.q16-dev
 
     - name: "Clone Site from GitHub pages"
       run: |
